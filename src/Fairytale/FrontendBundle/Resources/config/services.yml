@@ -1,0 +1,7 @@
+parameters:
+#    fairytale_frontend.example.class: Fairytale\FrontendBundle\Example
+
+services:
+#    fairytale_frontend.example:
+#        class: %fairytale_frontend.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
