@@ -6,9 +6,8 @@ tools:
         timeout: 600
 
     # PHP
-    php_sim: true
+    php_sim:                true
     php_code_sniffer:       true
-    php_cpd:                true
     php_cs_fixer:           true
     php_hhvm:               true
     php_mess_detector:      true
