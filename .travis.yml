@@ -9,11 +9,6 @@ before_script:
     - composer install -n
     - wget https://scrutinizer-ci.com/ocular.phar
 
-
-script:
-    - bin/phpunit -c app
-    - bin/phpcs -p --standard=PSR2 src/
-
 cache:
     directories:
         - vendor/
