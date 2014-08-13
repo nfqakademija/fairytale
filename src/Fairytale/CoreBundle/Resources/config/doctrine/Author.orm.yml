@@ -1,0 +1,12 @@
+Fairytale\CoreBundle\Entity\Author:
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+            strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+    lifecycleCallbacks: {}
