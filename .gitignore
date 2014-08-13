@@ -20,3 +20,6 @@
 /web/js/
 /web/style/
 /web/images/
+
+# Vagrant
+/.vagrant/machines

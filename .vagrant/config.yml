@@ -1,0 +1,13 @@
+vm:
+  box: nfq/wheezy
+  box_url: nfq/wheezy
+  hostname: fairytale.dev # generated
+  cpu: 1
+  memory: 512
+  network:
+    private_network: 192.168.56.109
+    guest_port: 22
+    host_port: 9668
+  sync:
+    source: ./
+    target: /var/www/fairytale.dev/
