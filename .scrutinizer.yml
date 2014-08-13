@@ -4,6 +4,7 @@ imports:
 tools:
     external_code_coverage: true
     # PHP
+    php_sim: true
     php_code_sniffer:       true
     php_cpd:                true
     php_cs_fixer:           true
@@ -18,6 +19,10 @@ tools:
 
     # JS
     js_hint: true
+
+filter:
+    excluded_paths:
+        - 'app/*'
 
 changetracking:
     bug_patterns: ["\bfix(?:es|ed)?\b"]
