@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "nfqakademija/fairytale",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "NFQ Library",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
@@ -21,8 +21,7 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
-        "phpunit/phpunit": "~4.1",
-        "squizlabs/php_codesniffer": "~1.5"
+        "phpunit/phpunit": "~4.1"
     },
     "scripts": {
         "post-root-package-install": [
