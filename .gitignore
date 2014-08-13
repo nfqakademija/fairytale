@@ -12,6 +12,7 @@
 # Symfony directories
 /app/bootstrap.php.cache
 /app/config/parameters.yml
+/app/build
 /app/cache/*
 /app/logs/*
 /web/uploads/*
