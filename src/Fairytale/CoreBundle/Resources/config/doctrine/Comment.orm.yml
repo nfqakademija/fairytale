@@ -1,0 +1,17 @@
+Fairytale\CoreBundle\Entity\Comment:
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+            strategy: AUTO
+    fields:
+        comment:
+            type: text
+        date:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: User
+            mappedBy: comments
+    lifecycleCallbacks: {}

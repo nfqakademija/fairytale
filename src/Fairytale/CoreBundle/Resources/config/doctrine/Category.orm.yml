@@ -1,4 +1,4 @@
-Fairytale\CoreBundle\Entity\Author:
+Fairytale\CoreBundle\Entity\Category:
     type: entity
     id:
         id:
@@ -12,11 +12,11 @@ Fairytale\CoreBundle\Entity\Author:
     manyToMany:
         books:
             targetEntity: Book
-            inversedBy: authors
+            inversedBy: categories
             joinTable:
-                name: BookAuthors
+                name: BookCategories
                 joinColumns:
-                    author_id:
+                    category_id:
                         referencedColumnName: id
                 inverseJoinColumns:
                     book_id:

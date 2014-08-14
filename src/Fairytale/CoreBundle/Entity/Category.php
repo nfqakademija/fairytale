@@ -5,9 +5,9 @@ namespace Fairytale\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Author
+ * Category
  */
-class Author
+class Category
 {
     /**
      * @var integer
@@ -19,51 +19,6 @@ class Author
      */
     private $name;
 
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return Author
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Author
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -78,10 +33,56 @@ class Author
     }
 
     /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Category
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Add books
      *
      * @param \Fairytale\CoreBundle\Entity\Book $books
-     * @return Author
+     * @return Category
      */
     public function addBook(\Fairytale\CoreBundle\Entity\Book $books)
     {

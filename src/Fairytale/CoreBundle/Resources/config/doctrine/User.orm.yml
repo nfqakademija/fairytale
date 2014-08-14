@@ -1,0 +1,31 @@
+Fairytale\CoreBundle\Entity\User:
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+            strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        surname:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+    oneToMany:
+        comments:
+            targetEntity: Comment
+            mappedBy: user
+        proposals:
+            targetEntity: Proposal
+            mappedBy: user
+        ratings:
+            targetEntity: Rating
+            mappedBy: user
+        votes:
+            targetEntity: Vote
+            mappedBy: user
+    lifecycleCallbacks: {}

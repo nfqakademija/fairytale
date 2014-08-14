@@ -1,0 +1,23 @@
+Fairytale\CoreBundle\Entity\Proposal:
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+            strategy: AUTO
+    fields:
+        date:
+            type: datetime
+    oneToOne:
+        book:
+            targetEntity: Book
+            mappedBy: proposals
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: proposals
+    oneToMany:
+        votes:
+            targetEntity: Vote
+            mappedBy: proposal
+    lifecycleCallbacks: {}

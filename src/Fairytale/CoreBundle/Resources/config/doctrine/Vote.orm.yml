@@ -1,0 +1,20 @@
+Fairytale\CoreBundle\Entity\Vote:
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+            strategy: AUTO
+    fields:
+        vote:
+            type: boolean
+        date:
+            type: datetime
+    manyToOne:
+        proposal:
+            targetEntity: Proposal
+            inversedBy: votes
+        user:
+            targetEntity: User
+            inversedBy: ratings
+    lifecycleCallbacks: {}
