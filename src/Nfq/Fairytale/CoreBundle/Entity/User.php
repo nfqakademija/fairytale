@@ -2,17 +2,18 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -39,6 +40,7 @@ class User
      */
     public function __construct()
     {
+        parent::__construct();
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
         $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
     }
