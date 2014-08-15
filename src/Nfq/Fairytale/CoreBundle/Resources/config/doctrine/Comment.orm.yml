@@ -13,7 +13,7 @@ Nfq\Fairytale\CoreBundle\Entity\Comment:
     manyToOne:
         user:
             targetEntity: User
-            mappedBy: comments
+            inversedBy: comments
         book:
             targetEntity: Book
             inversedBy: comments
