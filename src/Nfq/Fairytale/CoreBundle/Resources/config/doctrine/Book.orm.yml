@@ -1,4 +1,4 @@
-Fairytale\CoreBundle\Entity\Book:
+Nfq\Fairytale\CoreBundle\Entity\Book:
     type: entity
     id:
         id:
@@ -9,13 +9,11 @@ Fairytale\CoreBundle\Entity\Book:
         title:
             type: string
             length: 255
-        year:
-            type: integer
-            length: 4
-    oneToOne:
-        proposal:
-            targetEntity: Book
-            inversedBy: book
+        description:
+            type: text
+        genre:
+            type: string
+            length: 255
     manyToMany:
         categories:
             targetEntity: Category
@@ -23,4 +21,11 @@ Fairytale\CoreBundle\Entity\Book:
         authors:
             targetEntity: Author
             mappedBy: books
+    oneToMany:
+        ratings:
+            targetEntity: Rating
+            mappedBy: book
+        comments:
+            targetEntity: Comment
+            mappedBy: book
     lifecycleCallbacks: {}

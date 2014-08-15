@@ -1,4 +1,4 @@
-fairytale_frontend:
-    resource: "@FairytaleFrontendBundle/Resources/config/routing.yml"
-    prefix:   /
-
+#fairytale_frontend:
+#    resource: "@FairytaleFrontendBundle/Resources/config/routing.yml"
+#    prefix:   /
+#

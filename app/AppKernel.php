@@ -16,8 +16,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Fairytale\FrontendBundle\FairytaleFrontendBundle(),
-            new Fairytale\CoreBundle\FairytaleCoreBundle(),
+            new Nfq\Fairytale\CoreBundle\NfqFairytaleCoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

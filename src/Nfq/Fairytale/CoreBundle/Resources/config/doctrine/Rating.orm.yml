@@ -1,4 +1,4 @@
-Fairytale\CoreBundle\Entity\Vote:
+Nfq\Fairytale\CoreBundle\Entity\Rating:
     type: entity
     id:
         id:
@@ -6,15 +6,15 @@ Fairytale\CoreBundle\Entity\Vote:
             generator:
             strategy: AUTO
     fields:
-        vote:
-            type: boolean
-        date:
+        value:
+            type: smallint
+        created:
             type: datetime
     manyToOne:
-        proposal:
-            targetEntity: Proposal
-            inversedBy: votes
         user:
             targetEntity: User
+            inversedBy: ratings
+        book:
+            targetEntity: Book
             inversedBy: ratings
     lifecycleCallbacks: {}

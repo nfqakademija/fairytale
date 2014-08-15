@@ -1,0 +1,16 @@
+Nfq\Fairytale\CoreBundle\Entity\Category:
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+            strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+    manyToMany:
+        books:
+            targetEntity: Book
+            inversedBy: categories
+    lifecycleCallbacks: {}

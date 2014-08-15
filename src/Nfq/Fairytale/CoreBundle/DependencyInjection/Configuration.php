@@ -1,6 +1,6 @@
 <?php
 
-namespace Fairytale\FrontendBundle\DependencyInjection;
+namespace Nfq\Fairytale\CoreBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fairytale_frontend');
+        $rootNode = $treeBuilder->root('nfq_fairytale_core');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

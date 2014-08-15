@@ -1,13 +1,13 @@
 <?php
 
-namespace Fairytale\CoreBundle\Entity;
+namespace Nfq\Fairytale\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
+ * Author
  */
-class Category
+class Author
 {
     /**
      * @var integer
@@ -36,7 +36,7 @@ class Category
      * Set id
      *
      * @param integer $id
-     * @return Category
+     * @return Author
      */
     public function setId($id)
     {
@@ -59,7 +59,7 @@ class Category
      * Set name
      *
      * @param string $name
-     * @return Category
+     * @return Author
      */
     public function setName($name)
     {
@@ -81,10 +81,10 @@ class Category
     /**
      * Add books
      *
-     * @param \Fairytale\CoreBundle\Entity\Book $books
-     * @return Category
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $books
+     * @return Author
      */
-    public function addBook(\Fairytale\CoreBundle\Entity\Book $books)
+    public function addBook(\Nfq\Fairytale\CoreBundle\Entity\Book $books)
     {
         $this->books[] = $books;
 
@@ -94,9 +94,9 @@ class Category
     /**
      * Remove books
      *
-     * @param \Fairytale\CoreBundle\Entity\Book $books
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $books
      */
-    public function removeBook(\Fairytale\CoreBundle\Entity\Book $books)
+    public function removeBook(\Nfq\Fairytale\CoreBundle\Entity\Book $books)
     {
         $this->books->removeElement($books);
     }

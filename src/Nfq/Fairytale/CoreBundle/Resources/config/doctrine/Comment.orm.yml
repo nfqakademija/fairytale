@@ -1,4 +1,4 @@
-Fairytale\CoreBundle\Entity\Comment:
+Nfq\Fairytale\CoreBundle\Entity\Comment:
     type: entity
     id:
         id:
@@ -6,12 +6,15 @@ Fairytale\CoreBundle\Entity\Comment:
             generator:
             strategy: AUTO
     fields:
-        comment:
+        content:
             type: text
-        date:
+        created:
             type: datetime
     manyToOne:
         user:
             targetEntity: User
             mappedBy: comments
+        book:
+            targetEntity: Book
+            inversedBy: comments
     lifecycleCallbacks: {}

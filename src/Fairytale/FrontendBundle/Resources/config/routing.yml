@@ -1,3 +1,0 @@
-fairytale_frontend_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: FairytaleFrontendBundle:Default:index }
