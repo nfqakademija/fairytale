@@ -40,12 +40,7 @@ class DoctrineOrmSource implements DataSource
     {
         $object = $this->entityManager->getPartialReference($this->resource, $identifier);
 
-        $ref = new \ReflectionObject($object);
-        foreach ($patch as $key => $value) {
-            $property = $ref->getProperty($key);
-            $property->setAccessible(true);
-            $property->setValue($object, $value);
-        }
+        $this->populateObject($object, $patch);
 
         $this->entityManager->persist($object);
         $this->entityManager->flush();
@@ -70,12 +65,7 @@ class DoctrineOrmSource implements DataSource
     {
         $object = $this->classFactory->create($this->resource);
 
-        $ref = new \ReflectionObject($object);
-        foreach ($data as $key => $value) {
-            $property = $ref->getProperty($key);
-            $property->setAccessible(true);
-            $property->setValue($object, $value);
-        }
+        $this->populateObject($object, $data);
 
         $this->entityManager->persist($object);
         $this->entityManager->flush();
@@ -107,5 +97,19 @@ class DoctrineOrmSource implements DataSource
     public function setClassFactory(ClassFactory $factory)
     {
         $this->classFactory = $factory;
+    }
+
+    /**
+     * @param $object
+     * @param $data
+     */
+    private function populateObject($object, $data)
+    {
+        $ref = new \ReflectionObject($object);
+        foreach ($data as $key => $value) {
+            $property = $ref->getProperty($key);
+            $property->setAccessible(true);
+            $property->setValue($object, $value);
+        }
     }
 }
