@@ -1,4 +1,7 @@
-# app/config/routing.yml
+nfq_fairytale_frontend:
+    resource: "@NfqFairytaleFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

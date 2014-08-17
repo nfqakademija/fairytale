@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Nfq\Fairytale\CoreBundle\NfqFairytaleCoreBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Nfq\Fairytale\FrontendBundle\NfqFairytaleFrontendBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
