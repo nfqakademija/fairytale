@@ -2,9 +2,6 @@ imports:
     - php
 
 tools:
-#    external_code_coverage:
-#        timeout: 600
-
     # PHP
     php_sim:                true
     php_code_sniffer:       true
