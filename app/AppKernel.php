@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Nfq\Fairytale\CoreBundle\NfqFairytaleCoreBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Nfq\Fairytale\FrontendBundle\NfqFairytaleFrontendBundle(),
+            new Nfq\Fairytale\ApiBundle\NfqFairytaleApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,3 @@
+nfq_fairytale_api_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: NfqFairytaleApiBundle:Default:index }
