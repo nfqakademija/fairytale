@@ -1,0 +1,2 @@
+suites:
+    ApiBundle       : { namespace: Nfq\Fairytale, spec_path: src/Nfq/Fairytale/ApiBundle }
