@@ -25,22 +25,15 @@ class Comment
     private $created;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $book;
-
-    /**
      * @var \Nfq\Fairytale\CoreBundle\Entity\User
      */
     private $user;
 
     /**
-     * Constructor
+     * @var \Nfq\Fairytale\CoreBundle\Entity\Book
      */
-    public function __construct()
-    {
-        $this->book = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $book;
+
 
     /**
      * Set id
@@ -112,39 +105,6 @@ class Comment
     }
 
     /**
-     * Add book
-     *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $book
-     * @return Comment
-     */
-    public function addBook(\Nfq\Fairytale\CoreBundle\Entity\Book $book)
-    {
-        $this->book[] = $book;
-
-        return $this;
-    }
-
-    /**
-     * Remove book
-     *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $book
-     */
-    public function removeBook(\Nfq\Fairytale\CoreBundle\Entity\Book $book)
-    {
-        $this->book->removeElement($book);
-    }
-
-    /**
-     * Get book
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getBook()
-    {
-        return $this->book;
-    }
-
-    /**
      * Set user
      *
      * @param \Nfq\Fairytale\CoreBundle\Entity\User $user
@@ -178,5 +138,15 @@ class Comment
         $this->book = $book;
 
         return $this;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \Nfq\Fairytale\CoreBundle\Entity\Book 
+     */
+    public function getBook()
+    {
+        return $this->book;
     }
 }

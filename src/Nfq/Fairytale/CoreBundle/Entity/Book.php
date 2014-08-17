@@ -30,12 +30,12 @@ class Book
     private $genre;
 
     /**
-     * @var \Nfq\Fairytale\CoreBundle\Entity\Rating
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $ratings;
 
     /**
-     * @var \Nfq\Fairytale\CoreBundle\Entity\Comment
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $comments;
 
@@ -54,6 +54,8 @@ class Book
      */
     public function __construct()
     {
+        $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->authors = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -151,22 +153,32 @@ class Book
     }
 
     /**
-     * Set ratings
+     * Add ratings
      *
      * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
      * @return Book
      */
-    public function setRatings(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings = null)
+    public function addRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
     {
-        $this->ratings = $ratings;
+        $this->ratings[] = $ratings;
 
         return $this;
     }
 
     /**
+     * Remove ratings
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
+     */
+    public function removeRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
+    {
+        $this->ratings->removeElement($ratings);
+    }
+
+    /**
      * Get ratings
      *
-     * @return \Nfq\Fairytale\CoreBundle\Entity\Rating 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRatings()
     {
@@ -174,22 +186,32 @@ class Book
     }
 
     /**
-     * Set comments
+     * Add comments
      *
      * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
      * @return Book
      */
-    public function setComments(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments = null)
+    public function addComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
     {
-        $this->comments = $comments;
+        $this->comments[] = $comments;
 
         return $this;
     }
 
     /**
+     * Remove comments
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
      * Get comments
      *
-     * @return \Nfq\Fairytale\CoreBundle\Entity\Comment 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getComments()
     {
@@ -260,51 +282,5 @@ class Book
     public function getAuthors()
     {
         return $this->authors;
-    }
-
-    /**
-     * Add ratings
-     *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
-     * @return Book
-     */
-    public function addRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
-    {
-        $this->ratings[] = $ratings;
-
-        return $this;
-    }
-
-    /**
-     * Remove ratings
-     *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
-     */
-    public function removeRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
-    {
-        $this->ratings->removeElement($ratings);
-    }
-
-    /**
-     * Add comments
-     *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
-     * @return Book
-     */
-    public function addComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
-    {
-        $this->comments[] = $comments;
-
-        return $this;
-    }
-
-    /**
-     * Remove comments
-     *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
-     */
-    public function removeComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
-    {
-        $this->comments->removeElement($comments);
     }
 }
