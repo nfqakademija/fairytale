@@ -5,7 +5,7 @@ namespace Nfq\Fairytale\ApiBundle\Datasource;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-class FileSource
+class FileSource implements DataSource
 {
     /** @var bool */
     protected $loaded = false;
@@ -47,9 +47,9 @@ class FileSource
     }
 
     /**
-     * @return array
+     * @inheritdoc
      */
-    public function index()
+    public function index($limit = null, $offset = null, $orderBy = null, $order = null)
     {
         $this->checkLoaded();
 
@@ -73,8 +73,7 @@ class FileSource
     }
 
     /**
-     * @param string $identifier
-     * @return array
+     * @inheritdoc
      */
     public function read($identifier)
     {
@@ -87,6 +86,9 @@ class FileSource
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function update($identifier, $patch)
     {
         $this->checkLoaded();
@@ -102,6 +104,9 @@ class FileSource
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function delete($identifier)
     {
         $this->checkLoaded();
@@ -115,6 +120,9 @@ class FileSource
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function create($data)
     {
         $this->checkLoaded();
@@ -131,6 +139,9 @@ class FileSource
         return $this->transformOne($data, $id);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function count()
     {
         $this->checkLoaded();
@@ -138,6 +149,9 @@ class FileSource
         return count($this->data);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function setResource($resource)
     {
         $this->resource = $resource;
