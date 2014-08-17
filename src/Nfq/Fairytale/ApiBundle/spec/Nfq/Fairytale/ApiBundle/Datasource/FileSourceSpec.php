@@ -11,6 +11,11 @@ use Symfony\Component\Config\FileLocator;
  */
 class FileSourceSpec extends ObjectBehavior
 {
+    function let()
+    {
+        $this->setResource('foo');
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Datasource\FileSource');
@@ -18,8 +23,8 @@ class FileSourceSpec extends ObjectBehavior
 
     function it_should_throw_if_file_not_loaded()
     {
-        $this->shouldThrow('\LogicException')->during('index', ['foo']);
-        $this->shouldThrow('\LogicException')->during('read', ['foo', 1]);
+        $this->shouldThrow('\LogicException')->during('index');
+        $this->shouldThrow('\LogicException')->during('read', [1]);
     }
 
     function it_should_know_if_file_is_loaded(FileLocator $locator)
@@ -48,8 +53,7 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->index('foo')->shouldHaveCount(2);
-        $this->index('foo')->shouldBe(
+        $this->index()->shouldBe(
             [
                 [
                     'id'   => 1,
@@ -69,7 +73,7 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->read('foo', 1)->shouldBe(
+        $this->read(1)->shouldBe(
             [
                 'id'   => 1,
                 'name' => 'foo1',
@@ -83,7 +87,7 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->update('foo', 1, ['bar' => 'qux'])->shouldBe(
+        $this->update(1, ['bar' => 'qux'])->shouldBe(
             [
                 'id'   => 1,
                 'name' => 'foo1',
@@ -91,7 +95,7 @@ class FileSourceSpec extends ObjectBehavior
             ]
         );
 
-        $this->read('foo', 1)->shouldBe(
+        $this->read(1)->shouldBe(
             [
                 'id'   => 1,
                 'name' => 'foo1',
@@ -106,7 +110,7 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->delete('foo', 1)->shouldBe(true);
+        $this->delete(1)->shouldBe(true);
     }
 
     function it_should_handle_missing_id(FileLocator $locator)
@@ -115,9 +119,9 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->read('foo', 2)->shouldBe(null);
-        $this->update('foo', 2, [])->shouldBe(null);
-        $this->delete('foo', 2)->shouldBe(false);
+        $this->read(2)->shouldBe(null);
+        $this->update(2, [])->shouldBe(null);
+        $this->delete(2)->shouldBe(false);
     }
 
     function it_should_create_item(FileLocator $locator)
@@ -126,9 +130,9 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->shouldThrow('InvalidArgumentException')->during('create', ['foo', ['name' => 'foo2', 'id' => 1]]);
+        $this->shouldThrow('InvalidArgumentException')->during('create', [['name' => 'foo2', 'id' => 1]]);
 
-        $this->create('foo', ['id' => 2, 'name' => 'foo2',])
+        $this->create(['id' => 2, 'name' => 'foo2',])
             ->shouldBe(['id' => 2, 'name' => 'foo2',]);
     }
 
@@ -138,8 +142,8 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->count('foo')->shouldBe(2);
-        $this->create('foo', []);
-        $this->count('foo')->shouldBe(3);
+        $this->count()->shouldBe(2);
+        $this->create([]);
+        $this->count()->shouldBe(3);
     }
 }

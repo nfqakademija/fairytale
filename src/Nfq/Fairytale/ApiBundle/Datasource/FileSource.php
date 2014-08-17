@@ -16,6 +16,9 @@ class FileSource
     /** @var  mixed */
     protected $data;
 
+    /** @var  string */
+    protected $resource;
+
     public function isLoaded()
     {
         return $this->loaded;
@@ -44,14 +47,13 @@ class FileSource
     }
 
     /**
-     * @param string $resource
      * @return array
      */
-    public function index($resource)
+    public function index()
     {
         $this->checkLoaded();
 
-        return $this->transform($this->data[$resource]);
+        return $this->transform($this->data);
     }
 
     /**
@@ -64,45 +66,48 @@ class FileSource
         if (!file_exists($absolutePath)) {
             throw new FileException($absolutePath);
         }
-        $this->data = json_decode(file_get_contents($absolutePath), true);
+
+        $this->data = json_decode(file_get_contents($absolutePath), true)[$this->resource];
 
         $this->loaded = true;
     }
 
     /**
-     * @param string $resource
      * @param string $identifier
      * @return array
      */
-    public function read($resource, $identifier)
+    public function read($identifier)
     {
         $this->checkLoaded();
 
-        $item = @$this->data[$resource][$identifier] ?: null;
+        $item = @$this->data[$identifier] ?: null;
 
         if ($item) {
             return $this->transformOne($item, $identifier);
         }
     }
 
-    public function update($resource, $identifier, $patch)
+    public function update($identifier, $patch)
     {
         $this->checkLoaded();
 
-        $item = @$this->data[$resource][$identifier] ?: null;
+        $item = @$this->data[$identifier] ?: null;
 
         if ($item) {
-            $this->data[$resource][$identifier] = array_replace($this->data[$resource][$identifier], $patch);
-            return $this->transformOne($this->data[$resource][$identifier], $identifier);
+            $this->data[$identifier] = array_replace(
+                $this->data[$identifier],
+                $patch
+            );
+            return $this->transformOne($this->data[$identifier], $identifier);
         }
     }
 
-    public function delete($resource, $identifier)
+    public function delete($identifier)
     {
         $this->checkLoaded();
 
-        if (@$this->data[$resource][$identifier]) {
-            unset($this->data[$resource][(string)$identifier]);
+        if (@$this->data[$identifier]) {
+            unset($this->data[(string)$identifier]);
 
             return true;
         } else {
@@ -110,26 +115,31 @@ class FileSource
         }
     }
 
-    public function create($resource, $data)
+    public function create($data)
     {
         $this->checkLoaded();
 
         $id = @$data['id'] ?: md5(uniqid());
 
-        if (isset($this->data[$resource][$id])) {
+        if (isset($this->data[$id])) {
             throw new \InvalidArgumentException("Duplicate ID {$id}");
         }
 
         unset($data['id']);
 
-        $this->data[$resource][(string)$id] = $data;
+        $this->data[(string)$id] = $data;
         return $this->transformOne($data, $id);
     }
 
-    public function count($resource)
+    public function count()
     {
         $this->checkLoaded();
 
-        return count($this->data[$resource]);
+        return count($this->data);
+    }
+
+    public function setResource($resource)
+    {
+        $this->resource = $resource;
     }
 }
