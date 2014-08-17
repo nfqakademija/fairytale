@@ -9,5 +9,7 @@ before_script:
     - composer install -n --prefer-source
     - wget https://scrutinizer-ci.com/ocular.phar
 
+script: bin/phpspec run -v -fpretty
+
 after_script:
     - php ocular.phar code-coverage:upload --format=php-clover app/build/logs/clover.xml
