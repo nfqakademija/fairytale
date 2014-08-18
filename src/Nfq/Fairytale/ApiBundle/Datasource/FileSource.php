@@ -4,13 +4,14 @@ namespace Nfq\Fairytale\ApiBundle\Datasource;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class FileSource implements DataSource
 {
     /** @var bool */
     protected $loaded = false;
 
-    /** @var  FileLocator */
+    /** @var  KernelInterface */
     protected $locator;
 
     /** @var  mixed */
@@ -31,7 +32,7 @@ class FileSource implements DataSource
         }
     }
 
-    public function setLocator(FileLocator $locator)
+    public function setLocator(KernelInterface $locator)
     {
         $this->locator = $locator;
     }
@@ -61,7 +62,7 @@ class FileSource implements DataSource
      */
     public function load($filename)
     {
-        $absolutePath = $this->locator->locate($filename);
+        $absolutePath = $this->locator->locateResource($filename);
 
         if (!file_exists($absolutePath)) {
             throw new FileException($absolutePath);
