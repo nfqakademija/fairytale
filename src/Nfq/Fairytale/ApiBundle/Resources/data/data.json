@@ -1,0 +1,12 @@
+{
+    "book": {
+        "1": {
+            "title": "Foo",
+            "author": "Bar"
+        },
+        "2": {
+            "title": "Baz",
+            "author": "Qux"
+        }
+    }
+}

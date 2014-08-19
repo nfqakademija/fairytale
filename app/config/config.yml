@@ -64,3 +64,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Nfq\Fairytale\CoreBundle\Entity\User
+
+#restful:
+#    source:
+#        type: file
+#        options:
+#            file: @NfqFairytaleBundle:Resources:data/data.json

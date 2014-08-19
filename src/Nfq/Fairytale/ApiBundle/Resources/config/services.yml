@@ -1,7 +1,15 @@
 parameters:
-#    nfq_fairytale_api.example.class: Nfq\Fairytale\ApiBundle\Example
 
 services:
-#    nfq_fairytale_api.example:
-#        class: %nfq_fairytale_api.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    nfq_fairytale.datasource.file:
+        class: Nfq\Fairytale\ApiBundle\Datasource\FileSource
+        calls:
+            - [setLocator, [@kernel]]
+
+    nfq_fairytale.datasource.doctrine.orm.class_factory:
+        class: Nfq\Fairytale\ApiBundle\Datasource\ClassFactory
+
+    nfq_fairytale.datasource.doctrine.orm:
+        class: Nfq\Fairytale\ApiBundle\Datasource\DoctrineOrmSource
+        calls:
+            - [setClassFactory, [@nfq_fairytale.datasource.doctrine.orm.class_factory]]
