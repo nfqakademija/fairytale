@@ -1,3 +1,29 @@
-nfq_fairytale_api_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: NfqFairytaleApiBundle:Default:index }
+nfq_fairytale_api.resource.index:
+    path:     /{resource}
+    defaults: { _controller: NfqFairytaleApiBundle:Api:index }
+    requirements:
+        method: GET
+
+nfq_fairytale_api.resource.create:
+    path:     /{resource}
+    defaults: { _controller: NfqFairytaleApiBundle:Api:create }
+    requirements:
+        method: POST
+
+nfq_fairytale_api.resource.read:
+    path:     /{resource}/{identifier}
+    defaults: { _controller: NfqFairytaleApiBundle:Api:read }
+    requirements:
+        method: GET
+
+nfq_fairytale_api.resource.update:
+    path:     /{resource}/{identifier}
+    defaults: { _controller: NfqFairytaleApiBundle:Api:update }
+    requirements:
+        method: PUT
+
+nfq_fairytale_api.resource.delete:
+    path:     /{resource}/{identifier}
+    defaults: { _controller: NfqFairytaleApiBundle:Api:delete }
+    requirements:
+        method: DELETE
