@@ -1,0 +1,5 @@
+services:
+    nfq_fairytale.api.listener.auth:
+        class: Nfq\Fairytale\ApiBundle\EventListener\Authorization
+        tags:
+            - {name: kernel.event_listener, event: kernel.controller, method: onKernelController }
