@@ -1,0 +1,7 @@
+default:
+    extensions:
+        Behat\MinkExtension\Extension:
+            goutte: ~
+        Behat\Symfony2Extension\Extension:
+            kernel:
+                env: test
