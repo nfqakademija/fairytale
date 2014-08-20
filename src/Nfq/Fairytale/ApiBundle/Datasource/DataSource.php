@@ -58,6 +58,7 @@ interface DataSource
      * Sets resource for current data source
      *
      * @param string $resource
+     * @return $this
      */
     public function setResource($resource);
 }

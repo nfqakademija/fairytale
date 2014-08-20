@@ -156,5 +156,6 @@ class FileSource implements DataSource
     public function setResource($resource)
     {
         $this->resource = $resource;
+        return $this;
     }
 }

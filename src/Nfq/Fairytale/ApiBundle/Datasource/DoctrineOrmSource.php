@@ -87,6 +87,7 @@ class DoctrineOrmSource implements DataSource
     public function setResource($resource)
     {
         $this->resource = $resource;
+        return $this;
     }
 
     public function setEntityManager(EntityManager $entityManager)
