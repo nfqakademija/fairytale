@@ -49,12 +49,10 @@ case $::operatingsystem {
     }
 }
 
-if is_array($packages) {
-    each( $packages ) |$package| {
-        if ! defined(Package[$package]) {
-            package { $package:
-                ensure => present,
-            }
+each( $packages ) | $package | {
+    if ! defined(Package[$package]) {
+        package { $package:
+            ensure => present,
         }
     }
 }
