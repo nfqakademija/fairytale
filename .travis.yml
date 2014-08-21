@@ -14,6 +14,7 @@ before_script:
     - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
     - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/
     - composer install -n --prefer-source
+    - sudo service nginx restart # most likely unneeded
 
 script:
     - bin/phpspec run -v -fpretty
