@@ -6,7 +6,10 @@ php:
     - 5.6
 
 before_script:
-    - gem install puppet
+    - wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
+    - sudo dpkg -i puppetlabs-release-precise.deb
+    - sudo apt-get update
+    - sudo apt-get install puppet
     - gem install librarian-puppet
     - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
     - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/
