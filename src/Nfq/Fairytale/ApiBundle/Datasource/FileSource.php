@@ -53,7 +53,7 @@ class FileSource implements DataSource
     {
         $this->checkLoaded();
 
-        return $this->transform($this->data);
+        return $this->transform($this->data[$this->resource]);
     }
 
     /**
