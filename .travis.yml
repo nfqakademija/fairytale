@@ -12,10 +12,11 @@ before_script:
     - sudo apt-get install puppet
     - gem install librarian-puppet
     - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
+    - puppet help
+    - cat /etc/puppet/puppet.conf
     - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/
     - composer install -n --prefer-source
     - sudo service nginx restart # most likely unneeded
-    - cat /etc/puppet/puppet.conf
 
 script:
     - bin/phpspec run -v -fpretty
