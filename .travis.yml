@@ -8,4 +8,6 @@ php:
 before_script:
     - composer install -n --prefer-source
 
-script: bin/phpspec run -v -fpretty
+script:
+    - bin/phpspec run -v -fpretty
+    - php bin/behat @NfqFairytaleApiBundle -v
