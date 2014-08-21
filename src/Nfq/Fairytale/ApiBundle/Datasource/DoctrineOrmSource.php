@@ -4,7 +4,7 @@ namespace Nfq\Fairytale\ApiBundle\Datasource;
 
 use Doctrine\ORM\EntityManager;
 
-class DoctrineOrmSource implements DataSource
+class DoctrineOrmSource implements DataSourceInterface
 {
     /** @var  ClassFactory */
     protected $classFactory;

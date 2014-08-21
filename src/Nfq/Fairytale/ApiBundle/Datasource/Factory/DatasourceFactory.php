@@ -2,20 +2,20 @@
 
 namespace Nfq\Fairytale\ApiBundle\Datasource\Factory;
 
-use Nfq\Fairytale\ApiBundle\Datasource\DataSource;
+use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
 
 class DatasourceFactory
 {
-    /** @var  DataSource */
+    /** @var  DataSourceInterface */
     protected $datasource;
 
     /** @var  mixed */
     protected $source;
 
     /**
-     * @param DataSource $datasource
+     * @param DataSourceInterface $datasource
      */
-    public function setDatasource(DataSource $datasource)
+    public function setDatasource(DataSourceInterface $datasource)
     {
         $this->datasource = $datasource;
     }
