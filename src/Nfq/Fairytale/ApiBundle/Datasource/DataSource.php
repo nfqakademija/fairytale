@@ -61,4 +61,11 @@ interface DataSource
      * @return $this
      */
     public function setResource($resource);
+
+    /**
+     * Returns the selected resource
+     *
+     * @return string
+     */
+    public function getResource();
 }

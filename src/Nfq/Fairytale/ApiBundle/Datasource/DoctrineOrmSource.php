@@ -90,6 +90,14 @@ class DoctrineOrmSource implements DataSource
         return $this;
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
     public function setEntityManager(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
