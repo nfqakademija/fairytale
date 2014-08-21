@@ -2,6 +2,7 @@
 
 namespace Nfq\Fairytale\ApiBundle\Features\Context;
 
+use Behat\Behat\Context\Step\Given;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
@@ -10,6 +11,7 @@ use Behat\Behat\Context\BehatContext,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * Feature context.
@@ -17,6 +19,7 @@ use Behat\Gherkin\Node\PyStringNode,
 class FeatureContext extends MinkContext //MinkContext if you want to test web
     implements KernelAwareInterface
 {
+    /** @var  KernelInterface */
     private $kernel;
     private $parameters;
 
@@ -42,10 +45,31 @@ class FeatureContext extends MinkContext //MinkContext if you want to test web
     }
 
     /**
-     * @Given /^"([^"]*)" is data source$/
+     * @Given /^I have "([^"]*)" access token$/
      */
-    public function isDataSource($type)
+    public function iHaveAccessToken($type)
     {
-//        throw new PendingException();
+        switch ($type) {
+            case 'no':
+                break;
+            case 'user':
+                $this->logIn('user', ['ROLE_USER']);
+                break;
+            case 'admin':
+                $this->logIn('admin', ['ROLE_ADMIN', 'ROLE_USER']);
+                break;
+        }
+    }
+
+    private function logIn($username, $roles)
+    {
+        $session = $this->kernel->getContainer()->get('session');
+
+        $firewall = 'main';
+        $token = new UsernamePasswordToken($username, null, $firewall, $roles);
+        $session->set('_security_' . $firewall, serialize($token));
+        $session->save();
+
+        $this->getSession()->setCookie($session->getName(), $session->getId());
     }
 }
