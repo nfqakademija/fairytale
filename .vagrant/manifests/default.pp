@@ -1,5 +1,6 @@
 $serverName = "fairytale.dev"
 $phpTimeZone = "Europe/Vilnius"
+$packages = ['vim', 'curl']
 
 # Ensure the time is accurate, reducing the possibilities of apt repositories
 # failing for invalid certificates
@@ -19,16 +20,55 @@ user { 'vagrant':
   require => [Group['www-data'], Group['www-user']]
 }
 
-ensure_packages( ['vim', 'curl'] )
+case $::operatingsystem {
+    'debian': {
+        include apt::backports
 
-apt::source { 'packages.dotdeb.org':
-  location          => 'http://packages.dotdeb.org',
-  release           => $lsbdistcodename,
-  repos             => 'all',
-  required_packages => 'debian-keyring debian-archive-keyring',
-  key               => '89DF5277',
-  key_server        => 'keys.gnupg.net',
-  include_src       => true
+        add_dotdeb { 'packages.dotdeb.org': release => $::lsbdistcodename }
+
+        $server_lsbdistcodename = downcase($::lsbdistcodename)
+
+        apt::force { 'git':
+          release => "${server_lsbdistcodename}-backports",
+          timeout => 60
+        }
+    }
+    'ubuntu': {
+        if ! defined(Apt::Key['4F4EA0AAE5267A6C']){
+          apt::key { '4F4EA0AAE5267A6C': key_server => 'hkp://keyserver.ubuntu.com:80' }
+        }
+        if ! defined(Apt::Key['4CBEDD5A']){
+          apt::key { '4CBEDD5A': key_server => 'hkp://keyserver.ubuntu.com:80' }
+        }
+
+        if $::lsbdistcodename in ['lucid', 'precise'] {
+          apt::ppa { 'ppa:pdoes/ppa': require => Apt::Key['4CBEDD5A'], options => '' }
+        } else {
+          apt::ppa { 'ppa:pdoes/ppa': require => Apt::Key['4CBEDD5A'] }
+        }
+    }
+}
+
+if is_array($packages) {
+    each( $packages ) |$package| {
+        if ! defined(Package[$package]) {
+            package { $package:
+                ensure => present,
+            }
+        }
+    }
+}
+
+define add_dotdeb ($release){
+    apt::source { "${name}-repo.puphpet":
+        location          => 'http://repo.puphpet.com/dotdeb/',
+        release           => $release,
+        repos             => 'all',
+        required_packages => 'debian-keyring debian-archive-keyring',
+        key               => '89DF5277',
+        key_server        => 'keys.gnupg.net',
+        include_src       => true
+    }
 }
 
 user { ['nginx', 'www-data']:
