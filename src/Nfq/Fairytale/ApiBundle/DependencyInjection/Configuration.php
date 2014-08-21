@@ -18,11 +18,27 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('nfq_fairytale_api');
+        $rootNode = $treeBuilder->root('rest_api');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
+
+        $rootNode->
+        children()
+            ->arrayNode('mapping')
+                ->isRequired()
+                ->requiresAtLeastOneElement()
+                ->useAttributeAsKey('name')
+                ->prototype('scalar')->end()
+            ->end()
+            ->arrayNode('data')
+                ->children()
+                    ->scalarNode('type')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('source')->isRequired()->cannotBeEmpty()->end()
+                ->end()
+            ->end()
+        ->end();
 
         return $treeBuilder;
     }

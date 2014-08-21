@@ -1,12 +1,14 @@
 {
-    "book": {
+    "NfqFairytaleCoreBundle:User": {
         "1": {
-            "title": "Foo",
-            "author": "Bar"
+            "name": "name_Foo",
+            "email": "email_bar@api.com",
+            "password": "pass_secret"
         },
         "2": {
-            "title": "Baz",
-            "author": "Qux"
+            "name": "Baz",
+            "author": "qux@api.com",
+            "password": "dont tell anyone"
         }
     }
 }

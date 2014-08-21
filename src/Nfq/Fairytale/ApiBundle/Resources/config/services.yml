@@ -9,7 +9,19 @@ services:
     nfq_fairytale.datasource.doctrine.orm.class_factory:
         class: Nfq\Fairytale\ApiBundle\Datasource\ClassFactory
 
-    nfq_fairytale.datasource.doctrine.orm:
+    nfq_fairytale.datasource.orm:
         class: Nfq\Fairytale\ApiBundle\Datasource\DoctrineOrmSource
         calls:
             - [setClassFactory, [@nfq_fairytale.datasource.doctrine.orm.class_factory]]
+            - [setEntityManager, [@doctrine.orm.default_entity_manager]]
+
+    nfq_fairytale.datasource.factory:
+        class: Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory
+
+    nfq_fairytale.api.controller:
+        class: Nfq\Fairytale\ApiBundle\Controller\ApiController
+        calls:
+            - [setSerializer, [@jms_serializer]]
+            - [setMapping, [%nfq_fairytale_api.config.mapping%]]
+            - [setDatasourceFactory, [@nfq_fairytale.datasource.factory]]
+

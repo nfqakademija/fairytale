@@ -12,7 +12,7 @@ nfq_fairytale_api.resource.create:
 
 nfq_fairytale_api.resource.read:
     path:     /{resource}/{identifier}
-    defaults: { _controller: NfqFairytaleApiBundle:Api:read }
+    defaults: { _controller: nfq_fairytale.api.controller:readAction }
     requirements:
         method: GET
 
