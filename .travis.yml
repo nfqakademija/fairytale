@@ -1,14 +1,19 @@
 language: php
 
 php:
-    - 5.4
-    - 5.5
+#    - 5.4
+#    - 5.5
     - 5.6
 
 before_script:
+    - gem install puppet
+    - gem install librarian-puppet
+    - cd .vagrant; librarian-puppet install; librarian-puppet show; cd ..
+    - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/
     - composer install -n --prefer-source
 
 script:
-    - bin/phpspec run -v -fpretty
+    - true
+#    - bin/phpspec run -v -fpretty
 # Gotta install webserver on travis worker before running behat
 #    - php bin/behat @NfqFairytaleApiBundle -v
