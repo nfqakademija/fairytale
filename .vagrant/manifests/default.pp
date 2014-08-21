@@ -49,14 +49,6 @@ case $::operatingsystem {
     }
 }
 
-each( $packages ) | $package | {
-    if ! defined(Package[$package]) {
-        package { $package:
-            ensure => present,
-        }
-    }
-}
-
 define add_dotdeb ($release){
     apt::source { "${name}-repo.puphpet":
         location          => 'http://repo.puphpet.com/dotdeb/',
@@ -68,6 +60,8 @@ define add_dotdeb ($release){
         include_src       => true
     }
 }
+
+ensure_packages($packages)
 
 user { ['nginx', 'www-data']:
   shell   => '/bin/bash',
