@@ -16,6 +16,9 @@ before_script:
     - composer install -n --prefer-source
 
 script:
-    - true
     - bin/phpspec run -v -fpretty
     - php bin/behat @NfqFairytaleApiBundle -v
+
+after_script:
+    - tail /var/log/nginx/fairytale.dev.error.log -n 100
+    - curl http://localhost/
