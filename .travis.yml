@@ -8,7 +8,7 @@ php:
 before_script:
     - gem install puppet
     - gem install librarian-puppet
-    - cd .vagrant; librarian-puppet install; librarian-puppet show; cd ..
+    - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
     - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/
     - composer install -n --prefer-source
 
