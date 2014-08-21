@@ -2,7 +2,6 @@
 
 namespace Nfq\Fairytale\ApiBundle\Datasource;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -68,7 +67,7 @@ class FileSource implements DataSource
             throw new FileException($absolutePath);
         }
 
-        $this->data = json_decode(file_get_contents($absolutePath), true)[$this->resource];
+        $this->data = json_decode(file_get_contents($absolutePath), true);
 
         $this->loaded = true;
     }
@@ -80,7 +79,7 @@ class FileSource implements DataSource
     {
         $this->checkLoaded();
 
-        $item = @$this->data[$identifier] ?: null;
+        $item = @$this->data[$this->resource][$identifier] ?: null;
 
         if ($item) {
             return $this->transformOne($item, $identifier);
@@ -94,14 +93,14 @@ class FileSource implements DataSource
     {
         $this->checkLoaded();
 
-        $item = @$this->data[$identifier] ?: null;
+        $item = @$this->data[$this->resource][$identifier] ?: null;
 
         if ($item) {
-            $this->data[$identifier] = array_replace(
-                $this->data[$identifier],
+            $this->data[$this->resource][$identifier] = array_replace(
+                $this->data[$this->resource][$identifier],
                 $patch
             );
-            return $this->transformOne($this->data[$identifier], $identifier);
+            return $this->transformOne($this->data[$this->resource][$identifier], $identifier);
         }
     }
 
@@ -112,8 +111,8 @@ class FileSource implements DataSource
     {
         $this->checkLoaded();
 
-        if (@$this->data[$identifier]) {
-            unset($this->data[(string)$identifier]);
+        if (@$this->data[$this->resource][$identifier]) {
+            unset($this->data[$this->resource][(string)$identifier]);
 
             return true;
         } else {
@@ -130,13 +129,13 @@ class FileSource implements DataSource
 
         $id = @$data['id'] ?: md5(uniqid());
 
-        if (isset($this->data[$id])) {
+        if (isset($this->data[$this->resource][$id])) {
             throw new \InvalidArgumentException("Duplicate ID {$id}");
         }
 
         unset($data['id']);
 
-        $this->data[(string)$id] = $data;
+        $this->data[$this->resource][(string)$id] = $data;
         return $this->transformOne($data, $id);
     }
 
@@ -147,7 +146,7 @@ class FileSource implements DataSource
     {
         $this->checkLoaded();
 
-        return count($this->data);
+        return count($this->data[$this->resource]);
     }
 
     /**
@@ -157,5 +156,13 @@ class FileSource implements DataSource
     {
         $this->resource = $resource;
         return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getResource()
+    {
+        return $this->resource;
     }
 }
