@@ -2,30 +2,82 @@
 
 namespace Nfq\Fairytale\ApiBundle\Controller;
 
-class ApiController
+use JMS\Serializer\Serializer;
+use Nfq\Fairytale\ApiBundle\Datasource\DataSource;
+use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class ApiController implements ApiControllerInterface
 {
-    public function readAction($resource, $identifier)
+    /** @var array */
+    protected $mapping = [];
+
+    /** @var  Serializer */
+    protected $serializer;
+
+    /** @var  DatasourceFactory */
+    protected $factory;
+
+    /**
+     * @param DataSource $datasource
+     */
+    public function setDatasourceFactory(DatasourceFactory $factory)
     {
-        return [];
+        $this->factory = $factory;
     }
 
-    public function createAction($resource)
+    /**
+     * @param Serializer $serializer
+     */
+    public function setSerializer(Serializer $serializer)
     {
-        return [];
+        $this->serializer = $serializer;
     }
 
-    public function updateAction($resource, $id)
+    /**
+     * @param array $mapping
+     */
+    public function setMapping($mapping)
     {
-        return [];
+        $this->mapping = $mapping;
     }
 
-    public function indexAction($resource)
+    public function readAction(Request $request, $resource, $identifier)
     {
-        return [];
+        // TODO: serialize(???, $request->getRequestFormat());
+
+        return new Response(
+            $this->serializer->serialize(
+                $this->factory
+                    ->create($this->mapping[$resource])
+                    ->read($identifier),
+                'json'
+            ),
+            200,
+            [
+                'Content-Type' => 'application/json'
+            ]
+        );
     }
 
-    public function deleteAction($resource, $id)
+    public function createAction(Request $request, $resource)
     {
-        return [];
+        return new Response();
+    }
+
+    public function updateAction(Request $request, $resource, $id)
+    {
+        return new Response();
+    }
+
+    public function indexAction(Request $request, $resource)
+    {
+        return new Response();
+    }
+
+    public function deleteAction(Request $request, $resource, $id)
+    {
+        return new Response();
     }
 }
