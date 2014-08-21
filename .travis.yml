@@ -17,6 +17,5 @@ before_script:
 
 script:
     - true
-#    - bin/phpspec run -v -fpretty
-# Gotta install webserver on travis worker before running behat
-#    - php bin/behat @NfqFairytaleApiBundle -v
+    - bin/phpspec run -v -fpretty
+    - php bin/behat @NfqFairytaleApiBundle -v
