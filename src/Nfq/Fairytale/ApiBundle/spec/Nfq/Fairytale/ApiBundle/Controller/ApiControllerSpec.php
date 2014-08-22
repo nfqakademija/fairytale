@@ -41,25 +41,4 @@ class ApiControllerSpec extends ObjectBehavior
         $response->shouldHaveType('Symfony\Component\HttpFoundation\Response');
         $response->getContent()->shouldBe(json_encode($fakeData));
     }
-
-    function it_can_index_resource(Request $request)
-    {
-        $this
-            ->indexAction($request, 'NfqFairytaleCoreBundle:User')
-            ->shouldHaveType('Symfony\Component\HttpFoundation\Response');
-    }
-
-    function it_can_update_resource(Request $request)
-    {
-        $this
-            ->updateAction($request, 'NfqFairytaleCoreBundle:User', 1)
-            ->shouldHaveType('Symfony\Component\HttpFoundation\Response');
-    }
-
-    function it_can_delete_resource(Request $request)
-    {
-        $this
-            ->deleteAction($request, 'NfqFairytaleCoreBundle:User', 1)
-            ->shouldHaveType('Symfony\Component\HttpFoundation\Response');
-    }
 }
