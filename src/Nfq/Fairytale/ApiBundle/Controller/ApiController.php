@@ -7,8 +7,8 @@ use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ApiController implements ApiControllerInterface
 {
@@ -48,19 +48,21 @@ class ApiController implements ApiControllerInterface
     public function readAction(Request $request, $resource, $identifier)
     {
         // TODO: serialize(???, $request->getRequestFormat());
+        $instance = $this->factory
+            ->create($this->mapping[$resource])
+            ->read($identifier);
 
-        return new Response(
-            $this->serializer->serialize(
-                $this->factory
-                    ->create($this->mapping[$resource])
-                    ->read($identifier),
-                'json'
-            ),
-            200,
-            [
-                'Content-Type' => 'application/json'
-            ]
-        );
+        if (!$instance) {
+
+            throw new NotFoundHttpException();
+        } else {
+
+            return new Response(
+                $this->serializer->serialize($instance, 'json'),
+                200,
+                ['Content-Type' => 'application/json']
+            );
+        }
     }
 
     public function createAction(Request $request, $resource)
@@ -79,7 +81,7 @@ class ApiController implements ApiControllerInterface
         );
     }
 
-    public function updateAction(Request $request, $resource, $id)
+    public function updateAction(Request $request, $resource, $identifier)
     {
         throw new HttpException(501);
     }
@@ -89,8 +91,21 @@ class ApiController implements ApiControllerInterface
         throw new HttpException(501);
     }
 
-    public function deleteAction(Request $request, $resource, $id)
+    public function deleteAction(Request $request, $resource, $identifier)
     {
-        throw new HttpException(501);
+        $deleted = $this->factory
+            ->create($this->mapping[$resource])
+            ->delete($identifier);
+
+        return new Response(
+            $this->serializer->serialize(
+                ['status' => $deleted ? 'success' : 'failed'],
+                'json'
+            ),
+            $deleted ? 200 : 400,
+            [
+                'Content-Type' => 'application/json'
+            ]
+        );
     }
 }

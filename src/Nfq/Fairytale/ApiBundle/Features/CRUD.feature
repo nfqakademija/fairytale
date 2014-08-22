@@ -28,7 +28,6 @@ Feature: CRUD
             "password": "pass_Bob"
         }
         """
-        Then print response
         Then the response code should be 201
         And the response should contain json:
         """
@@ -39,3 +38,15 @@ Feature: CRUD
             "password": "pass_Bob"
         }
         """
+    Scenario: I can delete user
+        Given I have "admin" access token
+        When I send a DELETE request to "/api/user/3"
+        Then the response code should be 200
+        And the response should contain json:
+        """
+        {
+            "status":"success"
+        }
+        """
+        And I send a GET request to "/api/user/3"
+        And the response code should be 404

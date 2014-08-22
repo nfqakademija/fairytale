@@ -29,7 +29,10 @@ class DatasourceFactory
     }
 
     /**
-     * @inheritdoc
+     * Creates parametrized instance of configured resource
+     *
+     * @param string $resource Resource identifier
+     * @return DataSourceInterface
      */
     public function create($resource)
     {
