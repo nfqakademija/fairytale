@@ -22,6 +22,7 @@ before_script:
     - sudo service php5-fpm restart
     - sudo service nginx restart
     - composer install -n --prefer-source
+    - ln -s . /var/www/fairytale.dev/
 
 script:
     - bin/phpspec run -v -fpretty
