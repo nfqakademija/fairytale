@@ -20,7 +20,9 @@ before_script:
     - cat /etc/puppet/puppet.conf
     - sudo puppet apply .vagrant/manifests/default.pp --modulepath .vagrant/modules/ --parser future
     - composer install -n --prefer-source
+    - sed -i 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g' /etc/php5/fpm/pool.d/www.conf
     - sudo service nginx restart
+    - sudo service php5-fpm restart
 
 script:
     - bin/phpspec run -v -fpretty
