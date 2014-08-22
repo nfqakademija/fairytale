@@ -10,7 +10,7 @@ before_script:
     - sudo dpkg -i puppetlabs-release-precise.deb
     - sudo apt-get update
     - sudo apt-get install puppet
-    - gem install librarian-puppet
+    - sudo gem install librarian-puppet
     - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
     - puppet help
     - cat /etc/puppet/puppet.conf
