@@ -82,7 +82,7 @@ class FileSource implements DataSourceInterface
     {
         $this->checkLoaded();
 
-        $item = @$this->data[$this->resource][$identifier] ?: null;
+        $item = @$this->data[$this->resource][$identifier - 1] ?: null;
 
         if ($item) {
             return $this->transformOne($item, $identifier);
@@ -96,15 +96,15 @@ class FileSource implements DataSourceInterface
     {
         $this->checkLoaded();
 
-        $item = @$this->data[$this->resource][$identifier] ?: null;
+        $item = @$this->data[$this->resource][$identifier - 1] ?: null;
 
         if ($item) {
-            $this->data[$this->resource][$identifier] = array_replace(
-                $this->data[$this->resource][$identifier],
+            $this->data[$this->resource][$identifier - 1] = array_replace(
+                $this->data[$this->resource][$identifier - 1],
                 $patch
             );
             file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
-            return $this->transformOne($this->data[$this->resource][$identifier], $identifier);
+            return $this->transformOne($this->data[$this->resource][$identifier - 1], $identifier);
         }
     }
 
@@ -115,8 +115,8 @@ class FileSource implements DataSourceInterface
     {
         $this->checkLoaded();
 
-        if (@$this->data[$this->resource][$identifier]) {
-            unset($this->data[$this->resource][(string)$identifier]);
+        if (@$this->data[$this->resource][$identifier - 1]) {
+            unset($this->data[$this->resource][$identifier - 1]);
             file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
 
             return true;
@@ -132,18 +132,14 @@ class FileSource implements DataSourceInterface
     {
         $this->checkLoaded();
 
-        $id = @$data['id'] ?: md5(uniqid());
-
-        if (isset($this->data[$this->resource][$id])) {
-            throw new \InvalidArgumentException("Duplicate ID {$id}");
+        if (isset($data['id'])) {
+            unset($data['id']);
         }
 
-        unset($data['id']);
-
-        $this->data[$this->resource][(string)$id] = $data;
+        $this->data[$this->resource][] = $data;
         file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
 
-        return $this->transformOne($data, $id);
+        return $this->transformOne($data, count($this->data[$this->resource]));
     }
 
     /**

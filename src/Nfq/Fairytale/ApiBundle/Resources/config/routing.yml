@@ -1,29 +1,24 @@
 nfq_fairytale_api.resource.index:
     path:     /{resource}
     defaults: { _controller: nfq_fairytale.api.controller:indexAction }
-    requirements:
-        method: GET
+    methods: [GET]
 
 nfq_fairytale_api.resource.create:
     path:     /{resource}
     defaults: { _controller: nfq_fairytale.api.controller:createAction }
-    requirements:
-        method: POST
+    methods: [POST]
 
 nfq_fairytale_api.resource.read:
     path:     /{resource}/{identifier}
     defaults: { _controller: nfq_fairytale.api.controller:readAction }
-    requirements:
-        method: GET
+    methods: [GET]
 
 nfq_fairytale_api.resource.update:
     path:     /{resource}/{identifier}
     defaults: { _controller: nfq_fairytale.api.controller:updateAction }
-    requirements:
-        method: PUT
+    methods: [PUT]
 
 nfq_fairytale_api.resource.delete:
     path:     /{resource}/{identifier}
     defaults: { _controller: nfq_fairytale.api.controller:deleteAction }
-    requirements:
-        method: DELETE
+    methods: [DELETE]
