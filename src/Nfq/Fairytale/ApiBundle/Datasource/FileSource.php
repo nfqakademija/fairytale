@@ -19,6 +19,9 @@ class FileSource implements DataSourceInterface
     /** @var  string */
     protected $resource;
 
+    /** @var  string */
+    protected $file;
+
     public function isLoaded()
     {
         return $this->loaded;
@@ -61,13 +64,13 @@ class FileSource implements DataSourceInterface
      */
     public function load($filename)
     {
-        $absolutePath = $this->locator->locateResource($filename);
+        $this->file = $this->locator->locateResource($filename);
 
-        if (!file_exists($absolutePath)) {
-            throw new FileException($absolutePath);
+        if (!file_exists($this->file)) {
+            throw new FileException($this->file);
         }
 
-        $this->data = json_decode(file_get_contents($absolutePath), true);
+        $this->data = json_decode(file_get_contents($this->file), true);
 
         $this->loaded = true;
     }
@@ -100,6 +103,7 @@ class FileSource implements DataSourceInterface
                 $this->data[$this->resource][$identifier],
                 $patch
             );
+            file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
             return $this->transformOne($this->data[$this->resource][$identifier], $identifier);
         }
     }
@@ -113,6 +117,7 @@ class FileSource implements DataSourceInterface
 
         if (@$this->data[$this->resource][$identifier]) {
             unset($this->data[$this->resource][(string)$identifier]);
+            file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
 
             return true;
         } else {
@@ -136,6 +141,8 @@ class FileSource implements DataSourceInterface
         unset($data['id']);
 
         $this->data[$this->resource][(string)$id] = $data;
+        file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
+
         return $this->transformOne($data, $id);
     }
 
