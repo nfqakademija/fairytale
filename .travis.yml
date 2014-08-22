@@ -11,9 +11,9 @@ addons:
         - fairytale.dev
 
 before_script:
-    - mkdir -p app/cache
-    - mkdir -p app/logs
-    - sudo chmod 0777 -R app/cache/* app/logs/*
+    - mkdir -p app/cache/
+    - mkdir -p app/logs/
+    - sudo chmod 0777 -R app/*
     - wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
     - sudo dpkg -i puppetlabs-release-precise.deb
     - sudo apt-get update
