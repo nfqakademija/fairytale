@@ -32,8 +32,8 @@ before_script:
 script:
     - bin/phpspec run -v -fpretty
 #    - bin/behat -v -fpretty
-    - curl http://fairytale.dev/ --fail
-    - curl http://fairytale.dev/
+#    - curl http://fairytale.dev/ --fail
+#    - curl http://fairytale.dev/
 
 after_script:
     - cat /var/www/fairytale.dev/app/logs/dev.log
