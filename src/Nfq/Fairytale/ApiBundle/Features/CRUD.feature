@@ -11,6 +11,7 @@ Feature: CRUD
         And the response should contain json:
         """
         {
+            "id": 1,
             "name":"name_Foo",
             "email":"email_bar@api.com",
             "password": "pass_secret"
@@ -49,3 +50,14 @@ Feature: CRUD
         }
         """
         Then the response code should be 400
+
+    Scenario: I can read user index
+        Given I have "admin" access token
+        When I send a GET request to "/api/user"
+        Then the response code should be 501
+
+    Scenario: I can delete user
+        Given I have "admin" access token
+        When I send a DELETE request to "/api/user/1"
+        Then the response code should be 501
+

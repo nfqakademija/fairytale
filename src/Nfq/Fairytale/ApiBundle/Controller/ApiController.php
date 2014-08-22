@@ -7,6 +7,8 @@ use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ApiController implements ApiControllerInterface
 {
@@ -63,21 +65,21 @@ class ApiController implements ApiControllerInterface
 
     public function createAction(Request $request, $resource)
     {
-        return new Response();
+        throw new HttpException(501);
     }
 
     public function updateAction(Request $request, $resource, $id)
     {
-        return new Response();
+        throw new HttpException(501);
     }
 
     public function indexAction(Request $request, $resource)
     {
-        return new Response();
+        throw new HttpException(501);
     }
 
     public function deleteAction(Request $request, $resource, $id)
     {
-        return new Response();
+        throw new HttpException(501);
     }
 }

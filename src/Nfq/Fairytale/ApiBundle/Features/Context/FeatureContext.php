@@ -2,7 +2,7 @@
 
 namespace Nfq\Fairytale\ApiBundle\Features\Context;
 
-use Behat\Mink\Exception\ExpectationException;
+use Behat\Behat\Context\CustomSnippetAcceptingContext;
 use Behat\WebApiExtension\Context\WebApiContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Behat\MinkExtension\Context\MinkContext;
@@ -14,8 +14,20 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 /**
  * Feature context.
  */
-class FeatureContext extends WebApiContext //MinkContext if you want to test web
+class FeatureContext extends WebApiContext implements CustomSnippetAcceptingContext
 {
+    /**
+     * Returns type of the snippets that this context accepts.
+     *
+     * Behat implements a couple of types by default: "regex" and "turnip"
+     *
+     * @return string
+     */
+    public static function getAcceptedSnippetType()
+    {
+        return "regex";
+    }
+
     /**
      * @Given /^I have "([^"]*)" access token$/
      */
