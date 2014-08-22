@@ -22,15 +22,14 @@ user { 'vagrant':
 
 case $::operatingsystem {
     'debian': {
-        include apt::backports
-
-        add_dotdeb { 'packages.dotdeb.org': release => $::lsbdistcodename }
-
-        $server_lsbdistcodename = downcase($::lsbdistcodename)
-
-        apt::force { 'git':
-          release => "${server_lsbdistcodename}-backports",
-          timeout => 60
+        apt::source { 'packages.dotdeb.org':
+            location          => 'http://packages.dotdeb.org',
+            release           => $lsbdistcodename,
+            repos             => 'all',
+            required_packages => 'debian-keyring debian-archive-keyring',
+            key               => '89DF5277',
+            key_server        => 'keys.gnupg.net',
+            include_src       => true
         }
     }
     'ubuntu': {
@@ -46,18 +45,6 @@ case $::operatingsystem {
         } else {
           apt::ppa { 'ppa:pdoes/ppa': require => Apt::Key['4CBEDD5A'] }
         }
-    }
-}
-
-define add_dotdeb ($release){
-    apt::source { "${name}-repo.puphpet":
-        location          => 'http://repo.puphpet.com/dotdeb/',
-        release           => $release,
-        repos             => 'all',
-        required_packages => 'debian-keyring debian-archive-keyring',
-        key               => '89DF5277',
-        key_server        => 'keys.gnupg.net',
-        include_src       => true
     }
 }
 
