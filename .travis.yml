@@ -14,7 +14,7 @@ before_script:
     - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
     - puppet help
     - cat /etc/puppet/puppet.conf
-    - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/
+    - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/ --parser future
     - composer install -n --prefer-source
     - sudo service nginx restart # most likely unneeded
 
