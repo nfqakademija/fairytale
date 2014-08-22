@@ -94,7 +94,18 @@ class ApiController implements ApiControllerInterface
 
     public function updateAction(Request $request, $resource, $identifier)
     {
-        throw new HttpException(501);
+        return new Response(
+            $this->serializer->serialize(
+                $this->factory
+                    ->create($this->mapping[$resource])
+                    ->update($identifier, json_decode($request->getContent(), true)),
+                'json'
+            ),
+            200,
+            [
+                'Content-Type' => 'application/json'
+            ]
+        );
     }
 
     public function indexAction(Request $request, $resource)
