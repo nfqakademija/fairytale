@@ -127,7 +127,7 @@ nginx::resource::location { "${serverName}-php":
 
 class { 'php':
   package             => 'php5-fpm',
-  service             => 'php5-fpm',
+  service             => 'nginx',
   service_autorestart => false,
   config_file         => '/etc/php5/fpm/php.ini',
   module_prefix       => ''
