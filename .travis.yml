@@ -30,3 +30,5 @@ after_script:
     - tail /var/log/nginx/fairytale.dev.error.log -n 100
     - tail /var/www/fairytale.dev/app/logs/dev.log
     - cat /etc/nginx/sites-enabled/fairytale.dev.conf
+    - cat /etc/nginx/nginx.conf
+    - hostname
