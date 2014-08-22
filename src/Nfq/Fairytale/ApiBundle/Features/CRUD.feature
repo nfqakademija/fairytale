@@ -40,6 +40,22 @@ Feature: CRUD
         ]
         """
 
+    Scenario: I can skip 5 test items and read 5 following
+        Given I have "admin" access token
+        When I send a GET request to "/api/testItem?limit=5&offset=5"
+        Then the response code should be 200
+        And the response should contain json:
+        """
+        [
+            {"id":6,"foo":"bar"},
+            {"id":7,"foo":"bar"},
+            {"id":8,"foo":"bar"},
+            {"id":9,"foo":"bar"},
+            {"id":10,"foo":"bar"}
+        ]
+        """
+        And the response should not contain "11"
+
     Scenario: I can create user
         Given I have "admin" access token
         When I send a POST request to "/api/user" with body:
@@ -60,6 +76,7 @@ Feature: CRUD
             "password": "pass_Bob"
         }
         """
+
     Scenario: I can delete user
         Given I have "admin" access token
         When I send a DELETE request to "/api/user/3"

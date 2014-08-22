@@ -58,8 +58,12 @@ class FileSource implements DataSourceInterface
     public function index($limit = null, $offset = null, $orderBy = null, $order = null)
     {
         $this->checkLoaded();
-
-        return $this->transform($this->data[$this->resource]);
+        if ($limit) {
+            $out = array_slice($this->data[$this->resource], (int) $offset, (int) $limit, true);
+        } else {
+            $out = $this->data[$this->resource];
+        }
+        return $this->transform($out);
     }
 
     /**

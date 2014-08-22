@@ -37,6 +37,7 @@ class NfqFairytaleApiExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $container->setParameter('nfq_fairytale_api.config.mapping', $config['mapping']);
+        $container->setParameter('nfq_fairytale_api.config.default_index_size', $config['index_size']);
 
         $factory = $container->getDefinition('nfq_fairytale.datasource.factory');
 

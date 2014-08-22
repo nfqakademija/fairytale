@@ -21,6 +21,9 @@ class ApiController implements ApiControllerInterface
     /** @var  DatasourceFactory */
     protected $factory;
 
+    /** @var  int */
+    protected $defaultIndexSize;
+
     /**
      * @param DataSourceInterface $datasource
      */
@@ -43,6 +46,14 @@ class ApiController implements ApiControllerInterface
     public function setMapping($mapping)
     {
         $this->mapping = $mapping;
+    }
+
+    /**
+     * @param int $defaultCollectionSize
+     */
+    public function setDefaultIndexSize($defaultCollectionSize)
+    {
+        $this->defaultIndexSize = $defaultCollectionSize;
     }
 
     public function readAction(Request $request, $resource, $identifier)
@@ -89,7 +100,13 @@ class ApiController implements ApiControllerInterface
     public function indexAction(Request $request, $resource)
     {
         return new Response(
-            $this->serializer->serialize($this->factory->create($this->mapping[$resource])->index(), 'json'),
+            $this->serializer->serialize(
+                $this->factory->create($this->mapping[$resource])->index(
+                    $request->query->get('limit', $this->defaultIndexSize),
+                    $request->query->get('offset', 0)
+                ),
+                'json'
+            ),
             200,
             ['Content-Type' => 'application/json']
         );

@@ -24,8 +24,8 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
-        $rootNode->
-        children()
+        $rootNode->children()
+            ->scalarNode('index_size')->defaultValue(10)->cannotBeEmpty()->end()
             ->arrayNode('mapping')
                 ->isRequired()
                 ->requiresAtLeastOneElement()

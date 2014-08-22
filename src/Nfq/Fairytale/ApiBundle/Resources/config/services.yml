@@ -24,4 +24,4 @@ services:
             - [setSerializer, [@jms_serializer]]
             - [setMapping, [%nfq_fairytale_api.config.mapping%]]
             - [setDatasourceFactory, [@nfq_fairytale.datasource.factory]]
-
+            - [setDefaultIndexSize, [%nfq_fairytale_api.config.default_index_size%]]
