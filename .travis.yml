@@ -26,11 +26,11 @@ before_script:
 script:
     - bin/phpspec run -v -fpretty
 #    - php bin/behat @NfqFairytaleApiBundle -v
-    - curl http://localhost/ --fail
+    - curl http://fairytale.dev/ --fail
 
 after_script:
     - cat /var/log/nginx/fairytale.dev.error.log
-    - cat /var/log/nginx/error.log
+    - sudo cat /var/log/nginx/error.log
     - cat /var/log/nginx/fairytale.dev.access.log
     - cat /var/www/fairytale.dev/app/logs/dev.log
     - cat /etc/nginx/sites-enabled/fairytale.dev.conf
