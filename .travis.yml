@@ -23,10 +23,10 @@ before_script:
 
 script:
     - bin/phpspec run -v -fpretty
-    - php bin/behat @NfqFairytaleApiBundle -v
+#    - php bin/behat @NfqFairytaleApiBundle -v
+    - curl http://localhost/ --fail
 
 after_script:
-    - curl http://localhost/
     - cat /var/log/nginx/fairytale.dev.error.log
     - cat /var/log/nginx/fairytale.dev.access.log
     - cat /var/www/fairytale.dev/app/logs/dev.log
