@@ -30,6 +30,7 @@ script:
     - bin/phpspec run -v -fpretty
 #    - php bin/behat @NfqFairytaleApiBundle -v
     - curl http://fairytale.dev/ --fail
+    - curl http://fairytale.dev/
 
 after_script:
     - cat /var/log/nginx/fairytale.dev.error.log
