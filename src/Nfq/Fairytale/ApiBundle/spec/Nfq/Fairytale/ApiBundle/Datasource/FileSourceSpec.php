@@ -39,10 +39,8 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->shouldThrow('InvalidArgumentException')->during('create', [['name' => 'foo2', 'id' => 1]]);
-
-        $this->create(['id' => 2, 'name' => 'foo2',])
-            ->shouldBe(['id' => 2, 'name' => 'foo2',]);
+        $this->create(['name' => 'foo3',])
+            ->shouldBe(['id' => 3, 'name' => 'foo3',]);
     }
 
     function it_should_know_if_file_is_loaded(KernelInterface $locator)
@@ -78,8 +76,8 @@ class FileSourceSpec extends ObjectBehavior
                     'name' => 'foo1',
                 ],
                 [
-                    'id'   => 3,
-                    'name' => 'foo3'
+                    'id'   => 2,
+                    'name' => 'foo2'
                 ],
             ]
         );
@@ -137,9 +135,9 @@ class FileSourceSpec extends ObjectBehavior
         $this->setLocator($locator);
         $this->load('data.json');
 
-        $this->read(2)->shouldBe(null);
-        $this->update(2, [])->shouldBe(null);
-        $this->delete(2)->shouldBe(false);
+        $this->read(3)->shouldBe(null);
+        $this->update(3, [])->shouldBe(null);
+        $this->delete(3)->shouldBe(false);
     }
 
     function it_should_be_countable(KernelInterface $locator)

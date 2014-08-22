@@ -41,7 +41,10 @@ class FileSource implements DataSourceInterface
 
     private function transform($dataset)
     {
-        return array_map([$this, 'transformOne'], $dataset, array_keys($dataset));
+        $inc = function ($value) {
+            return $value + 1;
+        };
+        return array_map([$this, 'transformOne'], $dataset, array_map($inc, array_keys($dataset)));
     }
 
     private function transformOne($entry, $id)
