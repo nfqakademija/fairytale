@@ -1,8 +1,12 @@
 default:
     extensions:
-        Behat\MinkExtension\Extension:
-            base_url:  'http://fairytale.dev'
+        Behat\WebApiExtension: ~
+        Behat\MinkExtension:
+            base_url:   'http://fairytale.dev/app_test.php/'
             goutte: ~
-        Behat\Symfony2Extension\Extension:
-            kernel:
-                env: test
+    suites:
+        api_features:
+            paths:
+                - %paths.base%/src/Nfq/Fairytale/ApiBundle/Features
+            contexts:
+                - Nfq\Fairytale\ApiBundle\Features\Context\FeatureContext

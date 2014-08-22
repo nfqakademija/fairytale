@@ -19,13 +19,13 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3.4",
-        "jms/serializer-bundle": "0.*",
-        "behat/symfony2-extension": "*"
+        "jms/serializer-bundle": "0.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
         "phpspec/phpspec": "~2.0",
-        "behat/behat": "2.5.*",
+        "behat/behat": "*",
+        "behat/web-api-extension": "~1.0@dev",
         "behat/mink-extension": "*",
         "behat/mink-goutte-driver": "*"
     },
