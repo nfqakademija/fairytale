@@ -3,11 +3,9 @@
 namespace Nfq\Fairytale\ApiBundle\Controller;
 
 use JMS\Serializer\Serializer;
-use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ApiController implements ApiControllerInterface
@@ -25,7 +23,7 @@ class ApiController implements ApiControllerInterface
     protected $defaultIndexSize;
 
     /**
-     * @param DataSourceInterface $datasource
+     * @param DatasourceFactory $factory
      */
     public function setDatasourceFactory(DatasourceFactory $factory)
     {
