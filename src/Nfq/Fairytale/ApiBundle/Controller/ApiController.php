@@ -88,7 +88,11 @@ class ApiController implements ApiControllerInterface
 
     public function indexAction(Request $request, $resource)
     {
-        throw new HttpException(501);
+        return new Response(
+            $this->serializer->serialize($this->factory->create($this->mapping[$resource])->index(), 'json'),
+            200,
+            ['Content-Type' => 'application/json']
+        );
     }
 
     public function deleteAction(Request $request, $resource, $identifier)

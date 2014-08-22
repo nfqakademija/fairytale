@@ -18,6 +18,28 @@ Feature: CRUD
         }
         """
 
+    Scenario: I can read user index
+        Given I have "admin" access token
+        When I send a GET request to "/api/user"
+        Then the response code should be 200
+        And the response should contain json:
+        """
+        [
+            {
+                "id": 1,
+                "name":"name_Foo",
+                "email":"email_bar@api.com",
+                "password": "pass_secret"
+            },
+            {
+                "id": 2,
+                "name": "Baz",
+                "author": "qux@api.com",
+                "password": "dont tell anyone"
+            }
+        ]
+        """
+
     Scenario: I can create user
         Given I have "admin" access token
         When I send a POST request to "/api/user" with body:
