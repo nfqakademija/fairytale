@@ -32,4 +32,4 @@ after_script:
     - cat /var/www/fairytale.dev/app/logs/dev.log
     - cat /etc/nginx/sites-enabled/fairytale.dev.conf
     - cat /etc/nginx/nginx.conf
-    - ps aux | grep "php"
+    - ls -la /var/run/
