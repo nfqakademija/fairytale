@@ -1,8 +1,8 @@
 @api
-Feature: API
+Feature: Access Control List
     In order to use API
     As an API user
-    An API has to be usable
+    An API has to be able to limit operation by role
 
     Scenario: I can read user data via API as an unauthorized user
         Given I have "no" access token
