@@ -110,7 +110,6 @@ nginx::resource::location { "${serverName}-php":
   vhost               => "${serverName}",
   location            => '~ \.php$',
   proxy               => undef,
-  try_files           => ['$uri', '$uri/', '/app_dev.php?$args'],
   www_root            => "/var/www/${serverName}/web/",
   location_cfg_append => {
     'fastcgi_split_path_info' => '^(.+\.php)(/.+)$',
