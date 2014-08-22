@@ -17,12 +17,11 @@ before_script:
     - sudo apt-get install puppet
     - gem install librarian-puppet
     - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
-    - cat /etc/puppet/puppet.conf
     - sudo puppet apply .vagrant/manifests/default.pp --modulepath .vagrant/modules/ --parser future
-    - composer install -n --prefer-source
     - sudo sed -i 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g' /etc/php5/fpm/pool.d/www.conf
-    - sudo service nginx restart
     - sudo service php5-fpm restart
+    - sudo service nginx restart
+    - composer install -n --prefer-source
 
 script:
     - bin/phpspec run -v -fpretty
