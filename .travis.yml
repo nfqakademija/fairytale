@@ -31,9 +31,7 @@ script:
 
 after_script:
     - cat /var/log/nginx/fairytale.dev.error.log
+    - cat /var/log/nginx/error.log
     - cat /var/log/nginx/fairytale.dev.access.log
     - cat /var/www/fairytale.dev/app/logs/dev.log
     - cat /etc/nginx/sites-enabled/fairytale.dev.conf
-    - cat /etc/nginx/nginx.conf
-    - cat /etc/php5/fpm/pool.d/www.conf
-    - ls -la /var/run/
