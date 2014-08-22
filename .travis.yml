@@ -11,6 +11,7 @@ addons:
         - fairytale.dev
 
 before_script:
+    - pwd
     - wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
     - sudo dpkg -i puppetlabs-release-precise.deb
     - sudo apt-get update
@@ -37,4 +38,3 @@ after_script:
     - cat /var/www/fairytale.dev/app/logs/dev.log
     - cat /etc/nginx/sites-enabled/fairytale.dev.conf
     - ls -lha /var/www/fairytale.dev/
-    - pwd
