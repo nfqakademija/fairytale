@@ -1,6 +1,7 @@
 default:
     extensions:
         Behat\MinkExtension\Extension:
+            base_url:  'http://fairytale.dev'
             goutte: ~
         Behat\Symfony2Extension\Extension:
             kernel:
