@@ -23,7 +23,7 @@ before_script:
     - sudo service nginx restart
     - composer install -n --prefer-source
     - sudo mkdir -p /var/www/ && sudo chmod 0777 /var/www/
-    - ln -s . /var/www/fairytale.dev
+    - ln -s ~/nfqakademija/fairytale /var/www/fairytale.dev
 
 script:
     - bin/phpspec run -v -fpretty
@@ -37,3 +37,4 @@ after_script:
     - cat /var/www/fairytale.dev/app/logs/dev.log
     - cat /etc/nginx/sites-enabled/fairytale.dev.conf
     - ls -lha /var/www/fairytale.dev/
+    - pwd
