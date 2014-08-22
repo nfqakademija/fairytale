@@ -24,7 +24,7 @@ before_script:
     - sudo service nginx restart
     - composer install -n --prefer-source
     - sudo mkdir -p /var/www/ && sudo chmod 0777 /var/www/
-    - ln -s /home/travis/build/nfqakademija/fairytale/ /var/www/fairytale.dev/
+    - ln -s /home/travis/build/nfqakademija/fairytale/ /var/www/fairytale.dev
 
 script:
     - bin/phpspec run -v -fpretty
