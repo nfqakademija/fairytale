@@ -18,7 +18,7 @@ before_script:
     - gem install librarian-puppet
     - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
     - cat /etc/puppet/puppet.conf
-    - sudo puppet apply -v .vagrant/manifests/default.pp --modulepath .vagrant/modules/ --parser future
+    - sudo puppet apply .vagrant/manifests/default.pp --modulepath .vagrant/modules/ --parser future
     - composer install -n --prefer-source
 
 script:
