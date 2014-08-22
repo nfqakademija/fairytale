@@ -1,7 +1,7 @@
 <?php
 namespace Nfq\Fairytale\ApiBundle\Datasource;
 
-interface DataSource
+interface DataSourceInterface
 {
     /**
      * Get elements index (list) from element

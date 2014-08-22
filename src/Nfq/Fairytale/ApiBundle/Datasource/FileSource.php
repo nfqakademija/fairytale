@@ -5,7 +5,7 @@ namespace Nfq\Fairytale\ApiBundle\Datasource;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-class FileSource implements DataSource
+class FileSource implements DataSourceInterface
 {
     /** @var bool */
     protected $loaded = false;

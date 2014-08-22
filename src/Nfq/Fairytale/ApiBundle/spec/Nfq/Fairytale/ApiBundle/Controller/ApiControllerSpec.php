@@ -4,7 +4,7 @@ namespace spec\Nfq\Fairytale\ApiBundle\Controller;
 
 use JMS\Serializer\Serializer;
 use Nfq\Fairytale\ApiBundle\Controller\ApiController;
-use Nfq\Fairytale\ApiBundle\Datasource\DataSource;
+use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -23,7 +23,7 @@ class ApiControllerSpec extends ObjectBehavior
     function it_can_read_resource(
         Request $request,
         DatasourceFactory $factory,
-        DataSource $dataSource,
+        DataSourceInterface $dataSource,
         Serializer $serializer
     ) {
         $fakeData = (object)['id' => 2, 'bar' => 'baz'];

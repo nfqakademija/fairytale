@@ -1,5 +1,6 @@
 $serverName = "fairytale.dev"
 $phpTimeZone = "Europe/Vilnius"
+$packages = ['vim', 'curl']
 
 # Ensure the time is accurate, reducing the possibilities of apt repositories
 # failing for invalid certificates
@@ -19,17 +20,35 @@ user { 'vagrant':
   require => [Group['www-data'], Group['www-user']]
 }
 
-ensure_packages( ['vim', 'curl'] )
+case $::operatingsystem {
+    'debian': {
+        apt::source { 'packages.dotdeb.org':
+            location          => 'http://packages.dotdeb.org',
+            release           => $lsbdistcodename,
+            repos             => 'all',
+            required_packages => 'debian-keyring debian-archive-keyring',
+            key               => '89DF5277',
+            key_server        => 'keys.gnupg.net',
+            include_src       => true
+        }
+    }
+    'ubuntu': {
+        if ! defined(Apt::Key['4F4EA0AAE5267A6C']){
+          apt::key { '4F4EA0AAE5267A6C': key_server => 'hkp://keyserver.ubuntu.com:80' }
+        }
+        if ! defined(Apt::Key['4CBEDD5A']){
+          apt::key { '4CBEDD5A': key_server => 'hkp://keyserver.ubuntu.com:80' }
+        }
 
-apt::source { 'packages.dotdeb.org':
-  location          => 'http://packages.dotdeb.org',
-  release           => $lsbdistcodename,
-  repos             => 'all',
-  required_packages => 'debian-keyring debian-archive-keyring',
-  key               => '89DF5277',
-  key_server        => 'keys.gnupg.net',
-  include_src       => true
+        if $::lsbdistcodename in ['lucid', 'precise'] {
+          apt::ppa { 'ppa:pdoes/ppa': require => Apt::Key['4CBEDD5A'], options => '' }
+        } else {
+          apt::ppa { 'ppa:pdoes/ppa': require => Apt::Key['4CBEDD5A'] }
+        }
+    }
 }
+
+ensure_packages($packages)
 
 user { ['nginx', 'www-data']:
   shell   => '/bin/bash',
@@ -91,7 +110,6 @@ nginx::resource::location { "${serverName}-php":
   vhost               => "${serverName}",
   location            => '~ \.php$',
   proxy               => undef,
-  try_files           => ['$uri', '$uri/', '/app_dev.php?$args'],
   www_root            => "/var/www/${serverName}/web/",
   location_cfg_append => {
     'fastcgi_split_path_info' => '^(.+\.php)(/.+)$',
@@ -123,7 +141,6 @@ php::module {
     'php5-mcrypt',
     'php5-common',
     'php5-xdebug',
-    'php5-mongo',
     'php5-mysql'
   ]:
     require => Class['php'],

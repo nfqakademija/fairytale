@@ -2,7 +2,7 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Datasource\Factory;
 
-use Nfq\Fairytale\ApiBundle\Datasource\DataSource;
+use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -20,7 +20,7 @@ class DatasourceFactorySpec extends ObjectBehavior
     /**
      * Following test basically checks if methods are called properly
      */
-    function it_should_create_parametrized_datasource(DataSource $dataSource)
+    function it_should_create_parametrized_datasource(DataSourceInterface $dataSource)
     {
         $dataSource->setResource('foo')->willReturn($dataSource);
         $dataSource->getResource()->willReturn('foo');

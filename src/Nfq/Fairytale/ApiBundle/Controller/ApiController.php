@@ -3,7 +3,7 @@
 namespace Nfq\Fairytale\ApiBundle\Controller;
 
 use JMS\Serializer\Serializer;
-use Nfq\Fairytale\ApiBundle\Datasource\DataSource;
+use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ class ApiController implements ApiControllerInterface
     protected $factory;
 
     /**
-     * @param DataSource $datasource
+     * @param DataSourceInterface $datasource
      */
     public function setDatasourceFactory(DatasourceFactory $factory)
     {
