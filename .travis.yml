@@ -31,7 +31,7 @@ before_script:
 
 script:
     - bin/phpspec run -v -fpretty
-#    - php bin/behat @NfqFairytaleApiBundle -v
+#    - bin/behat -v -fpretty
     - curl http://fairytale.dev/ --fail
     - curl http://fairytale.dev/
 
