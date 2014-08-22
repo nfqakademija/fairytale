@@ -22,7 +22,7 @@ before_script:
     - sudo service php5-fpm restart
     - sudo service nginx restart
     - composer install -n --prefer-source
-    - sudo mkdir -p /var/www/fairytale.dev/
+    - sudo mkdir -p /var/www/
     - sudo ln -s . /var/www/fairytale.dev/
 
 script:
