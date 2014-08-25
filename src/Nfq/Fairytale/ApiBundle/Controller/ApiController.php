@@ -113,11 +113,11 @@ class ApiController implements ApiControllerInterface
 
     public function customAction(Request $request, $resource, $actionName)
     {
-        $action = $this->actionManager->find($resource, $actionName, $request->getMethod());
+        if ($action = $this->actionManager->find($resource, $actionName, $request->getMethod())) {
 
-        if ($action) {
-            return [$action->execute($request)];
+            return $action->execute($request);
         } else {
+
             throw new BadRequestHttpException(
                 sprintf("Resource '%s' does not support '%s' action", $resource, $actionName)
             );

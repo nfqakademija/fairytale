@@ -11,6 +11,6 @@ class MetaAction implements ActionInterface{
      */
     public function execute(Request $request)
     {
-        return ['foo'];
+        return ['foo', 200];
     }
 }
