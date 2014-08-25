@@ -18,10 +18,19 @@ services:
     nfq_fairytale.datasource.factory:
         class: Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory
 
+
+    nfq_fairytale.action.meta:
+        class: Nfq\Fairytale\ApiBundle\Actions\MetaAction
+
+    nfq_fairytale.actions.manager:
+        class: Nfq\Fairytale\ApiBundle\Actions\ActionManager
+        calls:
+            - [addAction, [@nfq_fairytale.action.meta, user, meta, GET]]
+
     nfq_fairytale.api.controller:
         class: Nfq\Fairytale\ApiBundle\Controller\ApiController
         calls:
-            - [setSerializer, [@jms_serializer]]
             - [setMapping, [%nfq_fairytale_api.config.mapping%]]
             - [setDatasourceFactory, [@nfq_fairytale.datasource.factory]]
             - [setDefaultIndexSize, [%nfq_fairytale_api.config.default_index_size%]]
+            - [setActionManager, [@nfq_fairytale.actions.manager]]

@@ -12,6 +12,8 @@ nfq_fairytale_api.resource.read:
     path:     /{resource}/{identifier}
     defaults: { _controller: nfq_fairytale.api.controller:readAction }
     methods: [GET]
+    requirements:
+        identifier: \d+
 
 nfq_fairytale_api.resource.update:
     path:     /{resource}/{identifier}
@@ -22,3 +24,7 @@ nfq_fairytale_api.resource.delete:
     path:     /{resource}/{identifier}
     defaults: { _controller: nfq_fairytale.api.controller:deleteAction }
     methods: [DELETE]
+
+nfq_fairytale_api.resource.action:
+    path:     /{resource}/{actionName}
+    defaults: { _controller: nfq_fairytale.api.controller:customAction }

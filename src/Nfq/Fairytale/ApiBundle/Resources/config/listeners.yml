@@ -5,5 +5,17 @@ services:
             - [setContext, [@security.context]]
             - [setLogger, [@logger]]
         tags:
-            - {name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
             - { name: monolog.logger, channel: api }
+
+    nfq_fairytale.api.listener.response_builder:
+        class: Nfq\Fairytale\ApiBundle\EventListener\ResponseBuilder
+        calls:
+            - [setSerializer, [@jms_serializer]]
+        tags:
+            - { name: kernel.event_listener, event: kernel.view, method: onKernelView }
+
+    nfq_fairytale.api.listener.request_format:
+        class: Nfq\Fairytale\ApiBundle\EventListener\RequestFormat
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

@@ -2,10 +2,10 @@
 
 namespace Nfq\Fairytale\ApiBundle\Controller;
 
-use JMS\Serializer\Serializer;
+use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ApiController implements ApiControllerInterface
@@ -13,14 +13,14 @@ class ApiController implements ApiControllerInterface
     /** @var array */
     protected $mapping = [];
 
-    /** @var  Serializer */
-    protected $serializer;
-
     /** @var  DatasourceFactory */
     protected $factory;
 
     /** @var  int */
     protected $defaultIndexSize;
+
+    /** @var  ActionManager */
+    protected $actionManager;
 
     /**
      * @param DatasourceFactory $factory
@@ -28,14 +28,6 @@ class ApiController implements ApiControllerInterface
     public function setDatasourceFactory(DatasourceFactory $factory)
     {
         $this->factory = $factory;
-    }
-
-    /**
-     * @param Serializer $serializer
-     */
-    public function setSerializer(Serializer $serializer)
-    {
-        $this->serializer = $serializer;
     }
 
     /**
@@ -54,88 +46,81 @@ class ApiController implements ApiControllerInterface
         $this->defaultIndexSize = $defaultCollectionSize;
     }
 
-    public function readAction(Request $request, $resource, $identifier)
+    /**
+     * @param ActionManager $actionManager
+     */
+    public function setActionManager(ActionManager $actionManager)
     {
-        // TODO: serialize(???, $request->getRequestFormat());
-        $instance = $this->factory
-            ->create($this->mapping[$resource])
-            ->read($identifier);
+        $this->actionManager = $actionManager;
+    }
+
+    public function readAction($resource, $identifier)
+    {
+        $instance = $this->factory->create($this->mapping[$resource])->read($identifier);
 
         if (!$instance) {
 
             throw new NotFoundHttpException();
         } else {
 
-            return new Response(
-                $this->serializer->serialize($instance, 'json'),
-                200,
-                ['Content-Type' => 'application/json']
-            );
+            return [$instance, 200];
         }
     }
 
     public function createAction(Request $request, $resource)
     {
-        return new Response(
-            $this->serializer->serialize(
-                $this->factory
-                    ->create($this->mapping[$resource])
-                    ->create(json_decode($request->getContent(), true)),
-                'json'
+        return [
+            $this->factory->create($this->mapping[$resource])->create(
+                json_decode($request->getContent(), true)
             ),
-            201,
-            [
-                'Content-Type' => 'application/json'
-            ]
-        );
+            201
+        ];
     }
 
     public function updateAction(Request $request, $resource, $identifier)
     {
-        return new Response(
-            $this->serializer->serialize(
-                $this->factory
-                    ->create($this->mapping[$resource])
-                    ->update($identifier, json_decode($request->getContent(), true)),
-                'json'
+        return [
+            $this->factory->create($this->mapping[$resource])->update(
+                $identifier,
+                json_decode($request->getContent(), true)
             ),
-            200,
-            [
-                'Content-Type' => 'application/json'
-            ]
-        );
+            200
+        ];
     }
 
     public function indexAction(Request $request, $resource)
     {
-        return new Response(
-            $this->serializer->serialize(
-                $this->factory->create($this->mapping[$resource])->index(
-                    $request->query->get('limit', $this->defaultIndexSize),
-                    $request->query->get('offset', 0)
-                ),
-                'json'
+        return [
+            $this->factory->create($this->mapping[$resource])->index(
+                $request->query->get('limit', $this->defaultIndexSize),
+                $request->query->get('offset', 0)
             ),
-            200,
-            ['Content-Type' => 'application/json']
-        );
+            200
+        ];
     }
 
-    public function deleteAction(Request $request, $resource, $identifier)
+    public function deleteAction($resource, $identifier)
     {
         $deleted = $this->factory
             ->create($this->mapping[$resource])
             ->delete($identifier);
 
-        return new Response(
-            $this->serializer->serialize(
-                ['status' => $deleted ? 'success' : 'failed'],
-                'json'
-            ),
-            $deleted ? 200 : 400,
-            [
-                'Content-Type' => 'application/json'
-            ]
-        );
+        return [
+            ['status' => $deleted ? 'success' : 'failed'],
+            $deleted ? 200 : 400
+        ];
+    }
+
+    public function customAction(Request $request, $resource, $actionName)
+    {
+        $action = $this->actionManager->find($resource, $actionName, $request->getMethod());
+
+        if ($action) {
+            return [$action->execute($request)];
+        } else {
+            throw new BadRequestHttpException(
+                sprintf("Resource '%s' does not support '%s' action", $resource, $actionName)
+            );
+        }
     }
 }
