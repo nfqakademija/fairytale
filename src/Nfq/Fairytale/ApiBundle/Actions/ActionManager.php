@@ -43,6 +43,7 @@ class ActionManager
      * @param string          $resource
      * @param string          $actionName
      * @param string          $httpMethod
+     * @return $this
      */
     public function addAction(ActionInterface $actionImpl, $resource, $actionName, $httpMethod)
     {
