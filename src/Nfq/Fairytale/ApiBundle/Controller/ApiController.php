@@ -115,7 +115,7 @@ class ApiController implements ApiControllerInterface
     {
         if ($action = $this->actionManager->find($resource, $actionName, $request->getMethod())) {
 
-            return $action->execute($request);
+            return $action->execute($request, $this->mapping[$resource]);
         } else {
 
             throw new BadRequestHttpException(

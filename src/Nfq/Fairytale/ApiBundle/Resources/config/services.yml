@@ -19,13 +19,15 @@ services:
         class: Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory
 
 
-    nfq_fairytale.action.meta:
-        class: Nfq\Fairytale\ApiBundle\Actions\MetaAction
+    nfq_fairytale.action.count:
+        class: Nfq\Fairytale\ApiBundle\Actions\ResourceCountAction
+        calls:
+            - [setFactory, [@nfq_fairytale.datasource.factory]]
 
     nfq_fairytale.actions.manager:
         class: Nfq\Fairytale\ApiBundle\Actions\ActionManager
         calls:
-            - [addAction, [@nfq_fairytale.action.meta, user, meta, GET]]
+            - [addResourceAction, [@nfq_fairytale.action.count, user, count, GET]]
 
     nfq_fairytale.api.controller:
         class: Nfq\Fairytale\ApiBundle\Controller\ApiController

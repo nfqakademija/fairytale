@@ -2,7 +2,7 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Actions;
 
-use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\ResourceActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -17,9 +17,9 @@ class ActionManagerSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\ActionManager');
     }
 
-    function it_should_allow_chaining_setters(ActionInterface $action)
+    function it_should_allow_chaining_setters(ResourceActionInterface $action)
     {
-        $this->addAction($action, '', '', '')
+        $this->addResourceAction($action, '', '', '')
             ->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\ActionManager');
     }
 
@@ -32,13 +32,13 @@ class ActionManagerSpec extends ObjectBehavior
         $this->find($resource, $action, $method)->shouldBe(null);
     }
 
-    function it_should_find_action(ActionInterface $actionImpl)
+    function it_should_find_action(ResourceActionInterface $actionImpl)
     {
         $resource = 'foo';
         $action = 'meta';
         $method = 'GET';
 
-        $this->addAction($actionImpl, $resource, $action, $method);
+        $this->addResourceAction($actionImpl, $resource, $action, $method);
         $this->find($resource, $action, $method)->shouldBe($actionImpl);
     }
 }

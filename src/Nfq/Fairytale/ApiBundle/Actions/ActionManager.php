@@ -4,7 +4,7 @@ namespace Nfq\Fairytale\ApiBundle\Actions;
 
 class ActionManager
 {
-    /** @var ActionInterface[] */
+    /** @var ResourceActionInterface[] */
     protected $actions = [];
 
     /**
@@ -14,7 +14,7 @@ class ActionManager
      * @param string $actionName
      * @param string $httpMethod
      *
-     * @return ActionInterface|null
+     * @return ResourceActionInterface|null
      */
     public function find($resource, $actionName, $httpMethod)
     {
@@ -40,13 +40,13 @@ class ActionManager
     }
 
     /**
-     * @param ActionInterface $actionImpl
+     * @param ResourceActionInterface $actionImpl
      * @param string          $resource
      * @param string          $actionName
      * @param string          $httpMethod
      * @return $this
      */
-    public function addAction(ActionInterface $actionImpl, $resource, $actionName, $httpMethod)
+    public function addResourceAction(ResourceActionInterface $actionImpl, $resource, $actionName, $httpMethod)
     {
         $this->actions[$this->buildKey($resource, $actionName, $httpMethod)] = $actionImpl;
 
