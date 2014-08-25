@@ -18,6 +18,7 @@ class ActionManager
      */
     public function find($resource, $actionName, $httpMethod)
     {
+        // TODO: "*" matches any resource
         $key = $this->buildKey($resource, $actionName, $httpMethod);
         if (isset($this->actions[$key])) {
             return $this->actions[$key];
