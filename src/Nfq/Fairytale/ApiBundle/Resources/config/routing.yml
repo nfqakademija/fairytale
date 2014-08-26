@@ -28,3 +28,5 @@ nfq_fairytale_api.resource.delete:
 nfq_fairytale_api.resource.action:
     path:     /{resource}/{actionName}
     defaults: { _controller: nfq_fairytale.api.controller:customAction }
+    methods: [GET, POST, PUT, DELETE, HEAD]
+
