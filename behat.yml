@@ -1,8 +1,9 @@
 default:
     extensions:
-        Behat\WebApiExtension: ~
+        Behat\WebApiExtension:
+            base_url:   'http://test.fairytale.dev/'
         Behat\MinkExtension:
-            base_url:   'http://fairytale.dev/app_test.php/'
+            base_url:   'http://test.fairytale.dev/'
             goutte: ~
     suites:
         api_features:
