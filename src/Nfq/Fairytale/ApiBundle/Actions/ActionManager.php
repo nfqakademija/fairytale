@@ -4,7 +4,7 @@ namespace Nfq\Fairytale\ApiBundle\Actions;
 
 class ActionManager
 {
-    /** @var ResourceActionInterface[] */
+    /** @var CollectionActionInterface[] */
     protected $actions = [];
 
     /**
@@ -13,10 +13,11 @@ class ActionManager
      * @param string $resource
      * @param string $actionName
      * @param string $httpMethod
+     * @param bool   $forInstance
      *
-     * @return ResourceActionInterface|null
+     * @return CollectionActionInterface|null
      */
-    public function find($resource, $actionName, $httpMethod)
+    public function find($resource, $actionName, $httpMethod, $forInstance = false)
     {
         /*
          * Magic.
@@ -24,19 +25,27 @@ class ActionManager
          * If it does not exist, attempts to grab action from '*'.
          * If it does not exist, returns null
          */
-        return @$this->actions[$resource][$actionName][$httpMethod] ?: @$this->actions['*'][$actionName][$httpMethod];
+        return @$this->actions[$resource][$actionName][$httpMethod][$forInstance]
+            ?: @$this->actions['*'][$actionName][$httpMethod][$forInstance];
     }
 
     /**
-     * @param ResourceActionInterface $actionImpl
-     * @param string                  $resource
-     * @param string                  $actionName
-     * @param string                  $httpMethod
+     * @param CollectionActionInterface $actionImpl
+     * @param string                    $resource
+     * @param string                    $actionName
+     * @param string                    $httpMethod
      * @return $this
      */
-    public function addResourceAction(ResourceActionInterface $actionImpl, $resource, $actionName, $httpMethod)
+    public function addCollectionAction(CollectionActionInterface $actionImpl, $resource, $actionName, $httpMethod)
     {
-        $this->actions[$resource][$actionName][$httpMethod] = $actionImpl;
+        $this->actions[$resource][$actionName][$httpMethod][false] = $actionImpl;
+
+        return $this;
+    }
+
+    public function addInstanceAction(InstanceActionInterface $actionImpl, $resource, $actionName, $httpMethod)
+    {
+        $this->actions[$resource][$actionName][$httpMethod][true] = $actionImpl;
 
         return $this;
     }

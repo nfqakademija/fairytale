@@ -19,8 +19,8 @@ services:
         class: Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory
 
 
-    nfq_fairytale.action.count:
-        class: Nfq\Fairytale\ApiBundle\Actions\ResourceCountAction
+    nfq_fairytale.action.collection.count:
+        class: Nfq\Fairytale\ApiBundle\Actions\CollectionCountAction
         calls:
             - [setFactory, [@nfq_fairytale.datasource.factory]]
 

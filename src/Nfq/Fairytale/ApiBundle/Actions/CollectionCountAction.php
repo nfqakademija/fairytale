@@ -5,7 +5,7 @@ namespace Nfq\Fairytale\ApiBundle\Actions;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use Symfony\Component\HttpFoundation\Request;
 
-class ResourceCountAction implements ResourceActionInterface
+class CollectionCountAction implements CollectionActionInterface
 {
     /** @var  DatasourceFactory */
     protected $factory;
