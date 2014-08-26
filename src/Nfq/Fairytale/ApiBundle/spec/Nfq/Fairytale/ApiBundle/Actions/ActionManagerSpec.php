@@ -41,4 +41,14 @@ class ActionManagerSpec extends ObjectBehavior
         $this->addResourceAction($actionImpl, $resource, $action, $method);
         $this->find($resource, $action, $method)->shouldBe($actionImpl);
     }
+
+    function it_should_find_action_for_any_resource(ResourceActionInterface $actionImpl)
+    {
+        $resource = 'foo';
+        $action = 'meta';
+        $method = 'GET';
+
+        $this->addResourceAction($actionImpl, '*', $action, $method);
+        $this->find($resource, $action, $method)->shouldBe($actionImpl);
+    }
 }

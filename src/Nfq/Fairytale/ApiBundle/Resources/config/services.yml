@@ -27,7 +27,7 @@ services:
     nfq_fairytale.actions.manager:
         class: Nfq\Fairytale\ApiBundle\Actions\ActionManager
         calls:
-            - [addResourceAction, [@nfq_fairytale.action.count, user, count, GET]]
+            - [addResourceAction, [@nfq_fairytale.action.count, "*", "count", "GET"]]
 
     nfq_fairytale.api.controller:
         class: Nfq\Fairytale\ApiBundle\Controller\ApiController
