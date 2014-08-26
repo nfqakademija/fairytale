@@ -2,6 +2,8 @@ vm:
   box: nfq/wheezy
   box_url: nfq/wheezy
   hostname: fairytale.dev # generated
+  hostnames:
+    - test.fairytale.dev
   cpu: 1
   memory: 512
   network:

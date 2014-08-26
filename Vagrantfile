@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = server['vm']['box']
   config.vm.box_url = server['vm']['box_url']
   config.vm.hostname = server['vm']['hostname']
+  config.hostsupdater.aliases = server['vm']['hostnames']
   config.ssh.forward_agent = true
 
   config.vm.network "private_network", ip: server['vm']['network']['private_network']
