@@ -14,3 +14,17 @@ Feature: Custom actions
             "count": "2"
         }
         """
+
+    Scenario: I can clone resource's instance
+        Given I have "admin" access token
+        When I send a GET request to "/api/user/1/test"
+        Then the response code should be 200
+        And the response should contain json:
+        """
+        {
+            "id": 1,
+            "name":"name_Foo",
+            "email":"email_bar@api.com",
+            "password": "pass_secret"
+        }
+        """

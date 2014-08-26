@@ -15,7 +15,7 @@ class ActionManager
      * @param string $httpMethod
      * @param bool   $forInstance
      *
-     * @return CollectionActionInterface|null
+     * @return CollectionActionInterface|InstanceActionInterface|null
      */
     public function find($resource, $actionName, $httpMethod, $forInstance = false)
     {

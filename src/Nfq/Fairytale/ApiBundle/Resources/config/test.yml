@@ -1,0 +1,7 @@
+services:
+    nfq_fairytale.action.instance.read:
+        class: Nfq\Fairytale\ApiBundle\Actions\InstanceReadAction
+        calls:
+            - [setFactory, [@nfq_fairytale.datasource.factory]]
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: *, action: test, method: GET }

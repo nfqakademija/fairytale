@@ -3,6 +3,8 @@
 namespace Nfq\Fairytale\ApiBundle\Controller;
 
 use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
+use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\InstanceActionInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -111,16 +113,19 @@ class ApiController implements ApiControllerInterface
         ];
     }
 
-    public function customAction(Request $request, $resource, $actionName)
+    public function customAction(Request $request, $resource, $actionName, $identifier = null)
     {
-        if ($action = $this->actionManager->find($resource, $actionName, $request->getMethod())) {
+        $action = $this->actionManager->find($resource, $actionName, $request->getMethod(), !is_null($identifier));
 
-            return $action->execute($request, $this->mapping[$resource]);
-        } else {
-
-            throw new BadRequestHttpException(
-                sprintf("Resource '%s' does not support '%s' action", $resource, $actionName)
-            );
+        switch (true) {
+            case ($action instanceof CollectionActionInterface):
+                return $action->execute($request, $this->mapping[$resource]);
+            case ($action instanceof InstanceActionInterface):
+                return $action->execute($request, $this->mapping[$resource], $identifier);
+            default:
+                throw new BadRequestHttpException(
+                    sprintf("Action '%s' is not supported", $actionName)
+                );
         }
     }
 }
