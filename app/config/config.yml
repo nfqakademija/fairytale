@@ -71,5 +71,5 @@ nfq_fairytale_api:
         user: NfqFairytaleCoreBundle:User
         testItem: testItem
     data:
-        type: file
-        source: @NfqFairytaleApiBundle/Resources/data/data.json
+        type: orm
+        source: default_entity_manager
