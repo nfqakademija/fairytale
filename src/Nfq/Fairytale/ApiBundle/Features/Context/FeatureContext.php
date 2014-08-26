@@ -47,15 +47,8 @@ class FeatureContext extends WebApiContext implements CustomSnippetAcceptingCont
         }
     }
 
-    private function logIn($username, $roles)
+    private function logIn()
     {
-//        $session = $this->kernel->getContainer()->get('session');
-//
-//        $firewall = 'main';
-//        $token = new UsernamePasswordToken($username, null, $firewall, $roles);
-//        $session->set('_security_' . $firewall, serialize($token));
-//        $session->save();
-//
-//        $this->getSession()->setCookie($session->getName(), $session->getId());
+        // TODO: implement this
     }
 }
