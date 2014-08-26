@@ -2,8 +2,9 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Entity\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
@@ -26,12 +27,12 @@ class User extends BaseUser
     private $surname;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $comments;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $ratings;
 
@@ -41,8 +42,8 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
     }
 
     /**
@@ -104,10 +105,10 @@ class User extends BaseUser
     /**
      * Add comments
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
+     * @param Comment $comments
      * @return User
      */
-    public function addComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
+    public function addComment(Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -117,9 +118,9 @@ class User extends BaseUser
     /**
      * Remove comments
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
+     * @param Comment $comments
      */
-    public function removeComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
+    public function removeComment(Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
@@ -127,7 +128,7 @@ class User extends BaseUser
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getComments()
     {
@@ -137,10 +138,10 @@ class User extends BaseUser
     /**
      * Add ratings
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
+     * @param Rating $ratings
      * @return User
      */
-    public function addRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
+    public function addRating(Rating $ratings)
     {
         $this->ratings[] = $ratings;
 
@@ -150,9 +151,9 @@ class User extends BaseUser
     /**
      * Remove ratings
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
+     * @param Rating $ratings
      */
-    public function removeRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
+    public function removeRating(Rating $ratings)
     {
         $this->ratings->removeElement($ratings);
     }
@@ -160,7 +161,7 @@ class User extends BaseUser
     /**
      * Get ratings
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getRatings()
     {

@@ -2,8 +2,6 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Rating
  */
@@ -25,12 +23,12 @@ class Rating
     private $created;
 
     /**
-     * @var \Nfq\Fairytale\CoreBundle\Entity\User
+     * @var User
      */
     private $user;
 
     /**
-     * @var \Nfq\Fairytale\CoreBundle\Entity\Book
+     * @var Book
      */
     private $book;
 
@@ -107,10 +105,10 @@ class Rating
     /**
      * Set user
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\User $user
+     * @param User $user
      * @return Rating
      */
-    public function setUser(\Nfq\Fairytale\CoreBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -120,7 +118,7 @@ class Rating
     /**
      * Get user
      *
-     * @return \Nfq\Fairytale\CoreBundle\Entity\User 
+     * @return User
      */
     public function getUser()
     {
@@ -130,10 +128,10 @@ class Rating
     /**
      * Set book
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $book
+     * @param Book $book
      * @return Rating
      */
-    public function setBook(\Nfq\Fairytale\CoreBundle\Entity\Book $book = null)
+    public function setBook(Book $book = null)
     {
         $this->book = $book;
 
@@ -143,7 +141,7 @@ class Rating
     /**
      * Get book
      *
-     * @return \Nfq\Fairytale\CoreBundle\Entity\Book 
+     * @return Book
      */
     public function getBook()
     {
