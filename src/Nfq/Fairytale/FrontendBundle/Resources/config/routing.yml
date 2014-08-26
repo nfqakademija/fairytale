@@ -1,3 +1,4 @@
 nfq_fairytale_frontend_homepage:
     path:     /
     defaults: { _controller: NfqFairytaleFrontendBundle:Default:index }
+    methods: [GET]
