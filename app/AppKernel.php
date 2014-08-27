@@ -16,11 +16,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Nfq\Fairytale\CoreBundle\NfqFairytaleCoreBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Nfq\Fairytale\CoreBundle\NfqFairytaleCoreBundle(),
             new Nfq\Fairytale\FrontendBundle\NfqFairytaleFrontendBundle(),
             new Nfq\Fairytale\ApiBundle\NfqFairytaleApiBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
