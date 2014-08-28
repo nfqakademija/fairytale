@@ -72,4 +72,4 @@ nfq_fairytale_api:
         testItem: testItem
     data:
         type: orm
-        source: default_entity_manager
+        source: default
