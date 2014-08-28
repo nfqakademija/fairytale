@@ -3,15 +3,7 @@
 namespace Nfq\Fairytale\ApiBundle\Features\Context;
 
 use Behat\Behat\Context\CustomSnippetAcceptingContext;
-use Behat\Behat\Hook\Scope\AfterScenarioScope;
-use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\WebApiExtension\Context\WebApiContext;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Behat\MinkExtension\Context\MinkContext;
-
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * Feature context.
