@@ -56,8 +56,6 @@ class NfqFairytaleApiExtension extends Extension
             case 'orm':
                 $datasource = $container->getDefinition('nfq_fairytale.datasource.orm');
 
-                // TODO: reenable and fix this
-                
                 $datasource->addMethodCall(
                     'setEntityManager',
                     [new Reference(sprintf('doctrine.orm.%s_entity_manager', $config['data']['source']))]
