@@ -56,10 +56,11 @@ class NfqFairytaleApiExtension extends Extension
                 $datasource = $container->getDefinition('nfq_fairytale.datasource.orm');
 
                 // TODO: reenable and fix this
-                // $datasource->addMethodCall(
-                //     'setEntityManager',
-                //     [$container->get('doctrine.orm.default_entity_manager')]// . $config['data']['source'])]
-                // );
+                
+                $datasource->addMethodCall(
+                    'setEntityManager',
+                    [new Reference(sprintf('doctrine.orm.%s_entity_manager', $config['data']['source']))]
+                );
                 break;
             default:
                 throw new InvalidConfigurationException("Unsupported type %s in rest_api.data.type");
