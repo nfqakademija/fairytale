@@ -2,6 +2,7 @@
 
 namespace Nfq\Fairytale\ApiBundle\Command;
 
+use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -44,10 +45,10 @@ class ApiSecurityInitCommand extends ContainerAwareCommand
 
             foreach ($refObj->getProperties() as $prop) {
                 $tree[$bundle][$class][$prop->getName()] = [
-                    'C' => $role,
-                    'R' => $role,
-                    'U' => $role,
-                    'D' => $role,
+                    CredentialStore::CREATE => $role,
+                    CredentialStore::READ   => $role,
+                    CredentialStore::UPDATE => $role,
+                    CredentialStore::DELETE => $role,
                 ];
             }
         }

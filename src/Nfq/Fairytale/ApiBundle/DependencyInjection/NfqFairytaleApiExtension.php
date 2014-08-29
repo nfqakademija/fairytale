@@ -47,7 +47,7 @@ class NfqFairytaleApiExtension extends Extension
         /* ACL */
         $container->setParameter('nfq_fairytale_api.config.security.acl', $config['security']['acl']);
         $container->setParameter(
-            'nfq_fairytale_api.config.security.default_credentials',
+            'nfq_fairytale_api.config.security.default_credential',
             $config['security']['default_credential']
         );
 

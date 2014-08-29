@@ -14,6 +14,8 @@ class Authorization
     protected $context;
     /** @var  LoggerInterface */
     protected $logger;
+    /** @var  CredentialStore */
+    protected $credentials;
 
     /**
      * @param SecurityContext $context
@@ -56,6 +58,8 @@ class Authorization
                     'security_roles' => $this->getRoles(),
                 ]
             );
+
+            var_dump($this->getRoles());
         }
     }
 }

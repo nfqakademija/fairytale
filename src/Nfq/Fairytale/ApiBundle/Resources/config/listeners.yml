@@ -4,6 +4,7 @@ services:
         calls:
             - [setContext, [@security.context]]
             - [setLogger, [@logger]]
+            - [setCredentialStore, [@nfq_fairytale.api.security.credential_store]]
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
             - { name: monolog.logger, channel: api }
