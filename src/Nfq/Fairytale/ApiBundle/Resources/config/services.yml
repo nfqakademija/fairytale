@@ -5,7 +5,7 @@ services:
         class: Nfq\Fairytale\ApiBundle\Security\CredentialStore
         calls:
             - [setAcl, [%nfq_fairytale_api.config.security.acl%]]
-            - [setDefaultCredential, [%nfq_fairytale_api.config.security.default_credential%]
+            - [setDefaultCredential, [%nfq_fairytale_api.config.security.default_credential%]]
 
     nfq_fairytale.datasource.file:
         class: Nfq\Fairytale\ApiBundle\Datasource\FileSource

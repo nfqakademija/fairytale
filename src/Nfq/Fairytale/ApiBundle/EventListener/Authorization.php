@@ -3,6 +3,7 @@
 namespace Nfq\Fairytale\ApiBundle\EventListener;
 
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
+use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
@@ -58,8 +59,14 @@ class Authorization
                     'security_roles' => $this->getRoles(),
                 ]
             );
-
-            var_dump($this->getRoles());
         }
+    }
+
+    /**
+     * @param CredentialStore $credentials
+     */
+    public function setCredentials(CredentialStore $credentials)
+    {
+        $this->credentials = $credentials;
     }
 }
