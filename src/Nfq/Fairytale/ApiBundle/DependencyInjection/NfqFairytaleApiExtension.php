@@ -44,6 +44,13 @@ class NfqFairytaleApiExtension extends Extension
         $container->setParameter('nfq_fairytale_api.config.mapping', $config['mapping']);
         $container->setParameter('nfq_fairytale_api.config.default_index_size', $config['index_size']);
 
+        /* ACL */
+        $container->setParameter('nfq_fairytale_api.config.security.acl', $config['security']['acl']);
+        $container->setParameter(
+            'nfq_fairytale_api.config.security.default_credentials',
+            $config['security']['default_credential']
+        );
+
         $factory = $container->getDefinition('nfq_fairytale.datasource.factory');
 
         $datasource = null;

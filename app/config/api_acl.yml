@@ -1,244 +1,246 @@
 nfq_fairytale_api:
-    acl:
-        NfqFairytaleCoreBundle:
-            Author:
-                id:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                name:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                books:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-            Book:
-                id:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                title:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                description:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                genre:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                ratings:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                comments:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                categories:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                authors:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-            Category:
-                id:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                title:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                books:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-            Comment:
-                id:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                content:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                created:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                user:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                book:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-            Rating:
-                id:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                value:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                created:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                user:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                book:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-            User:
-                id:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                name:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                surname:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                comments:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                ratings:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                username:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                usernameCanonical:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                email:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                emailCanonical:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                enabled:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                salt:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                password:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                plainPassword:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                lastLogin:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                confirmationToken:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                passwordRequestedAt:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                groups:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                locked:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                expired:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                expiresAt:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                roles:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                credentialsExpired:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
-                credentialsExpireAt:
-                    C: ROLE_USER
-                    R: ROLE_USER
-                    U: ROLE_USER
-                    D: ROLE_USER
+    security:
+        default_credential: ROLE_ADMIN
+        acl:
+            NfqFairytaleCoreBundle:
+                Author:
+                    id:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    name:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    books:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                Book:
+                    id:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    title:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    description:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    genre:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    ratings:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    comments:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    categories:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    authors:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                Category:
+                    id:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    title:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    books:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                Comment:
+                    id:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    content:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    created:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    user:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    book:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                Rating:
+                    id:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    value:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    created:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    user:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    book:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                User:
+                    id:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    name:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    surname:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    comments:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    ratings:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    username:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    usernameCanonical:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    email:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    emailCanonical:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    enabled:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    salt:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    password:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    plainPassword:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    lastLogin:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    confirmationToken:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    passwordRequestedAt:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    groups:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    locked:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    expired:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    expiresAt:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    roles:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    credentialsExpired:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER
+                    credentialsExpireAt:
+                        C: ROLE_USER
+                        R: ROLE_USER
+                        U: ROLE_USER
+                        D: ROLE_USER

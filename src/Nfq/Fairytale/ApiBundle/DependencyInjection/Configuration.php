@@ -38,6 +38,17 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('source')->isRequired()->cannotBeEmpty()->end()
                 ->end()
             ->end()
+            ->arrayNode('security')
+                ->children()
+                    ->arrayNode('acl')
+                        ->requiresAtLeastOneElement()
+                        ->useAttributeAsKey('name')
+                        ->prototype('variable')
+                        ->end()
+                    ->end()
+                    ->scalarNode('default_credential')->isRequired()->cannotBeEmpty()->end()
+                ->end()
+            ->end()
         ->end();
 
         return $treeBuilder;
