@@ -2,6 +2,10 @@
 
 namespace Nfq\Fairytale\ApiBundle\Security;
 
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
+use Symfony\Component\Security\Core\Role\RoleInterface;
+
 class CredentialStore
 {
     const CREATE = 'CREATE';
@@ -13,6 +17,8 @@ class CredentialStore
     protected $acl;
     /** @var  string */
     protected $defaultCredential;
+    /** @var  RoleHierarchyInterface */
+    protected $roleHierarchy;
 
     /**
      * @param array $acl
@@ -23,6 +29,14 @@ class CredentialStore
     }
 
     /**
+     * @param RoleHierarchyInterface $roleHierarchy
+     */
+    public function setRoleHierarchy(RoleHierarchyInterface $roleHierarchy)
+    {
+        $this->roleHierarchy = $roleHierarchy;
+    }
+
+    /**
      * Returns minimal required role level to access given resource
      *
      * @param      $resource
@@ -30,17 +44,49 @@ class CredentialStore
      * @param null $action
      * @return mixed
      */
-    public function getRequiredRole($resource, $field, $action = null)
+    public function getRequiredRole($resource, $action = null, $field = null)
     {
         list($bundle, $entity) = explode(':', $resource);
 
         switch (true) {
+            case ($field):
+                return @$this->acl[$bundle][$entity][$action][$field] ?: $this->defaultCredential;
+
             case ($action):
-                return @$this->acl[$bundle][$entity][$field][$action] ?: $this->defaultCredential;
+                return @$this->acl[$bundle][$entity][$action] ?: $this->defaultCredential;
 
             default:
-                return @$this->acl[$bundle][$entity][$field] ?: $this->defaultCredential;
+                return @$this->acl[$bundle][$entity] ?: $this->defaultCredential;
         }
+    }
+
+    /**
+     * @param RoleInterface[] $roles
+     * @param string          $resource
+     * @param string          $action
+     * @return array
+     */
+    public function getAccesibleFields(array $roles, $resource, $action)
+    {
+        $reachableRoles = array_unique(
+            array_map(
+                function (Role $role) {
+                    return $role->getRole();
+                },
+                $this->roleHierarchy->getReachableRoles($roles)
+            )
+        );
+
+        $acl = $this->getRequiredRole($resource, $action);
+
+        $fields = array_filter(
+            $acl,
+            function ($requiredRole) use ($reachableRoles) {
+                return in_array($requiredRole, $reachableRoles);
+            }
+        );
+
+        return $fields;
     }
 
     /**

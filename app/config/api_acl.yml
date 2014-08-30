@@ -4,243 +4,220 @@ nfq_fairytale_api:
         acl:
             NfqFairytaleCoreBundle:
                 Author:
-                    id:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    name:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    books:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
+                    CREATE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        books: ROLE_ADMIN
+                    READ:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        books: ROLE_ADMIN
+                    UPDATE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        books: ROLE_ADMIN
+                    DELETE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        books: ROLE_ADMIN
                 Book:
-                    id:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    title:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    description:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    genre:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    ratings:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    comments:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    categories:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    authors:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
+                    CREATE:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        description: ROLE_ADMIN
+                        genre: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        categories: ROLE_ADMIN
+                        authors: ROLE_ADMIN
+                    READ:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        description: ROLE_ADMIN
+                        genre: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        categories: ROLE_ADMIN
+                        authors: ROLE_ADMIN
+                    UPDATE:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        description: ROLE_ADMIN
+                        genre: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        categories: ROLE_ADMIN
+                        authors: ROLE_ADMIN
+                    DELETE:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        description: ROLE_ADMIN
+                        genre: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        categories: ROLE_ADMIN
+                        authors: ROLE_ADMIN
                 Category:
-                    id:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    title:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    books:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
+                    CREATE:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        books: ROLE_ADMIN
+                    READ:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        books: ROLE_ADMIN
+                    UPDATE:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        books: ROLE_ADMIN
+                    DELETE:
+                        id: ROLE_ADMIN
+                        title: ROLE_ADMIN
+                        books: ROLE_ADMIN
                 Comment:
-                    id:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    content:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    created:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    user:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    book:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
+                    CREATE:
+                        id: ROLE_ADMIN
+                        content: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
+                    READ:
+                        id: ROLE_ADMIN
+                        content: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
+                    UPDATE:
+                        id: ROLE_ADMIN
+                        content: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
+                    DELETE:
+                        id: ROLE_ADMIN
+                        content: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
                 Rating:
-                    id:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    value:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    created:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    user:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    book:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
+                    CREATE:
+                        id: ROLE_ADMIN
+                        value: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
+                    READ:
+                        id: ROLE_ADMIN
+                        value: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
+                    UPDATE:
+                        id: ROLE_ADMIN
+                        value: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
+                    DELETE:
+                        id: ROLE_ADMIN
+                        value: ROLE_ADMIN
+                        created: ROLE_ADMIN
+                        user: ROLE_ADMIN
+                        book: ROLE_ADMIN
                 User:
-                    id:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    name:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    surname:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    comments:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    ratings:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    username:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    usernameCanonical:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    email:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    emailCanonical:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    enabled:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    salt:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    password:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    plainPassword:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    lastLogin:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    confirmationToken:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    passwordRequestedAt:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    groups:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    locked:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    expired:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    expiresAt:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    roles:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    credentialsExpired:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
-                    credentialsExpireAt:
-                        C: ROLE_USER
-                        R: ROLE_USER
-                        U: ROLE_USER
-                        D: ROLE_USER
+                    CREATE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        surname: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        username: ROLE_ADMIN
+                        usernameCanonical: ROLE_ADMIN
+                        email: ROLE_ADMIN
+                        emailCanonical: ROLE_ADMIN
+                        enabled: ROLE_ADMIN
+                        salt: ROLE_ADMIN
+                        password: ROLE_ADMIN
+                        plainPassword: ROLE_ADMIN
+                        lastLogin: ROLE_ADMIN
+                        confirmationToken: ROLE_ADMIN
+                        passwordRequestedAt: ROLE_ADMIN
+                        groups: ROLE_ADMIN
+                        locked: ROLE_ADMIN
+                        expired: ROLE_ADMIN
+                        expiresAt: ROLE_ADMIN
+                        roles: ROLE_ADMIN
+                        credentialsExpired: ROLE_ADMIN
+                        credentialsExpireAt: ROLE_ADMIN
+                    READ:
+                        id: ROLE_USER
+                        name: ROLE_USER
+                        surname: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        username: ROLE_ADMIN
+                        usernameCanonical: ROLE_ADMIN
+                        email: ROLE_ADMIN
+                        emailCanonical: ROLE_ADMIN
+                        enabled: ROLE_ADMIN
+                        salt: ROLE_ADMIN
+                        password: ROLE_ADMIN
+                        plainPassword: ROLE_ADMIN
+                        lastLogin: ROLE_ADMIN
+                        confirmationToken: ROLE_ADMIN
+                        passwordRequestedAt: ROLE_ADMIN
+                        groups: ROLE_ADMIN
+                        locked: ROLE_ADMIN
+                        expired: ROLE_ADMIN
+                        expiresAt: ROLE_ADMIN
+                        roles: ROLE_ADMIN
+                        credentialsExpired: ROLE_ADMIN
+                        credentialsExpireAt: ROLE_ADMIN
+                    UPDATE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        surname: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        username: ROLE_ADMIN
+                        usernameCanonical: ROLE_ADMIN
+                        email: ROLE_ADMIN
+                        emailCanonical: ROLE_ADMIN
+                        enabled: ROLE_ADMIN
+                        salt: ROLE_ADMIN
+                        password: ROLE_ADMIN
+                        plainPassword: ROLE_ADMIN
+                        lastLogin: ROLE_ADMIN
+                        confirmationToken: ROLE_ADMIN
+                        passwordRequestedAt: ROLE_ADMIN
+                        groups: ROLE_ADMIN
+                        locked: ROLE_ADMIN
+                        expired: ROLE_ADMIN
+                        expiresAt: ROLE_ADMIN
+                        roles: ROLE_ADMIN
+                        credentialsExpired: ROLE_ADMIN
+                        credentialsExpireAt: ROLE_ADMIN
+                    DELETE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        surname: ROLE_ADMIN
+                        comments: ROLE_ADMIN
+                        ratings: ROLE_ADMIN
+                        username: ROLE_ADMIN
+                        usernameCanonical: ROLE_ADMIN
+                        email: ROLE_ADMIN
+                        emailCanonical: ROLE_ADMIN
+                        enabled: ROLE_ADMIN
+                        salt: ROLE_ADMIN
+                        password: ROLE_ADMIN
+                        plainPassword: ROLE_ADMIN
+                        lastLogin: ROLE_ADMIN
+                        confirmationToken: ROLE_ADMIN
+                        passwordRequestedAt: ROLE_ADMIN
+                        groups: ROLE_ADMIN
+                        locked: ROLE_ADMIN
+                        expired: ROLE_ADMIN
+                        expiresAt: ROLE_ADMIN
+                        roles: ROLE_ADMIN
+                        credentialsExpired: ROLE_ADMIN
+                        credentialsExpireAt: ROLE_ADMIN

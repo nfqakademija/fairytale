@@ -3,7 +3,7 @@
 namespace spec\Nfq\Fairytale\ApiBundle\EventListener;
 
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
-use Nfq\Fairytale\ApiBundle\EventListener\Authorization;
+use Nfq\Fairytale\ApiBundle\EventListener\LoggingListener;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Log\LoggerInterface;
@@ -13,13 +13,13 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\SecurityContext;
 
 /**
- * @mixin Authorization
+ * @mixin LoggingListener
  */
-class AuthorizationSpec extends ObjectBehavior
+class LoggingListenerSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Nfq\Fairytale\ApiBundle\EventListener\Authorization');
+        $this->shouldHaveType('Nfq\Fairytale\ApiBundle\EventListener\LoggingListener');
     }
 
     function it_should_log_event(

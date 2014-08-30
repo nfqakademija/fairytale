@@ -2,21 +2,23 @@
 
 namespace Nfq\Fairytale\ApiBundle\EventListener;
 
+use JMS\Serializer\Serializer;
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
+use Nfq\Fairytale\ApiBundle\Helper\ResourceResolver;
 use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 use Symfony\Component\Security\Core\SecurityContext;
 
-class Authorization
+class LoggingListener implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var  SecurityContext */
     protected $context;
-    /** @var  LoggerInterface */
-    protected $logger;
-    /** @var  CredentialStore */
-    protected $credentials;
 
     /**
      * @param SecurityContext $context
@@ -24,14 +26,6 @@ class Authorization
     public function setContext(SecurityContext $context)
     {
         $this->context = $context;
-    }
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
     }
 
     /**
@@ -60,13 +54,5 @@ class Authorization
                 ]
             );
         }
-    }
-
-    /**
-     * @param CredentialStore $credentials
-     */
-    public function setCredentials(CredentialStore $credentials)
-    {
-        $this->credentials = $credentials;
     }
 }

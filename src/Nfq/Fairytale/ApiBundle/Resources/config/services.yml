@@ -6,6 +6,7 @@ services:
         calls:
             - [setAcl, [%nfq_fairytale_api.config.security.acl%]]
             - [setDefaultCredential, [%nfq_fairytale_api.config.security.default_credential%]]
+            - [setRoleHierarchy, [@security.role_hierarchy]]
 
     nfq_fairytale.datasource.file:
         class: Nfq\Fairytale\ApiBundle\Datasource\FileSource
@@ -34,10 +35,18 @@ services:
     nfq_fairytale.action.manager:
         class: Nfq\Fairytale\ApiBundle\Actions\ActionManager
 
+    nfq_fairytale.api.resource_resolver:
+        class: Nfq\Fairytale\ApiBundle\Helper\ResourceResolver
+        calls:
+            - [setResourceMapping, [%nfq_fairytale_api.config.mapping%]]
+
+    nfq_fairytale.api.action_resolver:
+        class: Nfq\Fairytale\ApiBundle\Helper\ActionResolver
+
     nfq_fairytale.api.controller:
         class: Nfq\Fairytale\ApiBundle\Controller\ApiController
         calls:
-            - [setMapping, [%nfq_fairytale_api.config.mapping%]]
+            - [setResolver, [@nfq_fairytale.api.resource_resolver]]
             - [setDatasourceFactory, [@nfq_fairytale.datasource.factory]]
             - [setDefaultIndexSize, [%nfq_fairytale_api.config.default_index_size%]]
             - [setActionManager, [@nfq_fairytale.action.manager]]

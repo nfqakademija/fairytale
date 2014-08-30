@@ -6,15 +6,13 @@ use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
 use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\InstanceActionInterface;
 use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
+use Nfq\Fairytale\ApiBundle\Helper\ResourceResolver;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ApiController implements ApiControllerInterface
 {
-    /** @var array */
-    protected $mapping = [];
-
     /** @var  DatasourceFactory */
     protected $factory;
 
@@ -24,20 +22,15 @@ class ApiController implements ApiControllerInterface
     /** @var  ActionManager */
     protected $actionManager;
 
+    /** @var  ResourceResolver */
+    protected $resolver;
+
     /**
      * @param DatasourceFactory $factory
      */
     public function setDatasourceFactory(DatasourceFactory $factory)
     {
         $this->factory = $factory;
-    }
-
-    /**
-     * @param array $mapping
-     */
-    public function setMapping($mapping)
-    {
-        $this->mapping = $mapping;
     }
 
     /**
@@ -56,9 +49,17 @@ class ApiController implements ApiControllerInterface
         $this->actionManager = $actionManager;
     }
 
+    /**
+     * @param ResourceResolver $resolver
+     */
+    public function setResolver(ResourceResolver $resolver)
+    {
+        $this->resolver = $resolver;
+    }
+
     public function readAction($resource, $identifier)
     {
-        $instance = $this->factory->create($this->mapping[$resource])->read($identifier);
+        $instance = $this->factory->create($this->resolver->resolve($resource))->read($identifier);
 
         if (!$instance) {
 
@@ -72,8 +73,8 @@ class ApiController implements ApiControllerInterface
     public function createAction(Request $request, $resource)
     {
         return [
-            $this->factory->create($this->mapping[$resource])->create(
-                json_decode($request->getContent(), true)
+            $this->factory->create($this->resolver->resolve($resource))->create(
+                $request->attributes->get('payload')
             ),
             201
         ];
@@ -82,9 +83,9 @@ class ApiController implements ApiControllerInterface
     public function updateAction(Request $request, $resource, $identifier)
     {
         return [
-            $this->factory->create($this->mapping[$resource])->update(
+            $this->factory->create($this->resolver->resolve($resource))->update(
                 $identifier,
-                json_decode($request->getContent(), true)
+                $request->attributes->get('payload')
             ),
             200
         ];
@@ -93,7 +94,7 @@ class ApiController implements ApiControllerInterface
     public function indexAction(Request $request, $resource)
     {
         return [
-            $this->factory->create($this->mapping[$resource])->index(
+            $this->factory->create($this->resolver->resolve($resource))->index(
                 $request->query->get('limit', $this->defaultIndexSize),
                 $request->query->get('offset', 0)
             ),
@@ -104,7 +105,7 @@ class ApiController implements ApiControllerInterface
     public function deleteAction($resource, $identifier)
     {
         $deleted = $this->factory
-            ->create($this->mapping[$resource])
+            ->create($this->resolver->resolve($resource))
             ->delete($identifier);
 
         return [
@@ -119,9 +120,9 @@ class ApiController implements ApiControllerInterface
 
         switch (true) {
             case ($action instanceof CollectionActionInterface):
-                return $action->execute($request, $this->mapping[$resource]);
+                return $action->execute($request, $this->resolver->resolve($resource));
             case ($action instanceof InstanceActionInterface):
-                return $action->execute($request, $this->mapping[$resource], $identifier);
+                return $action->execute($request, $this->resolver->resolve($resource), $identifier);
             default:
                 throw new BadRequestHttpException(
                     sprintf("Action '%s' is not supported", $actionName)

@@ -31,6 +31,12 @@ class ApiSecurityInitCommand extends ContainerAwareCommand
 
         $root = dirname($this->getContainer()->getParameter('kernel.root_dir')) . '/src/';
 
+        $actions = [
+            CredentialStore::CREATE,
+            CredentialStore::READ,
+            CredentialStore::UPDATE,
+            CredentialStore::DELETE,
+        ];
         $tree = [];
         /** @var \SplFileInfo $file */
         foreach ($finder as $file) {
@@ -43,13 +49,10 @@ class ApiSecurityInitCommand extends ContainerAwareCommand
             $tree[$bundle][$class] = [];
             $refObj = new \ReflectionObject(new $fqcn);
 
-            foreach ($refObj->getProperties() as $prop) {
-                $tree[$bundle][$class][$prop->getName()] = [
-                    CredentialStore::CREATE => $role,
-                    CredentialStore::READ   => $role,
-                    CredentialStore::UPDATE => $role,
-                    CredentialStore::DELETE => $role,
-                ];
+            foreach ($actions as $action) {
+                foreach ($refObj->getProperties() as $prop) {
+                    $tree[$bundle][$class][$action][$prop->getName()] = $role;
+                }
             }
         }
 

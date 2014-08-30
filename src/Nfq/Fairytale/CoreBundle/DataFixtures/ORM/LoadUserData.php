@@ -26,8 +26,19 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $userAdmin->setEmail('admin@admin.com');
         $userAdmin->setName('The Admin');
         $userAdmin->setRoles(['ROLE_ADMIN']);
+        $userAdmin->setEnabled(true);
 
         $manager->persist($userAdmin);
+
+        $user = new User();
+        $user->setUsername('user');
+        $this->setPassword($user, 'user');
+        $user->setEmail('user@user.com');
+        $user->setName('The User');
+        $user->setRoles(['ROLE_USER']);
+        $user->setEnabled(true);
+
+        $manager->persist($user);
 
         for($i = 0; $i < 10; $i++) {
             $user = new User();
@@ -36,6 +47,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             $user->setEmail($faker->companyEmail);
             $user->setName($faker->name);
             $user->setRoles(['ROLE_USER']);
+            $userAdmin->setEnabled(true);
 
             $manager->persist($user);
         }
