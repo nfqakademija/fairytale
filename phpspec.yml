@@ -1,2 +1,7 @@
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+code_coverage:
+    output:
+        html: build/coverage
 suites:
     ApiBundle       : { namespace: Nfq\Fairytale, spec_path: src/Nfq/Fairytale/ApiBundle }

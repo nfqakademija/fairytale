@@ -31,7 +31,8 @@
         "doctrine/doctrine-fixtures-bundle": "*",
         "vipsoft/doctrine-data-fixtures-extension": "dev-master",
         "behat/symfony2-extension": "dev-master",
-        "fzaninotto/faker": "*"
+        "fzaninotto/faker": "*",
+        "henrikbjorn/phpspec-code-coverage": "~0.2"
     },
     "scripts": {
         "post-root-package-install": [
