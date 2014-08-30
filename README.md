@@ -7,3 +7,17 @@ Fairytale
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/6551879e-855e-433c-b355-a80b2fd897e5/mini.png)](https://insight.sensiolabs.com/projects/6551879e-855e-433c-b355-a80b2fd897e5)
   
 NFQ Library
+
+Startup
+=======
+
+Initial setup (dependencies and database structure)
+```
+$ composer install
+$ app/console doctrine:database:create
+```
+
+Load data fixtures
+```
+$ app/console doctrine:schema:drop --force; app/console doctrine:schema:create && app/console doctrine:fixtures:load -n
+```
