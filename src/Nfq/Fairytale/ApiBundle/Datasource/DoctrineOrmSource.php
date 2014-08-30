@@ -63,7 +63,7 @@ class DoctrineOrmSource implements DataSourceInterface
      */
     public function create($data)
     {
-        $object = $this->classFactory->create($this->resource);
+        $object = $this->classFactory->create($this->entityManager->getRepository($this->resource)->getClassName());
 
         $this->populateObject($object, $data);
 
