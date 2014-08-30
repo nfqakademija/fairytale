@@ -27,7 +27,11 @@
         "behat/behat": "~3.0",
         "behat/web-api-extension": "~1.0@dev",
         "behat/mink-extension": "*",
-        "behat/mink-goutte-driver": "*"
+        "behat/mink-goutte-driver": "*",
+        "doctrine/doctrine-fixtures-bundle": "*",
+        "vipsoft/doctrine-data-fixtures-extension": "dev-master",
+        "behat/symfony2-extension": "dev-master",
+        "fzaninotto/faker": "*"
     },
     "scripts": {
         "post-root-package-install": [

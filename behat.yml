@@ -2,9 +2,15 @@ default:
     extensions:
         Behat\WebApiExtension:
             base_url:   'http://test.fairytale.dev/'
+        Behat\Symfony2Extension: ~
         Behat\MinkExtension:
             base_url:   'http://test.fairytale.dev/'
             goutte: ~
+        VIPSoft\DoctrineDataFixturesExtension\Extension:
+            lifetime:    feature
+            autoload:    true
+            directories: ~
+            fixtures:    ~
     suites:
         api_features:
             paths:
