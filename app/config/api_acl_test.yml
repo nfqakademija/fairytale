@@ -1,0 +1,22 @@
+nfq_fairytale_api:
+    security:
+        default_credential: ROLE_SUPER_ADMIN
+        acl:
+            NfqFairytaleCoreBundle:
+                User:
+                    CREATE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        email: ROLE_ADMIN
+                    READ:
+                        id: ROLE_USER
+                        name: ROLE_USER
+                        email: ROLE_ADMIN
+                    UPDATE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        email: ROLE_ADMIN
+                    DELETE:
+                        id: ROLE_ADMIN
+                        name: ROLE_ADMIN
+                        email: ROLE_ADMIN

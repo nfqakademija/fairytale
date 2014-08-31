@@ -25,14 +25,15 @@
         "sensio/generator-bundle": "~2.3",
         "phpspec/phpspec": "~2.0",
         "behat/behat": "~3.0",
-        "behat/web-api-extension": "~1.0@dev",
         "behat/mink-extension": "*",
         "behat/mink-goutte-driver": "*",
         "doctrine/doctrine-fixtures-bundle": "*",
         "vipsoft/doctrine-data-fixtures-extension": "dev-master",
         "behat/symfony2-extension": "dev-master",
         "fzaninotto/faker": "*",
-        "henrikbjorn/phpspec-code-coverage": "~0.2"
+        "henrikbjorn/phpspec-code-coverage": "~0.2",
+        "beberlei/assert": "~2.0",
+        "sebastian/diff": "~1.0"
     },
     "scripts": {
         "post-root-package-install": [

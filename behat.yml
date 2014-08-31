@@ -1,18 +1,22 @@
 default:
     extensions:
-        Behat\WebApiExtension:
-            base_url:   'http://test.fairytale.dev/'
-        Behat\Symfony2Extension: ~
+        Behat\Symfony2Extension:
+            kernel:
+                env: test
+                debug: true
+
         Behat\MinkExtension:
-            base_url:   'http://test.fairytale.dev/'
-            goutte: ~
+            base_url:   'http://fairytale.dev/'
+            symfony2:   ~
+
         VIPSoft\DoctrineDataFixturesExtension\Extension:
             lifetime:    feature
             autoload:    true
             directories: ~
             fixtures:    ~
     suites:
-        api_features:
+        NfqFairytaleApiBundle:
+            type: symfony_bundle
             paths:
                 - %paths.base%/src/Nfq/Fairytale/ApiBundle/Features
             contexts:

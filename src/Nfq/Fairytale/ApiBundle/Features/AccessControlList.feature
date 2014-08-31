@@ -5,38 +5,37 @@ Feature: Access Control List
     An API has to be able to limit operation by role
 
     Scenario: I can read user data via API as an unauthorized user
-        Given I have "no" access token
         When I send a GET request to "/api/user/1"
-#        Then the response code should be 403
-        And the response should not contain "id"
-        And the response should not contain "name"
-        And the response should not contain "email"
-        And the response should not contain "password"
-
-    Scenario: I can read user data via API as an registered user
-        Given I have "user" access token
-        When I send a GET request to "/api/user/1"
-        Then the response code should be 200
-        And the response should contain json:
+        Then the response code should be 403
+        And the response should be json:
         """
         {
-            "id": 1,
-            "name":"name_Foo",
-            "email":"email_bar@api.com"
+            "code": 403,
+            "message": "Forbidden"
         }
         """
-        And the response should not contain "password"
 
-    Scenario: I can read user data via API as an admin
-        Given I have "admin" access token
+    Scenario: I can read user data via API as an registered user
+        Given I am authenticated as "user"
         When I send a GET request to "/api/user/1"
         Then the response code should be 200
-        And the response should contain json:
+        And the response should be json:
         """
         {
             "id": 1,
-            "name":"name_Foo",
-            "email":"email_bar@api.com",
-            "password": "pass_secret"
+            "name": "The Admin"
+        }
+        """
+
+    Scenario: I can read user data via API as an admin
+        Given I am authenticated as "admin"
+        When I send a GET request to "/api/user/1"
+        Then the response code should be 200
+        And the response should be json:
+        """
+        {
+            "id": 1,
+            "name": "The Admin",
+            "email": "admin@admin.com"
         }
         """

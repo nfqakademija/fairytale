@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: api_acl.yml }
+    - { resource: api_acl_test.yml }
 
 framework:
     #esi:             ~
