@@ -15,6 +15,6 @@ class CountAction extends BaseAction implements CollectionActionInterface
      */
     public function execute(Request $request, DataSourceInterface $resource)
     {
-        return [(object)['count' => $this->factory->create($resource)->count()], 200];
+        return [(object)['count' => $resource->count()], 200];
     }
 }
