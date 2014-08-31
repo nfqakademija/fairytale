@@ -20,3 +20,10 @@ services:
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: *, method: DELETE }
 
+    nfq_fairytale.api.action.instance.update:
+        class: Nfq\Fairytale\ApiBundle\Actions\Instance\UpdateAction
+        calls:
+            - [setFactory, [@nfq_fairytale.datasource.factory]]
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: *, method: UPDATE }
+

@@ -67,17 +67,6 @@ class ApiController implements ApiControllerInterface
         ];
     }
 
-    public function updateAction(Request $request, $resource, $identifier)
-    {
-        return [
-            $this->factory->create($this->resolver->resolve($resource))->update(
-                $identifier,
-                $request->attributes->get('payload')
-            ),
-            200
-        ];
-    }
-
     public function indexAction(Request $request, $resource)
     {
         return [

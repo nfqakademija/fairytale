@@ -8,13 +8,6 @@ nfq_fairytale_api.resource.create:
     defaults: { _controller: nfq_fairytale.api.controller:createAction }
     methods: [POST]
 
-nfq_fairytale_api.resource.update:
-    path:     /{resource}/{identifier}
-    defaults: { _controller: nfq_fairytale.api.controller:updateAction }
-    methods: [PUT]
-    requirements:
-        identifier: \d+
-
 nfq_fairytale_api.resource.instance.action:
     path:     /{resource}/{identifier}/{actionName}
     defaults:
