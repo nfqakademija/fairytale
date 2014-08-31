@@ -2,13 +2,14 @@
 
 namespace Nfq\Fairytale\ApiBundle\Security;
 
+use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 class CredentialStore
 {
-    const CREATE = 'CREATE';
+    const CREATE = 'collection.create';
     const READ = 'READ';
     const UPDATE = 'UPDATE';
     const DELETE = 'DELETE';
@@ -39,34 +40,38 @@ class CredentialStore
     /**
      * Returns minimal required role level to access given resource
      *
-     * @param      $resource
-     * @param      $field
-     * @param null $action
+     * @param                 $resource
+     * @param ActionInterface $action
+     * @param                 $field
+     *
      * @return mixed
      */
-    public function getRequiredRole($resource, $action = null, $field = null)
+    public function getRequiredRole($resource, ActionInterface $action, $field = null)
     {
         list($bundle, $entity) = explode(':', $resource);
 
-        switch (true) {
-            case ($field):
-                return @$this->acl[$bundle][$entity][$action][$field] ?: $this->defaultCredential;
-
-            case ($action):
-                return @$this->acl[$bundle][$entity][$action] ?: $this->defaultCredential;
-
-            default:
-                return @$this->acl[$bundle][$entity] ?: $this->defaultCredential;
+        if (array_key_exists($bundle, $this->acl)) {
+            if (array_key_exists($entity, $this->acl[$bundle])) {
+                if (array_key_exists($action->getName(), $this->acl[$bundle][$entity])) {
+                    if ($field) {
+                        return $this->acl[$bundle][$entity][$action->getName()][$field];
+                    } else {
+                        return $this->acl[$bundle][$entity][$action->getName()];
+                    }
+                }
+            }
         }
+
+        throw new InvalidConfigurationException($bundle, $entity, $action->getName());
     }
 
     /**
      * @param RoleInterface[] $roles
      * @param string          $resource
-     * @param string          $action
+     * @param ActionInterface $action
      * @return array
      */
-    public function getAccesibleFields(array $roles, $resource, $action)
+    public function getAccessibleFields(array $roles, $resource, ActionInterface $action)
     {
         $reachableRoles = array_unique(
             array_map(

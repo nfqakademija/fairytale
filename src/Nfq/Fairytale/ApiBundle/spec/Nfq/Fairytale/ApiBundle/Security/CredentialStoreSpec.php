@@ -2,12 +2,12 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Security;
 
+use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
 use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchy;
-use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
 /**
  * @mixin CredentialStore
@@ -33,6 +33,9 @@ class CredentialStoreSpec extends ObjectBehavior
                     CredentialStore::CREATE => [
                         'id' => 'ROLE_USER',
                     ],
+                    'custom'                => [
+                        'customField' => 'ROLE_USER',
+                    ]
                 ],
             ]
         ];
@@ -46,38 +49,54 @@ class CredentialStoreSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Security\CredentialStore');
     }
 
-    function it_should_resolve_required_roles()
+    function it_should_resolve_required_roles(ActionInterface $action)
     {
-        $this->getRequiredRole('FooBundle:Bar', CredentialStore::CREATE, 'id')->shouldBe('ROLE_USER');
-        $this->getRequiredRole('FooBundle:Bar', CredentialStore::CREATE, 'password')->shouldBe('ROLE_ADMIN');
+        $action->getName()->willReturn(CredentialStore::CREATE);
 
-        $this->getRequiredRole('FooBundle:Baz', CredentialStore::CREATE, 'id')->shouldBe('ROLE_USER');
-        $this->getRequiredRole('FooBundle:Baz', CredentialStore::CREATE)->shouldBe(['id' => 'ROLE_USER']);
+        $this->getRequiredRole('FooBundle:Bar', $action, 'id')->shouldBe('ROLE_USER');
+        $this->getRequiredRole('FooBundle:Bar', $action, 'password')->shouldBe('ROLE_ADMIN');
+
+        $this->getRequiredRole('FooBundle:Baz', $action, 'id')->shouldBe('ROLE_USER');
+        $this->getRequiredRole('FooBundle:Baz', $action)->shouldBe(['id' => 'ROLE_USER']);
     }
 
-    function it_should_resolve_to_default_credentials_if_undefined()
+    function it_should_resolve_to_default_credentials_if_undefined(ActionInterface $action)
     {
-        $this->getRequiredRole('FooBundle:Qux', CredentialStore::DELETE, 'id')->shouldBe('ROLE_ADMIN');
-        $this->getRequiredRole('FooBundle:Qux', CredentialStore::DELETE)->shouldBe('ROLE_ADMIN');
-        $this->getRequiredRole('FooBundle:Qux')->shouldBe([CredentialStore::CREATE => ['id' => 'ROLE_USER']]);
+        $action->getName()->willReturn(CredentialStore::DELETE);
+
+        $this->shouldThrow('Nfq\Fairytale\ApiBundle\Security\InvalidConfigurationException')
+            ->during('getRequiredRole', ['FooBundle:Qux', $action, 'id']);
+
+        $this->shouldThrow('Nfq\Fairytale\ApiBundle\Security\InvalidConfigurationException')
+            ->during('getRequiredRole', ['FooBundle:Qux', $action]);
     }
 
-    function it_should_resolve_accessible_fields_for_role()
+    function it_should_resolve_accessible_fields_for_role(ActionInterface $action)
     {
+        $action->getName()->willReturn(CredentialStore::CREATE);
+
         $roleHierarchy = new RoleHierarchy(['ROLE_ADMIN' => ['ROLE_USER']]);
         $this->setRoleHierarchy($roleHierarchy);
 
-        $this->getAccesibleFields([new Role('ROLE_USER')], 'FooBundle:Bar', CredentialStore::CREATE)->shouldBe(
+        $this->getAccessibleFields([new Role('ROLE_USER')], 'FooBundle:Bar', $action)->shouldBe(
             [
                 'id' => 'ROLE_USER',
             ]
         );
 
-        $this->getAccesibleFields([new Role('ROLE_ADMIN')], 'FooBundle:Bar', CredentialStore::CREATE)->shouldBe(
+        $this->getAccessibleFields([new Role('ROLE_ADMIN')], 'FooBundle:Bar', $action)->shouldBe(
             [
                 'id'       => 'ROLE_USER',
                 'password' => 'ROLE_ADMIN',
             ]
         );
+    }
+
+    function it_should_resolve_for_custom_actions(ActionInterface $action)
+    {
+        $action->getName()->willReturn('custom');
+
+        $this->getRequiredRole('FooBundle:Qux', $action, 'customField')->shouldBe('ROLE_USER');
+        $this->getRequiredRole('FooBundle:Qux', $action)->shouldBe(['customField' => 'ROLE_USER']);
     }
 }
