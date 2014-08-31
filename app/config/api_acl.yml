@@ -1,6 +1,5 @@
 nfq_fairytale_api:
     security:
-        default_credential: ROLE_ADMIN
         acl:
             NfqFairytaleCoreBundle:
                 Author:

@@ -16,8 +16,6 @@ class CredentialStore
 
     /** @var  array */
     protected $acl;
-    /** @var  string */
-    protected $defaultCredential;
     /** @var  RoleHierarchyInterface */
     protected $roleHierarchy;
 
@@ -92,13 +90,5 @@ class CredentialStore
         );
 
         return $fields;
-    }
-
-    /**
-     * @param string $defaultCredential
-     */
-    public function setDefaultCredential($defaultCredential)
-    {
-        $this->defaultCredential = $defaultCredential;
     }
 }

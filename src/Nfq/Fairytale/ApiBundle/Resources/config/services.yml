@@ -5,7 +5,6 @@ services:
         class: Nfq\Fairytale\ApiBundle\Security\CredentialStore
         calls:
             - [setAcl, [%nfq_fairytale_api.config.security.acl%]]
-            - [setDefaultCredential, [%nfq_fairytale_api.config.security.default_credential%]]
             - [setRoleHierarchy, [@security.role_hierarchy]]
 
     nfq_fairytale.data_source.file:

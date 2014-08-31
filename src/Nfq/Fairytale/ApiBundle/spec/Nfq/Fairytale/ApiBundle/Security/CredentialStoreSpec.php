@@ -41,7 +41,6 @@ class CredentialStoreSpec extends ObjectBehavior
         ];
 
         $this->setAcl($acl);
-        $this->setDefaultCredential('ROLE_ADMIN');
     }
 
     function it_is_initializable()
@@ -60,7 +59,7 @@ class CredentialStoreSpec extends ObjectBehavior
         $this->getRequiredRole('FooBundle:Baz', $action)->shouldBe(['id' => 'ROLE_USER']);
     }
 
-    function it_should_resolve_to_default_credentials_if_undefined(ActionInterface $action)
+    function it_should_throw_if_cant_resolve(ActionInterface $action)
     {
         $action->getName()->willReturn(CredentialStore::DELETE);
 

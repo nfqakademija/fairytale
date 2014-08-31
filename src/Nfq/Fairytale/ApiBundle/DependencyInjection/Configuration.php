@@ -46,7 +46,6 @@ class Configuration implements ConfigurationInterface
                         ->prototype('variable')
                         ->end()
                     ->end()
-                    ->scalarNode('default_credential')->isRequired()->cannotBeEmpty()->end()
                 ->end()
             ->end()
         ->end();
