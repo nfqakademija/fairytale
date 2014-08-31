@@ -62,7 +62,7 @@ class CredentialStoreSpec extends ObjectBehavior
         $this->getRequiredRole('FooBundle:Qux')->shouldBe([CredentialStore::CREATE => ['id' => 'ROLE_USER']]);
     }
 
-    function it_should_resolve_accesible_fields_for_role()
+    function it_should_resolve_accessible_fields_for_role()
     {
         $roleHierarchy = new RoleHierarchy(['ROLE_ADMIN' => ['ROLE_USER']]);
         $this->setRoleHierarchy($roleHierarchy);
