@@ -15,13 +15,6 @@ nfq_fairytale_api.resource.update:
     requirements:
         identifier: \d+
 
-nfq_fairytale_api.resource.delete:
-    path:     /{resource}/{identifier}
-    defaults: { _controller: nfq_fairytale.api.controller:deleteAction }
-    methods: [DELETE]
-    requirements:
-        identifier: \d+
-
 nfq_fairytale_api.resource.instance.action:
     path:     /{resource}/{identifier}/{actionName}
     defaults:

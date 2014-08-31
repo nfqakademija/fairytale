@@ -4,6 +4,8 @@ nfq_fairytale_api:
         acl:
             NfqFairytaleCoreBundle:
                 User:
+                    instance.delete:
+                        status: ROLE_ADMIN
                     instance.read:
                         id: ROLE_USER
                         name: ROLE_USER

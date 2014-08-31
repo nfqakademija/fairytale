@@ -56,6 +56,7 @@ class DoctrineOrmSource implements DataSourceInterface
         $object = $this->entityManager->getPartialReference($this->resource, $identifier);
         $this->entityManager->remove($object);
         $this->entityManager->flush();
+        return true;
     }
 
     /**

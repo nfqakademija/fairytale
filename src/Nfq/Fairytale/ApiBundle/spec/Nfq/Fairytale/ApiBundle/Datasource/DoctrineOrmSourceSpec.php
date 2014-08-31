@@ -59,7 +59,7 @@ class DoctrineOrmSourceSpec extends ObjectBehavior
         $em->flush()->shouldBeCalled();
         $this->setEntityManager($em);
 
-        $this->delete(1)->shouldBe(null);
+        $this->delete(1)->shouldBe(true);
     }
 
     function it_should_create_entity(EntityManager $em, ClassFactory $factory, ObjectRepository $repository)

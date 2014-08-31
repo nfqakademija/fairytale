@@ -89,18 +89,6 @@ class ApiController implements ApiControllerInterface
         ];
     }
 
-    public function deleteAction($resource, $identifier)
-    {
-        $deleted = $this->factory
-            ->create($this->resolver->resolve($resource))
-            ->delete($identifier);
-
-        return [
-            ['status' => $deleted ? 'success' : 'failed'],
-            $deleted ? 200 : 400
-        ];
-    }
-
     public function customAction(Request $request, $resource, $action, $identifier = null)
     {
         switch (true) {
