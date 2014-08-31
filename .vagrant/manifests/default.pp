@@ -132,42 +132,6 @@ nginx::resource::location { "${serverName}-php":
   notify              => Class['nginx::service'],
 }
 
-# tests environment for behat
-
-nginx::resource::vhost { "test.${serverName}":
-  ensure       => present,
-  server_name  => [
-    "test.${serverName}",
-  ],
-  index_files  => [
-    'app_test.php',
-  ],
-  listen_port  => 80,
-  www_root     => "/var/www/${serverName}/web/",
-  try_files    => ['$uri', '$uri/', '/app_test.php?$args'],
-}
-
-nginx::resource::location { "test.${serverName}-php":
-  ensure              => 'present',
-  index_files         => [
-    'app_test.php',
-  ],
-  vhost               => "test.${serverName}",
-  location            => '~ \.php$',
-  proxy               => undef,
-  www_root            => "/var/www/${serverName}/web/",
-  location_cfg_append => {
-    'fastcgi_split_path_info' => '^(.+\.php)(/.+)$',
-    'fastcgi_param'           => 'PATH_INFO $fastcgi_path_info',
-    'fastcgi_param '          => $path_translated,
-    'fastcgi_param  '         => $script_filename,
-    'fastcgi_pass'            => 'unix:/var/run/php5-fpm.sock',
-    'fastcgi_index'           => 'app_test.php',
-    'include'                 => 'fastcgi_params'
-  },
-  notify              => Class['nginx::service'],
-}
-
 ### PHP ###
 
 class { 'php':
