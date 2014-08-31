@@ -34,9 +34,9 @@ class FeatureContext implements SnippetAcceptingContext
         /** @var User $user */
         $user = $this->getContainer()->get('fos_user.user_manager')->findUserByUsername($login);
 
-        $this->client->getCookieJar()->set(new Cookie(session_name(), true));
-
         $session = $this->client->getContainer()->get('session');
+
+        $this->client->getCookieJar()->set(new Cookie($session->getName(), true));
 
         $firewall = 'main';
         $token = new UsernamePasswordToken($user, null, $firewall, $user->getRoles());
