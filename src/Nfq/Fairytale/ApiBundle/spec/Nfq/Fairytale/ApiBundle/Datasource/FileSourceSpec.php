@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\Nfq\Fairytale\ApiBundle\Datasource;
+namespace spec\Nfq\Fairytale\ApiBundle\DataSource;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
- * @mixin \Nfq\Fairytale\ApiBundle\Datasource\FileSource
+ * @mixin \Nfq\Fairytale\ApiBundle\DataSource\FileSource
  */
 class FileSourceSpec extends ObjectBehavior
 {
@@ -24,7 +24,7 @@ class FileSourceSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Datasource\FileSource');
+        $this->shouldHaveType('Nfq\Fairytale\ApiBundle\DataSource\FileSource');
     }
 
     function it_should_throw_if_file_not_loaded()

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nfq\Fairytale\ApiBundle\Datasource;
+namespace Nfq\Fairytale\ApiBundle\DataSource;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\KernelInterface;

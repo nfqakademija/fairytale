@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Nfq\Fairytale\ApiBundle\Datasource;
+namespace spec\Nfq\Fairytale\ApiBundle\DataSource;
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\AbstractQuery;
@@ -11,7 +11,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 /**
- * @mixin \Nfq\Fairytale\ApiBundle\Datasource\DoctrineOrmSource
+ * @mixin \Nfq\Fairytale\ApiBundle\DataSource\DoctrineOrmSource
  */
 class DoctrineOrmSourceSpec extends ObjectBehavior
 {
@@ -22,7 +22,7 @@ class DoctrineOrmSourceSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Datasource\DoctrineOrmSource');
+        $this->shouldHaveType('Nfq\Fairytale\ApiBundle\DataSource\DoctrineOrmSource');
     }
 
     function it_should_read_entity(EntityManager $em, ObjectRepository $repo)

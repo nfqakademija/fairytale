@@ -1,6 +1,6 @@
 <?php
 
-namespace Nfq\Fairytale\ApiBundle\Datasource;
+namespace Nfq\Fairytale\ApiBundle\DataSource;
 
 use Doctrine\ORM\EntityManager;
 

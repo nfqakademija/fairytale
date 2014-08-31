@@ -1,27 +1,29 @@
 <?php
 
-namespace Nfq\Fairytale\ApiBundle\Datasource\Factory;
+namespace Nfq\Fairytale\ApiBundle\DataSource\Factory;
 
-use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 
-class DatasourceFactory
+class DataSourceFactory
 {
     /** @var  DataSourceInterface */
-    protected $datasource;
+    protected $dataSource;
 
     /** @var  mixed */
     protected $source;
 
     /**
-     * @param DataSourceInterface $datasource
+     * @param DataSourceInterface $dataSource
+     * @return void
      */
-    public function setDatasource(DataSourceInterface $datasource)
+    public function setDataSource(DataSourceInterface $dataSource)
     {
-        $this->datasource = $datasource;
+        $this->dataSource = $dataSource;
     }
 
     /**
      * @param mixed $source
+     * @return void
      */
     public function setSource($source)
     {
@@ -36,6 +38,6 @@ class DatasourceFactory
      */
     public function create($resource)
     {
-        return $this->datasource->setResource($resource);
+        return $this->dataSource->setResource($resource);
     }
 } 

@@ -1,5 +1,5 @@
 <?php
-namespace Nfq\Fairytale\ApiBundle\Datasource;
+namespace Nfq\Fairytale\ApiBundle\DataSource;
 
 interface DataSourceInterface
 {
@@ -17,7 +17,7 @@ interface DataSourceInterface
     /**
      * Read element from collection
      *
-     * @param int|string $identifier
+     * @param string $identifier
      * @return array
      */
     public function read($identifier);
@@ -25,7 +25,7 @@ interface DataSourceInterface
     /**
      * Perform partial update on selected element
      *
-     * @param int|string $identifier
+     * @param string $identifier
      * @param array      $patch Associative array which is used to update given fields
      * @return array
      */
@@ -34,7 +34,7 @@ interface DataSourceInterface
     /**
      * Removes element from collection
      *
-     * @param int|string $identifier
+     * @param string $identifier
      * @return bool
      */
     public function delete($identifier);
