@@ -14,12 +14,7 @@ class ReadAction implements InstanceActionInterface, DataSourceFactoryAwareInter
     use DataSourceFactoryAwareTrait;
 
     /**
-     * Performs the action
-     *
-     * @param Request $request
-     * @param string  $resource
-     * @param string  $identifier
-     * @return Response
+     * @inheritdoc
      */
     public function execute(Request $request, $resource, $identifier)
     {
