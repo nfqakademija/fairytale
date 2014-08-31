@@ -2,7 +2,6 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
-use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
 use Symfony\Component\HttpFoundation\Request;
 

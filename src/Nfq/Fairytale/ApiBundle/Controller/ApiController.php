@@ -2,8 +2,8 @@
 
 namespace Nfq\Fairytale\ApiBundle\Controller;
 
-use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
-use Nfq\Fairytale\ApiBundle\Actions\InstanceActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\Collection\CollectionActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\Instance\InstanceActionInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ApiController implements ApiControllerInterface

@@ -3,7 +3,6 @@
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
 use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
-use Nfq\Fairytale\ApiBundle\Actions\InstanceActionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

@@ -2,6 +2,8 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions;
 
+use Nfq\Fairytale\ApiBundle\Actions\Collection\CollectionActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\Instance\InstanceActionInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ActionManager

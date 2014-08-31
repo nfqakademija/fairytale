@@ -2,9 +2,9 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Actions;
 
-use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
-use Nfq\Fairytale\ApiBundle\Actions\InstanceActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\Collection\CollectionActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\Instance\InstanceActionInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

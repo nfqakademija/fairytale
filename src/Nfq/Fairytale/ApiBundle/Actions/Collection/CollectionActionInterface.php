@@ -1,7 +1,8 @@
 <?php
 
-namespace Nfq\Fairytale\ApiBundle\Actions;
+namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
+use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
