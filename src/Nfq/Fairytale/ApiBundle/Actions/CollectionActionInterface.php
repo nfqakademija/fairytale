@@ -5,7 +5,7 @@ namespace Nfq\Fairytale\ApiBundle\Actions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-interface CollectionActionInterface
+interface CollectionActionInterface extends ActionInterface
 {
     /**
      * Performs the action

@@ -30,4 +30,12 @@ class CollectionCountAction implements CollectionActionInterface
             200
         ];
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getName()
+    {
+        return 'collection.count';
+    }
 }

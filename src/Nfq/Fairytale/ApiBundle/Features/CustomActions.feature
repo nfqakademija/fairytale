@@ -5,10 +5,11 @@ Feature: Custom actions
     An API has to support custom actions
 
     Scenario: I can count resource's instances
-        Given I have "admin" access token
+        Given I am authenticated as "admin"
         When I send a GET request to "/api/user/count"
+        Then print last response
         Then the response code should be 200
-        And the response should contain json:
+        And the response should be json:
         """
         {
             "count": "2"
@@ -16,15 +17,14 @@ Feature: Custom actions
         """
 
     Scenario: I can clone resource's instance
-        Given I have "admin" access token
+        Given I am authenticated as "admin"
         When I send a GET request to "/api/user/1/test"
         Then the response code should be 200
-        And the response should contain json:
+        And the response should be json:
         """
         {
             "id": 1,
-            "name":"name_Foo",
-            "email":"email_bar@api.com",
-            "password": "pass_secret"
+            "name": "The Admin",
+            "email": "admin@admin.com"
         }
         """

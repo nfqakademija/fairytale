@@ -4,6 +4,8 @@ namespace spec\Nfq\Fairytale\ApiBundle\EventListener;
 
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
+use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
 use Nfq\Fairytale\ApiBundle\EventListener\AuthorizationListener;
 use Nfq\Fairytale\ApiBundle\Helper\ActionResolver;
@@ -44,29 +46,32 @@ class AuthorizationListenerSpec extends ObjectBehavior
         ApiControllerInterface $controller,
         FilterControllerEvent $event,
         ResourceResolver $resourceResolver,
-        ActionResolver $actionResolver,
-        SerializerInterface $serializer
+        ActionManager $actionResolver,
+        SerializerInterface $serializer,
+        ActionInterface $action
     ) {
         $allAttrs = [
             AuthorizationListener::API_REQUEST          => true,
-            AuthorizationListener::API_REQUEST_ACTION   => 'baz',
+            AuthorizationListener::API_REQUEST_ACTION   => $action,
             AuthorizationListener::API_REQUEST_RESOURCE => 'FooBundle:Bar',
             AuthorizationListener::API_REQUEST_PAYLOAD  => ['foo' => 'bar'],
         ];
 
         $attributes->add($allAttrs)->shouldBeCalled();
         $attributes->get('resource')->willReturn('bar');
-        $attributes->get('action')->willReturn('baz');
+        $attributes->get('actionName')->willReturn('baz');
+        $attributes->get('identifier')->willReturn(1);
 
         $request->attributes = $attributes;
         $request->getContent()->willReturn('{"foo":"bar"}');
         $request->getRequestFormat('json')->willReturn('json');
+        $request->getMethod()->willReturn('GET');
 
         $event->getController()->willReturn([$controller, 'fooAction']);
         $event->getRequest()->willReturn($request);
 
         $resourceResolver->resolve('bar')->willReturn('FooBundle:Bar');
-        $actionResolver->resolve($request)->willReturn('baz');
+        $actionResolver->resolve('FooBundle:Bar', 'baz', 'GET', true)->willReturn($action);
 
         $serializer->deserialize('{"foo":"bar"}', 'array', 'json')->willReturn(['foo' => 'bar']);
 
@@ -101,15 +106,18 @@ class AuthorizationListenerSpec extends ObjectBehavior
     function it_should_validate_request_and_throw(
         FilterControllerEvent $event,
         CredentialStore $credentialStore,
-        SecurityContext $securityContext
+        SecurityContext $securityContext,
+        ActionInterface $action
     ) {
+        $action->getName()->willReturn('action');
+
         $token = new AnonymousToken('', '', ['ROLE_USER']);
         $request = new Request();
         $attributes = new ParameterBag(
             [
                 AuthorizationListener::API_REQUEST          => true,
                 AuthorizationListener::API_REQUEST_RESOURCE => 'resource',
-                AuthorizationListener::API_REQUEST_ACTION   => 'action',
+                AuthorizationListener::API_REQUEST_ACTION   => $action,
                 AuthorizationListener::API_REQUEST_PAYLOAD  => [
                     'foo' => 'bar',
                     'baz' => 'qux',
@@ -122,11 +130,12 @@ class AuthorizationListenerSpec extends ObjectBehavior
 
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccesibleFields($token->getRoles(), 'resource', 'action')
+        $credentialStore->getAccessibleFields($token->getRoles(), 'resource', $action)
             ->willReturn(['foo' => 'ROLE_USER']);
 
         $this->setCredentials($credentialStore);
         $this->setSecurityContext($securityContext);
+
         $this->shouldThrow('Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException')
             ->during('validateRequest', [$event]);
     }
@@ -134,7 +143,8 @@ class AuthorizationListenerSpec extends ObjectBehavior
     function it_should_validate_request_and_pass(
         FilterControllerEvent $event,
         CredentialStore $credentialStore,
-        SecurityContext $securityContext
+        SecurityContext $securityContext,
+        ActionInterface $action
     ) {
         $token = new AnonymousToken('', '', ['ROLE_USER']);
         $request = new Request();
@@ -142,7 +152,7 @@ class AuthorizationListenerSpec extends ObjectBehavior
             [
                 AuthorizationListener::API_REQUEST          => true,
                 AuthorizationListener::API_REQUEST_RESOURCE => 'resource',
-                AuthorizationListener::API_REQUEST_ACTION   => 'action',
+                AuthorizationListener::API_REQUEST_ACTION   => $action,
                 AuthorizationListener::API_REQUEST_PAYLOAD  => [
                     'foo' => 'bar',
                     'baz' => 'qux',
@@ -155,7 +165,7 @@ class AuthorizationListenerSpec extends ObjectBehavior
 
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccesibleFields($token->getRoles(), 'resource', 'action')->willReturn(
+        $credentialStore->getAccessibleFields($token->getRoles(), 'resource', $action)->willReturn(
             [
                 'foo' => 'ROLE_USER',
                 'baz' => 'ROLE_USER',
@@ -207,7 +217,7 @@ class AuthorizationListenerSpec extends ObjectBehavior
 
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccesibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn(
+        $credentialStore->getAccessibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn(
             [
                 'foo' => 'ROLE_USER',
                 'baz' => 'ROLE_USER',
@@ -250,7 +260,7 @@ class AuthorizationListenerSpec extends ObjectBehavior
 
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccesibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn([]);
+        $credentialStore->getAccessibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn([]);
 
         $serializer->serialize($controllerResult[0], 'json')->willReturn($controllerResultJson);
         $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResult[0]);

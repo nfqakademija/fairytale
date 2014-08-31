@@ -57,19 +57,6 @@ class ApiController implements ApiControllerInterface
         $this->resolver = $resolver;
     }
 
-    public function readAction($resource, $identifier)
-    {
-        $instance = $this->factory->create($this->resolver->resolve($resource))->read($identifier);
-
-        if (!$instance) {
-
-            throw new NotFoundHttpException();
-        } else {
-
-            return [$instance, 200];
-        }
-    }
-
     public function createAction(Request $request, $resource)
     {
         return [
@@ -114,19 +101,13 @@ class ApiController implements ApiControllerInterface
         ];
     }
 
-    public function customAction(Request $request, $resource, $actionName, $identifier = null)
+    public function customAction(Request $request, $resource, $action, $identifier = null)
     {
-        $action = $this->actionManager->find($resource, $actionName, $request->getMethod(), !is_null($identifier));
-
         switch (true) {
             case ($action instanceof CollectionActionInterface):
-                return $action->execute($request, $this->resolver->resolve($resource));
+                return $action->execute($request, $resource);
             case ($action instanceof InstanceActionInterface):
-                return $action->execute($request, $this->resolver->resolve($resource), $identifier);
-            default:
-                throw new BadRequestHttpException(
-                    sprintf("Action '%s' is not supported", $actionName)
-                );
+                return $action->execute($request, $resource, $identifier);
         }
     }
 }

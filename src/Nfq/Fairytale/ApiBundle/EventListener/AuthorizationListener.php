@@ -3,6 +3,7 @@
 namespace Nfq\Fairytale\ApiBundle\EventListener;
 
 use JMS\Serializer\SerializerInterface;
+use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
 use Nfq\Fairytale\ApiBundle\Helper\ActionResolver;
 use Nfq\Fairytale\ApiBundle\Helper\ResourceResolver;
@@ -26,9 +27,9 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     use LoggerAwareTrait;
 
     const API_REQUEST = 'api_request';
-    const API_REQUEST_RESOURCE = 'api_request.resource';
-    const API_REQUEST_ACTION = 'api_request.action';
-    const API_REQUEST_PAYLOAD = 'api_request.payload';
+    const API_REQUEST_RESOURCE = 'resource';
+    const API_REQUEST_ACTION = 'action';
+    const API_REQUEST_PAYLOAD = 'payload';
     const API_REQUEST_RESPONSE = 'api_request.response';
 
     /** @var  SecurityContextInterface */
@@ -40,7 +41,7 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     /** @var  ResourceResolver */
     protected $resourceResolver;
 
-    /** @var  ActionResolver */
+    /** @var  ActionManager */
     protected $actionResolver;
 
     /** @var  SerializerInterface */
@@ -71,9 +72,9 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     }
 
     /**
-     * @param ActionResolver $actionResolver
+     * @param ActionManager $actionResolver
      */
-    public function setActionResolver(ActionResolver $actionResolver)
+    public function setActionResolver(ActionManager $actionResolver)
     {
         $this->actionResolver = $actionResolver;
     }
@@ -89,13 +90,20 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     public function decideRequestController(FilterControllerEvent $event)
     {
         if ($event->getController()[0] instanceof ApiControllerInterface) {
-            $resource = $this->resourceResolver->resolve($event->getRequest()->attributes->get('resource'));
-            $action = $this->actionResolver->resolve($event->getRequest());
-            $content = $event->getRequest()->getContent();
+            $request = $event->getRequest();
+
+            $resource = $this->resourceResolver->resolve($request->attributes->get('resource'));
+            $action = $this->actionResolver->resolve(
+                $resource,
+                $request->attributes->get('actionName'),
+                $request->getMethod(),
+                null !== $request->attributes->get('identifier')
+            );
+            $content = $request->getContent();
             $payload = empty($content) ? null : $this->serializer->deserialize(
                 $content,
                 'array',
-                $event->getRequest()->getRequestFormat('json')
+                $request->getRequestFormat('json')
             );
 
             $attributes = [
@@ -105,7 +113,7 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
                 self::API_REQUEST_PAYLOAD  => $payload,
             ];
 
-            $event->getRequest()->attributes->add($attributes);
+            $request->attributes->add($attributes);
         }
     }
 
@@ -250,7 +258,7 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
      */
     private function getAllowedFields(Request $request)
     {
-        $fields = $this->credentials->getAccesibleFields(
+        $fields = $this->credentials->getAccessibleFields(
             $this->securityContext->getToken()->getRoles(),
             $request->attributes->get(self::API_REQUEST_RESOURCE),
             $request->attributes->get(self::API_REQUEST_ACTION)

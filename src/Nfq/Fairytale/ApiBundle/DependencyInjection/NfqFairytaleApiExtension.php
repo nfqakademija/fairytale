@@ -35,10 +35,6 @@ class NfqFairytaleApiExtension extends Extension
         $loader->load('listeners.yml');
         $loader->load('actions.yml');
 
-        if ('test' === $container->getParameter('kernel.environment')) {
-            $loader->load('test.yml');
-        }
-
         $processor = new Processor();
         $config = $processor->processConfiguration($configuration, $configs);
 

@@ -8,13 +8,6 @@ nfq_fairytale_api.resource.create:
     defaults: { _controller: nfq_fairytale.api.controller:createAction }
     methods: [POST]
 
-nfq_fairytale_api.resource.read:
-    path:     /{resource}/{identifier}
-    defaults: { _controller: nfq_fairytale.api.controller:readAction }
-    methods: [GET]
-    requirements:
-        identifier: \d+
-
 nfq_fairytale_api.resource.update:
     path:     /{resource}/{identifier}
     defaults: { _controller: nfq_fairytale.api.controller:updateAction }
@@ -29,15 +22,25 @@ nfq_fairytale_api.resource.delete:
     requirements:
         identifier: \d+
 
+nfq_fairytale_api.resource.instance.action:
+    path:     /{resource}/{identifier}/{actionName}
+    defaults:
+        _controller: nfq_fairytale.api.controller:customAction
+    methods: [GET, POST, PUT, DELETE, HEAD]
+    requirements:
+        identifier: \d+
+
+nfq_fairytale_api.resource.instance.action.empty_action:
+    path:     /{resource}/{identifier}
+    defaults:
+        _controller: nfq_fairytale.api.controller:customAction
+        actionName: ~
+    methods: [GET, POST, PUT, DELETE, HEAD]
+    requirements:
+        identifier: \d+
+
 nfq_fairytale_api.resource.collection.action:
     path:     /{resource}/{actionName}
     defaults: { _controller: nfq_fairytale.api.controller:customAction }
     methods: [GET, POST, PUT, DELETE, HEAD]
-
-nfq_fairytale_api.resource.instance.action:
-    path:     /{resource}/{identifier}/{actionName}
-    defaults: { _controller: nfq_fairytale.api.controller:customAction }
-    methods: [GET, POST, PUT, DELETE, HEAD]
-    requirements:
-        identifier: \d+
 

@@ -71,7 +71,7 @@ class CredentialStore
      * @param ActionInterface $action
      * @return array
      */
-    public function getAccessibleFields(array $roles, $resource, ActionInterface $action)
+    public function getAccessibleFields(array $roles, $resource, $action)
     {
         $reachableRoles = array_unique(
             array_map(

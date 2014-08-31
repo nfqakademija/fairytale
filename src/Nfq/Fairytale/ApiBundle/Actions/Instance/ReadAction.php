@@ -29,4 +29,12 @@ class ReadAction implements InstanceActionInterface, DataSourceFactoryAwareInter
         }
         return [$instance, 200];
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getName()
+    {
+        return 'instance.read';
+    }
 }

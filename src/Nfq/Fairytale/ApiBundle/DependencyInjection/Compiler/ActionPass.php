@@ -41,7 +41,7 @@ class ActionPass implements CompilerPassInterface
             $tag = current($tags);
             $actionManager->addMethodCall(
                 $method,
-                [$container->getDefinition($service), $tag['resource'], $tag['action'], $tag['method']]
+                [$container->getDefinition($service), $tag['resource'], @$tag['action'], $tag['method']]
             );
         }
     }
