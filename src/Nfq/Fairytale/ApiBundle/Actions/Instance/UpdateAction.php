@@ -16,10 +16,11 @@ class UpdateAction extends DataSourceFactoryAwareAction implements InstanceActio
      */
     public function execute(Request $request, $resource, $identifier)
     {
-        $instance = $this->factory->create($resource)->update($identifier, $request->attributes->get('payload'));
+        $dataSource = $this->factory->create($resource);
+        $instance = $dataSource->update($identifier, $request->attributes->get('payload'));
         if (is_null($instance)) {
             throw new NotFoundHttpException();
         }
-        return [$instance, 200];
+        return [$dataSource->read($identifier), 200];
     }
 }

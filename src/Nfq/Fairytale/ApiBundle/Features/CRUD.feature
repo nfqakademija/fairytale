@@ -88,7 +88,7 @@ Feature: CRUD
         And the response should be json:
         """
         {
-            "id": 3,
+            "id": 2,
             "name":"John Doe"
         }
         """

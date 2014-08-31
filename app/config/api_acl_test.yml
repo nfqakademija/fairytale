@@ -19,7 +19,7 @@ nfq_fairytale_api:
                         name:   ROLE_ADMIN
                         email:  ROLE_ADMIN
                     instance.update:
-                        id:     ROLE_SUPER_USER
+                        id:     ROLE_ADMIN
                         name:   ROLE_ADMIN
                         email:  ROLE_ADMIN
                     collection.count:

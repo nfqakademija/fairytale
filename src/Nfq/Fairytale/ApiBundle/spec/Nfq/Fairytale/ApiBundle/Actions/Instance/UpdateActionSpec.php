@@ -27,7 +27,8 @@ class UpdateActionSpec extends ObjectBehavior
         $data = ['name' => 'foo'];
         $request = Request::create('/user/1', 'PUT');
         $request->attributes->set(AuthorizationListener::API_REQUEST_PAYLOAD, $data);
-        $dataSource->update(1, $data)->willReturn(array_merge($full, $data));
+        $dataSource->update(1, $data)->willReturn(true);
+        $dataSource->read(1)->willReturn(array_merge($full, $data));
 
         $factory->create('user')->willReturn($dataSource);
 
