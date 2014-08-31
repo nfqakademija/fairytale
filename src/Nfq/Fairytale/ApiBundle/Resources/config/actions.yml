@@ -34,3 +34,10 @@ services:
         tags:
             - { name: nfq_fairytale.api.action.collection, resource: *, method: POST }
 
+    nfq_fairytale.api.action.collection.index:
+        class: Nfq\Fairytale\ApiBundle\Actions\Collection\IndexAction
+        calls:
+            - [setFactory, [@nfq_fairytale.datasource.factory]]
+        tags:
+            - { name: nfq_fairytale.api.action.collection, resource: *, method: GET }
+

@@ -20,3 +20,9 @@ nfq_fairytale_api.resource.collection.action:
     defaults: { _controller: nfq_fairytale.api.controller:customAction }
     methods: [GET, POST, PUT, DELETE, HEAD]
 
+nfq_fairytale_api.resource.collection.action.empty_action:
+    path:     /{resource}/{actionName}
+    defaults:
+        _controller: nfq_fairytale.api.controller:customAction
+        actionName: ~
+    methods: [GET, POST, PUT, DELETE, HEAD]
