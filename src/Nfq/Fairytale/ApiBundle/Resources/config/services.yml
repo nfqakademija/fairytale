@@ -35,8 +35,3 @@ services:
 
     nfq_fairytale.api.controller:
         class: Nfq\Fairytale\ApiBundle\Controller\ApiController
-        calls:
-            - [setResolver, [@nfq_fairytale.api.resource_resolver]]
-            - [setDatasourceFactory, [@nfq_fairytale.datasource.factory]]
-            - [setDefaultIndexSize, [%nfq_fairytale_api.config.default_index_size%]]
-            - [setActionManager, [@nfq_fairytale.action.manager]]

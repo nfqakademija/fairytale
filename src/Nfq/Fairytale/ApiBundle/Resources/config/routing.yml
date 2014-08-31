@@ -1,8 +1,3 @@
-nfq_fairytale_api.resource.index:
-    path:     /{resource}
-    defaults: { _controller: nfq_fairytale.api.controller:indexAction }
-    methods: [GET]
-
 nfq_fairytale_api.resource.instance.action:
     path:     /{resource}/{identifier}/{actionName}
     defaults:
