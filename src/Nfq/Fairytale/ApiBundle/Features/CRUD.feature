@@ -13,15 +13,14 @@ Feature: CRUD
         """
         {
             "id": 1,
-            "name":"The Admin",
-            "email":"email_bar@api.com",
-            "password": "pass_secret"
+            "name": "The Admin",
+            "email": "admin@admin.com"
         }
         """
 
     Scenario: I can read user index
         Given I am authenticated as "admin"
-        When I send a GET request to "/api/user"
+        When I send a GET request to "/api/user?limit=2"
         Then print last response
         Then the response code should be 200
         And the response should be json:
@@ -29,32 +28,30 @@ Feature: CRUD
         [
             {
                 "id": 1,
-                "name":"name_Foo",
-                "email":"email_bar@api.com",
-                "password": "pass_secret"
+                "email": "admin@admin.com",
+                "name": "The Admin"
             },
             {
                 "id": 2,
-                "name": "Baz",
-                "author": "qux@api.com",
-                "password": "dont tell anyone"
+                "email": "user@user.com",
+                "name": "The User"
             }
         ]
         """
 
     Scenario: I can skip 5 test items and read 5 following
         Given I am authenticated as "admin"
-        When I send a GET request to "/api/testItem?limit=5&offset=5"
+        When I send a GET request to "/api/user?limit=1&offset=1"
         Then print last response
         Then the response code should be 200
         And the response should be json:
         """
         [
-            {"id":6,"foo":"bar"},
-            {"id":7,"foo":"bar"},
-            {"id":8,"foo":"bar"},
-            {"id":9,"foo":"bar"},
-            {"id":10,"foo":"bar"}
+            {
+                "id": 2,
+                "email": "user@user.com",
+                "name": "The User"
+            }
         ]
         """
 
@@ -65,7 +62,6 @@ Feature: CRUD
         {
             "name":"name_Bob",
             "email":"email_Bob@api.com",
-            "password": "pass_Bob"
         }
         """
         Then print last response
@@ -73,16 +69,15 @@ Feature: CRUD
         And the response should be json:
         """
         {
-            "id": 3,
+            "id": 13,
             "name":"name_Bob",
             "email":"email_Bob@api.com",
-            "password": "pass_Bob"
         }
         """
 
     Scenario: I can update user
         Given I am authenticated as "admin"
-        When I send a PUT request to "/api/user/3" with body:
+        When I send a PUT request to "/api/user/2" with body:
         """
         {
             "name":"John Doe"
@@ -94,9 +89,7 @@ Feature: CRUD
         """
         {
             "id": 3,
-            "name":"John Doe",
-            "email":"email_Bob@api.com",
-            "password": "pass_Bob"
+            "name":"John Doe"
         }
         """
 
