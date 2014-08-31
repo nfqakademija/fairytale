@@ -18,15 +18,11 @@ class IndexActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Collection\IndexAction');
     }
 
-    function it_should_index_via_dataSource(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_index_via_dataSource(DataSourceInterface $dataSource)
     {
         $request = new Request(['limit' => 1, 'offset' => 1]);
         $dataSource->index(1, 1)->willReturn([]);
 
-        $factory->create('user')->willReturn($dataSource);
-
-        $this->setFactory($factory);
-
-        $this->execute($request, 'user')->shouldBe([[], 200]);
+        $this->execute($request, $dataSource)->shouldBe([[], 200]);
     }
 }

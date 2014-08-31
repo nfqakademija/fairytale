@@ -2,20 +2,21 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
+use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ReadAction extends DataSourceFactoryAwareAction implements InstanceActionInterface
+class ReadAction extends BaseAction implements InstanceActionInterface
 {
     const NAME = 'instance.read';
 
     /**
      * @inheritdoc
      */
-    public function execute(Request $request, $resource, $identifier)
+    public function execute(Request $request, DataSourceInterface $resource, $identifier)
     {
-        $instance = $this->factory->create($resource)->read($identifier);
+        $instance = $resource->read($identifier);
         if (is_null($instance)) {
             throw new NotFoundHttpException();
         }

@@ -2,19 +2,20 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
+use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class IndexAction extends DataSourceFactoryAwareAction implements CollectionActionInterface
+class IndexAction extends BaseAction implements CollectionActionInterface
 {
     const NAME = 'collection.index';
 
     /**
      * @inheritdoc
      */
-    public function execute(Request $request, $resource)
+    public function execute(Request $request, DataSourceInterface $resource)
     {
-        $instance = $this->factory->create($resource)->index(
+        $instance = $resource->index(
             $request->query->get('limit'),
             $request->query->get('offset')
         );

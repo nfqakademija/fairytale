@@ -18,30 +18,22 @@ class ReadActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\ReadAction');
     }
 
-    function it_should_read_via_dataSource(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_read_via_dataSource(DataSourceInterface $dataSource)
     {
         $obj = new \stdClass();
 
         $request = Request::create('/user/1', 'GET');
         $dataSource->read(1)->willReturn($obj);
 
-        $factory->create('user')->willReturn($dataSource);
-
-        $this->setFactory($factory);
-
-        $this->execute($request, 'user', 1)->shouldBe([$obj, 200]);
+        $this->execute($request, $dataSource, 1)->shouldBe([$obj, 200]);
     }
 
-    function it_should_throw_if_instance_not_found(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_throw_if_instance_not_found(DataSourceInterface $dataSource)
     {
         $request = Request::create('/user/1', 'GET');
         $dataSource->read(1)->willReturn(null);
 
-        $factory->create('user')->willReturn($dataSource);
-
-        $this->setFactory($factory);
-
         $this->shouldThrow('Symfony\Component\HttpKernel\Exception\NotFoundHttpException')
-            ->during('execute', [$request, 'user', 1]);
+            ->during('execute', [$request, $dataSource, 1]);
     }
 }

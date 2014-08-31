@@ -19,7 +19,7 @@ class CreateActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Collection\CreateAction');
     }
 
-    function it_should_create_via_dataSource(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_create_via_dataSource(DataSourceInterface $dataSource)
     {
         $data = [
             'name' => 'foo'
@@ -28,10 +28,6 @@ class CreateActionSpec extends ObjectBehavior
         $request->attributes->set(AuthorizationListener::API_REQUEST_PAYLOAD, $data);
         $dataSource->create($data)->willReturn(array_merge($data, ['id' => 1]));
 
-        $factory->create('user')->willReturn($dataSource);
-
-        $this->setFactory($factory);
-
-        $this->execute($request, 'user', 1)->shouldBe([array_merge($data, ['id' => 1]), 201]);
+        $this->execute($request, $dataSource, 1)->shouldBe([array_merge($data, ['id' => 1]), 201]);
     }
 }

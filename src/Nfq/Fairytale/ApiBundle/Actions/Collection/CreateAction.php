@@ -2,19 +2,20 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
+use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreateAction extends DataSourceFactoryAwareAction implements CollectionActionInterface
+class CreateAction extends BaseAction implements CollectionActionInterface
 {
     const NAME = 'collection.create';
 
     /**
      * @inheritdoc
      */
-    public function execute(Request $request, $resource)
+    public function execute(Request $request, DataSourceInterface $resource)
     {
-        $instance = $this->factory->create($resource)->create($request->attributes->get('payload'));
+        $instance = $resource->create($request->attributes->get('payload'));
 
         return [$instance, 201];
     }

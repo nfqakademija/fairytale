@@ -3,17 +3,17 @@
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
 use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 interface CollectionActionInterface extends ActionInterface
 {
     /**
      * Performs the action
      *
-     * @param Request $request
-     * @param string  $resource
-     * @return Response
+     * @param Request             $request
+     * @param DataSourceInterface $resource
+     * @return mixed
      */
-    public function execute(Request $request, $resource);
+    public function execute(Request $request, DataSourceInterface $resource);
 }

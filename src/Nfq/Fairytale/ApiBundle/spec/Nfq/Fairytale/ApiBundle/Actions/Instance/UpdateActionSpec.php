@@ -19,7 +19,7 @@ class UpdateActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\UpdateAction');
     }
 
-    function it_should_update_via_dataSource(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_update_via_dataSource(DataSourceInterface $dataSource)
     {
         $full = [
             'id' => 1,
@@ -30,25 +30,17 @@ class UpdateActionSpec extends ObjectBehavior
         $dataSource->update(1, $data)->willReturn(true);
         $dataSource->read(1)->willReturn(array_merge($full, $data));
 
-        $factory->create('user')->willReturn($dataSource);
-
-        $this->setFactory($factory);
-
-        $this->execute($request, 'user', 1)->shouldBe([array_merge($full, $data), 200]);
+        $this->execute($request, $dataSource, 1)->shouldBe([array_merge($full, $data), 200]);
     }
 
-    function it_should_throw_if_instance_not_found(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_throw_if_instance_not_found(DataSourceInterface $dataSource)
     {
         $data = ['name' => 'foo'];
         $request = Request::create('/user/1', 'PUT');
         $request->attributes->set(AuthorizationListener::API_REQUEST_PAYLOAD, $data);
         $dataSource->update(1, $data)->willReturn(null);
 
-        $factory->create('user')->willReturn($dataSource);
-
-        $this->setFactory($factory);
-
         $this->shouldThrow('Symfony\Component\HttpKernel\Exception\NotFoundHttpException')
-            ->during('execute', [$request, 'user', 1]);
+            ->during('execute', [$request, $dataSource, 1]);
     }
 }

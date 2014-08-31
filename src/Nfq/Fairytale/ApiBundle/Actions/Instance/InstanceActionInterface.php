@@ -3,18 +3,18 @@
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
 use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 interface InstanceActionInterface extends ActionInterface
 {
     /**
      * Performs the action
      *
-     * @param Request $request
-     * @param string  $resource
-     * @param string  $identifier
-     * @return Response
+     * @param Request             $request
+     * @param DataSourceInterface $resource
+     * @param string              $identifier
+     * @return mixed
      */
-    public function execute(Request $request, $resource, $identifier);
+    public function execute(Request $request, DataSourceInterface $resource, $identifier);
 }

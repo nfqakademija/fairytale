@@ -8,4 +8,4 @@ interface ActionInterface
      * @return string
      */
     public function getName();
-} 
+}
