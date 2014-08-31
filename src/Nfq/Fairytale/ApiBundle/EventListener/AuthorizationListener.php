@@ -189,6 +189,7 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
 
             $exception = $event->getException();
 
+            $response = [];
             switch (true) {
                 case ($exception instanceof HttpExceptionInterface):
                     $response['code'] = $exception->getStatusCode();
