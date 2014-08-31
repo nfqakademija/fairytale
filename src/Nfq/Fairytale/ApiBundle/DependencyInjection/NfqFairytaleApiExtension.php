@@ -47,10 +47,6 @@ class NfqFairytaleApiExtension extends Extension
         $factory = $container->getDefinition('nfq_fairytale.data_source.factory');
 
         switch ($config['data']['type']) {
-            case 'file':
-                $dataSource = $container->getDefinition('nfq_fairytale.data_source.file');
-                $dataSource->addMethodCall('load', [$config['data']['source']]);
-                break;
             case 'orm':
                 $dataSource = $container->getDefinition('nfq_fairytale.data_source.orm');
 
