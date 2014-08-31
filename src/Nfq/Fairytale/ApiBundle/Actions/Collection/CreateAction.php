@@ -2,11 +2,10 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
-use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreateAction extends BaseAction implements CollectionActionInterface
+class CreateAction extends BaseCollectionAction
 {
     const NAME = 'collection.create';
 

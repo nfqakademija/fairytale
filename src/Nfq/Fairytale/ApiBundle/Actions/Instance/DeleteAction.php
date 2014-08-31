@@ -2,12 +2,11 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
-use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class DeleteAction extends BaseAction implements InstanceActionInterface
+class DeleteAction extends BaseInstanceAction
 {
     const NAME = 'instance.delete';
 

@@ -2,12 +2,11 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
-use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ReadAction extends BaseAction implements InstanceActionInterface
+class ReadAction extends BaseInstanceAction
 {
     const NAME = 'instance.read';
 

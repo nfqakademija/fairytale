@@ -2,11 +2,10 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
-use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class CountAction extends BaseAction implements CollectionActionInterface
+class CountAction extends BaseCollectionAction
 {
     const NAME = 'collection.count';
 

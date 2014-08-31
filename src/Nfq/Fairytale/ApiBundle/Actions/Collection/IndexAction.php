@@ -2,11 +2,10 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
-use Nfq\Fairytale\ApiBundle\Actions\BaseAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class IndexAction extends BaseAction implements CollectionActionInterface
+class IndexAction extends BaseCollectionAction
 {
     const NAME = 'collection.index';
 
