@@ -40,10 +40,7 @@ class DoctrineOrmSource implements DataSourceInterface
     {
         $object = $this->entityManager->getPartialReference($this->resource, $identifier);
 
-        $this->populateObject($object, $patch);
-
-        $this->entityManager->persist($object);
-        $this->entityManager->flush();
+        $this->populateAndPersist($object, $patch);
 
         return $object;
     }
@@ -66,10 +63,7 @@ class DoctrineOrmSource implements DataSourceInterface
     {
         $object = $this->classFactory->create($this->entityManager->getRepository($this->resource)->getClassName());
 
-        $this->populateObject($object, $data);
-
-        $this->entityManager->persist($object);
-        $this->entityManager->flush();
+        $this->populateAndPersist($object, $data);
 
         return $object;
     }
@@ -121,5 +115,17 @@ class DoctrineOrmSource implements DataSourceInterface
             $property->setAccessible(true);
             $property->setValue($object, $value);
         }
+    }
+
+    /**
+     * @param $object
+     * @param $data
+     */
+    private function populateAndPersist($object, $data)
+    {
+        $this->populateObject($object, $data);
+
+        $this->entityManager->persist($object);
+        $this->entityManager->flush();
     }
 }
