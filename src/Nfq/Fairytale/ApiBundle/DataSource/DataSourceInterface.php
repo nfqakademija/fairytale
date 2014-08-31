@@ -18,7 +18,7 @@ interface DataSourceInterface
      * Read element from collection
      *
      * @param string $identifier
-     * @return array
+     * @return mixed
      */
     public function read($identifier);
 
@@ -26,8 +26,8 @@ interface DataSourceInterface
      * Perform partial update on selected element
      *
      * @param string $identifier
-     * @param array      $patch Associative array which is used to update given fields
-     * @return array
+     * @param array  $patch Associative array which is used to update given fields
+     * @return mixed
      */
     public function update($identifier, $patch);
 
@@ -43,7 +43,7 @@ interface DataSourceInterface
      * Creates element in collection
      *
      * @param array $data Data to create element from
-     * @return array      Newly created element
+     * @return mixed      Newly created element
      */
     public function create($data);
 
