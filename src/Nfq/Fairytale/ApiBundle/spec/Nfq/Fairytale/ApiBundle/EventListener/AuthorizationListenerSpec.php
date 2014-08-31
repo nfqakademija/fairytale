@@ -25,6 +25,7 @@ use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleInterface;
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
@@ -99,30 +100,30 @@ class AuthorizationListenerSpec extends ObjectBehavior
 
     function it_should_validate_request_and_throw(
         FilterControllerEvent $event,
-        Request $request,
-        ParameterBag $attributes,
         CredentialStore $credentialStore,
-        SecurityContextInterface $securityContext,
-        TokenInterface $token,
-        RoleInterface $role
+        SecurityContext $securityContext
     ) {
-        $attributes->get(AuthorizationListener::API_REQUEST, false)->willReturn(true);
-        $attributes->get(AuthorizationListener::API_REQUEST_RESOURCE)->willReturn('resource');
-        $attributes->get(AuthorizationListener::API_REQUEST_ACTION)->willReturn('action');
-        $attributes->get(AuthorizationListener::API_REQUEST_PAYLOAD)->willReturn(
+        $token = new AnonymousToken('', '', ['ROLE_USER']);
+        $request = new Request();
+        $attributes = new ParameterBag(
             [
-                'foo' => 'bar',
-                'baz' => 'qux',
+                AuthorizationListener::API_REQUEST          => true,
+                AuthorizationListener::API_REQUEST_RESOURCE => 'resource',
+                AuthorizationListener::API_REQUEST_ACTION   => 'action',
+                AuthorizationListener::API_REQUEST_PAYLOAD  => [
+                    'foo' => 'bar',
+                    'baz' => 'qux',
+                ]
             ]
         );
+
         $request->attributes = $attributes;
         $event->getRequest()->willReturn($request);
 
-        $role->getRole()->willReturn('ROLE_USER');
-        $token->getRoles()->willReturn([$role]);
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccesibleFields([$role], 'resource', 'action')->willReturn(['foo' => 'ROLE_USER']);
+        $credentialStore->getAccesibleFields($token->getRoles(), 'resource', 'action')
+            ->willReturn(['foo' => 'ROLE_USER']);
 
         $this->setCredentials($credentialStore);
         $this->setSecurityContext($securityContext);
@@ -132,30 +133,29 @@ class AuthorizationListenerSpec extends ObjectBehavior
 
     function it_should_validate_request_and_pass(
         FilterControllerEvent $event,
-        Request $request,
-        ParameterBag $attributes,
         CredentialStore $credentialStore,
-        SecurityContextInterface $securityContext,
-        TokenInterface $token,
-        RoleInterface $role
+        SecurityContext $securityContext
     ) {
-        $attributes->get(AuthorizationListener::API_REQUEST, false)->willReturn(true);
-        $attributes->get(AuthorizationListener::API_REQUEST_RESOURCE)->willReturn('resource');
-        $attributes->get(AuthorizationListener::API_REQUEST_ACTION)->willReturn('action');
-        $attributes->get(AuthorizationListener::API_REQUEST_PAYLOAD)->willReturn(
+        $token = new AnonymousToken('', '', ['ROLE_USER']);
+        $request = new Request();
+        $attributes = new ParameterBag(
             [
-                'foo' => 'bar',
-                'baz' => 'qux',
+                AuthorizationListener::API_REQUEST          => true,
+                AuthorizationListener::API_REQUEST_RESOURCE => 'resource',
+                AuthorizationListener::API_REQUEST_ACTION   => 'action',
+                AuthorizationListener::API_REQUEST_PAYLOAD  => [
+                    'foo' => 'bar',
+                    'baz' => 'qux',
+                ]
             ]
         );
+
         $request->attributes = $attributes;
         $event->getRequest()->willReturn($request);
 
-        $role->getRole()->willReturn('ROLE_USER');
-        $token->getRoles()->willReturn([$role]);
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccesibleFields([$role], 'resource', 'action')->willReturn(
+        $credentialStore->getAccesibleFields($token->getRoles(), 'resource', 'action')->willReturn(
             [
                 'foo' => 'ROLE_USER',
                 'baz' => 'ROLE_USER',
