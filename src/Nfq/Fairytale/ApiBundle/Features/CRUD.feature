@@ -7,7 +7,6 @@ Feature: CRUD
     Scenario: I can read user
         Given I am authenticated as "admin"
         When I send a GET request to "/api/user/1"
-        Then print last response
         Then the response code should be 200
         And the response should be json:
         """
@@ -21,7 +20,6 @@ Feature: CRUD
     Scenario: I can paginate when doing index query
         Given I am authenticated as "admin"
         When I send a GET request to "/api/user?limit=1&offset=1"
-        Then print last response
         Then the response code should be 200
         And the response should be json:
         """
@@ -79,7 +77,6 @@ Feature: CRUD
     Scenario: I can delete user
         Given I am authenticated as "admin"
         When I send a DELETE request to "/api/user/3"
-        Then print last response
         Then the response code should be 200
         And the response should be json: 
         """

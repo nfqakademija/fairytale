@@ -32,7 +32,7 @@ before_script:
 
 script:
     - bin/phpspec run -v -fpretty
-    - bin/behat -v -fpretty
+    - bin/behat -fpretty
 
 after_script:
     - cat /var/www/fairytale.dev/app/logs/dev.log
