@@ -3,11 +3,6 @@ nfq_fairytale_api.resource.index:
     defaults: { _controller: nfq_fairytale.api.controller:indexAction }
     methods: [GET]
 
-nfq_fairytale_api.resource.create:
-    path:     /{resource}
-    defaults: { _controller: nfq_fairytale.api.controller:createAction }
-    methods: [POST]
-
 nfq_fairytale_api.resource.instance.action:
     path:     /{resource}/{identifier}/{actionName}
     defaults:

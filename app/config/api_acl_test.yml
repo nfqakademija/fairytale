@@ -7,12 +7,16 @@ nfq_fairytale_api:
                     instance.delete:
                         status: ROLE_ADMIN
                     instance.read:
-                        id: ROLE_USER
-                        name: ROLE_USER
-                        email: ROLE_ADMIN
+                        id:     ROLE_USER
+                        name:   ROLE_USER
+                        email:  ROLE_ADMIN
+                    instance.create:
+                        id:     ROLE_ADMIN
+                        name:   ROLE_ADMIN
+                        email:  ROLE_ADMIN
                     instance.update:
-                        id: ROLE_SUPER_USER
-                        name: ROLE_ADMIN
-                        email: ROLE_ADMIN
+                        id:     ROLE_SUPER_USER
+                        name:   ROLE_ADMIN
+                        email:  ROLE_ADMIN
                     collection.count:
-                        count: ROLE_USER
+                        count:  ROLE_USER

@@ -25,5 +25,12 @@ services:
         calls:
             - [setFactory, [@nfq_fairytale.datasource.factory]]
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: *, method: UPDATE }
+            - { name: nfq_fairytale.api.action.instance, resource: *, method: PUT }
+
+    nfq_fairytale.api.action.collection.create:
+        class: Nfq\Fairytale\ApiBundle\Actions\Collection\CreateAction
+        calls:
+            - [setFactory, [@nfq_fairytale.datasource.factory]]
+        tags:
+            - { name: nfq_fairytale.api.action.collection, resource: *, method: POST }
 
