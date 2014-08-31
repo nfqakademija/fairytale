@@ -147,19 +147,30 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     {
         if ($this->isApiRequest($event->getRequest())) {
             list($content, $code) = $event->getControllerResult();
+
             $rawContent = $this->serializer->deserialize(
                 $this->serializer->serialize($content, 'json'),
                 'array',
                 'json'
             );
 
-            $allowedFields = array_intersect_key($rawContent, $this->getAllowedFields($event->getRequest()));
+            $allowedFields = $this->getAllowedFields($event->getRequest());
 
-            if (empty($allowedFields)) {
+            $filter = function ($singleItem) use ($allowedFields) {
+                return array_intersect_key($singleItem, $allowedFields);
+            };
+
+            if (is_array($content)) {
+                $filteredContent = array_map($filter, $rawContent);
+            } else {
+                $filteredContent = $filter($rawContent);
+            }
+
+            if (empty($filteredContent)) {
                 throw new AccessDeniedHttpException();
             }
 
-            $event->setControllerResult([$allowedFields, $code]);
+            $event->setControllerResult([$filteredContent, $code]);
         }
     }
 

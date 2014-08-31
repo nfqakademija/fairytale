@@ -236,6 +236,49 @@ class AuthorizationListenerSpec extends ObjectBehavior
         $this->validateResponse($event);
     }
 
+    function it_should_validate_collection_response_and_pass(
+        GetResponseForControllerResultEvent $event,
+        CredentialStore $credentialStore,
+        SecurityContextInterface $securityContext,
+        SerializerInterface $serializer
+    ) {
+        $token = new AnonymousToken('', '', ['ROLE_USER']);
+        $controllerResult = [[(object)['foo' => 'bar', 'baz' => 'qux']], 200];
+        $controllerResultJson = json_encode($controllerResult[0]);
+        $controllerResultRaw = json_decode($controllerResultJson, true);
+
+        $request = new Request();
+        $attributes = new ParameterBag(
+            [
+                AuthorizationListener::API_REQUEST          => true,
+                AuthorizationListener::API_REQUEST_RESOURCE => 'FooBundle:Bar',
+                AuthorizationListener::API_REQUEST_ACTION   => 'baz'
+            ]
+        );
+        $request->attributes = $attributes;
+
+        $event->getRequest()->willReturn($request);
+        $event->getControllerResult()->willReturn($controllerResult);
+
+        $securityContext->getToken()->willReturn($token);
+
+        $credentialStore->getAccessibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn(
+            [
+                'foo' => 'ROLE_USER',
+            ]
+        );
+
+        $serializer->serialize($controllerResult[0], 'json')->willReturn($controllerResultJson);
+        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResultRaw);
+
+        $event->setControllerResult([[['foo' => 'bar']], 200])->shouldBeCalled();
+
+        $this->setSerializer($serializer);
+        $this->setCredentials($credentialStore);
+        $this->setSecurityContext($securityContext);
+        $this->validateResponse($event);
+    }
+
     function it_should_validate_response_and_throw(
         GetResponseForControllerResultEvent $event,
         CredentialStore $credentialStore,
