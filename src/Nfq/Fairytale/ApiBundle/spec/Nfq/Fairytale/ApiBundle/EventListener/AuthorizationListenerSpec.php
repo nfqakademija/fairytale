@@ -199,8 +199,9 @@ class AuthorizationListenerSpec extends ObjectBehavior
         SerializerInterface $serializer
     ) {
         $token = new AnonymousToken('', '', ['ROLE_USER']);
-        $controllerResult = [['foo' => 'bar', 'baz' => 'qux'], 200];
+        $controllerResult = [(object)['foo' => 'bar', 'baz' => 'qux'], 200];
         $controllerResultJson = json_encode($controllerResult[0]);
+        $controllerResultRaw = json_decode($controllerResultJson, true);
 
         $request = new Request();
         $attributes = new ParameterBag(
@@ -225,9 +226,9 @@ class AuthorizationListenerSpec extends ObjectBehavior
         );
 
         $serializer->serialize($controllerResult[0], 'json')->willReturn($controllerResultJson);
-        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResult[0]);
+        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResultRaw);
 
-        $event->setControllerResult($controllerResult)->shouldBeCalled();
+        $event->setControllerResult([$controllerResultRaw, 200])->shouldBeCalled();
 
         $this->setSerializer($serializer);
         $this->setCredentials($credentialStore);
@@ -252,8 +253,9 @@ class AuthorizationListenerSpec extends ObjectBehavior
         );
         $request->attributes = $attributes;
 
-        $controllerResult = [['foo' => 'bar', 'baz' => 'qux'], 200];
+        $controllerResult = [(object)['foo' => 'bar', 'baz' => 'qux'], 200];
         $controllerResultJson = json_encode($controllerResult[0]);
+        $controllerResultRaw = json_decode($controllerResultJson, true);
 
         $event->getRequest()->willReturn($request);
         $event->getControllerResult()->willReturn($controllerResult);
@@ -263,7 +265,7 @@ class AuthorizationListenerSpec extends ObjectBehavior
         $credentialStore->getAccessibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn([]);
 
         $serializer->serialize($controllerResult[0], 'json')->willReturn($controllerResultJson);
-        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResult[0]);
+        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResultRaw);
 
         $this->setSerializer($serializer);
         $this->setCredentials($credentialStore);
