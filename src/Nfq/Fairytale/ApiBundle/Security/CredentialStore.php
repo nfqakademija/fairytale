@@ -40,9 +40,9 @@ class CredentialStore
     /**
      * Returns minimal required role level to access given resource
      *
-     * @param                 $resource
+     * @param string          $resource
      * @param ActionInterface $action
-     * @param                 $field
+     * @param string          $field
      *
      * @return mixed
      */

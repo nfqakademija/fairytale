@@ -2,14 +2,10 @@
 
 namespace Nfq\Fairytale\ApiBundle\EventListener;
 
-use JMS\Serializer\Serializer;
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
-use Nfq\Fairytale\ApiBundle\Helper\ResourceResolver;
-use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 use Symfony\Component\Security\Core\SecurityContext;
 

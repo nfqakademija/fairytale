@@ -33,7 +33,7 @@ class ActionPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param                  $collectionActions
      * @param  Definition      $actionManager
-     * @param                  $method
+     * @param  string          $method
      */
     private function addActions(ContainerBuilder $container, $collectionActions, $actionManager, $method)
     {

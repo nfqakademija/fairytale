@@ -40,7 +40,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
         $manager->persist($user);
 
-        for($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setUsername($faker->userName);
             $this->setPassword($user, 'secret');
@@ -54,6 +54,10 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
+    /**
+     * @param User   $userAdmin
+     * @param string $password
+     */
     private function setPassword(User $userAdmin, $password)
     {
         /** @var PasswordEncoderInterface $encoder */

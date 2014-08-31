@@ -4,7 +4,6 @@ namespace Nfq\Fairytale\ApiBundle\Features\Context;
 
 use Assert\Assertion;
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Nfq\Fairytale\CoreBundle\Entity\User;
