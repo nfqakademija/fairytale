@@ -48,7 +48,7 @@ Feature: CRUD
         """
         [
             {
-                "id": 2,
+                "id":   2,
                 "email": "user@user.com",
                 "name": "The User"
             }
@@ -60,18 +60,23 @@ Feature: CRUD
         When I send a POST request to "/api/user" with body:
         """
         {
-            "name":"name_Bob",
-            "email":"email_Bob@api.com",
+            "name":     "John",
+            "surname":  "Doe",
+            "username": "john.doe",
+            "email":    "john.doe@api.com",
+            "password": "secret"
         }
         """
-        Then print last response
         Then the response code should be 201
         And the response should be json:
         """
         {
-            "id": 13,
-            "name":"name_Bob",
-            "email":"email_Bob@api.com",
+            "id":       13,
+            "name":     "John",
+            "surname":  "Doe",
+            "username": "john.doe",
+            "email":    "john.doe@api.com",
+            "password": "secret"
         }
         """
 
@@ -83,7 +88,6 @@ Feature: CRUD
             "name":"John Doe"
         }
         """
-        Then print last response
         Then the response code should be 200
         And the response should be json:
         """

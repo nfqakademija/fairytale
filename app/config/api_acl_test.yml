@@ -5,22 +5,25 @@ nfq_fairytale_api:
             NfqFairytaleCoreBundle:
                 User:
                     instance.delete:
-                        status: ROLE_ADMIN
+                        status:     ROLE_ADMIN
                     collection.index:
-                        id:     ROLE_USER
-                        name:   ROLE_USER
-                        email:  ROLE_ADMIN
+                        id:         ROLE_USER
+                        name:       ROLE_USER
+                        email:      ROLE_ADMIN
                     instance.read:
-                        id:     ROLE_USER
-                        name:   ROLE_USER
-                        email:  ROLE_ADMIN
-                    instance.create:
-                        id:     ROLE_ADMIN
-                        name:   ROLE_ADMIN
-                        email:  ROLE_ADMIN
+                        id:         ROLE_USER
+                        name:       ROLE_USER
+                        email:      ROLE_ADMIN
+                    collection.create:
+                        id:         ROLE_ADMIN
+                        name:       ROLE_ADMIN
+                        surname:    ROLE_ADMIN
+                        username:   ROLE_ADMIN
+                        email:      ROLE_ADMIN
+                        password:   ROLE_ADMIN
                     instance.update:
-                        id:     ROLE_ADMIN
-                        name:   ROLE_ADMIN
-                        email:  ROLE_ADMIN
+                        id:         ROLE_ADMIN
+                        name:       ROLE_ADMIN
+                        email:      ROLE_ADMIN
                     collection.count:
-                        count:  ROLE_USER
+                        count:      ROLE_USER
