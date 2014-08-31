@@ -1,6 +1,6 @@
 services:
     nfq_fairytale.action.collection.count:
-        class: Nfq\Fairytale\ApiBundle\Actions\CollectionCountAction
+        class: Nfq\Fairytale\ApiBundle\Actions\Collection\CountAction
         calls:
             - [setFactory, [@nfq_fairytale.datasource.factory]]
         tags:
