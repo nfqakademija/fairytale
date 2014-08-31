@@ -18,7 +18,7 @@ class ReadActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\ReadAction');
     }
 
-    function it_should_read_from_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_read_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
     {
         $obj = new \stdClass();
 

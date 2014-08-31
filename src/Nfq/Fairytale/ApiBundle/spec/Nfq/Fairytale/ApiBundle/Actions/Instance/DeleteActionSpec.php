@@ -18,7 +18,7 @@ class DeleteActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\DeleteAction');
     }
 
-    function it_should_read_from_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_delete_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
     {
         $request = Request::create('/user/1', 'DELETE');
         $dataSource->delete(1)->willReturn(true);

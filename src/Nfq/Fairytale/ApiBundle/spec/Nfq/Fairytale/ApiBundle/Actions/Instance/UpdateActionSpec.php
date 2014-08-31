@@ -19,7 +19,7 @@ class UpdateActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\UpdateAction');
     }
 
-    function it_should_read_from_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_update_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
     {
         $full = [
             'id' => 1,

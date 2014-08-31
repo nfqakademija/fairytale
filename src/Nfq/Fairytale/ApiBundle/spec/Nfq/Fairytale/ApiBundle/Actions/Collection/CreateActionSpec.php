@@ -19,7 +19,7 @@ class CreateActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Collection\CreateAction');
     }
 
-    function it_should_read_from_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_create_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
     {
         $data = [
             'name' => 'foo'
