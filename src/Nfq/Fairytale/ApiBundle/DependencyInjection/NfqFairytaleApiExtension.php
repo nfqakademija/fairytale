@@ -33,6 +33,7 @@ class NfqFairytaleApiExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
         $loader->load('listeners.yml');
+        $loader->load('actions.yml');
 
         if ('test' === $container->getParameter('kernel.environment')) {
             $loader->load('test.yml');

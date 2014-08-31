@@ -1,0 +1,15 @@
+services:
+    nfq_fairytale.action.collection.count:
+        class: Nfq\Fairytale\ApiBundle\Actions\CollectionCountAction
+        calls:
+            - [setFactory, [@nfq_fairytale.datasource.factory]]
+        tags:
+            - { name: nfq_fairytale.api.action.collection, resource: *, action: count, method: GET }
+
+    nfq_fairytale.action.collection.read:
+        class: Nfq\Fairytale\ApiBundle\Actions\Instance\ReadAction
+        calls:
+            - [setFactory, [@nfq_fairytale.datasource.factory]]
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: *, method: GET }
+
