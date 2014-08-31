@@ -2,15 +2,14 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareInterface;
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareTrait;
+use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
 use Nfq\Fairytale\ApiBundle\Actions\InstanceActionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ReadAction implements InstanceActionInterface, DataSourceFactoryAwareInterface
+class ReadAction extends DataSourceFactoryAwareAction implements InstanceActionInterface
 {
-    use DataSourceFactoryAwareTrait;
+    const NAME = 'instance.read';
 
     /**
      * @inheritdoc
@@ -22,13 +21,5 @@ class ReadAction implements InstanceActionInterface, DataSourceFactoryAwareInter
             throw new NotFoundHttpException();
         }
         return [$instance, 200];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName()
-    {
-        return 'instance.read';
     }
 }

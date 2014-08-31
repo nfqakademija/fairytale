@@ -3,13 +3,14 @@
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
 use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
 use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareInterface;
 use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreateAction implements CollectionActionInterface, DataSourceFactoryAwareInterface
+class CreateAction extends DataSourceFactoryAwareAction implements CollectionActionInterface
 {
-    use DataSourceFactoryAwareTrait;
+    const NAME = 'collection.create';
 
     /**
      * @inheritdoc
@@ -19,13 +20,5 @@ class CreateAction implements CollectionActionInterface, DataSourceFactoryAwareI
         $instance = $this->factory->create($resource)->create($request->attributes->get('payload'));
 
         return [$instance, 201];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName()
-    {
-        return 'collection.create';
     }
 }

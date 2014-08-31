@@ -3,13 +3,12 @@
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
 use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareInterface;
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareTrait;
+use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
 use Symfony\Component\HttpFoundation\Request;
 
-class CountAction implements CollectionActionInterface, DataSourceFactoryAwareInterface
+class CountAction extends DataSourceFactoryAwareAction implements CollectionActionInterface
 {
-    use DataSourceFactoryAwareTrait;
+    const NAME = 'collection.count';
 
     /**
      * @inheritdoc
@@ -17,13 +16,5 @@ class CountAction implements CollectionActionInterface, DataSourceFactoryAwareIn
     public function execute(Request $request, $resource)
     {
         return [(object)['count' => $this->factory->create($resource)->count()], 200];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName()
-    {
-        return 'collection.count';
     }
 }

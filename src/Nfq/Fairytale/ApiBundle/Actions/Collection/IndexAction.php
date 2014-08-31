@@ -3,13 +3,12 @@
 namespace Nfq\Fairytale\ApiBundle\Actions\Collection;
 
 use Nfq\Fairytale\ApiBundle\Actions\CollectionActionInterface;
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareInterface;
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareTrait;
+use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
 use Symfony\Component\HttpFoundation\Request;
 
-class IndexAction implements CollectionActionInterface, DataSourceFactoryAwareInterface
+class IndexAction extends DataSourceFactoryAwareAction implements CollectionActionInterface
 {
-    use DataSourceFactoryAwareTrait;
+    const NAME = 'collection.index';
 
     /**
      * @inheritdoc
@@ -19,13 +18,5 @@ class IndexAction implements CollectionActionInterface, DataSourceFactoryAwareIn
         $instance = $this->factory->create($resource)->index();
 
         return [$instance, 200];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName()
-    {
-        return 'collection.index';
     }
 }

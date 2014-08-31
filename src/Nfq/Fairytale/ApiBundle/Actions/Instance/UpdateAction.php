@@ -2,15 +2,14 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareInterface;
-use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareTrait;
+use Nfq\Fairytale\ApiBundle\Actions\DataSourceFactoryAwareAction;
 use Nfq\Fairytale\ApiBundle\Actions\InstanceActionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class UpdateAction implements InstanceActionInterface, DataSourceFactoryAwareInterface
+class UpdateAction extends DataSourceFactoryAwareAction implements InstanceActionInterface
 {
-    use DataSourceFactoryAwareTrait;
+    const NAME = 'instance.update';
 
     /**
      * @inheritdoc
@@ -22,13 +21,5 @@ class UpdateAction implements InstanceActionInterface, DataSourceFactoryAwareInt
             throw new NotFoundHttpException();
         }
         return [$instance, 200];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName()
-    {
-        return 'instance.update';
     }
 }
