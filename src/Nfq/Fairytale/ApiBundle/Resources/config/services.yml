@@ -33,9 +33,6 @@ services:
         calls:
             - [setResourceMapping, [%nfq_fairytale_api.config.mapping%]]
 
-    nfq_fairytale.api.action_resolver:
-        class: Nfq\Fairytale\ApiBundle\Helper\ActionResolver
-
     nfq_fairytale.api.controller:
         class: Nfq\Fairytale\ApiBundle\Controller\ApiController
         calls:
