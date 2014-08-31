@@ -15,7 +15,10 @@ class IndexAction extends DataSourceFactoryAwareAction implements CollectionActi
      */
     public function execute(Request $request, $resource)
     {
-        $instance = $this->factory->create($resource)->index();
+        $instance = $this->factory->create($resource)->index(
+            $request->query->get('limit'),
+            $request->query->get('offset')
+        );
 
         return [$instance, 200];
     }

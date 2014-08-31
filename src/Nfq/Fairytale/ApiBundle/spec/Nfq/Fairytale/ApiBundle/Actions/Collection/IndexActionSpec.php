@@ -20,8 +20,8 @@ class IndexActionSpec extends ObjectBehavior
 
     function it_should_index_via_dataSource(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
-        $request = Request::create('/user');
-        $dataSource->index()->willReturn([]);
+        $request = new Request(['limit' => 1, 'offset' => 1]);
+        $dataSource->index(1, 1)->willReturn([]);
 
         $factory->create('user')->willReturn($dataSource);
 
