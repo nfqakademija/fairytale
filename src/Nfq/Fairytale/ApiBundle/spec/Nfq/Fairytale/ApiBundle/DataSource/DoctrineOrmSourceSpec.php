@@ -6,7 +6,7 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
-use Nfq\Fairytale\ApiBundle\Datasource\ClassFactory;
+use Nfq\Fairytale\ApiBundle\DataSource\ClassFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

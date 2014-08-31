@@ -2,8 +2,8 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Instance;
 
-use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class ReadActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\ReadAction');
     }
 
-    function it_should_read_via_datasource(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_read_via_dataSource(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $obj = new \stdClass();
 

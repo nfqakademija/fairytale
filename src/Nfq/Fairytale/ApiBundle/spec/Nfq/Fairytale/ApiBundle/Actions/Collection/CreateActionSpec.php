@@ -2,8 +2,8 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Collection;
 
-use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use Nfq\Fairytale\ApiBundle\EventListener\AuthorizationListener;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -19,7 +19,7 @@ class CreateActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Collection\CreateAction');
     }
 
-    function it_should_create_via_datasource(DataSourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_create_via_dataSource(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $data = [
             'name' => 'foo'

@@ -2,8 +2,8 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\DataSource\Factory;
 
-use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

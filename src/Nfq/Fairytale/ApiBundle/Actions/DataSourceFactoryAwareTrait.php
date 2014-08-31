@@ -2,7 +2,7 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions;
 
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
+use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 
 trait DataSourceFactoryAwareTrait
 {
