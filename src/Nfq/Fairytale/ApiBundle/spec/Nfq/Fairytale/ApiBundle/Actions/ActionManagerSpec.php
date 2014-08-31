@@ -24,13 +24,14 @@ class ActionManagerSpec extends ObjectBehavior
             ->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\ActionManager');
     }
 
-    function it_should_return_null_if_action_not_supported()
+    function it_should_throw_if_action_not_supported()
     {
         $resource = 'foo';
         $action = 'meta';
         $method = 'GET';
 
-        $this->find($resource, $action, $method)->shouldBe(null);
+        $this->shouldThrow('Symfony\Component\HttpKernel\Exception\BadRequestHttpException')
+            ->during('resolve', [$resource, $action, $method]);
     }
 
     function it_should_find_action(CollectionActionInterface $actionImpl1, InstanceActionInterface $actionImpl2)
@@ -42,8 +43,8 @@ class ActionManagerSpec extends ObjectBehavior
         $this->addCollectionAction($actionImpl1, $resource, $action, $method);
         $this->addInstanceAction($actionImpl2, $resource, $action, $method);
 
-        $this->find($resource, $action, $method)->shouldBe($actionImpl1);
-        $this->find($resource, $action, $method, true)->shouldBe($actionImpl2);
+        $this->resolve($resource, $action, $method)->shouldBe($actionImpl1);
+        $this->resolve($resource, $action, $method, true)->shouldBe($actionImpl2);
     }
 
     function it_should_find_action_for_any_resource(
@@ -57,7 +58,7 @@ class ActionManagerSpec extends ObjectBehavior
         $this->addCollectionAction($actionImpl1, '*', $action, $method);
         $this->addInstanceAction($actionImpl2, '*', $action, $method);
 
-        $this->find($resource, $action, $method)->shouldBe($actionImpl1);
-        $this->find($resource, $action, $method, true)->shouldBe($actionImpl2);
+        $this->resolve($resource, $action, $method)->shouldBe($actionImpl1);
+        $this->resolve($resource, $action, $method, true)->shouldBe($actionImpl2);
     }
 }

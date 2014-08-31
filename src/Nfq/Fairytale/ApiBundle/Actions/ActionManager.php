@@ -2,10 +2,14 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions;
 
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+
 class ActionManager
 {
     /** @var CollectionActionInterface[] */
-    protected $actions = [];
+    protected $actions = [
+        '*' => [],
+    ];
 
     /**
      * Attempts to find action that matches given request parameters
@@ -17,16 +21,17 @@ class ActionManager
      *
      * @return CollectionActionInterface|InstanceActionInterface|null
      */
-    public function find($resource, $actionName, $httpMethod, $forInstance = false)
+    public function resolve($resource, $actionName, $httpMethod, $forInstance = false)
     {
-        /*
-         * Magic.
-         * Attempts to grab action normally.
-         * If it does not exist, attempts to grab action from '*'.
-         * If it does not exist, returns null
-         */
-        return @$this->actions[$resource][$actionName][$httpMethod][$forInstance]
-            ?: @$this->actions['*'][$actionName][$httpMethod][$forInstance];
+        $resource = array_key_exists($resource, $this->actions) ? $this->actions[$resource] : $this->actions['*'];
+
+        $action = @$resource[$actionName ?: ''][$httpMethod][$forInstance];
+
+        if (null === $action) {
+            throw new BadRequestHttpException();
+        }
+
+        return $action;
     }
 
     /**
