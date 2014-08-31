@@ -13,6 +13,6 @@ abstract class DataSourceFactoryAwareAction implements ActionInterface, DataSour
      */
     public function getName()
     {
-       return self::NAME;
+       return static::NAME;
     }
 }

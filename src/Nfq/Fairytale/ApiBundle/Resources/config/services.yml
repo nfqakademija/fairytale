@@ -9,21 +9,21 @@ services:
             - [setRoleHierarchy, [@security.role_hierarchy]]
 
     nfq_fairytale.data_source.file:
-        class: Nfq\Fairytale\ApiBundle\Datasource\FileSource
+        class: Nfq\Fairytale\ApiBundle\DataSource\FileSource
         calls:
             - [setLocator, [@kernel]]
 
     nfq_fairytale.data_source.doctrine.orm.class_factory:
-        class: Nfq\Fairytale\ApiBundle\Datasource\ClassFactory
+        class: Nfq\Fairytale\ApiBundle\DataSource\ClassFactory
 
     nfq_fairytale.data_source.orm:
-        class: Nfq\Fairytale\ApiBundle\Datasource\DoctrineOrmSource
+        class: Nfq\Fairytale\ApiBundle\DataSource\DoctrineOrmSource
         calls:
             - [setClassFactory, [@nfq_fairytale.data_source.doctrine.orm.class_factory]]
             - [setEntityManager, [@doctrine.orm.default_entity_manager]]
 
     nfq_fairytale.data_source.factory:
-        class: Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory
+        class: Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory
 
     nfq_fairytale.action.manager:
         class: Nfq\Fairytale\ApiBundle\Actions\ActionManager
