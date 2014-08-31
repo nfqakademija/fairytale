@@ -31,3 +31,8 @@ services:
         class: Nfq\Fairytale\ApiBundle\Helper\ResourceResolver
         calls:
             - [setResourceMapping, [%nfq_fairytale_api.config.mapping%]]
+
+    nfq_fairytale.api.helper.raw_content_serializer:
+        class: Nfq\Fairytale\ApiBundle\Helper\RawContentSerializer
+        calls:
+            - [setSerializer, [@jms_serializer]]
