@@ -2,6 +2,7 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions\Instance;
 
+use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -19,6 +20,7 @@ class ReadAction extends BaseInstanceAction
         if (is_null($instance)) {
             throw new NotFoundHttpException();
         }
-        return [$instance, 200];
+
+        return ActionResult::instance(200, $instance);
     }
 }

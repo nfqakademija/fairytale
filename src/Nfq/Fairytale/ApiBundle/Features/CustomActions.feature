@@ -12,6 +12,6 @@ Feature: Custom actions
         And the response should be json:
         """
         {
-            "count": "2"
+            "count": "12"
         }
         """

@@ -2,8 +2,8 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Instance;
 
+use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,12 @@ class ReadActionSpec extends ObjectBehavior
         $request = Request::create('/user/1', 'GET');
         $dataSource->read(1)->willReturn($obj);
 
-        $this->execute($request, $dataSource, 1)->shouldBe([$obj, 200]);
+        $result = $this->execute($request, $dataSource, 1);
+
+        $result->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\ActionResult');
+        $result->getStatusCode()->shouldBe(200);
+        $result->getResult()->shouldBe($obj);
+        $result->getType()->shouldBe(ActionResult::INSTANCE);
     }
 
     function it_should_throw_if_instance_not_found(DataSourceInterface $dataSource)

@@ -6,9 +6,11 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
+use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
 use Nfq\Fairytale\ApiBundle\EventListener\AuthorizationListener;
 use Nfq\Fairytale\ApiBundle\Helper\ActionResolver;
+use Nfq\Fairytale\ApiBundle\Helper\RawContentSerializer;
 use Nfq\Fairytale\ApiBundle\Helper\ResourceResolver;
 use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
 use PhpSpec\ObjectBehavior;
@@ -192,90 +194,88 @@ class AuthorizationListenerSpec extends ObjectBehavior
         $this->validateRequest($event);
     }
 
-    function it_should_validate_response_and_pass(
+    function it_should_validate_result_with_type_instance(
         GetResponseForControllerResultEvent $event,
         CredentialStore $credentialStore,
         SecurityContextInterface $securityContext,
-        SerializerInterface $serializer
+        RawContentSerializer $rawSerializer,
+        ActionInterface $action
     ) {
         $token = new AnonymousToken('', '', ['ROLE_USER']);
-        $controllerResult = [(object)['foo' => 'bar', 'baz' => 'qux'], 200];
-        $controllerResultJson = json_encode($controllerResult[0]);
-        $controllerResultRaw = json_decode($controllerResultJson, true);
+        $rawResult = ['foo' => 'bar', 'baz' => 'qux'];
+        $allowedFields = ['foo' => null];
+        $resource = 'FooBundle:Bar';
+        $action->getName()->willReturn('baz');
 
-        $request = new Request();
-        $attributes = new ParameterBag(
-            [
+        $actionResult = ActionResult::instance(200, (object)$rawResult);
+        $request = new Request(
+            [], [], [
                 AuthorizationListener::API_REQUEST          => true,
-                AuthorizationListener::API_REQUEST_RESOURCE => 'FooBundle:Bar',
-                AuthorizationListener::API_REQUEST_ACTION   => 'baz'
+                AuthorizationListener::API_REQUEST_RESOURCE => $resource,
+                AuthorizationListener::API_REQUEST_ACTION   => $action
             ]
         );
-        $request->attributes = $attributes;
 
         $event->getRequest()->willReturn($request);
-        $event->getControllerResult()->willReturn($controllerResult);
+        $event->getControllerResult()->willReturn($actionResult);
 
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccessibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn(
-            [
-                'foo' => 'ROLE_USER',
-                'baz' => 'ROLE_USER',
-            ]
-        );
+        $credentialStore->getAccessibleFields($token->getRoles(), $resource, $action)
+            ->willReturn($allowedFields);
 
-        $serializer->serialize($controllerResult[0], 'json')->willReturn($controllerResultJson);
-        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResultRaw);
+        $rawSerializer->serialize($actionResult)->willReturn($rawResult);
 
-        $event->setControllerResult([$controllerResultRaw, 200])->shouldBeCalled();
+        $event->setControllerResult([['foo' => 'bar'], 200])->shouldBeCalled();
 
-        $this->setSerializer($serializer);
         $this->setCredentials($credentialStore);
         $this->setSecurityContext($securityContext);
+        $this->setRawContentSerializer($rawSerializer);
+
         $this->validateResponse($event);
     }
 
-    function it_should_validate_collection_response_and_pass(
+    function it_should_validate_response_with_type_collection(
         GetResponseForControllerResultEvent $event,
         CredentialStore $credentialStore,
         SecurityContextInterface $securityContext,
-        SerializerInterface $serializer
+        RawContentSerializer $rawSerializer,
+        ActionInterface $action
     ) {
         $token = new AnonymousToken('', '', ['ROLE_USER']);
-        $controllerResult = [[(object)['foo' => 'bar', 'baz' => 'qux']], 200];
-        $controllerResultJson = json_encode($controllerResult[0]);
-        $controllerResultRaw = json_decode($controllerResultJson, true);
+        $rawResult = [
+            ['foo' => '1', 'baz' => '1'],
+            ['foo' => '2', 'baz' => '2'],
+        ];
+        $allowedFields = ['foo' => null];
+        $resource = 'FooBundle:Bar';
+        $action->getName()->willReturn('baz');
 
-        $request = new Request();
-        $attributes = new ParameterBag(
-            [
+        $actionResult = ActionResult::collection(200, (object)$rawResult);
+        $request = new Request(
+            [], [], [
                 AuthorizationListener::API_REQUEST          => true,
-                AuthorizationListener::API_REQUEST_RESOURCE => 'FooBundle:Bar',
-                AuthorizationListener::API_REQUEST_ACTION   => 'baz'
+                AuthorizationListener::API_REQUEST_RESOURCE => $resource,
+                AuthorizationListener::API_REQUEST_ACTION   => $action
             ]
         );
-        $request->attributes = $attributes;
 
         $event->getRequest()->willReturn($request);
-        $event->getControllerResult()->willReturn($controllerResult);
+        $event->getControllerResult()->willReturn($actionResult);
 
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccessibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn(
-            [
-                'foo' => 'ROLE_USER',
-            ]
-        );
+        $credentialStore->getAccessibleFields($token->getRoles(), $resource, $action)
+            ->willReturn($allowedFields);
 
-        $serializer->serialize($controllerResult[0], 'json')->willReturn($controllerResultJson);
-        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResultRaw);
+        $rawSerializer->serialize($actionResult)->willReturn($rawResult);
 
-        $event->setControllerResult([[['foo' => 'bar']], 200])->shouldBeCalled();
+        $event->setControllerResult([[['foo' => '1'], ['foo' => '2']], 200])->shouldBeCalled();
 
-        $this->setSerializer($serializer);
         $this->setCredentials($credentialStore);
         $this->setSecurityContext($securityContext);
+        $this->setRawContentSerializer($rawSerializer);
+
         $this->validateResponse($event);
     }
 
@@ -283,36 +283,43 @@ class AuthorizationListenerSpec extends ObjectBehavior
         GetResponseForControllerResultEvent $event,
         CredentialStore $credentialStore,
         SecurityContextInterface $securityContext,
-        SerializerInterface $serializer
+        RawContentSerializer $rawSerializer,
+        ActionInterface $action
     ) {
         $token = new AnonymousToken('', '', ['ROLE_USER']);
-        $request = new Request();
-        $attributes = new ParameterBag(
-            [
+        $rawResult = [
+            ['foo' => '1', 'baz' => '1'],
+            ['foo' => '2', 'baz' => '2'],
+        ];
+        $allowedFields = []; // no allowed fields
+        $resource = 'FooBundle:Bar';
+        $action->getName()->willReturn('baz');
+
+        $actionResult = ActionResult::collection(200, (object)$rawResult);
+        $request = new Request(
+            [], [], [
                 AuthorizationListener::API_REQUEST          => true,
-                AuthorizationListener::API_REQUEST_RESOURCE => 'FooBundle:Bar',
-                AuthorizationListener::API_REQUEST_ACTION   => 'baz'
+                AuthorizationListener::API_REQUEST_RESOURCE => $resource,
+                AuthorizationListener::API_REQUEST_ACTION   => $action
             ]
         );
-        $request->attributes = $attributes;
-
-        $controllerResult = [(object)['foo' => 'bar', 'baz' => 'qux'], 200];
-        $controllerResultJson = json_encode($controllerResult[0]);
-        $controllerResultRaw = json_decode($controllerResultJson, true);
 
         $event->getRequest()->willReturn($request);
-        $event->getControllerResult()->willReturn($controllerResult);
+        $event->getControllerResult()->willReturn($actionResult);
 
         $securityContext->getToken()->willReturn($token);
 
-        $credentialStore->getAccessibleFields($token->getRoles(), 'FooBundle:Bar', 'baz')->willReturn([]);
+        $credentialStore->getAccessibleFields($token->getRoles(), $resource, $action)
+            ->willReturn($allowedFields);
 
-        $serializer->serialize($controllerResult[0], 'json')->willReturn($controllerResultJson);
-        $serializer->deserialize($controllerResultJson, 'array', 'json')->willReturn($controllerResultRaw);
+        $rawSerializer->serialize($actionResult)->willReturn(array_intersect_key($rawResult, $allowedFields));
 
-        $this->setSerializer($serializer);
+        $event->setControllerResult(Argument::any())->shouldNotBeCalled();
+
         $this->setCredentials($credentialStore);
         $this->setSecurityContext($securityContext);
+        $this->setRawContentSerializer($rawSerializer);
+
         $this->shouldThrow('Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException')
             ->during('validateResponse', [$event]);
     }

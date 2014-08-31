@@ -17,6 +17,7 @@ services:
             - [setActionResolver, [@nfq_fairytale.action.manager]]
             - [setSerializer, [@jms_serializer]]
             - [setLogger, [@logger]]
+            - [setRawContentSerializer, [@nfq_fairytale.api.helper.raw_content_serializer]]
         tags:
             - { name: kernel.event_subscriber }
             - { name: monolog.logger, channel: api }

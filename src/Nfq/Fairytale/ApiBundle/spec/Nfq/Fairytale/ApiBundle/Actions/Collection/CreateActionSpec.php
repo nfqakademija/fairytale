@@ -2,8 +2,8 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Collection;
 
+use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use Nfq\Fairytale\ApiBundle\EventListener\AuthorizationListener;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -28,6 +28,11 @@ class CreateActionSpec extends ObjectBehavior
         $request->attributes->set(AuthorizationListener::API_REQUEST_PAYLOAD, $data);
         $dataSource->create($data)->willReturn(array_merge($data, ['id' => 1]));
 
-        $this->execute($request, $dataSource, 1)->shouldBe([array_merge($data, ['id' => 1]), 201]);
+        $result = $this->execute($request, $dataSource, 1);
+
+        $result->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\ActionResult');
+        $result->getStatusCode()->shouldBe(201);
+        $result->getResult()->shouldBe(array_merge($data, ['id' => 1]));
+        $result->getType()->shouldBe(ActionResult::INSTANCE);
     }
 }

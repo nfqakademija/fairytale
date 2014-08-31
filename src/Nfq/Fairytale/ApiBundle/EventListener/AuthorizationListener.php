@@ -4,7 +4,9 @@ namespace Nfq\Fairytale\ApiBundle\EventListener;
 
 use JMS\Serializer\SerializerInterface;
 use Nfq\Fairytale\ApiBundle\Actions\ActionManager;
+use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Controller\ApiControllerInterface;
+use Nfq\Fairytale\ApiBundle\Helper\RawContentSerializer;
 use Nfq\Fairytale\ApiBundle\Helper\ResourceResolver;
 use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
 use Psr\Log\LoggerAwareInterface;
@@ -45,6 +47,9 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     /** @var  SerializerInterface */
     protected $serializer;
 
+    /** @var  RawContentSerializer */
+    protected $rawContentSerializer;
+
     /**
      * @param ResourceResolver $resolver
      */
@@ -83,6 +88,14 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     public function setCredentials(CredentialStore $credentials)
     {
         $this->credentials = $credentials;
+    }
+
+    /**
+     * @param RawContentSerializer $rawContentSerializer
+     */
+    public function setRawContentSerializer(RawContentSerializer $rawContentSerializer)
+    {
+        $this->rawContentSerializer = $rawContentSerializer;
     }
 
     public function decideRequestController(FilterControllerEvent $event)
@@ -144,13 +157,11 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
     public function validateResponse(GetResponseForControllerResultEvent $event)
     {
         if ($this->isApiRequest($event->getRequest())) {
-            list($content, $code) = $event->getControllerResult();
 
-            $rawContent = $this->serializer->deserialize(
-                $this->serializer->serialize($content, 'json'),
-                'array',
-                'json'
-            );
+            /** @var ActionResult $actionResult */
+            $actionResult = $event->getControllerResult();
+
+            $rawContent = $this->rawContentSerializer->serialize($actionResult);
 
             $allowedFields = $this->getAllowedFields($event->getRequest());
 
@@ -158,17 +169,21 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
                 return array_intersect_key($singleItem, $allowedFields);
             };
 
-            if (is_array($content)) {
-                $filteredContent = array_map($filter, $rawContent);
-            } else {
-                $filteredContent = $filter($rawContent);
+            switch ($actionResult->getType()) {
+                case ActionResult::SIMPLE:
+                case ActionResult::INSTANCE:
+                    $filteredContent = $filter($rawContent);
+                    break;
+                case ActionResult::COLLECTION:
+                    $filteredContent = array_map($filter, $rawContent);
+                    break;
             }
 
             if (empty($filteredContent)) {
                 throw new AccessDeniedHttpException();
             }
 
-            $event->setControllerResult([$filteredContent, $code]);
+            $event->setControllerResult([$filteredContent, $actionResult->getStatusCode()]);
         }
     }
 

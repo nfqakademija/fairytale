@@ -20,7 +20,7 @@ class RawContentSerializer
 
     /**
      * @param ActionResult $actionResult
-     * @result mixed
+     * @return mixed
      */
     public function serialize(ActionResult $actionResult)
     {

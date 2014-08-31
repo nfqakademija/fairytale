@@ -2,6 +2,7 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Instance;
 
+use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -22,7 +23,12 @@ class DeleteActionSpec extends ObjectBehavior
         $request = Request::create('/user/1', 'DELETE');
         $dataSource->delete(1)->willReturn(true);
 
-        $this->execute($request, $dataSource, 1)->shouldBe([['status' => 'success'], 200]);
+        $result = $this->execute($request, $dataSource, 1);
+
+        $result->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\ActionResult');
+        $result->getStatusCode()->shouldBe(200);
+        $result->getResult()->shouldBe(['status' => 'success']);
+        $result->getType()->shouldBe(ActionResult::SIMPLE);
     }
 
     function it_should_throw_if_instance_not_found(DataSourceInterface $dataSource)
