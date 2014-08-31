@@ -1,7 +1,4 @@
 #extensions:
-#    - PhpSpec\Extension\CodeCoverageExtension
-#code_coverage:
-#    output:
-#        html: build/coverage
+#    - PhpSpec\Extension\CodeCoverageExtension # composer require --dev henrikbjorn/phpspec-code-coverage:~0.2
 suites:
     ApiBundle       : { namespace: Nfq\Fairytale, spec_path: src/Nfq/Fairytale/ApiBundle }
