@@ -2,9 +2,9 @@
 
 namespace Nfq\Fairytale\ApiBundle\Actions;
 
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
+use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
 
 interface DataSourceFactoryAwareInterface {
 
-    public function setFactory(DatasourceFactory $factory);
+    public function setFactory(DataSourceFactory $factory);
 } 

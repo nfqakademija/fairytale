@@ -48,17 +48,17 @@ class NfqFairytaleApiExtension extends Extension
             $config['security']['default_credential']
         );
 
-        $factory = $container->getDefinition('nfq_fairytale.datasource.factory');
+        $factory = $container->getDefinition('nfq_fairytale.data_source.factory');
 
         switch ($config['data']['type']) {
             case 'file':
-                $datasource = $container->getDefinition('nfq_fairytale.datasource.file');
-                $datasource->addMethodCall('load', [$config['data']['source']]);
+                $dataSource = $container->getDefinition('nfq_fairytale.data_source.file');
+                $dataSource->addMethodCall('load', [$config['data']['source']]);
                 break;
             case 'orm':
-                $datasource = $container->getDefinition('nfq_fairytale.datasource.orm');
+                $dataSource = $container->getDefinition('nfq_fairytale.data_source.orm');
 
-                $datasource->addMethodCall(
+                $dataSource->addMethodCall(
                     'setEntityManager',
                     [new Reference(sprintf('doctrine.orm.%s_entity_manager', $config['data']['source']))]
                 );
@@ -67,8 +67,8 @@ class NfqFairytaleApiExtension extends Extension
                 throw new InvalidConfigurationException("Unsupported type %s in rest_api.data.type");
         }
 
-        $factory->addMethodCall('setDatasource', [$datasource]);
+        $factory->addMethodCall('setDataSource', [$dataSource]);
 
-        $container->setDefinition('nfq_fairytale.datasource.factory', $factory);
+        $container->setDefinition('nfq_fairytale.data_source.factory', $factory);
     }
 }

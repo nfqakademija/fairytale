@@ -3,7 +3,7 @@
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Instance;
 
 use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
+use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class DeleteActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\DeleteAction');
     }
 
-    function it_should_delete_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_delete_via_datasource(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $request = Request::create('/user/1', 'DELETE');
         $dataSource->delete(1)->willReturn(true);
@@ -30,7 +30,7 @@ class DeleteActionSpec extends ObjectBehavior
         $this->execute($request, 'user', 1)->shouldBe([['status' => 'success'], 200]);
     }
 
-    function it_should_throw_if_instance_not_found(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_throw_if_instance_not_found(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $request = Request::create('/user/1', 'DELETE');
 

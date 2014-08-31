@@ -2,42 +2,42 @@ services:
     nfq_fairytale.action.collection.count:
         class: Nfq\Fairytale\ApiBundle\Actions\Collection\CountAction
         calls:
-            - [setFactory, [@nfq_fairytale.datasource.factory]]
+            - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.collection, resource: *, action: count, method: GET }
 
     nfq_fairytale.api.action.instance.read:
         class: Nfq\Fairytale\ApiBundle\Actions\Instance\ReadAction
         calls:
-            - [setFactory, [@nfq_fairytale.datasource.factory]]
+            - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: *, method: GET }
 
     nfq_fairytale.api.action.instance.delete:
         class: Nfq\Fairytale\ApiBundle\Actions\Instance\DeleteAction
         calls:
-            - [setFactory, [@nfq_fairytale.datasource.factory]]
+            - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: *, method: DELETE }
 
     nfq_fairytale.api.action.instance.update:
         class: Nfq\Fairytale\ApiBundle\Actions\Instance\UpdateAction
         calls:
-            - [setFactory, [@nfq_fairytale.datasource.factory]]
+            - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: *, method: PUT }
 
     nfq_fairytale.api.action.collection.create:
         class: Nfq\Fairytale\ApiBundle\Actions\Collection\CreateAction
         calls:
-            - [setFactory, [@nfq_fairytale.datasource.factory]]
+            - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.collection, resource: *, method: POST }
 
     nfq_fairytale.api.action.collection.index:
         class: Nfq\Fairytale\ApiBundle\Actions\Collection\IndexAction
         calls:
-            - [setFactory, [@nfq_fairytale.datasource.factory]]
+            - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.collection, resource: *, method: GET }
 

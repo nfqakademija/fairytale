@@ -3,7 +3,7 @@
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Instance;
 
 use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
+use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
 use Nfq\Fairytale\ApiBundle\EventListener\AuthorizationListener;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -19,7 +19,7 @@ class UpdateActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\UpdateAction');
     }
 
-    function it_should_update_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_update_via_datasource(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $full = [
             'id' => 1,
@@ -36,7 +36,7 @@ class UpdateActionSpec extends ObjectBehavior
         $this->execute($request, 'user', 1)->shouldBe([array_merge($full, $data), 200]);
     }
 
-    function it_should_throw_if_instance_not_found(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_throw_if_instance_not_found(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $data = ['name' => 'foo'];
         $request = Request::create('/user/1', 'PUT');

@@ -3,7 +3,7 @@
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Instance;
 
 use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
+use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class ReadActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Instance\ReadAction');
     }
 
-    function it_should_read_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_read_via_datasource(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $obj = new \stdClass();
 
@@ -32,7 +32,7 @@ class ReadActionSpec extends ObjectBehavior
         $this->execute($request, 'user', 1)->shouldBe([$obj, 200]);
     }
 
-    function it_should_throw_if_instance_not_found(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_throw_if_instance_not_found(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $request = Request::create('/user/1', 'GET');
         $dataSource->read(1)->willReturn(null);

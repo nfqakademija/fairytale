@@ -3,7 +3,7 @@
 namespace spec\Nfq\Fairytale\ApiBundle\Actions\Collection;
 
 use Nfq\Fairytale\ApiBundle\Datasource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\Datasource\Factory\DatasourceFactory;
+use Nfq\Fairytale\ApiBundle\Datasource\Factory\DataSourceFactory;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class IndexActionSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\Actions\Collection\IndexAction');
     }
 
-    function it_should_index_via_datasource(DatasourceFactory $factory, DataSourceInterface $dataSource)
+    function it_should_index_via_datasource(DataSourceFactory $factory, DataSourceInterface $dataSource)
     {
         $request = Request::create('/user');
         $dataSource->index()->willReturn([]);
