@@ -114,7 +114,7 @@ class AuthorizationListener implements EventSubscriberInterface, LoggerAwareInte
             $payload = empty($content) ? null : $this->serializer->deserialize(
                 $content,
                 'array',
-                $request->getRequestFormat('json')
+                'json'
             );
 
             $attributes = [

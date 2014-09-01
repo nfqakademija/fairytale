@@ -26,6 +26,9 @@ class FeatureContext implements SnippetAcceptingContext
     /** @var  Client */
     private $client;
 
+    /** @var  array */
+    private $headers;
+
     /**
      * @Given I am authenticated as :login
      */
@@ -52,9 +55,12 @@ class FeatureContext implements SnippetAcceptingContext
     /**
      * @BeforeScenario
      */
-    public function rebuildKernel()
+    public function cleanup()
     {
         $this->client = new Client($this->getKernel());
+        $this->headers = [
+            'CONTENT_TYPE' => 'application/json'
+        ];
     }
 
     /**
@@ -62,7 +68,7 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function iSendARequestTo($method, $uri)
     {
-        $this->client->request($method, $uri);
+        $this->client->request($method, $uri, [], [], $this->headers);
     }
 
     /**
@@ -70,7 +76,7 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function iSendARequestToWithBody($method, $uri, PyStringNode $string)
     {
-        $this->client->request($method, $uri, [], [], [], $string->getRaw());
+        $this->client->request($method, $uri, [], [], $this->headers, $string->getRaw());
     }
 
     /**
@@ -113,5 +119,13 @@ class FeatureContext implements SnippetAcceptingContext
             $request->getUri(),
             $response->getContent()
         );
+    }
+
+    /**
+     * @When I set header :header to :value
+     */
+    public function iSetHeaderTo($header, $value)
+    {
+        $this->headers[$header] = $value;
     }
 }
