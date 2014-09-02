@@ -9,6 +9,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -42,7 +43,8 @@ class NfqFairytaleApiExtension extends Extension
         $container->setParameter('nfq_fairytale_api.config.default_index_size', $config['index_size']);
 
         /* ACL */
-        $container->setParameter('nfq_fairytale_api.config.security.acl', $config['security']['acl']);
+        $acl = Yaml::parse(file_get_contents($container->getParameter('kernel.root_dir') . '/config/' . $config['acl']));
+        $container->setParameter('nfq_fairytale_api.config.security.acl', $acl);
 
         $factory = $container->getDefinition('nfq_fairytale.data_source.factory');
 

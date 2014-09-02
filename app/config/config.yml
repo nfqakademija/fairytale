@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: api_acl_test.yml }
 
 framework:
     #esi:             ~
@@ -68,9 +67,9 @@ fos_user:
     user_class: Nfq\Fairytale\CoreBundle\Entity\User
 
 nfq_fairytale_api:
+    acl: api_acl.yml
     mapping:
         user: NfqFairytaleCoreBundle:User
-        testItem: testItem
     data:
         type: orm
         source: default

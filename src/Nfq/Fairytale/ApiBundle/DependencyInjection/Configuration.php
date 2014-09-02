@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         $rootNode->children()
+            ->scalarNode('acl')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('index_size')->defaultValue(10)->cannotBeEmpty()->end()
             ->arrayNode('mapping')
                 ->isRequired()
@@ -36,16 +37,6 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->scalarNode('type')->isRequired()->cannotBeEmpty()->end()
                     ->scalarNode('source')->isRequired()->cannotBeEmpty()->end()
-                ->end()
-            ->end()
-            ->arrayNode('security')
-                ->children()
-                    ->arrayNode('acl')
-                        ->requiresAtLeastOneElement()
-                        ->useAttributeAsKey('name')
-                        ->prototype('variable')
-                        ->end()
-                    ->end()
                 ->end()
             ->end()
         ->end();
