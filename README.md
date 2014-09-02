@@ -21,3 +21,11 @@ Load data fixtures
 ```
 $ app/console doctrine:schema:drop --force; app/console doctrine:schema:create && app/console doctrine:fixtures:load -n
 ```
+
+Running tests
+=============
+
+```
+$ bin/phpspec run
+$ bin/behat
+```
