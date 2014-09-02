@@ -25,7 +25,15 @@ $ app/console doctrine:schema:drop --force; app/console doctrine:schema:create &
 Running tests
 =============
 
+Test environment (which is being used for tests) has other database configured, thus you need to create it as well.
+```
+$ app/console doctrine:database:create -e test
+```
+Run tests.
+
 ```
 $ bin/phpspec run
 $ bin/behat
 ```
+
+> HEADS UP: Behat tests are configured to reload fixtures, so running Behat wipes test database!
