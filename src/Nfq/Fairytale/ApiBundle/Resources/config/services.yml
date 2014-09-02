@@ -7,11 +7,6 @@ services:
             - [setAcl, [%nfq_fairytale_api.config.security.acl%]]
             - [setRoleHierarchy, [@security.role_hierarchy]]
 
-    nfq_fairytale.data_source.file:
-        class: Nfq\Fairytale\ApiBundle\DataSource\FileSource
-        calls:
-            - [setLocator, [@kernel]]
-
     nfq_fairytale.data_source.doctrine.orm.class_factory:
         class: Nfq\Fairytale\ApiBundle\DataSource\ClassFactory
 
