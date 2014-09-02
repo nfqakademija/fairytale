@@ -3,6 +3,8 @@
 namespace spec\Nfq\Fairytale\ApiBundle\Security;
 
 use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use Nfq\Fairytale\ApiBundle\Security\CredentialStore;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -97,5 +99,20 @@ class CredentialStoreSpec extends ObjectBehavior
 
         $this->getRequiredRole('FooBundle:Qux', $action, 'customField')->shouldBe('ROLE_USER');
         $this->getRequiredRole('FooBundle:Qux', $action)->shouldBe(['customField' => 'ROLE_USER']);
+    }
+
+    function it_should_check_datasource_for_obejct_ownership(
+        DataSourceFactory $factory,
+        DataSourceInterface $dataSource
+    ) {
+        $object = (object)['foo' => 'bar'];
+        $user = (object)['name' => 'bob'];
+        $isOwned = true;
+
+        $factory->create('stdClass')->willReturn($dataSource);
+        $dataSource->isOwnedBy($object, $user)->willReturn($isOwned);
+
+        $this->setDataSourceFactory($factory);
+        $this->isOwnedBy($object, $user)->shouldBe($isOwned);
     }
 }
