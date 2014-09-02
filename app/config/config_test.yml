@@ -20,3 +20,7 @@ nfq_fairytale_api:
     data:
         type: orm
         source: default
+
+doctrine:
+    dbal:
+        dbname:   "%database_name%_test"
