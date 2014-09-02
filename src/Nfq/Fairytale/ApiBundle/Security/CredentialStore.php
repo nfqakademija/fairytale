@@ -3,6 +3,7 @@
 namespace Nfq\Fairytale\ApiBundle\Security;
 
 use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
+use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
@@ -18,6 +19,8 @@ class CredentialStore
     protected $acl;
     /** @var  RoleHierarchyInterface */
     protected $roleHierarchy;
+    /** @var  DataSourceFactory */
+    protected $dataSourceFactory;
 
     /**
      * @param array $acl
@@ -90,5 +93,25 @@ class CredentialStore
         );
 
         return $fields;
+    }
+
+    /**
+     * Checks DataSource if $object is owned by $user
+     *
+     * @param object $object
+     * @param object $user
+     * @return bool
+     */
+    public function isOwnedBy($object, $user)
+    {
+        return $this->dataSourceFactory->create(get_class($object))->isOwnedBy($object, $user);
+    }
+
+    /**
+     * @param DataSourceFactory $dataSourceFactory
+     */
+    public function setDataSourceFactory(DataSourceFactory $dataSourceFactory)
+    {
+        $this->dataSourceFactory = $dataSourceFactory;
     }
 }
