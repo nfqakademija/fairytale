@@ -1,7 +1,43 @@
 {% extends "::base.html.twig" %}
 
-{% block container %}
-    <p>Angular JS content goes here</p>
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/nfqfairytalefrontend/index.css') }}">
 {% endblock %}
 
+{% block container %}
+    {% verbatim %}
+        <div class="row" ng-app>
+            <div class="col-md-3 sidebar">
+                <div class="sidebar-module">
+                    <div class="sidebar-header"></div>
+                    <ol class="nav">
+                        <li>Dabar skaitau</li>
+                        <li>Rezervuotos knygos</li>
+                        <li>Pasiųlyti knygą</li>
+                    </ol>
+                </div>
+                <div class="sidebar-module">
+                    <div class="sidebar-header">SRITYS</div>
+                    <ol class="nav">
+                        <li>Populiariausios</li>
+                        <li>Naujos</li>
+                        <li>VIsos</li>
+                    </ol>
+                </div>
+                <hr>
+                <div class="sidebar-module">
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="jumbotron"></div>
+                <div class="row"></div>
+            </div>
+        </div>
+    {% endverbatim %}
+{% endblock %}
 
+{% block javascript %}
+    {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+{% endblock %}
