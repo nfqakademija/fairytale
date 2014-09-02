@@ -34,7 +34,7 @@ before_script:
     - sudo mkdir -p /var/www/ && sudo chmod 0777 /var/www/
     - ln -s /home/travis/build/nfqakademija/fairytale/ /var/www/fairytale.dev
     - sudo chmod 0777 -R /var/www/
-    - app/console doctrine:database:create
+    - app/console doctrine:database:create -e test
 
 script:
     - bin/phpspec run -v -fpretty
