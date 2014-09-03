@@ -4,10 +4,10 @@
     {% verbatim %}
     <div class="row">
         <div class="col-md-3 sidebar">
-            <div class="sidebar-module">
-                <div class="sidebar-user">
+            <div class="sidebar-module" ng-app="controller.User" ng-init="userController.id=2">
+                <div class="sidebar-user" ng-controller="userController">
                     <div class="user-photo left">{{ user.photo }}</div>
-                    <div class="user-name left">{{ user.name }}<br />{{ user.lastname }}</div>
+                    <div class="user-name left">{{ user.name }}<br />{{ user.surname }}</div>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -46,4 +46,5 @@
 {% block javascript %}
     {{ parent() }}
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
 {% endblock %}
