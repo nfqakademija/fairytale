@@ -49,7 +49,9 @@ class CredentialStore
      */
     public function getRequiredRole($resource, ActionInterface $action, $field = null)
     {
-        list($bundle, $entity) = explode(':', $resource);
+        $parts = explode('\\', $resource);
+        $entity = array_pop($parts);
+        $bundle = join('\\', $parts);
 
         if (array_key_exists($bundle, $this->acl)) {
             if (array_key_exists($entity, $this->acl[$bundle])) {

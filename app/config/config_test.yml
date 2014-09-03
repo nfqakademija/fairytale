@@ -16,7 +16,7 @@ swiftmailer:
 nfq_fairytale_api:
     acl: api_acl_test.yml
     mapping:
-        user: NfqFairytaleCoreBundle:User
+        user: Nfq\Fairytale\CoreBundle\Entity\User
 
 doctrine:
     dbal:

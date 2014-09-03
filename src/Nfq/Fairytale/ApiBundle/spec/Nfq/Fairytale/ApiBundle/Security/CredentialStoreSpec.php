@@ -54,11 +54,11 @@ class CredentialStoreSpec extends ObjectBehavior
     {
         $action->getName()->willReturn(CredentialStore::CREATE);
 
-        $this->getRequiredRole('FooBundle:Bar', $action, 'id')->shouldBe('ROLE_USER');
-        $this->getRequiredRole('FooBundle:Bar', $action, 'password')->shouldBe('ROLE_ADMIN');
+        $this->getRequiredRole('FooBundle\Bar', $action, 'id')->shouldBe('ROLE_USER');
+        $this->getRequiredRole('FooBundle\Bar', $action, 'password')->shouldBe('ROLE_ADMIN');
 
-        $this->getRequiredRole('FooBundle:Baz', $action, 'id')->shouldBe('ROLE_USER');
-        $this->getRequiredRole('FooBundle:Baz', $action)->shouldBe(['id' => 'ROLE_USER']);
+        $this->getRequiredRole('FooBundle\Baz', $action, 'id')->shouldBe('ROLE_USER');
+        $this->getRequiredRole('FooBundle\Baz', $action)->shouldBe(['id' => 'ROLE_USER']);
     }
 
     function it_should_throw_if_cant_resolve(ActionInterface $action)
@@ -66,10 +66,10 @@ class CredentialStoreSpec extends ObjectBehavior
         $action->getName()->willReturn(CredentialStore::DELETE);
 
         $this->shouldThrow('Nfq\Fairytale\ApiBundle\Security\InvalidConfigurationException')
-            ->during('getRequiredRole', ['FooBundle:Qux', $action, 'id']);
+            ->during('getRequiredRole', ['FooBundle\Qux', $action, 'id']);
 
         $this->shouldThrow('Nfq\Fairytale\ApiBundle\Security\InvalidConfigurationException')
-            ->during('getRequiredRole', ['FooBundle:Qux', $action]);
+            ->during('getRequiredRole', ['FooBundle\Qux', $action]);
     }
 
     function it_should_resolve_accessible_fields_for_role(ActionInterface $action)
@@ -79,13 +79,13 @@ class CredentialStoreSpec extends ObjectBehavior
         $roleHierarchy = new RoleHierarchy(['ROLE_ADMIN' => ['ROLE_USER']]);
         $this->setRoleHierarchy($roleHierarchy);
 
-        $this->getAccessibleFields([new Role('ROLE_USER')], 'FooBundle:Bar', $action)->shouldBe(
+        $this->getAccessibleFields([new Role('ROLE_USER')], 'FooBundle\Bar', $action)->shouldBe(
             [
                 'id' => 'ROLE_USER',
             ]
         );
 
-        $this->getAccessibleFields([new Role('ROLE_ADMIN')], 'FooBundle:Bar', $action)->shouldBe(
+        $this->getAccessibleFields([new Role('ROLE_ADMIN')], 'FooBundle\Bar', $action)->shouldBe(
             [
                 'id'       => 'ROLE_USER',
                 'password' => 'ROLE_ADMIN',
@@ -97,8 +97,8 @@ class CredentialStoreSpec extends ObjectBehavior
     {
         $action->getName()->willReturn('custom');
 
-        $this->getRequiredRole('FooBundle:Qux', $action, 'customField')->shouldBe('ROLE_USER');
-        $this->getRequiredRole('FooBundle:Qux', $action)->shouldBe(['customField' => 'ROLE_USER']);
+        $this->getRequiredRole('FooBundle\Qux', $action, 'customField')->shouldBe('ROLE_USER');
+        $this->getRequiredRole('FooBundle\Qux', $action)->shouldBe(['customField' => 'ROLE_USER']);
     }
 
     function it_should_check_datasource_for_obejct_ownership(

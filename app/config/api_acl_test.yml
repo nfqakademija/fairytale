@@ -1,6 +1,6 @@
 # Warning: this file is setup in sync with behat tests. Changes here might break them
 
-NfqFairytaleCoreBundle:
+Nfq\Fairytale\CoreBundle\Entity:
     User:
         instance.delete:
             status:     ROLE_ADMIN
