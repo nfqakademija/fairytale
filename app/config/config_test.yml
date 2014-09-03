@@ -14,12 +14,9 @@ swiftmailer:
     disable_delivery: true
 
 nfq_fairytale_api:
+    acl: api_acl_test.yml
     mapping:
         user: NfqFairytaleCoreBundle:User
-        testItem: testItem
-    data:
-        type: orm
-        source: default
 
 doctrine:
     dbal:
