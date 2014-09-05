@@ -15,19 +15,31 @@ class PermissionManager
         $this->acl = $acl;
     }
 
+    /**
+     * @param string $path
+     * @param string $action
+     * @param array  $roles
+     * @return bool
+     */
     public function isReadable($path, $action, array $roles)
     {
         return $this->isAllowed($path, $action, $roles, 'read');
     }
 
+    /**
+     * @param string $path
+     * @param string $action
+     * @param array  $roles
+     * @return bool
+     */
     public function isWritable($path, $action, array $roles)
     {
         return $this->isAllowed($path, $action, $roles, 'write');
     }
 
     /**
-     * @param        $path
-     * @param        $action
+     * @param string $path
+     * @param string $action
      * @param array  $roles
      * @param string $operation
      * @return bool
