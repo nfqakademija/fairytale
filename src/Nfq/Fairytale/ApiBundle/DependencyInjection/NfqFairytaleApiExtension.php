@@ -35,6 +35,7 @@ class NfqFairytaleApiExtension extends Extension
         $loader->load('services.yml');
         $loader->load('listeners.yml');
         $loader->load('actions.yml');
+        $loader->load('security.yml');
 
         $processor = new Processor();
         $config = $processor->processConfiguration($configuration, $configs);
@@ -43,7 +44,9 @@ class NfqFairytaleApiExtension extends Extension
         $container->setParameter('nfq_fairytale_api.config.default_index_size', $config['index_size']);
 
         /* ACL */
-        $acl = Yaml::parse(file_get_contents($container->getParameter('kernel.root_dir') . '/config/' . $config['acl']));
+        $acl = Yaml::parse(
+            file_get_contents($container->getParameter('kernel.root_dir') . '/config/' . $config['acl'])
+        );
         $container->setParameter('nfq_fairytale_api.config.security.acl', $acl);
 
         $factory = $container->getDefinition('nfq_fairytale.data_source.factory');
