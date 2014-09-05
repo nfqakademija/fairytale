@@ -1,0 +1,57 @@
+parameters:
+    nfq_fairytale_api.config.security.acl_new:
+        Nfq\Fairytale\CoreBundle\Entity:
+            User:
+                instance.read:
+                    read:
+                        id:         ROLE_USER
+                        name:       ROLE_USER
+                        email:      ROLE_ADMIN
+                    write:  ROLE_ADMIN
+                instance.delete:
+                    read:
+                        status:     ROLE_ADMIN
+                collection.index:
+                    read:
+                        id:         ROLE_USER
+                        name:       ROLE_USER
+                        email:      ROLE_ADMIN
+                collection.create:
+                    read:
+                        id:         ROLE_ADMIN
+                        name:       ROLE_ADMIN
+                        surname:    ROLE_ADMIN
+                        username:   ROLE_ADMIN
+                        email:      ROLE_ADMIN
+                        password:   ROLE_ADMIN
+                    write:
+                        id:         ROLE_ADMIN
+                        name:       ROLE_ADMIN
+                        surname:    ROLE_ADMIN
+                        username:   ROLE_ADMIN
+                        email:      ROLE_ADMIN
+                        password:   ROLE_ADMIN
+                instance.update:
+                    read:
+                        id:         ROLE_OWNER
+                        name:       ROLE_OWNER
+                        surname:    ROLE_OWNER
+                        username:   ROLE_OWNER
+                        email:      ROLE_OWNER
+                        password:   ROLE_OWNER
+                    write:
+                        id:         ROLE_ADMIN
+                        name:       ROLE_OWNER
+                        surname:    ROLE_OWNER
+                        username:   ROLE_ADMIN
+                        email:      ROLE_OWNER
+                        password:   ROLE_OWNER
+                collection.count:
+                    read:
+                        count:      ROLE_USER
+
+services:
+    nfq_fairytale.api.security.permissions:
+        class: Nfq\Fairytale\ApiBundle\Security\PermissionManager
+        calls:
+            - [setAcl, [%nfq_fairytale_api.config.security.acl_new%]]
