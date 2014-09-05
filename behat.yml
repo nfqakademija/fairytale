@@ -3,7 +3,7 @@ default:
         Behat\Symfony2Extension:
             kernel:
                 env: test
-                debug: true
+                debug: false
 
         Behat\MinkExtension:
             base_url:   'http://fairytale.dev/'
