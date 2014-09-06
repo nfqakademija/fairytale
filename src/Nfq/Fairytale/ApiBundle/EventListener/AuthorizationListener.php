@@ -49,12 +49,10 @@ class AuthorizationListener implements EventSubscriberInterface
         $this->serializer = $serializer;
     }
 
-    public function decideRequestController(FilterControllerEvent $event)
+    public function populateRequestParams(FilterControllerEvent $event)
     {
         if ($event->getController()[0] instanceof ApiControllerInterface) {
             $request = $event->getRequest();
-
-            $request->setRequestFormat('json');
 
             $resource = $this->resourceResolver->resolve($request->attributes->get('resource'));
             $action = $this->actionResolver->resolve(
@@ -71,13 +69,9 @@ class AuthorizationListener implements EventSubscriberInterface
                 'json'
             );
 
-            $request->attributes->add(
-                [
-                    self::API_REQUEST_RESOURCE => $resource,
-                    self::API_REQUEST_ACTION   => $action,
-                    self::API_REQUEST_PAYLOAD  => $payload,
-                ]
-            );
+            $request->attributes->set(self::API_REQUEST_RESOURCE, $resource);
+            $request->attributes->set(self::API_REQUEST_ACTION, $action);
+            $request->attributes->set(self::API_REQUEST_PAYLOAD, $payload);
         }
     }
 
@@ -89,7 +83,7 @@ class AuthorizationListener implements EventSubscriberInterface
     {
         return [
             KernelEvents::CONTROLLER => [
-                ['decideRequestController', 30],
+                ['populateRequestParams', 30],
             ],
         ];
     }
