@@ -20,7 +20,6 @@ before_script:
     - mkdir -p app/cache/
     - mkdir -p app/logs/
     - sudo chmod 0777 -R app/*
-    - sudo service nginx restart
     - composer install -n --prefer-source
     - app/console doctrine:database:create -e test
 
