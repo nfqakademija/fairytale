@@ -21,7 +21,7 @@ class ApiController extends Controller implements ApiControllerInterface
      * @param ActionInterface $action
      * @param mixed|null      $payload
      * @param string|null     $identifier
-     * @return \Nfq\Fairytale\ApiBundle\Actions\ActionResult
+     * @return Response
      */
     public function customAction(Request $request, $resource, ActionInterface $action, $payload, $identifier = null)
     {

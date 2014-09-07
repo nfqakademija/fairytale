@@ -18,9 +18,9 @@ class ActionResult
     protected $statusCode;
 
     /**
-     * @param $statusCode
-     * @param $result
-     * @param $type
+     * @param integer $statusCode
+     * @param mixed   $result
+     * @param string  $type
      */
     private function __construct($statusCode, $result, $type)
     {
@@ -30,8 +30,8 @@ class ActionResult
     }
 
     /**
-     * @param $statusCode
-     * @param $result
+     * @param integer $statusCode
+     * @param mixed   $result
      * @return ActionResult
      */
     public static function simple($statusCode, $result)
@@ -40,8 +40,8 @@ class ActionResult
     }
 
     /**
-     * @param $statusCode
-     * @param $result
+     * @param integer $statusCode
+     * @param mixed   $result
      * @return ActionResult
      */
     public static function instance($statusCode, $result)
@@ -50,8 +50,8 @@ class ActionResult
     }
 
     /**
-     * @param $statusCode
-     * @param $result
+     * @param integer $statusCode
+     * @param mixed   $result
      * @return ActionResult
      */
     public static function collection($statusCode, $result)

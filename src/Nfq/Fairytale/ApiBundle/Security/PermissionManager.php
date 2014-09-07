@@ -16,9 +16,9 @@ class PermissionManager
     }
 
     /**
-     * @param string $path
-     * @param string $action
-     * @param array  $roles
+     * @param string   $path
+     * @param string   $action
+     * @param string[] $roles
      * @return bool
      */
     public function isReadable($path, $action, array $roles)
@@ -27,9 +27,9 @@ class PermissionManager
     }
 
     /**
-     * @param string $path
-     * @param string $action
-     * @param array  $roles
+     * @param string   $path
+     * @param string   $action
+     * @param string[] $roles
      * @return bool
      */
     public function isWritable($path, $action, array $roles)
@@ -38,10 +38,10 @@ class PermissionManager
     }
 
     /**
-     * @param string $path
-     * @param string $action
-     * @param array  $roles
-     * @param string $operation
+     * @param string   $path
+     * @param string   $action
+     * @param string[] $roles
+     * @param string   $operation
      * @return bool
      */
     private function isAllowed($path, $action, array $roles, $operation)

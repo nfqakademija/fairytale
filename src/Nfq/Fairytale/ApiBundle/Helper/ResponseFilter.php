@@ -30,6 +30,13 @@ class ResponseFilter
         $this->serializer = $serializer;
     }
 
+    /**
+     * @param ActionResult $result
+     * @param string       $resource
+     * @param string       $action
+     * @param string[]     $roles
+     * @return array
+     */
     public function filterResponse(ActionResult $result, $resource, $action, $roles)
     {
         $serializeAndFilter = function ($item) use ($resource, $action, $roles) {
