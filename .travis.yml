@@ -17,6 +17,7 @@ addons:
         - fairytale.dev
 
 before_script:
+    - sed -i 's/database_password: 123/database_password: ~/g' app/config/parameters.yml
     - mkdir -p app/cache/
     - mkdir -p app/logs/
     - sudo chmod 0777 -R app/*
