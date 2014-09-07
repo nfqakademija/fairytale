@@ -3,7 +3,7 @@
 namespace Nfq\Fairytale\ApiBundle\DataSource;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 
 class DoctrineOrmSource implements DataSourceInterface
 {
@@ -98,7 +98,7 @@ class DoctrineOrmSource implements DataSourceInterface
     public function count()
     {
         $query = "SELECT COUNT(r) FROM {$this->resource} r";
-        return $this->registry->getManager()->createQuery($query)->getSingleScalarResult();
+        return $this->getManager()->createQuery($query)->getSingleScalarResult();
     }
 
     /**
@@ -160,10 +160,15 @@ class DoctrineOrmSource implements DataSourceInterface
     }
 
     /**
-     * @return ObjectManager
+     * @return EntityManager
+     * @throws \InvalidArgumentException
      */
     private function getManager()
     {
-        return $this->registry->getManager($this->managerName);
+        $manager = $this->registry->getManager($this->managerName);
+        if (!$manager instanceof EntityManager) {
+            throw new \InvalidArgumentException('DoctrineOrmSource only supports ORM EntityManager as $manager');
+        }
+        return $manager;
     }
 }
