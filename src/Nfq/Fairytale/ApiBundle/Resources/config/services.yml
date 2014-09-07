@@ -21,12 +21,18 @@ services:
         calls:
             - [setResourceMapping, [%nfq_fairytale_api.config.mapping%]]
 
-    nfq_fairytale.api.helper.raw_content_serializer:
-        class: Nfq\Fairytale\ApiBundle\Helper\RawContentSerializer
-        calls:
-            - [setSerializer, [@jms_serializer]]
-
     nfq_fairytale.api.security.permissions:
         class: Nfq\Fairytale\ApiBundle\Security\PermissionManager
         calls:
             - [setAcl, [%nfq_fairytale_api.config.security.acl%]]
+
+    nfq_fairytale.api.security.request_validator:
+        class: Nfq\Fairytale\ApiBundle\Helper\RequestValidator
+        calls:
+            - [setPermissions, [@nfq_fairytale.api.security.permissions]]
+
+    nfq_fairytale.api.security.response_filter:
+        class: Nfq\Fairytale\ApiBundle\Helper\ResponseFilter
+        calls:
+            - [setPermissions, [@nfq_fairytale.api.security.permissions]]
+            - [setSerializer, [@jms_serializer]]
