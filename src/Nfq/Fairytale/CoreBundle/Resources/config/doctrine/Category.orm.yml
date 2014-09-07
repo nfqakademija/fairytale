@@ -4,7 +4,7 @@ Nfq\Fairytale\CoreBundle\Entity\Category:
         id:
             type: integer
             generator:
-            strategy: AUTO
+                strategy: AUTO
     fields:
         title:
             type: string
