@@ -35,7 +35,6 @@ class NfqFairytaleApiExtension extends Extension
         $loader->load('services.yml');
         $loader->load('listeners.yml');
         $loader->load('actions.yml');
-        $loader->load('security.yml');
 
         $processor = new Processor();
         $config = $processor->processConfiguration($configuration, $configs);
