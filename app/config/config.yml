@@ -69,7 +69,7 @@ fos_user:
 nfq_fairytale_api:
     acl: api_acl.yml
     mapping:
-        user: NfqFairytaleCoreBundle:User
+        user: Nfq\Fairytale\CoreBundle\Entity\User
     data:
         type: orm
         source: default

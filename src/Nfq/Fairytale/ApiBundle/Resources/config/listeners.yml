@@ -11,13 +11,9 @@ services:
     nfq_fairytale.api.listener.auth:
         class: Nfq\Fairytale\ApiBundle\EventListener\AuthorizationListener
         calls:
-            - [setSecurityContext, [@security.context]]
-            - [setCredentials, [@nfq_fairytale.api.security.credential_store]]
             - [setResourceResolver, [@nfq_fairytale.api.resource_resolver]]
             - [setActionResolver, [@nfq_fairytale.action.manager]]
             - [setSerializer, [@jms_serializer]]
-            - [setLogger, [@logger]]
-            - [setRawContentSerializer, [@nfq_fairytale.api.helper.raw_content_serializer]]
         tags:
             - { name: kernel.event_subscriber }
             - { name: monolog.logger, channel: api }

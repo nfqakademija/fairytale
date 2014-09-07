@@ -2,6 +2,7 @@ nfq_fairytale_api.resource.instance.action:
     path:     /{resource}/{identifier}/{actionName}
     defaults:
         _controller: NfqFairytaleApiBundle:Api:custom
+        _format: json
     requirements:
         identifier: \d+
 
@@ -10,6 +11,7 @@ nfq_fairytale_api.resource.instance.action.empty_action:
     defaults:
         _controller: NfqFairytaleApiBundle:Api:custom
         actionName: ~
+        _format: json
     requirements:
         identifier: \d+
 
@@ -17,6 +19,7 @@ nfq_fairytale_api.resource.collection.action:
     path:     /{resource}/{actionName}
     defaults:
         _controller: NfqFairytaleApiBundle:Api:custom
+        _format: json
     methods: [GET, POST, PUT, DELETE, HEAD]
 
 nfq_fairytale_api.resource.collection.action.empty_action:
@@ -24,3 +27,4 @@ nfq_fairytale_api.resource.collection.action.empty_action:
     defaults:
         _controller: NfqFairytaleApiBundle:Api:custom
         actionName: ~
+        _format: json

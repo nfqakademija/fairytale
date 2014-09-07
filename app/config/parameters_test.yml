@@ -1,0 +1,5 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_name: fairytale_test
+    database_user: root
+    database_password: ~

@@ -20,20 +20,7 @@ before_script:
     - mkdir -p app/cache/
     - mkdir -p app/logs/
     - sudo chmod 0777 -R app/*
-    - wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
-    - sudo dpkg -i puppetlabs-release-precise.deb
-    - sudo apt-get update
-    - sudo apt-get install puppet
-    - gem install librarian-puppet
-    - cd .vagrant && librarian-puppet install && librarian-puppet show && cd ..
-    - sudo puppet apply .vagrant/manifests/default.pp --modulepath .vagrant/modules/ --parser future
-    - sudo sed -i 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g' /etc/php5/fpm/pool.d/www.conf
-    - sudo service php5-fpm restart
-    - sudo service nginx restart
     - composer install -n --prefer-source
-    - sudo mkdir -p /var/www/ && sudo chmod 0777 /var/www/
-    - ln -s /home/travis/build/nfqakademija/fairytale/ /var/www/fairytale.dev
-    - sudo chmod 0777 -R /var/www/
     - app/console doctrine:database:create -e test
 
 script:

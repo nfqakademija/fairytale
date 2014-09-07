@@ -1,4 +1,4 @@
-NfqFairytaleCoreBundle:
+Nfq\Fairytale\CoreBundle\Entity:
     Author:
         CREATE:
             id: ROLE_ADMIN

@@ -1,5 +1,6 @@
 imports:
     - { resource: config_dev.yml }
+    - { resource: parameters_test.yml }
 
 framework:
     test: ~
@@ -16,7 +17,7 @@ swiftmailer:
 nfq_fairytale_api:
     acl: api_acl_test.yml
     mapping:
-        user: NfqFairytaleCoreBundle:User
+        user: Nfq\Fairytale\CoreBundle\Entity\User
 
 doctrine:
     dbal:
