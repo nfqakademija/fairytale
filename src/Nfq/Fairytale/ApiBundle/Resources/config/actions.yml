@@ -2,30 +2,30 @@ services:
     nfq_fairytale.action.collection.count:
         class: Nfq\Fairytale\ApiBundle\Actions\Collection\CountAction
         tags:
-            - { name: nfq_fairytale.api.action.collection, resource: *, action: count, method: GET }
+            - { name: nfq_fairytale.api.action.collection, resource: '*', action: count, method: GET }
 
     nfq_fairytale.api.action.instance.read:
         class: Nfq\Fairytale\ApiBundle\Actions\Instance\ReadAction
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: *, method: GET }
+            - { name: nfq_fairytale.api.action.instance, resource: '*', method: GET }
 
     nfq_fairytale.api.action.instance.delete:
         class: Nfq\Fairytale\ApiBundle\Actions\Instance\DeleteAction
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: *, method: DELETE }
+            - { name: nfq_fairytale.api.action.instance, resource: '*', method: DELETE }
 
     nfq_fairytale.api.action.instance.update:
         class: Nfq\Fairytale\ApiBundle\Actions\Instance\UpdateAction
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: *, method: PUT }
+            - { name: nfq_fairytale.api.action.instance, resource: '*', method: PUT }
 
     nfq_fairytale.api.action.collection.create:
         class: Nfq\Fairytale\ApiBundle\Actions\Collection\CreateAction
         tags:
-            - { name: nfq_fairytale.api.action.collection, resource: *, method: POST }
+            - { name: nfq_fairytale.api.action.collection, resource: '*', method: POST }
 
     nfq_fairytale.api.action.collection.index:
         class: Nfq\Fairytale\ApiBundle\Actions\Collection\IndexAction
         tags:
-            - { name: nfq_fairytale.api.action.collection, resource: *, method: GET }
+            - { name: nfq_fairytale.api.action.collection, resource: '*', method: GET }
 
