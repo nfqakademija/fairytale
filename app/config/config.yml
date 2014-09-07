@@ -72,4 +72,3 @@ nfq_fairytale_api:
         user: Nfq\Fairytale\CoreBundle\Entity\User
     data:
         type: orm
-        source: default

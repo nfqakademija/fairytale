@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('data')
                 ->children()
                     ->scalarNode('type')->isRequired()->cannotBeEmpty()->end()
-                    ->scalarNode('source')->isRequired()->cannotBeEmpty()->end()
+                    ->scalarNode('source')->defaultValue(null)->end()
                 ->end()
             ->end()
         ->end();

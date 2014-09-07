@@ -2,18 +2,38 @@
 
 namespace Nfq\Fairytale\ApiBundle\DataSource;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class DoctrineOrmSource implements DataSourceInterface
 {
     /** @var  ClassFactory */
     protected $classFactory;
 
-    /** @var  EntityManager */
-    protected $entityManager;
+    /** @var  ManagerRegistry */
+    protected $registry;
+
+    /** @var  string|null */
+    protected $managerName;
 
     /** @var  string */
     protected $resource;
+
+    /**
+     * @param ManagerRegistry $registry
+     */
+    public function setRegistry(ManagerRegistry $registry)
+    {
+        $this->registry = $registry;
+    }
+
+    /**
+     * @param null|string $managerName
+     */
+    public function setManagerName($managerName)
+    {
+        $this->managerName = $managerName;
+    }
 
     /**
      * @inheritdoc
@@ -22,7 +42,7 @@ class DoctrineOrmSource implements DataSourceInterface
     {
         $sort = $orderBy && $order ? [$orderBy => $order] : null;
 
-        return $this->entityManager->getRepository($this->resource)->findBy([], $sort, $limit, $offset);
+        return $this->getManager()->getRepository($this->resource)->findBy([], $sort, $limit, $offset);
     }
 
     /**
@@ -30,7 +50,7 @@ class DoctrineOrmSource implements DataSourceInterface
      */
     public function read($identifier)
     {
-        return $this->entityManager->getRepository($this->resource)->find($identifier);
+        return $this->getManager()->getRepository($this->resource)->find($identifier);
     }
 
     /**
@@ -38,7 +58,7 @@ class DoctrineOrmSource implements DataSourceInterface
      */
     public function update($identifier, $patch)
     {
-        $object = $this->entityManager->getPartialReference($this->resource, $identifier);
+        $object = $this->getManager()->getPartialReference($this->resource, $identifier);
 
         $this->populateAndPersist($object, $patch);
 
@@ -50,9 +70,11 @@ class DoctrineOrmSource implements DataSourceInterface
      */
     public function delete($identifier)
     {
-        $object = $this->entityManager->getPartialReference($this->resource, $identifier);
-        $this->entityManager->remove($object);
-        $this->entityManager->flush();
+        $entityManager = $this->getManager();
+
+        $object = $entityManager->getPartialReference($this->resource, $identifier);
+        $entityManager->remove($object);
+        $entityManager->flush();
         return true;
     }
 
@@ -61,7 +83,9 @@ class DoctrineOrmSource implements DataSourceInterface
      */
     public function create($data)
     {
-        $object = $this->classFactory->create($this->entityManager->getRepository($this->resource)->getClassName());
+        $object = $this->classFactory->create(
+            $this->getManager()->getRepository($this->resource)->getClassName()
+        );
 
         $this->populateAndPersist($object, $data);
 
@@ -73,7 +97,8 @@ class DoctrineOrmSource implements DataSourceInterface
      */
     public function count()
     {
-        return $this->entityManager->createQuery("SELECT COUNT(r) FROM {$this->resource} r")->getSingleScalarResult();
+        $query = "SELECT COUNT(r) FROM {$this->resource} r";
+        return $this->registry->getManager()->createQuery($query)->getSingleScalarResult();
     }
 
     /**
@@ -100,11 +125,6 @@ class DoctrineOrmSource implements DataSourceInterface
     public function getResource()
     {
         return $this->resource;
-    }
-
-    public function setEntityManager(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
     }
 
     public function setClassFactory(ClassFactory $factory)
@@ -134,7 +154,16 @@ class DoctrineOrmSource implements DataSourceInterface
     {
         $this->populateObject($object, $data);
 
-        $this->entityManager->persist($object);
-        $this->entityManager->flush();
+        $entityManager = $this->getManager();
+        $entityManager->persist($object);
+        $entityManager->flush();
+    }
+
+    /**
+     * @return ObjectManager
+     */
+    private function getManager()
+    {
+        return $this->registry->getManager($this->managerName);
     }
 }

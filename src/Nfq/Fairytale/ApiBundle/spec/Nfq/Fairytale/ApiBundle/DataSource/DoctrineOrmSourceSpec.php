@@ -2,6 +2,7 @@
 
 namespace spec\Nfq\Fairytale\ApiBundle\DataSource;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
@@ -25,45 +26,53 @@ class DoctrineOrmSourceSpec extends ObjectBehavior
         $this->shouldHaveType('Nfq\Fairytale\ApiBundle\DataSource\DoctrineOrmSource');
     }
 
-    function it_should_read_entity(EntityManager $em, ObjectRepository $repo)
+    function it_should_read_entity(ManagerRegistry $registry, EntityManager $em, ObjectRepository $repo)
     {
         $repo->find(1)->willReturn(['foo' => 1]);
         $em->getRepository('foo')->willReturn($repo);
-        $this->setEntityManager($em);
+        $registry->getManager(null)->willReturn($em);
 
+        $this->setRegistry($registry);
         $this->read(1)->shouldBe(['foo' => 1]);
     }
 
-    function it_should_index_entity(EntityManager $em, ObjectRepository $repo)
+    function it_should_index_entity(ManagerRegistry $registry, EntityManager $em, ObjectRepository $repo)
     {
         $repo->findBy([], ['id' => 'DESC'], 1, 2)->willReturn([1, 2, 3]);
         $em->getRepository('foo')->willReturn($repo);
-        $this->setEntityManager($em);
+        $registry->getManager(null)->willReturn($em);
 
+        $this->setRegistry($registry);
         $this->index(1, 2, 'id', 'DESC')->shouldBe([1, 2, 3]);
     }
 
-    function it_should_count_entities(EntityManager $em, AbstractQuery $query)
+    function it_should_count_entities(ManagerRegistry $registry, EntityManager $em, AbstractQuery $query)
     {
         $query->getSingleScalarResult()->willReturn(42);
         $em->createQuery('SELECT COUNT(r) FROM foo r')->willReturn($query);
-        $this->setEntityManager($em);
+        $registry->getManager(null)->willReturn($em);
 
+        $this->setRegistry($registry);
         $this->count()->shouldBe(42);
     }
 
-    function it_should_delete_entity(EntityManager $em)
+    function it_should_delete_entity(ManagerRegistry $registry, EntityManager $em)
     {
         $em->getPartialReference('foo', 1)->willReturn(42);
         $em->remove(42)->shouldBeCalled();
         $em->flush()->shouldBeCalled();
-        $this->setEntityManager($em);
+        $registry->getManager(null)->willReturn($em);
 
+        $this->setRegistry($registry);
         $this->delete(1)->shouldBe(true);
     }
 
-    function it_should_create_entity(EntityManager $em, ClassFactory $factory, ObjectRepository $repository)
-    {
+    function it_should_create_entity(
+        ManagerRegistry $registry,
+        EntityManager $em,
+        ClassFactory $factory,
+        ObjectRepository $repository
+    ) {
         $entity = (object)['foo' => null, 'bar' => null];
 
         $repository->getClassName()->willReturn('foo');
@@ -71,7 +80,9 @@ class DoctrineOrmSourceSpec extends ObjectBehavior
         $em->getRepository('foo')->willReturn($repository);
         $em->persist($entity)->shouldBeCalled();
         $em->flush()->shouldBeCalled();
-        $this->setEntityManager($em);
+        $registry->getManager(null)->willReturn($em);
+
+        $this->setRegistry($registry);
         $this->setClassFactory($factory);
 
         $entity->foo = 1;
@@ -80,15 +91,16 @@ class DoctrineOrmSourceSpec extends ObjectBehavior
         $this->create(['foo' => 1, 'bar' => 2])->shouldBe($entity);
     }
 
-    function it_should_update_entity(EntityManager $em)
+    function it_should_update_entity(ManagerRegistry $registry, EntityManager $em)
     {
         $entity = (object)['foo' => null, 'bar' => null];
 
         $em->getPartialReference('foo', 1)->willReturn($entity);
         $em->persist($entity)->shouldBeCalled();
         $em->flush()->shouldBeCalled();
-        $this->setEntityManager($em);
+        $registry->getManager(null)->willReturn($em);
 
+        $this->setRegistry($registry);
         $this->update(1, ['foo' => 1, 'bar' => 2])->shouldBeKindaSame((object)['foo' => 1, 'bar' => 2]);
     }
 
