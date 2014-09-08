@@ -56,4 +56,7 @@
     {{ parent() }}
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
+    <script>
+        var activeUser = {{ activeUser |json_encode |raw }};
+    </script>
 {% endblock %}
