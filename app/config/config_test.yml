@@ -17,6 +17,8 @@ nfq_fairytale_api:
     acl: api_acl_test.yml
     mapping:
         user: Nfq\Fairytale\CoreBundle\Entity\User
+    ownership:
+        "Nfq\Fairytale\CoreBundle\Entity\User": id
 
 doctrine:
     dbal:

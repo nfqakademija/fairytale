@@ -72,3 +72,5 @@ nfq_fairytale_api:
         user: Nfq\Fairytale\CoreBundle\Entity\User
     data:
         type: orm
+    ownership:
+        "Nfq\Fairytale\CoreBundle\Entity\User": id
