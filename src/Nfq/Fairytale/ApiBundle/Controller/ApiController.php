@@ -6,6 +6,7 @@ use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\Collection\CollectionActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\Instance\InstanceActionInterface;
 use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
+use Nfq\Fairytale\ApiBundle\Helper\OwnershipResolver;
 use Nfq\Fairytale\ApiBundle\Helper\RequestValidator;
 use Nfq\Fairytale\ApiBundle\Helper\ResponseFilter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,9 +26,10 @@ class ApiController extends Controller implements ApiControllerInterface
      */
     public function customAction(Request $request, $resource, ActionInterface $action, $payload, $identifier = null)
     {
+        $token = $this->get('security.context')->getToken();
         $roles = $this->stringifyRoles(
             $this->get('security.role_hierarchy')->getReachableRoles(
-                $this->get('security.context')->getToken()->getRoles()
+                $token->getRoles()
             )
         );
 
@@ -37,6 +39,17 @@ class ApiController extends Controller implements ApiControllerInterface
 
         /** @var DataSourceFactory $factory */
         $factory = $this->container->get('nfq_fairytale.data_source.factory');
+
+        if ($identifier) {
+            /** @var OwnershipResolver $ownershipResolver */
+            $ownershipResolver = $this->container->get('nfq_fairytale.api.security.ownership_resolver');
+
+            $instance = $factory->create($resource)->read($identifier);
+            $isOwner = $ownershipResolver->resolve($token->getUser()->getId(), $instance);
+            if ($isOwner) {
+                $roles[] = 'ROLE_OWNER';
+            }
+        }
 
         switch (true) {
             case ($action instanceof CollectionActionInterface):
