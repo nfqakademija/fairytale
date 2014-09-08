@@ -1,219 +1,49 @@
 Nfq\Fairytale\CoreBundle\Entity:
-    Author:
-        CREATE:
-            id: ROLE_ADMIN
-            name: ROLE_ADMIN
-            books: ROLE_ADMIN
-        READ:
-            id: ROLE_ADMIN
-            name: ROLE_ADMIN
-            books: ROLE_ADMIN
-        UPDATE:
-            id: ROLE_ADMIN
-            name: ROLE_ADMIN
-            books: ROLE_ADMIN
-        DELETE:
-            id: ROLE_ADMIN
-            name: ROLE_ADMIN
-            books: ROLE_ADMIN
-    Book:
-        CREATE:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            description: ROLE_ADMIN
-            genre: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            categories: ROLE_ADMIN
-            authors: ROLE_ADMIN
-        READ:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            description: ROLE_ADMIN
-            genre: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            categories: ROLE_ADMIN
-            authors: ROLE_ADMIN
-        UPDATE:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            description: ROLE_ADMIN
-            genre: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            categories: ROLE_ADMIN
-            authors: ROLE_ADMIN
-        DELETE:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            description: ROLE_ADMIN
-            genre: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            categories: ROLE_ADMIN
-            authors: ROLE_ADMIN
-    Category:
-        CREATE:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            books: ROLE_ADMIN
-        READ:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            books: ROLE_ADMIN
-        UPDATE:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            books: ROLE_ADMIN
-        DELETE:
-            id: ROLE_ADMIN
-            title: ROLE_ADMIN
-            books: ROLE_ADMIN
-    Comment:
-        CREATE:
-            id: ROLE_ADMIN
-            content: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
-        READ:
-            id: ROLE_ADMIN
-            content: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
-        UPDATE:
-            id: ROLE_ADMIN
-            content: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
-        DELETE:
-            id: ROLE_ADMIN
-            content: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
-    Rating:
-        CREATE:
-            id: ROLE_ADMIN
-            value: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
-        READ:
-            id: ROLE_ADMIN
-            value: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
-        UPDATE:
-            id: ROLE_ADMIN
-            value: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
-        DELETE:
-            id: ROLE_ADMIN
-            value: ROLE_ADMIN
-            created: ROLE_ADMIN
-            user: ROLE_ADMIN
-            book: ROLE_ADMIN
     User:
-        CREATE:
-            id: ROLE_ADMIN
-            name: ROLE_ADMIN
-            surname: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            username: ROLE_ADMIN
-            usernameCanonical: ROLE_ADMIN
-            email: ROLE_ADMIN
-            emailCanonical: ROLE_ADMIN
-            enabled: ROLE_ADMIN
-            salt: ROLE_ADMIN
-            password: ROLE_ADMIN
-            plainPassword: ROLE_ADMIN
-            lastLogin: ROLE_ADMIN
-            confirmationToken: ROLE_ADMIN
-            passwordRequestedAt: ROLE_ADMIN
-            groups: ROLE_ADMIN
-            locked: ROLE_ADMIN
-            expired: ROLE_ADMIN
-            expiresAt: ROLE_ADMIN
-            roles: ROLE_ADMIN
-            credentialsExpired: ROLE_ADMIN
-            credentialsExpireAt: ROLE_ADMIN
-        READ:
-            id: ROLE_USER
-            name: ROLE_USER
-            surname: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            username: ROLE_ADMIN
-            usernameCanonical: ROLE_ADMIN
-            email: ROLE_ADMIN
-            emailCanonical: ROLE_ADMIN
-            enabled: ROLE_ADMIN
-            salt: ROLE_ADMIN
-            password: ROLE_ADMIN
-            plainPassword: ROLE_ADMIN
-            lastLogin: ROLE_ADMIN
-            confirmationToken: ROLE_ADMIN
-            passwordRequestedAt: ROLE_ADMIN
-            groups: ROLE_ADMIN
-            locked: ROLE_ADMIN
-            expired: ROLE_ADMIN
-            expiresAt: ROLE_ADMIN
-            roles: ROLE_ADMIN
-            credentialsExpired: ROLE_ADMIN
-            credentialsExpireAt: ROLE_ADMIN
-        UPDATE:
-            id: ROLE_ADMIN
-            name: ROLE_ADMIN
-            surname: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            username: ROLE_ADMIN
-            usernameCanonical: ROLE_ADMIN
-            email: ROLE_ADMIN
-            emailCanonical: ROLE_ADMIN
-            enabled: ROLE_ADMIN
-            salt: ROLE_ADMIN
-            password: ROLE_ADMIN
-            plainPassword: ROLE_ADMIN
-            lastLogin: ROLE_ADMIN
-            confirmationToken: ROLE_ADMIN
-            passwordRequestedAt: ROLE_ADMIN
-            groups: ROLE_ADMIN
-            locked: ROLE_ADMIN
-            expired: ROLE_ADMIN
-            expiresAt: ROLE_ADMIN
-            roles: ROLE_ADMIN
-            credentialsExpired: ROLE_ADMIN
-            credentialsExpireAt: ROLE_ADMIN
-        DELETE:
-            id: ROLE_ADMIN
-            name: ROLE_ADMIN
-            surname: ROLE_ADMIN
-            comments: ROLE_ADMIN
-            ratings: ROLE_ADMIN
-            username: ROLE_ADMIN
-            usernameCanonical: ROLE_ADMIN
-            email: ROLE_ADMIN
-            emailCanonical: ROLE_ADMIN
-            enabled: ROLE_ADMIN
-            salt: ROLE_ADMIN
-            password: ROLE_ADMIN
-            plainPassword: ROLE_ADMIN
-            lastLogin: ROLE_ADMIN
-            confirmationToken: ROLE_ADMIN
-            passwordRequestedAt: ROLE_ADMIN
-            groups: ROLE_ADMIN
-            locked: ROLE_ADMIN
-            expired: ROLE_ADMIN
-            expiresAt: ROLE_ADMIN
-            roles: ROLE_ADMIN
-            credentialsExpired: ROLE_ADMIN
-            credentialsExpireAt: ROLE_ADMIN
+        instance.read:
+            read:
+                id:         ROLE_USER
+                name:       ROLE_USER
+                email:      ROLE_ADMIN
+            write:  ROLE_ADMIN
+        instance.delete:
+            read:
+                status:     ROLE_ADMIN
+        collection.index:
+            read:
+                id:         ROLE_USER
+                name:       ROLE_USER
+                email:      ROLE_ADMIN
+        collection.create:
+            read:
+                id:         ROLE_ADMIN
+                name:       ROLE_ADMIN
+                surname:    ROLE_ADMIN
+                username:   ROLE_ADMIN
+                email:      ROLE_ADMIN
+                password:   ROLE_ADMIN
+            write:
+                id:         ROLE_ADMIN
+                name:       ROLE_ADMIN
+                surname:    ROLE_ADMIN
+                username:   ROLE_ADMIN
+                email:      ROLE_ADMIN
+                password:   ROLE_ADMIN
+        instance.update:
+            read:
+                id:         ROLE_OWNER
+                name:       ROLE_OWNER
+                surname:    ROLE_OWNER
+                username:   ROLE_OWNER
+                email:      ROLE_OWNER
+                password:   ROLE_OWNER
+            write:
+                id:         ROLE_ADMIN
+                name:       ROLE_OWNER
+                surname:    ROLE_OWNER
+                username:   ROLE_ADMIN
+                email:      ROLE_OWNER
+                password:   ROLE_OWNER
+        collection.count:
+            read:
+                count:      ROLE_USER
