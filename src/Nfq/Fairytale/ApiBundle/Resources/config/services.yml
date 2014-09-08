@@ -36,3 +36,8 @@ services:
         calls:
             - [setPermissions, [@nfq_fairytale.api.security.permissions]]
             - [setSerializer, [@jms_serializer]]
+
+    nfq_fairytale.api.security.ownership_resolver:
+        class: Nfq\Fairytale\ApiBundle\Helper\OwnershipResolver
+        calls:
+            - [setOwnerships, [%nfq_fairytale_api.config.ownership%]]
