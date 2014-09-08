@@ -1,17 +1,17 @@
 {% extends "::base.html.twig" %}
 
 {% block container %}
-    {% verbatim %}
     <div class="row">
         <div class="col-md-3 sidebar">
-            <div class="sidebar-module" ng-app="controller.User" ng-init="userController.id=2">
+            <div class="sidebar-module" ng-app="fairytale">
                 <div class="sidebar-user" ng-controller="userController">
+                    {% verbatim %}
                     <div class="user-photo left">{{ user.photo }}</div>
                     <div class="user-name left">{{ user.name }}<br />{{ user.surname }}</div>
                     <div class="clear"></div>
+                    {% endverbatim %}
                 </div>
             </div>
-    {% endverbatim %}
             <div class="sidebar-module">
                 <ol class="nav user">
                     <li><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar skaitau</li>
@@ -19,7 +19,6 @@
                     <li><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti knygą</li>
                 </ol>
             </div>
-    {% verbatim %}
             <div class="sidebar-module">
                 <div class="sidebar-header">SRITYS</div>
                 <ol class="nav">
@@ -30,21 +29,31 @@
             </div>
             <hr>
             <div class="sidebar-module categories">
+                {% verbatim %}
                 <ol class="nav" ng-repeat="category in categories">
                     <li>{{ category.name }}</li>
                 </ol>
+                {% endverbatim %}
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="jumbotron"></div>
-            <div class="row"></div>
+        <div class="col-md-9 content">
+            <div class="row header">
+                <div class="col-md-4 logo">
+                    <img src="{{ asset('bundles/nfqfairytalefrontend/logo.png') }}" class="left">
+                    <div class="left"><p>Bi</p><p>blio</p><p>teka</p></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="col-md-8 search">
+                    <img src="{{ asset('bundles/nfqfairytalefrontend/ico-search.png') }}">
+                    <input type="text" placeholder="Ieškoti knygos">
+                </div>
+            </div>
         </div>
     </div>
-    {% endverbatim %}
 {% endblock %}
 
 {% block javascript %}
     {{ parent() }}
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
 {% endblock %}
