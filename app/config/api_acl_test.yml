@@ -35,10 +35,6 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_OWNER
                 name:       ROLE_OWNER
-                surname:    ROLE_OWNER
-                username:   ROLE_OWNER
-                email:      ROLE_OWNER
-                password:   ROLE_OWNER
             write:
                 id:         ROLE_ADMIN
                 name:       ROLE_OWNER
