@@ -1,7 +1,8 @@
 angular
     .module('fairytale.controller.user', [])
-    .controller('userController', function ($scope, $http) {
-        $http.get('api/user/2').success(function (data) {
+    .controller('UserController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+        var id = $window.activeUser.id;
+        $http.get('api/user/' + id).success(function (data) {
             $scope.user = data;
         });
-    });
+    }]);

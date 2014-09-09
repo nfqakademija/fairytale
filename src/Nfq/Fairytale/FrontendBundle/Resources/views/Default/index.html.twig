@@ -3,20 +3,20 @@
 {% block container %}
     <div class="row">
         <div class="col-md-3 sidebar">
-            <div class="sidebar-module" ng-app="fairytale">
-                <div class="sidebar-user" ng-controller="userController">
+            <div class="sidebar-module">
+                <div class="sidebar-user" ng-controller="UserController">
                     {% verbatim %}
-                    <div class="user-photo left">{{ user.photo }}</div>
+                    <div class="user-photo left" ng-if="user.photo">{{ user.photo }}</div>
                     <div class="user-name left">{{ user.name }}<br />{{ user.surname }}</div>
                     <div class="clear"></div>
                     {% endverbatim %}
                 </div>
             </div>
-            <div class="sidebar-module">
+            <div class="sidebar-module" ng-controller="MainController">
                 <ol class="nav user">
-                    <li><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar skaitau</li>
-                    <li><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos knygos</li>
-                    <li><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti knygą</li>
+                    <li><a href="#user"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar skaitau</a></li>
+                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos knygos</a></li>
+                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti knygą</a></li>
                 </ol>
             </div>
             <div class="sidebar-module">
@@ -48,6 +48,7 @@
                     <input type="text" placeholder="Ieškoti knygos">
                 </div>
             </div>
+            <div ng-view></div>
         </div>
     </div>
 {% endblock %}
@@ -55,7 +56,40 @@
 {% block javascript %}
     {{ parent() }}
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.min.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
+    <script src="bundles/nfqfairytalefrontend/scripts/app.js"></script>
+    <script type="text/ng-template" id="user-profile.html">
+        <div class="row">
+            <div class="col-md-12 content-title">Profilis</div>
+        </div>
+        {% verbatim %}
+        <div class="row" id="user-information">
+            <div class="col-md-7">
+                <div class="user-name">{{ user.name }} {{ user.surname }}</div>
+                <div class="user-photo left">
+                    <img ng-if="user.photo" ng-src="{{ user.photo }}">
+                    <img ng-if="!user.photo" src="bundles/nfqfairytalefrontend/alien.png">
+                </div>
+                <div class="user-detail left">
+                    <p class="email-title">El. paštas:</p>
+                    <p class="email">{{ user.email }}</p>
+                    <p class="edit"><img src="bundles/nfqfairytalefrontend/ico-edit.png"> <a href="#user-edit">Keisti informaciją</a></p>
+                </div>
+                <div class="clear"></div>
+                <div class="user-read-statistic">
+                    <p><span>Viso perskaitė:</span>0</p>
+                    <p><span>Vidutiniškai skaito knygą:</span>0</p>
+                    <p><span>Paliko atsiliepimų:</span>0</p>
+                    <p><span>Dažniausiai skaito:</span>-</p>
+                </div>
+            </div>
+            <div class="col-md-5">
+            </div>
+        </div>
+        {% endverbatim %}
+        <div>
+    </script>
     <script>
         var activeUser = {{ activeUser |json_encode |raw }};
     </script>
