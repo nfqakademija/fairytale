@@ -42,6 +42,17 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
         $manager->persist($user);
 
+        $user = new User();
+        $user->setUsername('Mindaugas');
+        $this->setPassword($user, 'Mindaugas');
+        $user->setEmail('mindaugas.venckus@nfq.lt');
+        $user->setSurname('Venckus');
+        $user->setName('Mindaugas');
+        $user->setRoles(['ROLE_USER']);
+        $user->setEnabled(true);
+
+        $manager->persist($user);
+
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setUsername($faker->userName);
