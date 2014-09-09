@@ -70,5 +70,6 @@ nfq_fairytale_api:
     acl: api_acl.yml
     mapping:
         user: Nfq\Fairytale\CoreBundle\Entity\User
+        category: Nfq\Fairytale\CoreBundle\Entity\Category
     data:
         type: orm

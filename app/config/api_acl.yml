@@ -1,10 +1,13 @@
+# Warning: this file is setup in sync with behat tests. Changes here might break them
+
 Nfq\Fairytale\CoreBundle\Entity:
     User:
         instance.read:
             read:
                 id:         ROLE_USER
                 name:       ROLE_USER
-                email:      ROLE_ADMIN
+                surname:    ROLE_USER
+                email:      ROLE_USER
             write:  ROLE_ADMIN
         instance.delete:
             read:
@@ -47,3 +50,8 @@ Nfq\Fairytale\CoreBundle\Entity:
         collection.count:
             read:
                 count:      ROLE_USER
+    Category:
+        collection.index:
+            read:
+                id:         ROLE_USER
+                title:       ROLE_USER

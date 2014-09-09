@@ -1,9 +1,13 @@
 angular
-    .module('fairytale', ['ngRoute', 'fairytale.controller.user'])
-    .controller('MainController', function($scope) {
+    .module('fairytale', [
+        'ngRoute',
+        'fairytale.controller.user',
+        'fairytale.controller.categories'
+    ])
+    .controller('MainController', function ($scope) {
 
     })
-    .config(function($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 controller: 'MainController'

@@ -28,10 +28,10 @@
                 </ol>
             </div>
             <hr>
-            <div class="sidebar-module categories">
+            <div class="sidebar-module categories" ng-controller="CategoriesController">
                 {% verbatim %}
                 <ol class="nav" ng-repeat="category in categories">
-                    <li>{{ category.name }}</li>
+                    <li>{{ category.title }}</li>
                 </ol>
                 {% endverbatim %}
             </div>
@@ -58,6 +58,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.min.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
+    <script src="bundles/nfqfairytalefrontend/scripts/Controller/CategoriesController.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/app.js"></script>
     <script type="text/ng-template" id="user-profile.html">
         <div class="row">
