@@ -4,7 +4,8 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_USER
                 name:       ROLE_USER
-                email:      ROLE_ADMIN
+                surname:    ROLE_USER
+                email:      ROLE_USER
             write:  ROLE_ADMIN
         instance.delete:
             read:
@@ -50,5 +51,5 @@ Nfq\Fairytale\CoreBundle\Entity:
     Category:
         collection.index:
             read:
-                id:          ROLE_USER
+                id:         ROLE_USER
                 title:       ROLE_USER
