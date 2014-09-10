@@ -76,7 +76,7 @@ Feature: CRUD
 
     Scenario: I can delete user
         Given I am authenticated as "admin"
-        When I send a DELETE request to "/api/user/3"
+        When I send a DELETE request to "/api/user/10"
         Then the response code should be 200
         And the response should be json: 
         """
@@ -84,5 +84,5 @@ Feature: CRUD
             "status":"success"
         }
         """
-        And I send a GET request to "/api/user/3"
+        And I send a GET request to "/api/user/10"
         And the response code should be 404
