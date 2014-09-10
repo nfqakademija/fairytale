@@ -40,29 +40,8 @@ class ApiController extends Controller implements ApiControllerInterface
         /** @var DataSourceFactory $factory */
         $factory = $this->container->get('nfq_fairytale.data_source.factory');
 
-        if ($identifier) {
-            /** @var OwnershipResolver $ownershipResolver */
-            $ownershipResolver = $this->container->get('nfq_fairytale.api.security.ownership_resolver');
-
-            $instance = $factory->create($resource)->read($identifier);
-            $isOwner = $ownershipResolver->resolve($token->getUser()->getId(), $instance);
-            if ($isOwner) {
-                $roles[] = 'ROLE_OWNER';
-            }
-        }
-
-        switch (true) {
-            case ($action instanceof CollectionActionInterface):
-                $result = $action->execute($request, $factory->create($resource));
-                break;
-            case ($action instanceof InstanceActionInterface):
-                $result = $action->execute($request, $factory->create($resource), $identifier);
-                break;
-            default:
-                throw new \InvalidArgumentException(
-                    'Action must implement CollectionActionInterface or InstanceActionInterface'
-                );
-        }
+        $roles = $this->handleObjectOwnership($resource, $identifier, $factory, $token, $roles);
+        $result = $this->execute($request, $resource, $action, $identifier, $factory);
 
         /** @var ResponseFilter $responseFilter */
         $responseFilter = $this->container->get('nfq_fairytale.api.security.response_filter');
@@ -88,5 +67,55 @@ class ApiController extends Controller implements ApiControllerInterface
             },
             $roles
         );
+    }
+
+    /**
+     * @param Request         $request
+     * @param                 $resource
+     * @param ActionInterface $action
+     * @param                 $identifier
+     * @param                 $factory
+     * @return \Nfq\Fairytale\ApiBundle\Actions\ActionResult
+     */
+    private function execute(Request $request, $resource, ActionInterface $action, $identifier, $factory)
+    {
+        switch (true) {
+            case ($action instanceof CollectionActionInterface):
+                $result = $action->execute($request, $factory->create($resource));
+                break;
+            case ($action instanceof InstanceActionInterface):
+                $result = $action->execute($request, $factory->create($resource), $identifier);
+                break;
+            default:
+                throw new \InvalidArgumentException(
+                    'Action must implement CollectionActionInterface or InstanceActionInterface'
+                );
+        }
+        return $result;
+    }
+
+    /**
+     * @param $resource
+     * @param $identifier
+     * @param $factory
+     * @param $token
+     * @param $roles
+     * @return array
+     */
+    private function handleObjectOwnership($resource, $identifier, $factory, $token, $roles)
+    {
+        if ($identifier) {
+            /** @var OwnershipResolver $ownershipResolver */
+            $ownershipResolver = $this->container->get('nfq_fairytale.api.security.ownership_resolver');
+
+            $instance = $factory->create($resource)->read($identifier);
+            $isOwner = $ownershipResolver->resolve($token->getUser()->getId(), $instance);
+            if ($isOwner) {
+                $roles[] = 'ROLE_OWNER';
+                return $roles;
+            }
+            return $roles;
+        }
+        return $roles;
     }
 }
