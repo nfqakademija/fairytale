@@ -11,9 +11,8 @@ Nfq\Fairytale\CoreBundle\Entity\Book:
             length: 255
         description:
             type: text
-        genre:
-            type: string
-            length: 255
+        summary:
+            type: text
     manyToMany:
         categories:
             targetEntity: Category

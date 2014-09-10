@@ -28,7 +28,7 @@ class Book
     /**
      * @var string
      */
-    private $genre;
+    private $summary;
 
     /**
      * @var Collection
@@ -65,6 +65,7 @@ class Book
      * Set id
      *
      * @param integer $id
+     *
      * @return Book
      */
     public function setId($id)
@@ -77,7 +78,7 @@ class Book
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,6 +89,7 @@ class Book
      * Set title
      *
      * @param string $title
+     *
      * @return Book
      */
     public function setTitle($title)
@@ -100,7 +102,7 @@ class Book
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -111,6 +113,7 @@ class Book
      * Set description
      *
      * @param string $description
+     *
      * @return Book
      */
     public function setDescription($description)
@@ -123,7 +126,7 @@ class Book
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -131,32 +134,34 @@ class Book
     }
 
     /**
-     * Set genre
+     * Set summary
      *
-     * @param string $genre
+     * @param string $summary
+     *
      * @return Book
      */
-    public function setGenre($genre)
+    public function setSummary($summary)
     {
-        $this->genre = $genre;
+        $this->summary = $summary;
 
         return $this;
     }
 
     /**
-     * Get genre
+     * Get summary
      *
-     * @return string 
+     * @return string
      */
-    public function getGenre()
+    public function getSummary()
     {
-        return $this->genre;
+        return $this->summary;
     }
 
     /**
      * Add ratings
      *
      * @param Rating $ratings
+     *
      * @return Book
      */
     public function addRating(Rating $ratings)
@@ -190,6 +195,7 @@ class Book
      * Add comments
      *
      * @param Comment $comments
+     *
      * @return Book
      */
     public function addComment(Comment $comments)
@@ -223,6 +229,7 @@ class Book
      * Add categories
      *
      * @param Category $categories
+     *
      * @return Book
      */
     public function addCategory(Category $categories)
@@ -256,6 +263,7 @@ class Book
      * Add authors
      *
      * @param Author $authors
+     *
      * @return Book
      */
     public function addAuthor(Author $authors)
