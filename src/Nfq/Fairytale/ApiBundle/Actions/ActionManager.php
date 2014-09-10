@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ActionManager
 {
-    /** @var CollectionActionInterface[] */
+    /** @var array */
     protected $actions = [
         '*' => [],
     ];
@@ -25,7 +25,8 @@ class ActionManager
      */
     public function resolve($resource, $actionName, $httpMethod, $forInstance = false)
     {
-        $resource = array_key_exists($resource, $this->actions) ? $this->actions[$resource] : $this->actions['*'];
+        $resource = array_key_exists($resource, $this->actions) ? $this->actions[$resource] : [];
+        $resource = array_merge($resource, $this->actions['*']);
 
         $action = @$resource[$actionName ?: ''][$httpMethod][$forInstance];
 
