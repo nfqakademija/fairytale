@@ -11,10 +11,6 @@ use Assetic\Util\LessUtils;
  * Loads LESS files using the PHP implementation of less, ILess
  *
  * @link https://github.com/mishal/iless
- *
- * @SuppressWarnings(PHPMD)
- * @codeCoverageIgnore
- * @todo Remove after proper environment preparation
  */
 class ILessFilter implements DependencyExtractorInterface
 {
@@ -40,6 +36,10 @@ class ILessFilter implements DependencyExtractorInterface
         $asset->setContent($parser->parseString($asset->getContent())->getCSS());
     }
 
+    /**
+     * {@inheritDoc}
+     * @SuppressWarnings("unused")
+     */
     public function filterDump(AssetInterface $asset)
     {
     }
@@ -73,12 +73,10 @@ class ILessFilter implements DependencyExtractorInterface
                     foreach ($coll as $leaf) {
                         $leaf->ensureFilter($this);
                         $children[] = $leaf;
-                        goto next_reference;
+                        break 2;
                     }
                 }
             }
-
-            next_reference:
         }
 
         return $children;
