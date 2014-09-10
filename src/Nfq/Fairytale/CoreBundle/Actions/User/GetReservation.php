@@ -28,7 +28,7 @@ class GetReservation extends BaseInstanceAction
     {
         $resource = $this->factory->create('Nfq\Fairytale\CoreBundle\Entity\Reservation');
 
-        $reservations = $resource->query(['user' => $identifier]);
+        $reservations = $resource->query(['user' => $identifier, 'status' => 'waiting']);
         return ActionResult::instance(200, ['id' => count($reservations) ? $reservations[0]->getId() : null]);
     }
 

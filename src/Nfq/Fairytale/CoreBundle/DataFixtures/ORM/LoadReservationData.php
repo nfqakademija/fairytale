@@ -26,13 +26,21 @@ class LoadReservationData extends AbstractFixture implements OrderedFixtureInter
     {
         /** @var EntityManager $em */
         $em = $manager;
+
         $example = new Reservation();
         $example->setUser($em->getPartialReference('Nfq\Fairytale\CoreBundle\Entity\User', 1));
         $example->setBook($em->getPartialReference('Nfq\Fairytale\CoreBundle\Entity\Book', 1));
-        $example->setStatus('pending');
+        $example->setStatus('waiting');
         $example->setCreatedAt(new \DateTime());
-
         $manager->persist($example);
+
+        $example = new Reservation();
+        $example->setUser($em->getPartialReference('Nfq\Fairytale\CoreBundle\Entity\User', 2));
+        $example->setBook($em->getPartialReference('Nfq\Fairytale\CoreBundle\Entity\Book', 1));
+        $example->setStatus('returned');
+        $example->setCreatedAt(new \DateTime());
+        $manager->persist($example);
+
 
         $manager->flush();
     }
