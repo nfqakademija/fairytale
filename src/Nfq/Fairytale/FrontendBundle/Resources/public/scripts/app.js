@@ -13,7 +13,7 @@ angular
                 controller: 'MainController'
             })
             .when('/user', {
-                templateUrl: 'user-profile.html',
+                templateUrl: '/partial/user-profile',
                 controller: 'UserController'
             })
             .otherwise({

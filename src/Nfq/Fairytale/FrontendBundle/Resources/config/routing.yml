@@ -7,4 +7,4 @@ partial:
     path:     /partial/{template}
     defaults: { _controller: NfqFairytaleFrontendBundle:Template:partial }
     requirements:
-        _template: page1|page2
+        template: page1|page2|user-profile

@@ -60,37 +60,6 @@
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/CategoriesController.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/app.js"></script>
-    <script type="text/ng-template" id="user-profile.html">
-        <div class="row">
-            <div class="col-md-12 content-title">Profilis</div>
-        </div>
-        {% verbatim %}
-        <div class="row" id="user-information">
-            <div class="col-md-7">
-                <div class="user-name">{{ user.name }} {{ user.surname }}</div>
-                <div class="user-photo left">
-                    <img ng-if="user.photo" ng-src="{{ user.photo }}">
-                    <img ng-if="!user.photo" src="bundles/nfqfairytalefrontend/alien.png">
-                </div>
-                <div class="user-detail left">
-                    <p class="email-title">El. paštas:</p>
-                    <p class="email">{{ user.email }}</p>
-                    <p class="edit"><img src="bundles/nfqfairytalefrontend/ico-edit.png"> <a href="#user-edit">Keisti informaciją</a></p>
-                </div>
-                <div class="clear"></div>
-                <div class="user-read-statistic">
-                    <p><span>Viso perskaitė:</span>0</p>
-                    <p><span>Vidutiniškai skaito knygą:</span>0</p>
-                    <p><span>Paliko atsiliepimų:</span>0</p>
-                    <p><span>Dažniausiai skaito:</span>-</p>
-                </div>
-            </div>
-            <div class="col-md-5">
-            </div>
-        </div>
-        {% endverbatim %}
-        <div>
-    </script>
     <script>
         var activeUser = {{ activeUser |json_encode |raw }};
     </script>
