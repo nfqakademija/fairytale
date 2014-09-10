@@ -55,15 +55,6 @@ interface DataSourceInterface
     public function count();
 
     /**
-     * Checks if specific object is owned by given user (used for ROLE_OWNER magic)
-     *
-     * @param object $object
-     * @param object $user
-     * @return bool True if user owns the object
-     */
-    public function isOwnedBy($object, $user);
-
-    /**
      * Sets resource for current data source
      *
      * @param string $resource

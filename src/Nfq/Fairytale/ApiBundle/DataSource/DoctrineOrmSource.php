@@ -104,15 +104,6 @@ class DoctrineOrmSource implements DataSourceInterface
     /**
      * @inheritdoc
      */
-    public function isOwnedBy($object, $user)
-    {
-        // TODO: Implement isOwnedBy() method.
-        return false;
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function setResource($resource)
     {
         $this->resource = $resource;
