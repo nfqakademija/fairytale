@@ -24,7 +24,7 @@ class ILessFilter implements DependencyExtractorInterface
         $imports = array();
 
         if ($root && $path) {
-            $imports[] = dirname($root.'/'.$path);
+            $imports[] = dirname($root . '/' . $path);
         }
 
         foreach ($this->loadPaths as $loadPath) {
@@ -57,9 +57,7 @@ class ILessFilter implements DependencyExtractorInterface
 
         $children = [];
         foreach (LessUtils::extractImports($content) as $reference) {
-            if ('.css' !== substr($reference, -4)) {
-                $children = array_merge($children, $this->findChildren($factory, $reference, $loadPaths));
-            }
+            $children = array_merge($children, $this->findChildren($factory, $reference, $loadPaths));
         }
 
         return $children;
@@ -68,12 +66,15 @@ class ILessFilter implements DependencyExtractorInterface
     protected function findChildren($factory, $reference, $loadPaths)
     {
         $children = [];
-        if ('.less' !== substr($reference, -5)) {
+        if ('.css' === substr($reference, -4)) {
+            return $children;
+        } elseif ('.less' !== substr($reference, -5)) {
             $reference .= '.less';
         }
 
         foreach ($loadPaths as $loadPath) {
-            if (file_exists($file = $loadPath.'/'.$reference)) {
+            $file = $loadPath . '/' . $reference;
+            if (file_exists($file)) {
                 $coll = $factory->createAsset($file, array(), array('root' => $loadPath));
                 foreach ($coll as $leaf) {
                     $leaf->ensureFilter($this);
