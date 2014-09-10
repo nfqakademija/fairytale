@@ -51,6 +51,10 @@ Nfq\Fairytale\CoreBundle\Entity:
         user.books:
             read:
                 id:         ROLE_USER
+        user.reservation:
+            read:
+                id:         ROLE_USER
+                book:       ROLE_USER
     Category:
         collection.index:
             read:
