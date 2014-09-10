@@ -57,7 +57,9 @@ class ILessFilter implements DependencyExtractorInterface
 
         $children = [];
         foreach (LessUtils::extractImports($content) as $reference) {
-            $children = array_merge($children, $this->findCildren($factory, $reference, $loadPaths));
+            if ('.css' !== substr($reference, -4)) {
+                $children = array_merge($children, $this->findChildren($factory, $reference, $loadPaths));
+            }
         }
 
         return $children;
@@ -66,11 +68,7 @@ class ILessFilter implements DependencyExtractorInterface
     protected function findChildren($factory, $reference, $loadPaths)
     {
         $children = [];
-        if ('.css' === substr($reference, -4)) {
-            // skip normal css imports
-            // todo: skip imports with media queries
-            return $children;
-        } elseif ('.less' !== substr($reference, -5)) {
+        if ('.less' !== substr($reference, -5)) {
             $reference .= '.less';
         }
 
