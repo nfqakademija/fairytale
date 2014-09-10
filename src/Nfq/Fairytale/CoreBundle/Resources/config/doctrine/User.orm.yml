@@ -19,8 +19,7 @@ Nfq\Fairytale\CoreBundle\Entity\User:
         ratings:
             targetEntity: Rating
             mappedBy: user
-    manyToOne:
-        reservedBook:
-            targetEntity: Book
-            inversedBy: reservedBy
+        reservations:
+            targetEntity: Reservation
+            mappedBy: user
     lifecycleCallbacks: {}

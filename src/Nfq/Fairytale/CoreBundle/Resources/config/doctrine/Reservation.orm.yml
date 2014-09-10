@@ -1,0 +1,23 @@
+Nfq\Fairytale\CoreBundle\Entity\Reservation:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+        status:
+            type: string
+            length: 12
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: reservations
+        book:
+            targetEntity: Book
+            inversedBy: reservations
+    lifecycleCallbacks: {  }

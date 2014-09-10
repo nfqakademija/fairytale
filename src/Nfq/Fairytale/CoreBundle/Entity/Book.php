@@ -292,4 +292,42 @@ class Book
     {
         return $this->authors;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $reservations;
+
+
+    /**
+     * Add reservations
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations
+     * @return Book
+     */
+    public function addReservation(\Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations)
+    {
+        $this->reservations[] = $reservations;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservations
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations
+     */
+    public function removeReservation(\Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations)
+    {
+        $this->reservations->removeElement($reservations);
+    }
+
+    /**
+     * Get reservations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
 }
