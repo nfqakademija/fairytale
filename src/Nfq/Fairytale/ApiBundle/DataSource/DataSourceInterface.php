@@ -48,6 +48,14 @@ interface DataSourceInterface
     public function create($data);
 
     /**
+     * Returns elements that matches the query
+     *
+     * @param mixed $query
+     * @return array
+     */
+    public function query($query);
+
+    /**
      * Returns number of elements in collection
      *
      * @return int

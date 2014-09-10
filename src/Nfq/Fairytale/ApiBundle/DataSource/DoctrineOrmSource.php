@@ -102,6 +102,17 @@ class DoctrineOrmSource implements DataSourceInterface
     }
 
     /**
+     * Returns elements that matches the query
+     *
+     * @param mixed $query
+     * @return array
+     */
+    public function query($query)
+    {
+        return $this->getManager()->getRepository($this->resource)->findBy($query);
+    }
+
+    /**
      * @inheritdoc
      */
     public function setResource($resource)

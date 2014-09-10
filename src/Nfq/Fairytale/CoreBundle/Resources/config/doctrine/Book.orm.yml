@@ -27,4 +27,7 @@ Nfq\Fairytale\CoreBundle\Entity\Book:
         comments:
             targetEntity: Comment
             mappedBy: book
+        reservedBy:
+            targetEntity: User
+            mappedBy: reservedBook
     lifecycleCallbacks: {}

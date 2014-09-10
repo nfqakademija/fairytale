@@ -48,6 +48,9 @@ Nfq\Fairytale\CoreBundle\Entity:
         collection.count:
             read:
                 count:      ROLE_USER
+        user.books:
+            read:
+                id:         ROLE_USER
     Category:
         collection.index:
             read:

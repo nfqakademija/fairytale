@@ -29,3 +29,10 @@ services:
         tags:
             - { name: nfq_fairytale.api.action.collection, resource: '*', method: GET }
 
+    # TODO: move to CoreBundle (right now compiler pass does not see those *.yml)
+    nfq_fairytale.action.user.books.list:
+        class: Nfq\Fairytale\CoreBundle\Actions\User\ListBooks
+        calls:
+            - [setSecurityContext, [@security.context]]
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: books, method: GET }

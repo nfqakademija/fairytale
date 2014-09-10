@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Nfq\Fairytale\ApiBundle\DataSource\ClassFactory;
 use PhpSpec\ObjectBehavior;
@@ -102,6 +103,19 @@ class DoctrineOrmSourceSpec extends ObjectBehavior
 
         $this->setRegistry($registry);
         $this->update(1, ['foo' => 1, 'bar' => 2])->shouldBeKindaSame((object)['foo' => 1, 'bar' => 2]);
+    }
+
+    function it_should_perform_search_query(ManagerRegistry $registry, EntityManager $em, EntityRepository $repo)
+    {
+        $query = ['foo' => 'bar'];
+        $result = [['id' => 1, 'foo' => 'bar']];
+
+        $repo->findBy($query)->willReturn($result);
+        $em->getRepository('foo')->willReturn($repo);
+        $registry->getManager(null)->willReturn($em);
+
+        $this->setRegistry($registry);
+        $this->query($query)->shouldBe($result);
     }
 
     function getMatchers()
