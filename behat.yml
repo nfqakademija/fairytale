@@ -13,7 +13,8 @@ default:
             lifetime:    feature
             autoload:    true
             directories: ~
-            fixtures:    ~
+            fixtures:
+                - Nfq\Fairytale\ApiBundle\DataFixtures\ORM\LoadUserData
     suites:
         NfqFairytaleApiBundle:
             type: symfony_bundle
