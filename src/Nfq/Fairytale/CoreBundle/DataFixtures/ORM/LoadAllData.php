@@ -7,6 +7,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
 use Faker\ORM\Doctrine\Populator;
+use Nfq\Fairytale\CoreBundle\Entity\Author;
+use Nfq\Fairytale\CoreBundle\Entity\Book;
+use Nfq\Fairytale\CoreBundle\Entity\Category;
 use Nfq\Fairytale\CoreBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -35,8 +38,8 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
         $populator = new Populator($generator, $manager);
         $this->populateUsers($populator, $generator);
         $this->populateAuthors($populator, $generator);
-        $this->populateBooks($populator, $generator);
         $this->populateCategories($populator, $generator);
+        $this->populateBooks($populator, $generator);
         $this->populateReservations($populator, $generator);
         $this->populateRatings($populator, $generator);
         $this->populateComments($populator, $generator);
@@ -68,7 +71,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'email'               => function () use ($generator) {
                     return $generator->unique()->companyEmail;
                 },
-                'username'               => function () use ($generator) {
+                'username'            => function () use ($generator) {
                     return $generator->unique()->username;
                 },
                 'enabled'             => $this->returnValue(true),
@@ -134,24 +137,37 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'description' => function () use ($generator) {
                     return $generator->realText();
                 },
-                'pages' => function () use ($generator) {
+                'pages'       => function () use ($generator) {
                     return $generator->numberBetween(50, 500);
                 },
-                'publisher' => function () use ($generator) {
+                'publisher'   => function () use ($generator) {
                     return $generator->company;
                 },
-                'language' => function () use ($generator) {
+                'language'    => function () use ($generator) {
                     return $generator->languageCode;
                 },
-                'image' => function () use ($generator) {
-                    return $generator->image();
+                'image'       => function () use ($generator) {
+                    return '';//$generator->image();
                 },
-                'isbn' => function () use ($generator) {
+                'isbn'        => function () use ($generator) {
                     return $generator->ean13();
                 },
-                'cover' => function () use ($generator) {
+                'cover'       => function () use ($generator) {
                     return $generator->randomElement(['soft', 'hard']);
                 },
+            ],
+            [
+                function (Book $book, $insertedEntities) use ($generator) {
+                    /** @var Category $cat */
+                    $cat = $generator->randomElement($insertedEntities['Nfq\Fairytale\CoreBundle\Entity\Category']);
+                    $book->addCategory($cat);
+                    $cat->addBook($book);
+
+                    /** @var Author $author */
+                    $author = $generator->randomElement($insertedEntities['Nfq\Fairytale\CoreBundle\Entity\Author']);
+                    $book->addAuthor($author);
+                    $author->addBook($book);
+                }
             ]
         );
     }
