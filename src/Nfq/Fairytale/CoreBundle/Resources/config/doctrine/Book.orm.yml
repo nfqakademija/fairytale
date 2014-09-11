@@ -11,8 +11,23 @@ Nfq\Fairytale\CoreBundle\Entity\Book:
             length: 255
         description:
             type: text
-        summary:
-            type: text
+        pages:
+            type: integer
+        publisher:
+            type: string
+            length: 255
+        isbn:
+            type: string
+            lenhtg: 13
+        cover:
+            type: string
+            length: 20
+        language:
+            type: string
+            length: 20
+        image:
+            type: string
+            lenght: 255
     manyToMany:
         categories:
             targetEntity: Category

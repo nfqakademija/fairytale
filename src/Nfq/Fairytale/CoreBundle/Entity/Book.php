@@ -2,8 +2,7 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Book
@@ -26,27 +25,57 @@ class Book
     private $description;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $summary;
+    private $pages;
 
     /**
-     * @var Collection
+     * @var string
+     */
+    private $publisher;
+
+    /**
+     * @var string
+     */
+    private $isbn;
+
+    /**
+     * @var string
+     */
+    private $cover;
+
+    /**
+     * @var string
+     */
+    private $language;
+
+    /**
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $ratings;
 
     /**
-     * @var Collection
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $comments;
 
     /**
-     * @var Collection
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $reservations;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $categories;
 
     /**
-     * @var Collection
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $authors;
 
@@ -55,30 +84,17 @@ class Book
      */
     public function __construct()
     {
-        $this->ratings = new ArrayCollection();
-        $this->comments = new ArrayCollection();
-        $this->categories = new ArrayCollection();
-        $this->authors = new ArrayCollection();
-    }
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     *
-     * @return Book
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
+        $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->authors = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -89,7 +105,6 @@ class Book
      * Set title
      *
      * @param string $title
-     *
      * @return Book
      */
     public function setTitle($title)
@@ -102,7 +117,7 @@ class Book
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -113,7 +128,6 @@ class Book
      * Set description
      *
      * @param string $description
-     *
      * @return Book
      */
     public function setDescription($description)
@@ -126,7 +140,7 @@ class Book
     /**
      * Get description
      *
-     * @return string
+     * @return string 
      */
     public function getDescription()
     {
@@ -134,37 +148,150 @@ class Book
     }
 
     /**
-     * Set summary
+     * Set pages
      *
-     * @param string $summary
-     *
+     * @param integer $pages
      * @return Book
      */
-    public function setSummary($summary)
+    public function setPages($pages)
     {
-        $this->summary = $summary;
+        $this->pages = $pages;
 
         return $this;
     }
 
     /**
-     * Get summary
+     * Get pages
      *
-     * @return string
+     * @return integer 
      */
-    public function getSummary()
+    public function getPages()
     {
-        return $this->summary;
+        return $this->pages;
+    }
+
+    /**
+     * Set publisher
+     *
+     * @param string $publisher
+     * @return Book
+     */
+    public function setPublisher($publisher)
+    {
+        $this->publisher = $publisher;
+
+        return $this;
+    }
+
+    /**
+     * Get publisher
+     *
+     * @return string 
+     */
+    public function getPublisher()
+    {
+        return $this->publisher;
+    }
+
+    /**
+     * Set isbn
+     *
+     * @param string $isbn
+     * @return Book
+     */
+    public function setIsbn($isbn)
+    {
+        $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    /**
+     * Get isbn
+     *
+     * @return string 
+     */
+    public function getIsbn()
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     * @return Book
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string 
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
+     * Set language
+     *
+     * @param string $language
+     * @return Book
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return string 
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Book
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
      * Add ratings
      *
-     * @param Rating $ratings
-     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
      * @return Book
      */
-    public function addRating(Rating $ratings)
+    public function addRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
     {
         $this->ratings[] = $ratings;
 
@@ -174,9 +301,9 @@ class Book
     /**
      * Remove ratings
      *
-     * @param Rating $ratings
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
      */
-    public function removeRating(Rating $ratings)
+    public function removeRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
     {
         $this->ratings->removeElement($ratings);
     }
@@ -184,7 +311,7 @@ class Book
     /**
      * Get ratings
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRatings()
     {
@@ -194,11 +321,10 @@ class Book
     /**
      * Add comments
      *
-     * @param Comment $comments
-     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
      * @return Book
      */
-    public function addComment(Comment $comments)
+    public function addComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -208,9 +334,9 @@ class Book
     /**
      * Remove comments
      *
-     * @param Comment $comments
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
      */
-    public function removeComment(Comment $comments)
+    public function removeComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
@@ -218,85 +344,12 @@ class Book
     /**
      * Get comments
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getComments()
     {
         return $this->comments;
     }
-
-    /**
-     * Add categories
-     *
-     * @param Category $categories
-     *
-     * @return Book
-     */
-    public function addCategory(Category $categories)
-    {
-        $this->categories[] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param Category $categories
-     */
-    public function removeCategory(Category $categories)
-    {
-        $this->categories->removeElement($categories);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
-     * Add authors
-     *
-     * @param Author $authors
-     *
-     * @return Book
-     */
-    public function addAuthor(Author $authors)
-    {
-        $this->authors[] = $authors;
-
-        return $this;
-    }
-
-    /**
-     * Remove authors
-     *
-     * @param Author $authors
-     */
-    public function removeAuthor(Author $authors)
-    {
-        $this->authors->removeElement($authors);
-    }
-
-    /**
-     * Get authors
-     *
-     * @return Collection
-     */
-    public function getAuthors()
-    {
-        return $this->authors;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $reservations;
-
 
     /**
      * Add reservations
@@ -329,5 +382,71 @@ class Book
     public function getReservations()
     {
         return $this->reservations;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Category $categories
+     * @return Book
+     */
+    public function addCategory(\Nfq\Fairytale\CoreBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Category $categories
+     */
+    public function removeCategory(\Nfq\Fairytale\CoreBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add authors
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Author $authors
+     * @return Book
+     */
+    public function addAuthor(\Nfq\Fairytale\CoreBundle\Entity\Author $authors)
+    {
+        $this->authors[] = $authors;
+
+        return $this;
+    }
+
+    /**
+     * Remove authors
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Author $authors
+     */
+    public function removeAuthor(\Nfq\Fairytale\CoreBundle\Entity\Author $authors)
+    {
+        $this->authors->removeElement($authors);
+    }
+
+    /**
+     * Get authors
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
     }
 }
