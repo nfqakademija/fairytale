@@ -11,7 +11,7 @@ default:
 
         VIPSoft\DoctrineDataFixturesExtension\Extension:
             lifetime:    feature
-            autoload:    true
+            autoload:    false
             directories: ~
             fixtures:
                 - Nfq\Fairytale\ApiBundle\DataFixtures\ORM\LoadUserData
