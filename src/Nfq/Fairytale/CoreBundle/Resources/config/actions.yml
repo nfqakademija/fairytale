@@ -10,3 +10,10 @@ services:
             - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reading, method: GET }
+
+    nfq_fairytale.action.category.books.list:
+        class: Nfq\Fairytale\CoreBundle\Actions\Category\GetBooks
+        calls:
+            - [setFactory, [@nfq_fairytale.data_source.factory]]
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", action: books, method: GET }
