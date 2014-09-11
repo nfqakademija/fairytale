@@ -1,6 +1,6 @@
 <?php
 
-namespace Nfq\Fairytale\CoreBundle\DataFixtures\ORM;
+namespace Nfq\Fairytale\ApiBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
