@@ -6,7 +6,6 @@ Nfq\Fairytale\CoreBundle\Entity:
                 name:       ROLE_USER
                 surname:    ROLE_USER
                 email:      ROLE_USER
-                comments:   ROLE_USER
             write:  ROLE_ADMIN
         instance.delete:
             read:
