@@ -12,7 +12,7 @@
                     {% endverbatim %}
                 </div>
             </div>
-            <div class="sidebar-module" ng-controller="MainController">
+            <div class="sidebar-module">
                 <ol class="nav user">
                     <li><a href="#user"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar skaitau</a></li>
                     <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos knygos</a></li>
@@ -24,14 +24,14 @@
                 <ol class="nav">
                     <li>Populiariausios</li>
                     <li>Naujos</li>
-                    <li>Visos</li>
+                    <li><a href="#">Visos</a></li>
                 </ol>
             </div>
             <hr>
             <div class="sidebar-module categories" ng-controller="CategoriesController">
                 {% verbatim %}
                 <ol class="nav" ng-repeat="category in categories">
-                    <li>{{ category.title }}</li>
+                    <li><a href="#category/{{ category.id }}">{{ category.title }}</a></li>
                 </ol>
                 {% endverbatim %}
             </div>
@@ -59,6 +59,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.min.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/Controller/CategoriesController.js"></script>
+    <script src="bundles/nfqfairytalefrontend/scripts/Controller/CategoryController.js"></script>
     <script src="bundles/nfqfairytalefrontend/scripts/app.js"></script>
     <script>
         var activeUser = {{ activeUser |json_encode |raw }};

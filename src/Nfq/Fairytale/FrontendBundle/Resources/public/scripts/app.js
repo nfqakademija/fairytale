@@ -2,11 +2,9 @@ angular
     .module('fairytale', [
         'ngRoute',
         'fairytale.controller.user',
-        'fairytale.controller.categories'
+        'fairytale.controller.categories',
+        'fairytale.controller.category'
     ])
-    .controller('MainController', function ($scope) {
-
-    })
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
@@ -15,6 +13,10 @@ angular
             .when('/user', {
                 templateUrl: '/partial/user-profile',
                 controller: 'UserController'
+            })
+            .when('/category/:categoryId', {
+                templateUrl: '/partial/book-list',
+                controller: 'CategoryController'
             })
             .otherwise({
                 redirectTo: '/'
