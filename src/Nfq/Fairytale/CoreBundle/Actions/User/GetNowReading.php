@@ -7,7 +7,6 @@ use Nfq\Fairytale\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContext;
 
 class GetNowReading extends BaseInstanceAction
 {

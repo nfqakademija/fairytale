@@ -2,8 +2,6 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Reservation
  */
@@ -20,12 +18,12 @@ class Reservation
     private $createdAt;
 
     /**
-     * @var \Nfq\Fairytale\CoreBundle\Entity\User
+     * @var User
      */
     private $user;
 
     /**
-     * @var \Nfq\Fairytale\CoreBundle\Entity\Book
+     * @var Book
      */
     private $book;
 
@@ -66,10 +64,10 @@ class Reservation
     /**
      * Set user
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\User $user
+     * @param User $user
      * @return Reservation
      */
-    public function setUser(\Nfq\Fairytale\CoreBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -79,7 +77,7 @@ class Reservation
     /**
      * Get user
      *
-     * @return \Nfq\Fairytale\CoreBundle\Entity\User 
+     * @return User
      */
     public function getUser()
     {
@@ -89,10 +87,10 @@ class Reservation
     /**
      * Set book
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $book
+     * @param Book $book
      * @return Reservation
      */
-    public function setBook(\Nfq\Fairytale\CoreBundle\Entity\Book $book = null)
+    public function setBook(Book $book = null)
     {
         $this->book = $book;
 
@@ -102,7 +100,7 @@ class Reservation
     /**
      * Get book
      *
-     * @return \Nfq\Fairytale\CoreBundle\Entity\Book 
+     * @return Book
      */
     public function getBook()
     {
