@@ -54,6 +54,9 @@ Nfq\Fairytale\CoreBundle\Entity:
         user.now_reading:
             read:
                 id:         ROLE_USER
+        user.returned:
+            read:
+                id:         ROLE_USER
     Category:
         collection.index:
             read:

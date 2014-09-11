@@ -11,6 +11,11 @@ services:
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reading, method: GET }
 
+    nfq_fairytale.action.user.returned.list:
+        class: Nfq\Fairytale\CoreBundle\Actions\User\GetReturnedBooks
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: returned, method: GET }
+
     nfq_fairytale.action.category.books.list:
         class: Nfq\Fairytale\CoreBundle\Actions\Category\GetBooks
         calls:
