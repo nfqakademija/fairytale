@@ -82,7 +82,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'confirmationToken'   => $this->returnValue(null),
                 'passwordRequestedAt' => $this->returnValue(null),
                 'roles'               => function () use ($generator) {
-                    return [$generator->randomElement(['ROLE_USER', 'ROLE_USER', 'ROLE_USER', 'ROLE_ADMIN'])];
+                    return $generator->randomElement([[], [], [], ['ROLE_ADMIN']]);
                 },
                 'credentialsExpired'  => $this->returnValue(false),
                 'credentialsExpireAt' => $this->returnValue(null),
