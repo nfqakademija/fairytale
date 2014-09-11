@@ -59,3 +59,11 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_USER
                 title:      ROLE_USER
+        instance.read:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+                books:      ROLE_USER
+        category.books:
+            read:
+                id:         ROLE_USER
