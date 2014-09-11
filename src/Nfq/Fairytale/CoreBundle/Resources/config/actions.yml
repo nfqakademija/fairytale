@@ -1,8 +1,6 @@
 services:
     nfq_fairytale.action.user.reservation.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReservation
-        calls:
-            - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reservation, method: GET }
 

@@ -6,14 +6,13 @@ use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
+use Nfq\Fairytale\CoreBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GetReservation extends BaseInstanceAction
 {
     const NAME = 'user.reservation';
-
-    /** @var  DataSourceFactory */
-    protected $factory;
 
     /**
      * Performs the action
@@ -25,17 +24,13 @@ class GetReservation extends BaseInstanceAction
      */
     public function execute(Request $request, DataSourceInterface $resource, $identifier)
     {
-        $resource = $this->factory->create('Nfq\Fairytale\CoreBundle\Entity\Reservation');
+        /** @var User $user */
+        $user = $resource->read($identifier);
 
-        $reservations = $resource->query(['user' => $identifier, 'status' => 'waiting']);
-        return ActionResult::instance(200, ['id' => count($reservations) ? $reservations[0]->getId() : null]);
-    }
-
-    /**
-     * @param DataSourceFactory $factory
-     */
-    public function setFactory(DataSourceFactory $factory)
-    {
-        $this->factory = $factory;
+        if (!$user) {
+            throw new NotFoundHttpException();
+        }
+        $reservation = $user->getReservations()->first();
+        return ActionResult::instance(200, ['id' => $reservation ? $reservation->getId() : null]);
     }
 }
