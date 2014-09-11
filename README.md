@@ -20,7 +20,7 @@ $ app/console assets:install
 
 Load data fixtures
 ```
-$ app/console doctrine:schema:drop --force; app/console doctrine:schema:create && app/console doctrine:fixtures:load -n
+$ app/console doctrine:schema:drop --force; app/console doctrine:schema:create && app/console doctrine:fixtures:load -n --fixtures src/Nfq/Fairytale/CoreBundle/DataFixtures/ORM/
 ```
 
 Running tests

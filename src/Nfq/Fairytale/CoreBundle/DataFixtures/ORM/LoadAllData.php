@@ -128,8 +128,23 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'description' => function () use ($generator) {
                     return $generator->realText();
                 },
-                'summary'     => function () use ($generator) {
-                    return $generator->realText();
+                'pages' => function () use ($generator) {
+                    return $generator->numberBetween(50, 500);
+                },
+                'publisher' => function () use ($generator) {
+                    return $generator->company;
+                },
+                'language' => function () use ($generator) {
+                    return $generator->languageCode;
+                },
+                'image' => function () use ($generator) {
+                    return $generator->image();
+                },
+                'isbn' => function () use ($generator) {
+                    return $generator->ean13();
+                },
+                'cover' => function () use ($generator) {
+                    return $generator->randomElement(['soft', 'hard']);
                 },
             ]
         );
