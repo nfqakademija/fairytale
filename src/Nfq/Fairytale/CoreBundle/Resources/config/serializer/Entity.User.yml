@@ -1,0 +1,6 @@
+Nfq\Fairytale\CoreBundle\Entity\User:
+    properties:
+        comments:
+            max_depth: 1
+        ratings:
+            max_depth: 1

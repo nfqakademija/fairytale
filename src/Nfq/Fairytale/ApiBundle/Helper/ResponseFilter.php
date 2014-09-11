@@ -2,6 +2,7 @@
 
 namespace Nfq\Fairytale\ApiBundle\Helper;
 
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Security\PermissionManager;
@@ -40,7 +41,11 @@ class ResponseFilter
     public function filterResponse(ActionResult $result, $resource, $action, $roles)
     {
         $serializeAndFilter = function ($item) use ($resource, $action, $roles) {
-            $data = $this->serializer->deserialize($this->serializer->serialize($item, 'json'), 'array', 'json');
+            $data = $this->serializer->deserialize(
+                $this->serializer->serialize($item, 'json', SerializationContext::create()->enableMaxDepthChecks()),
+                'array',
+                'json'
+            );
 
             $fields = array_filter(
                 array_keys($data),
