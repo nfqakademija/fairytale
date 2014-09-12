@@ -6,6 +6,9 @@ Nfq\Fairytale\CoreBundle\Entity:
                 name:       ROLE_USER
                 surname:    ROLE_USER
                 email:      ROLE_USER
+                reservations:      ROLE_USER
+                comments:      ROLE_USER
+                ratings:      ROLE_USER
             write:  ROLE_ADMIN
         instance.delete:
             read:
@@ -57,6 +60,11 @@ Nfq\Fairytale\CoreBundle\Entity:
         user.returned:
             read:
                 id:         ROLE_USER
+        user.categories:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+                count:      ROLE_USER
     Category:
         collection.index:
             read:
@@ -67,6 +75,23 @@ Nfq\Fairytale\CoreBundle\Entity:
                 id:         ROLE_USER
                 title:      ROLE_USER
                 books:      ROLE_USER
+    Book:
+        collection.index:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+        instance.read:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+                categories: ROLE_USER
+                description: ROLE_USER
+                pages:      ROLE_USER
+                publisher:  ROLE_USER
+                isbn:       ROLE_USER
+                cover:      ROLE_USER
+                language:   ROLE_USER
+                image:      ROLE_USER
         category.books:
             read:
                 id:         ROLE_USER

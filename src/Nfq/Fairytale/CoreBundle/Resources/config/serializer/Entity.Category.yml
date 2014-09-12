@@ -1,0 +1,4 @@
+Nfq\Fairytale\CoreBundle\Entity\Category:
+    properties:
+        books:
+            max_depth: 2

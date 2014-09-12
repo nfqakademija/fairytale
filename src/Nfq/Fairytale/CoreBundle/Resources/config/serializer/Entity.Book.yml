@@ -1,12 +1,12 @@
 Nfq\Fairytale\CoreBundle\Entity\Book:
     properties:
         comments:
-            max_depth: 1
+            max_depth: 2
         ratings:
-            max_depth: 1
+            max_depth: 2
         reservations:
-            max_depth: 1
+            max_depth: 2
         categories:
-            max_depth: 1
+            max_depth: 2
         authors:
-            max_depth: 1
+            max_depth: 2

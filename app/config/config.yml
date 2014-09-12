@@ -71,6 +71,7 @@ nfq_fairytale_api:
     mapping:
         user: Nfq\Fairytale\CoreBundle\Entity\User
         category: Nfq\Fairytale\CoreBundle\Entity\Category
+        book: Nfq\Fairytale\CoreBundle\Entity\Book
     data:
         type: orm
     ownership:

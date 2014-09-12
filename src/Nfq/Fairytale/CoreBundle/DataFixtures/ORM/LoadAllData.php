@@ -199,7 +199,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
     {
         $populator->addEntity(
             '\Nfq\Fairytale\CoreBundle\Entity\Reservation',
-            50,
+            500,
             [
                 'createdAt' => function () use ($generator) {
                     return $generator->dateTimeThisYear;
