@@ -1,8 +1,8 @@
 angular
-    .module('Fairytale.User.Controller', [])
-    .controller('UserController', ['$scope', '$http', '$window', function ($scope, $http, $window) {
-        var id = $window.activeUser.id;
-        $http.get('api/user/' + id).success(function (data) {
-            $scope.user = data;
-        });
+    .module('Fairytale.User.Controller', [
+        'Fairytale.User.ActiveUser',
+        'Fairytale.User.Model'
+    ])
+    .controller('UserController', ['$scope', 'User', 'ActiveUser', function ($scope, User, ActiveUser) {
+        $scope.user = ActiveUser.get().$object;
     }]);

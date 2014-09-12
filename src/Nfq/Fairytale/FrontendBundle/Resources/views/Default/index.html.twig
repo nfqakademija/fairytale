@@ -2,19 +2,19 @@
 
 {% block container %}
     <div class="row">
-        <div class="col-md-3 sidebar">
+        <div class="col-md-3 sidebar" ng-controller="SidebarController">
             <div class="sidebar-module">
-                <div class="sidebar-user" ng-controller="UserController">
+                <div class="sidebar-user" >
                     {% verbatim %}
-                    <div class="user-photo left" ng-if="user.photo">{{ user.photo }}</div>
-                    <div class="user-name left">{{ user.name }}<br/>{{ user.surname }}</div>
+                    <div class="user-photo left" ng-if="me.photo">{{ me.photo }}</div>
+                    <div class="user-name left">{{ me.name }}<br/>{{ me.surname }}</div>
                     <div class="clear"></div>
                     {% endverbatim %}
                 </div>
             </div>
             <div class="sidebar-module">
                 <ol class="nav user">
-                    <li><a href="#user"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar
+                    <li><a href="#/me"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar
                             skaitau</a></li>
                     <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos
                             knygos</a></li>
@@ -31,10 +31,10 @@
                 </ol>
             </div>
             <hr>
-            <div class="sidebar-module categories" ng-controller="CategoriesController">
+            <div class="sidebar-module categories">
                 {% verbatim %}
                 <ol class="nav" ng-repeat="category in categories">
-                    <li><a href="#category/{{ category.id }}">{{ category.title }}</a></li>
+                    <li><a ng-href="#/category/{{ category.id }}">{{ category.title }}</a></li>
                 </ol>
                 {% endverbatim %}
             </div>
@@ -63,16 +63,19 @@
 
 {% block javascript %}
     {{ parent() }}
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.4.0/restangular.js"></script>
 
+    <script>
+        var activeUser = {{ activeUser |json_encode |raw }};
+    </script>
     {% javascripts
+    '@NfqFairytaleFrontendBundle/Resources/assets/scripts/Sidebar/*'
     '@NfqFairytaleFrontendBundle/Resources/assets/scripts/User/*'
     '@NfqFairytaleFrontendBundle/Resources/assets/scripts/Category/*'
     '@NfqFairytaleFrontendBundle/Resources/assets/scripts/app.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script>
-        var activeUser = {{ activeUser |json_encode |raw }};
-    </script>
 {% endblock %}

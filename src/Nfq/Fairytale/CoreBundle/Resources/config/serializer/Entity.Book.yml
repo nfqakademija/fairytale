@@ -9,4 +9,4 @@ Nfq\Fairytale\CoreBundle\Entity\Book:
         categories:
             max_depth: 2
         authors:
-            max_depth: 2
+            max_depth: 3

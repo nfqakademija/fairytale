@@ -1,0 +1,13 @@
+{% verbatim %}
+<div class="row">
+    <div class="col-md-12 content-title">{{ category.title }}</div>
+</div>
+<div class="row" id="book-list">
+    <div class="col-md-4" ng-repeat="book in category.books">
+        <div><img ng-src="{{ book.image }}" height="175"></div>
+        <p>{{ book.title }}</p>
+
+        <p>{{ book.authors.join(', ') }}</p>
+    </div>
+</div>
+{% endverbatim %}

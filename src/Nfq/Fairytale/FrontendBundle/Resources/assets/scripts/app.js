@@ -3,19 +3,23 @@ angular
         'ngRoute',
         'Fairytale.User.ActiveUser',
         'Fairytale.User.Controller',
-        'Fairytale.Category.Controller'
+        'Fairytale.Category.Controller',
+        'Fairytale.Sidebar.Controller',
+        'restangular'
     ])
-    .config(function ($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, RestangularProvider) {
+        RestangularProvider.setBaseUrl('/api');
+
         $routeProvider
             .when('/', {
                 controller: 'MainController'
             })
-            .when('/user', {
-                templateUrl: '/partial/user-profile',
+            .when('/user/:id', {
+                templateUrl: '/partial/user',
                 controller: 'UserController'
             })
-            .when('/category/:categoryId', {
-                templateUrl: '/partial/book-list',
+            .when('/category/:id', {
+                templateUrl: '/partial/category',
                 controller: 'CategoryController'
             })
             .otherwise({
