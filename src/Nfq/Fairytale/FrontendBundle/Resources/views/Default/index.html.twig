@@ -7,16 +7,19 @@
                 <div class="sidebar-user" ng-controller="UserController">
                     {% verbatim %}
                     <div class="user-photo left" ng-if="user.photo">{{ user.photo }}</div>
-                    <div class="user-name left">{{ user.name }}<br />{{ user.surname }}</div>
+                    <div class="user-name left">{{ user.name }}<br/>{{ user.surname }}</div>
                     <div class="clear"></div>
                     {% endverbatim %}
                 </div>
             </div>
             <div class="sidebar-module">
                 <ol class="nav user">
-                    <li><a href="#user"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar skaitau</a></li>
-                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos knygos</a></li>
-                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti knygą</a></li>
+                    <li><a href="#user"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar
+                            skaitau</a></li>
+                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos
+                            knygos</a></li>
+                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti
+                            knygą</a></li>
                 </ol>
             </div>
             <div class="sidebar-module">
@@ -40,7 +43,12 @@
             <div class="row header">
                 <div class="col-md-4 logo">
                     <img src="{{ asset('bundles/nfqfairytalefrontend/logo.png') }}" class="left">
-                    <div class="left"><p>Bi</p><p>blio</p><p>teka</p></div>
+
+                    <div class="left"><p>Bi</p>
+
+                        <p>blio</p>
+
+                        <p>teka</p></div>
                     <div class="clear"></div>
                 </div>
                 <div class="col-md-8 search">
@@ -55,12 +63,15 @@
 
 {% block javascript %}
     {{ parent() }}
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.min.js"></script>
-    <script src="bundles/nfqfairytalefrontend/scripts/Controller/UserController.js"></script>
-    <script src="bundles/nfqfairytalefrontend/scripts/Controller/CategoriesController.js"></script>
-    <script src="bundles/nfqfairytalefrontend/scripts/Controller/CategoryController.js"></script>
-    <script src="bundles/nfqfairytalefrontend/scripts/app.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.min.js"></script>
+
+    {% javascripts
+    '@NfqFairytaleFrontendBundle/Resources/assets/scripts/User/*'
+    '@NfqFairytaleFrontendBundle/Resources/assets/scripts/Category/*'
+    '@NfqFairytaleFrontendBundle/Resources/assets/scripts/app.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
     <script>
         var activeUser = {{ activeUser |json_encode |raw }};
     </script>

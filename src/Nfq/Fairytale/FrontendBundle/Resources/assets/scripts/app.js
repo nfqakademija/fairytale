@@ -1,9 +1,9 @@
 angular
     .module('fairytale', [
         'ngRoute',
-        'fairytale.controller.user',
-        'fairytale.controller.categories',
-        'fairytale.controller.category'
+        'Fairytale.User.ActiveUser',
+        'Fairytale.User.Controller',
+        'Fairytale.Category.Controller'
     ])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -21,7 +21,5 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
-
-//        $locationProvider.html5Mode(true);
     });
 
