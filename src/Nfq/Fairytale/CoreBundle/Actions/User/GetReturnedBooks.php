@@ -38,7 +38,7 @@ class GetReturnedBooks extends BaseInstanceAction
             $user->getReservations()
                 ->filter(
                     function (Reservation $reservation) {
-                        return $reservation->getStatus() === 'returned';
+                        return $reservation->getReturnedAt() !== null;
                     }
                 )
                 ->map(
