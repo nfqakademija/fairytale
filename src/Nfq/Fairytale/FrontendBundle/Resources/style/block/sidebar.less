@@ -1,6 +1,9 @@
+@sidebar-color: black;
+
 .sidebar {
-    background-color: black;
+    background-color: @sidebar-color;
     color: white;
+    padding-right: 0;
     hr {
         margin: 0;
     }
@@ -35,11 +38,22 @@
             line-height: 36px;
             li {
                 a {
-                    padding: 0;
+                    padding: 0 0 0 15px;
+                    border-left: 4px @sidebar-color solid;
                     color: #BCBCBC;
                     &:hover {
-                        background-color: #000000;
                         color: #ffffff;
+                        background-color: #000000;
+                    }
+
+                    &.active {
+                        background-color: #ffffff;
+                        border-left: 4px #f90 solid;
+                        &:hover {
+                            color: #000000;
+                            background-color: #ffffff;
+                        }
+                        color: #000000;
                     }
                 }
             }
