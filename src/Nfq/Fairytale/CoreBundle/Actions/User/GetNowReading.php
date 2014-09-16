@@ -27,8 +27,8 @@ class GetNowReading extends BaseInstanceAction
     {
         $resource = $this->factory->create('Nfq\Fairytale\CoreBundle\Entity\Reservation');
 
-        $reservations = $resource->query(['user' => $identifier, 'status' => 'reading']);
-        return ActionResult::instance(200, ['id' => count($reservations) ? $reservations[0]->getId() : null]);
+        $reservations = $resource->query(['user' => $identifier, 'takenAt' => null, 'returnedAt' => null]);
+        return ActionResult::collection(200, [count($reservations) ? $reservations[0]->getBook() : null]);
     }
 
     /**

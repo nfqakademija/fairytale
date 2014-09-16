@@ -56,7 +56,13 @@ Nfq\Fairytale\CoreBundle\Entity:
                 id:         ROLE_USER
         user.now_reading:
             read:
-                id:         ROLE_USER
+                id:          ROLE_USER
+                title:       ROLE_USER
+                description: ROLE_USER
+                language:    ROLE_USER
+                image:       ROLE_USER
+                categories:  ROLE_USER
+                authors:     ROLE_USER
         user.returned:
             read:
                 id:         ROLE_USER
