@@ -27,3 +27,8 @@ services:
             - [setFactory, [@nfq_fairytale.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", action: books, method: GET }
+
+    nfq_fairytale.action.book.details:
+        class: Nfq\Fairytale\CoreBundle\Actions\Book\GetDetails
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Book", action: details, method: GET }
