@@ -6,7 +6,10 @@
             <div class="sidebar-module">
                 <div class="sidebar-user">
                     {% verbatim %}
-                    <div class="user-photo left" ng-if="me.photo">{{ me.photo }}</div>
+                    <div class="user-photo left">
+                        <img ng-if="me.photo" ng-src="{{ me.photo }}">
+                        <img ng-if="!me.photo" src="bundles/nfqfairytalefrontend/alien.png">
+                    </div>
                     <div class="user-name left">{{ me.name }}<br/>{{ me.surname }}</div>
                     <div class="clear"></div>
                     {% endverbatim %}

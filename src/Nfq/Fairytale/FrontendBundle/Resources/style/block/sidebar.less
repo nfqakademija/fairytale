@@ -4,6 +4,7 @@
     background-color: @sidebar-color;
     color: white;
     padding-right: 0;
+    padding-top: 40px;
     hr {
         margin: 0;
     }
@@ -12,14 +13,19 @@
         padding-left: 20px;
         padding-top: 10px;
         padding-bottom: 10px;
-        &.categories {
-
-        }
         .sidebar-user {
             font-size: 14px;
             font-family: 'Exo 2 Semi Bold', 'Exo 2';
+            .user-photo {
+                height: 45px;
+                padding-right: 15px;
+                img {
+                  max-height: 45px;
+                }
+            }
             .user-name {
                 border-bottom: 1px #999999 solid;
+                width: 160px;
             }
         }
         .sidebar-header {
