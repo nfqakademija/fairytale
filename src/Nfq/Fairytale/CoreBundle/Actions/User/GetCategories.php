@@ -40,18 +40,22 @@ class GetCategories extends BaseInstanceAction
             }
         )->toArray();
 
-        // flatten
-        $categories = call_user_func_array('array_merge', $bookCategories);
-        $uniqueCategories = array_combine(Arrays::pick($categories, 'getId'), $categories);
+        if (count($bookCategories)) {
+            // flatten
+            $categories = call_user_func_array('array_merge', $bookCategories);
+            $uniqueCategories = array_combine(Arrays::pick($categories, 'getId'), $categories);
 
-        $idCounts = array_count_values(Arrays::pick($categories, 'getId'));
-        arsort($idCounts);
-        $histogram = array_map(
-            function ($id) use($uniqueCategories) {
-                return $uniqueCategories[$id];
-            },
-            array_keys($idCounts)
-        );
+            $idCounts = array_count_values(Arrays::pick($categories, 'getId'));
+            arsort($idCounts);
+            $histogram = array_map(
+                function ($id) use ($uniqueCategories) {
+                    return $uniqueCategories[$id];
+                },
+                array_keys($idCounts)
+            );
+        } else {
+            $histogram = [];
+        }
 
         return ActionResult::collection(
             200,
