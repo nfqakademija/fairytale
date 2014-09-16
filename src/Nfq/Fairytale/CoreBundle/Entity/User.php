@@ -32,17 +32,17 @@ class User extends BaseUser
     private $image;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $comments;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $ratings;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $reservations;
 
@@ -51,9 +51,10 @@ class User extends BaseUser
      */
     public function __construct()
     {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
+        parent::__construct();
+        $this->comments = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     /**
@@ -138,10 +139,10 @@ class User extends BaseUser
     /**
      * Add comments
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
+     * @param Comment $comments
      * @return User
      */
-    public function addComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
+    public function addComment(Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -151,9 +152,9 @@ class User extends BaseUser
     /**
      * Remove comments
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
+     * @param Comment $comments
      */
-    public function removeComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
+    public function removeComment(Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
@@ -161,7 +162,7 @@ class User extends BaseUser
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getComments()
     {
@@ -171,10 +172,10 @@ class User extends BaseUser
     /**
      * Add ratings
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
+     * @param Rating $ratings
      * @return User
      */
-    public function addRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
+    public function addRating(Rating $ratings)
     {
         $this->ratings[] = $ratings;
 
@@ -184,9 +185,9 @@ class User extends BaseUser
     /**
      * Remove ratings
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
+     * @param Rating $ratings
      */
-    public function removeRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
+    public function removeRating(Rating $ratings)
     {
         $this->ratings->removeElement($ratings);
     }
@@ -194,7 +195,7 @@ class User extends BaseUser
     /**
      * Get ratings
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getRatings()
     {
@@ -204,10 +205,10 @@ class User extends BaseUser
     /**
      * Add reservations
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations
+     * @param Reservation $reservations
      * @return User
      */
-    public function addReservation(\Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations)
+    public function addReservation(Reservation $reservations)
     {
         $this->reservations[] = $reservations;
 
@@ -217,9 +218,9 @@ class User extends BaseUser
     /**
      * Remove reservations
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations
+     * @param Reservation $reservations
      */
-    public function removeReservation(\Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations)
+    public function removeReservation(Reservation $reservations)
     {
         $this->reservations->removeElement($reservations);
     }
@@ -227,7 +228,7 @@ class User extends BaseUser
     /**
      * Get reservations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getReservations()
     {
