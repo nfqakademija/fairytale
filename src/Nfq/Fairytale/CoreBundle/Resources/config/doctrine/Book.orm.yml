@@ -29,7 +29,7 @@ Nfq\Fairytale\CoreBundle\Entity\Book:
             length: 20
         image:
             type: string
-            lenght: 255
+            length: 255
     manyToMany:
         categories:
             targetEntity: Category
