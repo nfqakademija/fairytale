@@ -5,8 +5,6 @@ namespace Nfq\Fairytale\CoreBundle\Actions\User;
 use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
-use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
-use Nfq\Fairytale\CoreBundle\Entity\Category;
 use Nfq\Fairytale\CoreBundle\Entity\Reservation;
 use Nfq\Fairytale\CoreBundle\Entity\User;
 use Nfq\Fairytale\CoreBundle\Util\Arrays;
