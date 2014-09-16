@@ -54,18 +54,39 @@ Nfq\Fairytale\CoreBundle\Entity:
         user.reservation:
             read:
                 id:         ROLE_USER
+                title:      ROLE_USER
+                categories: ROLE_USER
+                description: ROLE_USER
+                pages:      ROLE_USER
+                publisher:  ROLE_USER
+                isbn:       ROLE_USER
+                cover:      ROLE_USER
+                language:   ROLE_USER
+                image:      ROLE_USER
         user.now_reading:
             read:
-                id:          ROLE_USER
-                title:       ROLE_USER
+                id:         ROLE_USER
+                title:      ROLE_USER
+                categories: ROLE_USER
                 description: ROLE_USER
-                language:    ROLE_USER
-                image:       ROLE_USER
-                categories:  ROLE_USER
-                authors:     ROLE_USER
+                pages:      ROLE_USER
+                publisher:  ROLE_USER
+                isbn:       ROLE_USER
+                cover:      ROLE_USER
+                language:   ROLE_USER
+                image:      ROLE_USER
         user.returned:
             read:
                 id:         ROLE_USER
+                title:      ROLE_USER
+                categories: ROLE_USER
+                description: ROLE_USER
+                pages:      ROLE_USER
+                publisher:  ROLE_USER
+                isbn:       ROLE_USER
+                cover:      ROLE_USER
+                language:   ROLE_USER
+                image:      ROLE_USER
         user.categories:
             read:
                 id:         ROLE_USER
