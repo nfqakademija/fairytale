@@ -5,6 +5,7 @@ namespace Nfq\Fairytale\CoreBundle\Actions\User;
 use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
+use Nfq\Fairytale\CoreBundle\Entity\Reservation;
 use Nfq\Fairytale\CoreBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -29,7 +30,9 @@ class GetReservation extends BaseInstanceAction
         if (!$user) {
             throw new NotFoundHttpException();
         }
-        $reservation = $user->getReservations()->first();
-        return ActionResult::instance(200, ['id' => $reservation ? $reservation->getId() : null]);
+        return ActionResult::collection(200,
+        array_slice($user->getReservations()->map(function (Reservation $reservation) {
+            return $reservation->getBook();
+        })->toArray(), 0, 1));
     }
 }
