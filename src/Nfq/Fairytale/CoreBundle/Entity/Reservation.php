@@ -2,6 +2,8 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Reservation
  */
@@ -18,12 +20,22 @@ class Reservation
     private $createdAt;
 
     /**
-     * @var User
+     * @var \DateTime
+     */
+    private $takenAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $returnedAt;
+
+    /**
+     * @var \Nfq\Fairytale\CoreBundle\Entity\User
      */
     private $user;
 
     /**
-     * @var Book
+     * @var \Nfq\Fairytale\CoreBundle\Entity\Book
      */
     private $book;
 
@@ -62,12 +74,58 @@ class Reservation
     }
 
     /**
-     * Set user
+     * Set takenAt
      *
-     * @param User $user
+     * @param \DateTime $takenAt
      * @return Reservation
      */
-    public function setUser(User $user = null)
+    public function setTakenAt($takenAt)
+    {
+        $this->takenAt = $takenAt;
+
+        return $this;
+    }
+
+    /**
+     * Get takenAt
+     *
+     * @return \DateTime 
+     */
+    public function getTakenAt()
+    {
+        return $this->takenAt;
+    }
+
+    /**
+     * Set returnedAt
+     *
+     * @param \DateTime $returnedAt
+     * @return Reservation
+     */
+    public function setReturnedAt($returnedAt)
+    {
+        $this->returnedAt = $returnedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get returnedAt
+     *
+     * @return \DateTime 
+     */
+    public function getReturnedAt()
+    {
+        return $this->returnedAt;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Nfq\Fairytale\CoreBundle\Entity\User $user
+     * @return Reservation
+     */
+    public function setUser(\Nfq\Fairytale\CoreBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -77,7 +135,7 @@ class Reservation
     /**
      * Get user
      *
-     * @return User
+     * @return \Nfq\Fairytale\CoreBundle\Entity\User 
      */
     public function getUser()
     {
@@ -87,10 +145,10 @@ class Reservation
     /**
      * Set book
      *
-     * @param Book $book
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $book
      * @return Reservation
      */
-    public function setBook(Book $book = null)
+    public function setBook(\Nfq\Fairytale\CoreBundle\Entity\Book $book = null)
     {
         $this->book = $book;
 
@@ -100,38 +158,10 @@ class Reservation
     /**
      * Get book
      *
-     * @return Book
+     * @return \Nfq\Fairytale\CoreBundle\Entity\Book 
      */
     public function getBook()
     {
         return $this->book;
-    }
-    /**
-     * @var string
-     */
-    private $status;
-
-
-    /**
-     * Set status
-     *
-     * @param string $status
-     * @return Reservation
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string 
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 }

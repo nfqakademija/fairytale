@@ -8,11 +8,14 @@ Nfq\Fairytale\CoreBundle\Entity\Reservation:
             generator:
                 strategy: AUTO
     fields:
-        createdAt:
+        createdAt:  # reservation timestamp
             type: datetime
-        status:
-            type: string
-            length: 12
+        takenAt:    # pick up from library timestamp
+            type: datetime
+            nullable: true
+        returnedAt:    # returned to library timestamp
+            type: datetime
+            nullable: true
     manyToOne:
         user:
             targetEntity: User

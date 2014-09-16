@@ -2,6 +2,8 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Comment
  */
@@ -20,31 +22,18 @@ class Comment
     /**
      * @var \DateTime
      */
-    private $created;
+    private $createdAt;
 
     /**
-     * @var User
+     * @var \Nfq\Fairytale\CoreBundle\Entity\User
      */
     private $user;
 
     /**
-     * @var Book
+     * @var \Nfq\Fairytale\CoreBundle\Entity\Book
      */
     private $book;
 
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return Comment
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get id
@@ -80,35 +69,35 @@ class Comment
     }
 
     /**
-     * Set created
+     * Set createdAt
      *
-     * @param \DateTime $created
+     * @param \DateTime $createdAt
      * @return Comment
      */
-    public function setCreated($created)
+    public function setCreatedAt($createdAt)
     {
-        $this->created = $created;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get created
+     * Get createdAt
      *
      * @return \DateTime 
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**
      * Set user
      *
-     * @param User $user
+     * @param \Nfq\Fairytale\CoreBundle\Entity\User $user
      * @return Comment
      */
-    public function setUser(User $user = null)
+    public function setUser(\Nfq\Fairytale\CoreBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -118,7 +107,7 @@ class Comment
     /**
      * Get user
      *
-     * @return User
+     * @return \Nfq\Fairytale\CoreBundle\Entity\User 
      */
     public function getUser()
     {
@@ -128,10 +117,10 @@ class Comment
     /**
      * Set book
      *
-     * @param Book $book
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $book
      * @return Comment
      */
-    public function setBook(Book $book = null)
+    public function setBook(\Nfq\Fairytale\CoreBundle\Entity\Book $book = null)
     {
         $this->book = $book;
 
@@ -141,7 +130,7 @@ class Comment
     /**
      * Get book
      *
-     * @return Book
+     * @return \Nfq\Fairytale\CoreBundle\Entity\Book 
      */
     public function getBook()
     {

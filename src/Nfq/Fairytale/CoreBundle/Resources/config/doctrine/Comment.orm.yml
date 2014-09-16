@@ -8,7 +8,7 @@ Nfq\Fairytale\CoreBundle\Entity\Comment:
     fields:
         content:
             type: text
-        created:
+        createdAt:
             type: datetime
     manyToOne:
         user:

@@ -8,7 +8,7 @@ Nfq\Fairytale\CoreBundle\Entity\Rating:
     fields:
         value:
             type: smallint
-        created:
+        createdAt:
             type: datetime
     manyToOne:
         user:

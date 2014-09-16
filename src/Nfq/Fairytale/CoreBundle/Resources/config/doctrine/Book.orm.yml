@@ -6,6 +6,8 @@ Nfq\Fairytale\CoreBundle\Entity\Book:
             generator:
                 strategy: AUTO
     fields:
+        createdAt:
+            type: datetime
         title:
             type: string
             length: 255

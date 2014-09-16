@@ -2,6 +2,8 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Rating
  */
@@ -20,31 +22,18 @@ class Rating
     /**
      * @var \DateTime
      */
-    private $created;
+    private $createdAt;
 
     /**
-     * @var User
+     * @var \Nfq\Fairytale\CoreBundle\Entity\User
      */
     private $user;
 
     /**
-     * @var Book
+     * @var \Nfq\Fairytale\CoreBundle\Entity\Book
      */
     private $book;
 
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return Rating
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get id
@@ -80,35 +69,35 @@ class Rating
     }
 
     /**
-     * Set created
+     * Set createdAt
      *
-     * @param \DateTime $created
+     * @param \DateTime $createdAt
      * @return Rating
      */
-    public function setCreated($created)
+    public function setCreatedAt($createdAt)
     {
-        $this->created = $created;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get created
+     * Get createdAt
      *
      * @return \DateTime 
      */
-    public function getCreated()
+    public function getCreatedAt()
     {
-        return $this->created;
+        return $this->createdAt;
     }
 
     /**
      * Set user
      *
-     * @param User $user
+     * @param \Nfq\Fairytale\CoreBundle\Entity\User $user
      * @return Rating
      */
-    public function setUser(User $user = null)
+    public function setUser(\Nfq\Fairytale\CoreBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -118,7 +107,7 @@ class Rating
     /**
      * Get user
      *
-     * @return User
+     * @return \Nfq\Fairytale\CoreBundle\Entity\User 
      */
     public function getUser()
     {
@@ -128,10 +117,10 @@ class Rating
     /**
      * Set book
      *
-     * @param Book $book
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $book
      * @return Rating
      */
-    public function setBook(Book $book = null)
+    public function setBook(\Nfq\Fairytale\CoreBundle\Entity\Book $book = null)
     {
         $this->book = $book;
 
@@ -141,7 +130,7 @@ class Rating
     /**
      * Get book
      *
-     * @return Book
+     * @return \Nfq\Fairytale\CoreBundle\Entity\Book 
      */
     public function getBook()
     {

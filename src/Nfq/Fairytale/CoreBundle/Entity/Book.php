@@ -15,6 +15,11 @@ class Book
     private $id;
 
     /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
      * @var string
      */
     private $title;
@@ -99,6 +104,29 @@ class Book
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Book
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 
     /**
