@@ -204,14 +204,21 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
         $populator->addEntity(
             '\Nfq\Fairytale\CoreBundle\Entity\Reservation',
             500,
-            [],
+            [
+                'takenAt'   => function () use ($generator) {
+                    return null;
+                },
+                'returnedAt'   => function () use ($generator) {
+                    return null;
+                },
+            ],
             [
                 function (Reservation $reservation) use ($generator) {
                     $reservation->setCreatedAt($generator->dateTimeBetween('-1 year', '-1 month'));
                     if ($generator->boolean(33)) {
                         $reservation->setTakenAt($generator->dateTimeBetween('-1 month', '-1 week'));
                         if ($generator->boolean(66)) {
-                            $reservation->setReturnedAt($generator->dateTimeBetween('-1 month', '-1 week'));
+                            $reservation->setReturnedAt($generator->dateTimeBetween('-1 week', 'now'));
                         }
                     }
                 }
