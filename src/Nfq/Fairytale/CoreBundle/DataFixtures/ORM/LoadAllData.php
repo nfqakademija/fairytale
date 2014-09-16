@@ -90,11 +90,14 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'name'                => function () use ($generator) {
                     return $generator->firstName;
                 },
-                'lastname'             => function () use ($generator) {
+                'lastname'            => function () use ($generator) {
                     return $generator->lastName;
                 },
                 'salt'                => function () use ($generator) {
                     return $generator->md5;
+                },
+                'image'               => function () use ($generator) {
+                    return 'foo.png';
                 },
             ],
             [
@@ -205,10 +208,10 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
             '\Nfq\Fairytale\CoreBundle\Entity\Reservation',
             500,
             [
-                'takenAt'   => function () use ($generator) {
+                'takenAt'    => function () use ($generator) {
                     return null;
                 },
-                'returnedAt'   => function () use ($generator) {
+                'returnedAt' => function () use ($generator) {
                     return null;
                 },
             ],
@@ -259,7 +262,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'createdAt' => function () use ($generator) {
                     return $generator->dateTimeThisYear;
                 },
-                'content' => function () use ($generator) {
+                'content'   => function () use ($generator) {
                     return $generator->realText();
                 },
             ]
