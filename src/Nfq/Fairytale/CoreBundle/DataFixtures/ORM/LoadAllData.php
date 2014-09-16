@@ -151,7 +151,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                     return $generator->languageCode;
                 },
                 'image'       => function () use ($generator) {
-                    return '';//$generator->image();
+                    return '/img/books/' . $generator->numberBetween(1, 9) . '.png';//$generator->image();
                 },
                 'isbn'        => function () use ($generator) {
                     return $generator->ean13();
