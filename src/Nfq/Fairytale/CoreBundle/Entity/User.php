@@ -24,26 +24,36 @@ class User extends BaseUser
     /**
      * @var string
      */
-    private $surname;
+    private $lastname;
 
     /**
-     * @var Collection
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $comments;
 
     /**
-     * @var Collection
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $ratings;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $reservations;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        parent::__construct();
-        $this->comments = new ArrayCollection();
-        $this->ratings = new ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -80,35 +90,58 @@ class User extends BaseUser
     }
 
     /**
-     * Set surname
+     * Set lastname
      *
-     * @param string $surname
+     * @param string $lastname
      * @return User
      */
-    public function setSurname($surname)
+    public function setLastname($lastname)
     {
-        $this->surname = $surname;
+        $this->lastname = $lastname;
 
         return $this;
     }
 
     /**
-     * Get surname
+     * Get lastname
      *
      * @return string 
      */
-    public function getSurname()
+    public function getLastname()
     {
-        return $this->surname;
+        return $this->lastname;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return User
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
      * Add comments
      *
-     * @param Comment $comments
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
      * @return User
      */
-    public function addComment(Comment $comments)
+    public function addComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -118,9 +151,9 @@ class User extends BaseUser
     /**
      * Remove comments
      *
-     * @param Comment $comments
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
      */
-    public function removeComment(Comment $comments)
+    public function removeComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
@@ -128,7 +161,7 @@ class User extends BaseUser
     /**
      * Get comments
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getComments()
     {
@@ -138,10 +171,10 @@ class User extends BaseUser
     /**
      * Add ratings
      *
-     * @param Rating $ratings
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
      * @return User
      */
-    public function addRating(Rating $ratings)
+    public function addRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
     {
         $this->ratings[] = $ratings;
 
@@ -151,9 +184,9 @@ class User extends BaseUser
     /**
      * Remove ratings
      *
-     * @param Rating $ratings
+     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
      */
-    public function removeRating(Rating $ratings)
+    public function removeRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
     {
         $this->ratings->removeElement($ratings);
     }
@@ -161,17 +194,12 @@ class User extends BaseUser
     /**
      * Get ratings
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRatings()
     {
         return $this->ratings;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $reservations;
-
 
     /**
      * Add reservations

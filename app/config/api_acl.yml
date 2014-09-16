@@ -4,11 +4,12 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_USER
                 name:       ROLE_USER
-                surname:    ROLE_USER
+                lastname:   ROLE_USER
                 email:      ROLE_USER
-                reservations:      ROLE_USER
-                comments:      ROLE_USER
-                ratings:      ROLE_USER
+                reservations: ROLE_USER
+                comments:   ROLE_USER
+                ratings:    ROLE_USER
+                image:      ROLE_USER
             write:  ROLE_ADMIN
         instance.delete:
             read:
@@ -17,37 +18,43 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_USER
                 name:       ROLE_USER
+                lastname:   ROLE_USER
                 email:      ROLE_ADMIN
+                image:      ROLE_USER
         collection.create:
             read:
                 id:         ROLE_ADMIN
                 name:       ROLE_ADMIN
-                surname:    ROLE_ADMIN
+                lastname:   ROLE_ADMIN
                 username:   ROLE_ADMIN
                 email:      ROLE_ADMIN
                 password:   ROLE_ADMIN
+                image:      ROLE_ADMIN
             write:
                 id:         ROLE_ADMIN
                 name:       ROLE_ADMIN
-                surname:    ROLE_ADMIN
+                lastname:   ROLE_ADMIN
                 username:   ROLE_ADMIN
                 email:      ROLE_ADMIN
                 password:   ROLE_ADMIN
+                image:      ROLE_ADMIN
         instance.update:
             read:
                 id:         ROLE_OWNER
                 name:       ROLE_OWNER
-                surname:    ROLE_OWNER
+                lastname:   ROLE_OWNER
                 username:   ROLE_OWNER
                 email:      ROLE_OWNER
                 password:   ROLE_OWNER
+                image:      ROLE_OWNER
             write:
                 id:         ROLE_ADMIN
                 name:       ROLE_OWNER
-                surname:    ROLE_OWNER
+                lastname:   ROLE_OWNER
                 username:   ROLE_ADMIN
                 email:      ROLE_OWNER
                 password:   ROLE_OWNER
+                image:      ROLE_OWNER
         collection.count:
             read:
                 count:      ROLE_USER

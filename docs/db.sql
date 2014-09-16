@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `UserBooks` (
 CREATE TABLE IF NOT EXISTS `Users` (
   `userId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

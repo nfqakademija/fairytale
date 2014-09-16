@@ -9,7 +9,10 @@ Nfq\Fairytale\CoreBundle\Entity\User:
         name:
             type: string
             length: 255
-        surname:
+        lastname:
+            type: string
+            length: 255
+        image:
             type: string
             length: 255
     oneToMany:

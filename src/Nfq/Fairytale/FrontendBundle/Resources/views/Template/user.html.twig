@@ -4,7 +4,7 @@
 {% verbatim %}
 <div class="row" id="user-information">
     <div class="col-md-7">
-        <div class="user-name">{{ user.name }} {{ user.surname }}</div>
+        <div class="user-name">{{ user.name }} {{ user.lastname }}</div>
         <div class="user-photo left">
             <img ng-if="user.photo" ng-src="{{ user.photo }}">
             <img ng-if="!user.photo" src="bundles/nfqfairytalefrontend/alien.png">

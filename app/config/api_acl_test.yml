@@ -20,14 +20,14 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_ADMIN
                 name:       ROLE_ADMIN
-                surname:    ROLE_ADMIN
+                lastname:    ROLE_ADMIN
                 username:   ROLE_ADMIN
                 email:      ROLE_ADMIN
                 password:   ROLE_ADMIN
             write:
                 id:         ROLE_ADMIN
                 name:       ROLE_ADMIN
-                surname:    ROLE_ADMIN
+                lastname:    ROLE_ADMIN
                 username:   ROLE_ADMIN
                 email:      ROLE_ADMIN
                 password:   ROLE_ADMIN
@@ -38,7 +38,7 @@ Nfq\Fairytale\CoreBundle\Entity:
             write:
                 id:         ROLE_ADMIN
                 name:       ROLE_OWNER
-                surname:    ROLE_OWNER
+                lastname:    ROLE_OWNER
                 username:   ROLE_ADMIN
                 email:      ROLE_OWNER
                 password:   ROLE_OWNER

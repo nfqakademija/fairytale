@@ -25,7 +25,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $this->setPassword($userAdmin, 'admin');
         $userAdmin->setEmail('admin@admin.com');
         $userAdmin->setName('The Admin');
-        $userAdmin->setSurname('');
+        $userAdmin->setlastname('');
         $userAdmin->setRoles(['ROLE_ADMIN']);
         $userAdmin->setEnabled(true);
 
@@ -35,7 +35,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setUsername('user');
         $this->setPassword($user, 'user');
         $user->setEmail('user@user.com');
-        $user->setSurname('');
+        $user->setlastname('');
         $user->setName('The User');
         $user->setRoles(['ROLE_USER']);
         $user->setEnabled(true);
@@ -46,7 +46,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setUsername('Mindaugas');
         $this->setPassword($user, 'Mindaugas');
         $user->setEmail('mindaugas.venckus@nfq.lt');
-        $user->setSurname('Venckus');
+        $user->setlastname('Venckus');
         $user->setName('Mindaugas');
         $user->setRoles(['ROLE_USER']);
         $user->setEnabled(true);
@@ -59,7 +59,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             $this->setPassword($user, 'secret');
             $user->setEmail($faker->companyEmail);
             $user->setName($faker->firstName);
-            $user->setSurname($faker->lastName);
+            $user->setlastname($faker->lastName);
             $user->setRoles(['ROLE_USER']);
             $userAdmin->setEnabled(true);
 

@@ -38,7 +38,7 @@ Feature: CRUD
         """
         {
             "name":     "John",
-            "surname":  "Doe",
+            "lastname":  "Doe",
             "username": "john.doe",
             "email":    "john.doe@api.com",
             "password": "secret"
@@ -50,7 +50,7 @@ Feature: CRUD
         {
             "id":       13,
             "name":     "John",
-            "surname":  "Doe",
+            "lastname":  "Doe",
             "username": "john.doe",
             "email":    "john.doe@api.com",
             "password": "secret"

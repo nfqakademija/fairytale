@@ -90,7 +90,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'name'                => function () use ($generator) {
                     return $generator->firstName;
                 },
-                'surname'             => function () use ($generator) {
+                'lastname'             => function () use ($generator) {
                     return $generator->lastName;
                 },
                 'salt'                => function () use ($generator) {
