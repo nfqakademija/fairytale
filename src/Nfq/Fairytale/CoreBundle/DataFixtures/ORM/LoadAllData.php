@@ -10,6 +10,7 @@ use Faker\ORM\Doctrine\Populator;
 use Nfq\Fairytale\CoreBundle\Entity\Author;
 use Nfq\Fairytale\CoreBundle\Entity\Book;
 use Nfq\Fairytale\CoreBundle\Entity\Category;
+use Nfq\Fairytale\CoreBundle\Entity\Reservation;
 use Nfq\Fairytale\CoreBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -87,10 +88,10 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                 'credentialsExpired'  => $this->returnValue(false),
                 'credentialsExpireAt' => $this->returnValue(null),
                 'name'                => function () use ($generator) {
-                        return $generator->firstName;
+                    return $generator->firstName;
                 },
                 'surname'             => function () use ($generator) {
-                        return $generator->lastName;
+                    return $generator->lastName;
                 },
                 'salt'                => function () use ($generator) {
                     return $generator->md5;
@@ -131,6 +132,9 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
             '\Nfq\Fairytale\CoreBundle\Entity\Book',
             100,
             [
+                'createdAt'   => function () use ($generator) {
+                    return $generator->dateTimeThisYear;
+                },
                 'title'       => function () use ($generator) {
                     return $generator->sentence();
                 },
@@ -200,13 +204,17 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
         $populator->addEntity(
             '\Nfq\Fairytale\CoreBundle\Entity\Reservation',
             500,
+            [],
             [
-                'createdAt' => function () use ($generator) {
-                    return $generator->dateTimeThisYear;
-                },
-                'status'    => function () use ($generator) {
-                    return $generator->randomElement(['waiting', 'reading', 'returned']);
-                },
+                function (Reservation $reservation) use ($generator) {
+                    $reservation->setCreatedAt($generator->dateTimeBetween('-1 year', '-1 month'));
+                    if ($generator->boolean(33)) {
+                        $reservation->setTakenAt($generator->dateTimeBetween('-1 month', '-1 week'));
+                        if ($generator->boolean(66)) {
+                            $reservation->setReturnedAt($generator->dateTimeBetween('-1 month', '-1 week'));
+                        }
+                    }
+                }
             ]
         );
     }
@@ -221,10 +229,10 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
             '\Nfq\Fairytale\CoreBundle\Entity\Rating',
             300,
             [
-                'created' => function () use ($generator) {
+                'createdAt' => function () use ($generator) {
                     return $generator->dateTimeThisYear;
                 },
-                'value'   => function () use ($generator) {
+                'value'     => function () use ($generator) {
                     return $generator->numberBetween(0, 5);
                 },
             ]
@@ -241,7 +249,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
             '\Nfq\Fairytale\CoreBundle\Entity\Comment',
             150,
             [
-                'created' => function () use ($generator) {
+                'createdAt' => function () use ($generator) {
                     return $generator->dateTimeThisYear;
                 },
                 'content' => function () use ($generator) {
