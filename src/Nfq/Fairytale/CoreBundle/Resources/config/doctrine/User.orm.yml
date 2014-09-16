@@ -15,6 +15,7 @@ Nfq\Fairytale\CoreBundle\Entity\User:
         image:
             type: string
             length: 255
+            nullable: true
     oneToMany:
         comments:
             targetEntity: Comment
