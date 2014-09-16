@@ -6,6 +6,7 @@ use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
+use Nfq\Fairytale\CoreBundle\Entity\Reservation;
 use Symfony\Component\HttpFoundation\Request;
 
 class GetNowReading extends BaseInstanceAction
@@ -28,7 +29,9 @@ class GetNowReading extends BaseInstanceAction
         $resource = $this->factory->create('Nfq\Fairytale\CoreBundle\Entity\Reservation');
 
         $reservations = $resource->query(['user' => $identifier, 'takenAt' => null, 'returnedAt' => null]);
-        return ActionResult::collection(200, [count($reservations) ? $reservations[0]->getBook() : null]);
+        return ActionResult::collection(200, array_map(function (Reservation $reservation) {
+            return $reservation->getBook();
+        }, $reservations));
     }
 
     /**
