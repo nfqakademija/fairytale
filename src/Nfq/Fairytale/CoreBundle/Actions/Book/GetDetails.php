@@ -30,6 +30,8 @@ class GetDetails extends BaseInstanceAction
         // convert Book object to assoc array so we can inject more data
         $ref = new \ReflectionObject($book);
         $props = $ref->getProperties();
+
+        $raw = [];
         foreach ($props as $prop) {
             $prop->setAccessible(true);
             $raw[$prop->getName()] = $prop->getValue($book);
