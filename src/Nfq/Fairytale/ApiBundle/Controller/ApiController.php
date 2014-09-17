@@ -101,8 +101,8 @@ class ApiController extends Controller implements ApiControllerInterface
      * @param string|null       $identifier
      * @param DataSourceFactory $factory
      * @param TokenInterface    $token
-     * @param string[]          $roles
-     * @return array
+     * @param string[]            $roles
+     * @return string[]
      */
     private function handleObjectOwnership($resource, $identifier, $factory, $token, $roles)
     {
