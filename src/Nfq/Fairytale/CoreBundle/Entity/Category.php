@@ -2,7 +2,8 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Category
@@ -20,7 +21,7 @@ class Category
     private $title;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $books;
 
@@ -29,7 +30,7 @@ class Category
      */
     public function __construct()
     {
-        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->books = new ArrayCollection();
     }
 
     /**
@@ -68,10 +69,10 @@ class Category
     /**
      * Add books
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $books
+     * @param Book $books
      * @return Category
      */
-    public function addBook(\Nfq\Fairytale\CoreBundle\Entity\Book $books)
+    public function addBook(Book $books)
     {
         $this->books[] = $books;
 
@@ -81,9 +82,9 @@ class Category
     /**
      * Remove books
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Book $books
+     * @param Book $books
      */
-    public function removeBook(\Nfq\Fairytale\CoreBundle\Entity\Book $books)
+    public function removeBook(Book $books)
     {
         $this->books->removeElement($books);
     }
@@ -91,7 +92,7 @@ class Category
     /**
      * Get books
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getBooks()
     {

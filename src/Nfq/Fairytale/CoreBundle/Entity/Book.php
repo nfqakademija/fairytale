@@ -2,7 +2,8 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Book
@@ -60,27 +61,27 @@ class Book
     private $image;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $ratings;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $comments;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $reservations;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $categories;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $authors;
 
@@ -89,11 +90,11 @@ class Book
      */
     public function __construct()
     {
-        $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->authors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ratings = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->authors = new ArrayCollection();
     }
 
     /**
@@ -316,10 +317,10 @@ class Book
     /**
      * Add ratings
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
+     * @param Rating $ratings
      * @return Book
      */
-    public function addRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
+    public function addRating(Rating $ratings)
     {
         $this->ratings[] = $ratings;
 
@@ -329,9 +330,9 @@ class Book
     /**
      * Remove ratings
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Rating $ratings
+     * @param Rating $ratings
      */
-    public function removeRating(\Nfq\Fairytale\CoreBundle\Entity\Rating $ratings)
+    public function removeRating(Rating $ratings)
     {
         $this->ratings->removeElement($ratings);
     }
@@ -339,7 +340,7 @@ class Book
     /**
      * Get ratings
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getRatings()
     {
@@ -349,10 +350,10 @@ class Book
     /**
      * Add comments
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
+     * @param Comment $comments
      * @return Book
      */
-    public function addComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
+    public function addComment(Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -362,9 +363,9 @@ class Book
     /**
      * Remove comments
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Comment $comments
+     * @param Comment $comments
      */
-    public function removeComment(\Nfq\Fairytale\CoreBundle\Entity\Comment $comments)
+    public function removeComment(Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
@@ -372,7 +373,7 @@ class Book
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getComments()
     {
@@ -382,10 +383,10 @@ class Book
     /**
      * Add reservations
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations
+     * @param Reservation $reservations
      * @return Book
      */
-    public function addReservation(\Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations)
+    public function addReservation(Reservation $reservations)
     {
         $this->reservations[] = $reservations;
 
@@ -395,9 +396,9 @@ class Book
     /**
      * Remove reservations
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations
+     * @param Reservation $reservations
      */
-    public function removeReservation(\Nfq\Fairytale\CoreBundle\Entity\Reservation $reservations)
+    public function removeReservation(Reservation $reservations)
     {
         $this->reservations->removeElement($reservations);
     }
@@ -405,7 +406,7 @@ class Book
     /**
      * Get reservations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getReservations()
     {
@@ -415,10 +416,10 @@ class Book
     /**
      * Add categories
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Category $categories
+     * @param Category $categories
      * @return Book
      */
-    public function addCategory(\Nfq\Fairytale\CoreBundle\Entity\Category $categories)
+    public function addCategory(Category $categories)
     {
         $this->categories[] = $categories;
 
@@ -428,9 +429,9 @@ class Book
     /**
      * Remove categories
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Category $categories
+     * @param Category $categories
      */
-    public function removeCategory(\Nfq\Fairytale\CoreBundle\Entity\Category $categories)
+    public function removeCategory(Category $categories)
     {
         $this->categories->removeElement($categories);
     }
@@ -438,7 +439,7 @@ class Book
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getCategories()
     {
@@ -448,10 +449,10 @@ class Book
     /**
      * Add authors
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Author $authors
+     * @param Author $authors
      * @return Book
      */
-    public function addAuthor(\Nfq\Fairytale\CoreBundle\Entity\Author $authors)
+    public function addAuthor(Author $authors)
     {
         $this->authors[] = $authors;
 
@@ -461,9 +462,9 @@ class Book
     /**
      * Remove authors
      *
-     * @param \Nfq\Fairytale\CoreBundle\Entity\Author $authors
+     * @param Author $authors
      */
-    public function removeAuthor(\Nfq\Fairytale\CoreBundle\Entity\Author $authors)
+    public function removeAuthor(Author $authors)
     {
         $this->authors->removeElement($authors);
     }
@@ -471,7 +472,7 @@ class Book
     /**
      * Get authors
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Collection
      */
     public function getAuthors()
     {
