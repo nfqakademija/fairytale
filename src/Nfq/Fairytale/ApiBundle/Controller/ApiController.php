@@ -3,6 +3,7 @@
 namespace Nfq\Fairytale\ApiBundle\Controller;
 
 use Nfq\Fairytale\ApiBundle\Actions\ActionInterface;
+use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
 use Nfq\Fairytale\ApiBundle\Actions\Collection\CollectionActionInterface;
 use Nfq\Fairytale\ApiBundle\Actions\Instance\InstanceActionInterface;
 use Nfq\Fairytale\ApiBundle\DataSource\Factory\DataSourceFactory;
@@ -12,6 +13,7 @@ use Nfq\Fairytale\ApiBundle\Helper\ResponseFilter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 class ApiController extends Controller implements ApiControllerInterface
@@ -70,12 +72,12 @@ class ApiController extends Controller implements ApiControllerInterface
     }
 
     /**
-     * @param Request         $request
-     * @param                 $resource
-     * @param ActionInterface $action
-     * @param                 $identifier
-     * @param                 $factory
-     * @return \Nfq\Fairytale\ApiBundle\Actions\ActionResult
+     * @param Request           $request
+     * @param string            $resource
+     * @param ActionInterface   $action
+     * @param string|null       $identifier
+     * @param DataSourceFactory $factory
+     * @return ActionResult
      */
     private function execute(Request $request, $resource, ActionInterface $action, $identifier, $factory)
     {
@@ -95,11 +97,11 @@ class ApiController extends Controller implements ApiControllerInterface
     }
 
     /**
-     * @param $resource
-     * @param $identifier
-     * @param $factory
-     * @param $token
-     * @param $roles
+     * @param string            $resource
+     * @param string|null       $identifier
+     * @param DataSourceFactory $factory
+     * @param TokenInterface    $token
+     * @param string[]          $roles
      * @return array
      */
     private function handleObjectOwnership($resource, $identifier, $factory, $token, $roles)
