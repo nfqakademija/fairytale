@@ -52,8 +52,9 @@ see *Doctrine ORM User class* section:
 
 1. Class must extend `FOS\UserBundle\Entity\User`
 2. `id` field must be `protected` (doctrine generates it as `private`)
-3. Constructor method must call `parent::__construct();`
+3. Constructor must call `parent::__construct();`
 
 ## 2. Image
 
-Image class must implement `Nfq\Fairytale\CoreBundle\Upload\UploadInterface`
+1. Image class must implement `Nfq\Fairytale\CoreBundle\Upload\UploadInterface`
+2. Constructor must call `$this->createdAt = new \DateTime();`

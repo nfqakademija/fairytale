@@ -27,9 +27,10 @@ Nfq\Fairytale\CoreBundle\Entity\Book:
         language:
             type: string
             length: 20
+    oneToOne:
         image:
-            type: string
-            length: 255
+            targetEntity: Image
+            cascade: [persist, remove]
     manyToMany:
         categories:
             targetEntity: Category

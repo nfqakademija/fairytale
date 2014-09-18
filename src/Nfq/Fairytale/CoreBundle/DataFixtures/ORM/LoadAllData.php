@@ -13,13 +13,9 @@ use Nfq\Fairytale\CoreBundle\Entity\Book;
 use Nfq\Fairytale\CoreBundle\Entity\Category;
 use Nfq\Fairytale\CoreBundle\Entity\Reservation;
 use Nfq\Fairytale\CoreBundle\Entity\User;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
-class LoadAllData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
+class LoadAllData extends UserLoadingFixture implements FixtureInterface, OrderedFixtureInterface
 {
-    use ContainerAwareTrait;
 
     /**
      * @inheritdoc
@@ -41,6 +37,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface, OrderedF
      */
     function load(ObjectManager $manager)
     {
+        parent::load($manager);
 
         $generator = Factory::create();
         $populator = new Populator($generator, $manager);
@@ -52,18 +49,6 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface, OrderedF
         $this->populateRatings($populator, $generator);
         $this->populateComments($populator, $generator);
         $populator->execute();
-    }
-
-    /**
-     * @param User   $user
-     * @param string $password
-     * @return string
-     */
-    private function makePassword(User $user, $password)
-    {
-        /** @var PasswordEncoderInterface $encoder */
-        $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
-        return $encoder->encodePassword($password, $user->getSalt());
     }
 
     /**
@@ -103,8 +88,8 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface, OrderedF
                 'salt'                => function () use ($generator) {
                     return $generator->md5;
                 },
-                'image'               => function () use ($generator) {
-                    return 'foo.png';
+                'image'               => function () {
+                    return $this->getImage('users');
                 },
             ],
             [
@@ -160,8 +145,8 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface, OrderedF
                 'language'    => function () use ($generator) {
                     return $generator->languageCode;
                 },
-                'image'       => function () use ($generator) {
-                    return '/img/books/' . $generator->numberBetween(1, 9) . '.png';//$generator->image();
+                'image'       => function () {
+                    return $this->getImage('books');
                 },
                 'isbn'        => function () use ($generator) {
                     return $generator->ean13;

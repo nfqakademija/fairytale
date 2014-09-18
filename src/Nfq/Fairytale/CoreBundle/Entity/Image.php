@@ -24,6 +24,11 @@ class Image implements UploadInterface
      */
     private $createdAt;
 
+    function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     /**
      * Get id
      *

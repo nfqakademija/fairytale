@@ -56,11 +56,6 @@ class Book
     private $language;
 
     /**
-     * @var string
-     */
-    private $image;
-
-    /**
      * @var Collection
      */
     private $ratings;
@@ -100,7 +95,7 @@ class Book
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -123,7 +118,7 @@ class Book
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -146,7 +141,7 @@ class Book
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -169,7 +164,7 @@ class Book
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -192,7 +187,7 @@ class Book
     /**
      * Get pages
      *
-     * @return integer 
+     * @return integer
      */
     public function getPages()
     {
@@ -215,7 +210,7 @@ class Book
     /**
      * Get publisher
      *
-     * @return string 
+     * @return string
      */
     public function getPublisher()
     {
@@ -238,7 +233,7 @@ class Book
     /**
      * Get isbn
      *
-     * @return string 
+     * @return string
      */
     public function getIsbn()
     {
@@ -261,7 +256,7 @@ class Book
     /**
      * Get cover
      *
-     * @return string 
+     * @return string
      */
     public function getCover()
     {
@@ -284,34 +279,11 @@ class Book
     /**
      * Get language
      *
-     * @return string 
+     * @return string
      */
     public function getLanguage()
     {
         return $this->language;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return Book
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**
@@ -477,5 +449,33 @@ class Book
     public function getAuthors()
     {
         return $this->authors;
+    }
+
+    /**
+     * @var Image
+     */
+    private $image;
+
+    /**
+     * Set image
+     *
+     * @param Image $image
+     * @return Book
+     */
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

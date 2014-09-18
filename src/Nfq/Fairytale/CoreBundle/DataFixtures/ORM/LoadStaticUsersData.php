@@ -6,14 +6,9 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nfq\Fairytale\CoreBundle\Entity\User;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
-class LoadStaticUsersData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
+class LoadStaticUsersData extends UserLoadingFixture implements FixtureInterface, OrderedFixtureInterface
 {
-    use ContainerAwareTrait;
-
     /**
      * @inheritdoc
      */
@@ -27,6 +22,8 @@ class LoadStaticUsersData implements FixtureInterface, ContainerAwareInterface, 
      */
     function load(ObjectManager $manager)
     {
+        parent::load($manager);
+
         $manager->persist($this->createUser('admin', 'John', 'Doe', ['ROLE_ADMIN']));
         $manager->persist($this->createUser('user', 'Jane', 'Doe', ['ROLE_USER']));
         /*
@@ -39,18 +36,6 @@ class LoadStaticUsersData implements FixtureInterface, ContainerAwareInterface, 
         $manager->persist($this->createUser('owner', 'John', 'Smith', ['ROLE_OWNER']));
 
         $manager->flush();
-    }
-
-    /**
-     * @param User   $user
-     * @param string $password
-     * @return string
-     */
-    private function makePassword(User $user, $password)
-    {
-        /** @var PasswordEncoderInterface $encoder */
-        $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
-        return $encoder->encodePassword($password, $user->getSalt());
     }
 
     /**
@@ -70,6 +55,8 @@ class LoadStaticUsersData implements FixtureInterface, ContainerAwareInterface, 
         $user->setPassword($this->makePassword($user, 'secret'));
         $user->setRoles($roles);
         $user->setEnabled(true);
+        $user->setImage($this->getImage('users'));
+
         return $user;
     }
 }

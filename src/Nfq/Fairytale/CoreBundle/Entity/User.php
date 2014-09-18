@@ -27,11 +27,6 @@ class User extends BaseUser
     private $lastname;
 
     /**
-     * @var string
-     */
-    private $image;
-
-    /**
      * @var Collection
      */
     private $comments;
@@ -111,29 +106,6 @@ class User extends BaseUser
     public function getLastname()
     {
         return $this->lastname;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return User
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**
@@ -233,5 +205,33 @@ class User extends BaseUser
     public function getReservations()
     {
         return $this->reservations;
+    }
+    /**
+     * @var Image
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param Image $image
+     * @return User
+     */
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

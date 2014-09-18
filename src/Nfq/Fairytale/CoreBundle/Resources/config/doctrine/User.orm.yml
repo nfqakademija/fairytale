@@ -12,10 +12,10 @@ Nfq\Fairytale\CoreBundle\Entity\User:
         lastname:
             type: string
             length: 255
+    oneToOne:
         image:
-            type: string
-            length: 255
-            nullable: true
+            targetEntity: Image
+            cascade: [persist, remove]
     oneToMany:
         comments:
             targetEntity: Comment
