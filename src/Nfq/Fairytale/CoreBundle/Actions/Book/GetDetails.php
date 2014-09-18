@@ -37,25 +37,20 @@ class GetDetails extends BaseInstanceAction
             $raw[$prop->getName()] = $prop->getValue($book);
         }
 
-        $raw['categories'] = array_map(
-            function (Category $category) {
+        $raw['categories'] =
+            $book->getCategories()->map(function (Category $category) {
                 return [
                     'id'    => $category->getId(),
                     'title' => $category->getTitle(),
                 ];
-            },
-            $raw['categories']->toArray()
-        );
+            })->toArray();
 
-        $raw['authors'] = array_map(
-            function (Author $author) {
-                return [
-                    'id'   => $author->getId(),
-                    'name' => $author->getName(),
-                ];
-            },
-            $raw['authors']->toArray()
-        );
+        $raw['authors'] = $book->getAuthors()->map(function (Author $author) {
+            return [
+                'id'   => $author->getId(),
+                'name' => $author->getName(),
+            ];
+        })->toArray();
 
         $raw = array_replace($raw, [
             'status' => 'unknown', // 'available', 'reserved', 'taken',
