@@ -5,16 +5,17 @@ namespace Nfq\Fairytale\CoreBundle\Upload;
 interface UploadInterface
 {
     /**
-     * Returns original name of uploaded file
+     * Returns file name
      *
      * @return string
      */
-    public function getOriginalName();
+    public function getFileName();
 
     /**
-     * Returns real name of stored file
+     * Sets file name
      *
-     * @return string
+     * @param $fileName
+     * @return void
      */
-    public function getStoredName();
+    public function setFileName($fileName);
 }

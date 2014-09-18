@@ -17,23 +17,17 @@ class Image implements UploadInterface
     /**
      * @var string
      */
-    private $originalName;
-
-    /**
-     * @var string
-     */
-    private $storedName;
+    private $fileName;
 
     /**
      * @var \DateTime
      */
     private $createdAt;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -41,49 +35,26 @@ class Image implements UploadInterface
     }
 
     /**
-     * Set originalName
+     * Set fileName
      *
-     * @param string $originalName
+     * @param string $fileName
      * @return Image
      */
-    public function setOriginalName($originalName)
+    public function setFileName($fileName)
     {
-        $this->originalName = $originalName;
+        $this->fileName = $fileName;
 
         return $this;
     }
 
     /**
-     * Get originalName
+     * Get fileName
      *
-     * @return string 
+     * @return string
      */
-    public function getOriginalName()
+    public function getFileName()
     {
-        return $this->originalName;
-    }
-
-    /**
-     * Set storedName
-     *
-     * @param string $storedName
-     * @return Image
-     */
-    public function setStoredName($storedName)
-    {
-        $this->storedName = $storedName;
-
-        return $this;
-    }
-
-    /**
-     * Get storedName
-     *
-     * @return string 
-     */
-    public function getStoredName()
-    {
-        return $this->storedName;
+        return $this->fileName;
     }
 
     /**
@@ -102,7 +73,7 @@ class Image implements UploadInterface
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
