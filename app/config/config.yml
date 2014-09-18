@@ -96,3 +96,11 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [50, 60], mode: outbound }
+        user_medium:
+            quality: 75
+            filters:
+                thumbnail: { size: [100, 100], mode: outbound }
+        user_small:
+            quality: 75
+            filters:
+                thumbnail: { size: [45, 45], mode: outbound }
