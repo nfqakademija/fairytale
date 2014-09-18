@@ -2,12 +2,12 @@
 
 namespace Nfq\Fairytale\CoreBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Nfq\Fairytale\CoreBundle\Upload\UploadInterface;
 
 /**
  * Image
  */
-class Image
+class Image implements UploadInterface
 {
     /**
      * @var integer
@@ -17,7 +17,12 @@ class Image
     /**
      * @var string
      */
-    private $name;
+    private $originalName;
+
+    /**
+     * @var string
+     */
+    private $storedName;
 
     /**
      * @var \DateTime
@@ -36,26 +41,49 @@ class Image
     }
 
     /**
-     * Set name
+     * Set originalName
      *
-     * @param string $name
+     * @param string $originalName
      * @return Image
      */
-    public function setName($name)
+    public function setOriginalName($originalName)
     {
-        $this->name = $name;
+        $this->originalName = $originalName;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get originalName
      *
      * @return string 
      */
-    public function getName()
+    public function getOriginalName()
     {
-        return $this->name;
+        return $this->originalName;
+    }
+
+    /**
+     * Set storedName
+     *
+     * @param string $storedName
+     * @return Image
+     */
+    public function setStoredName($storedName)
+    {
+        $this->storedName = $storedName;
+
+        return $this;
+    }
+
+    /**
+     * Get storedName
+     *
+     * @return string 
+     */
+    public function getStoredName()
+    {
+        return $this->storedName;
     }
 
     /**

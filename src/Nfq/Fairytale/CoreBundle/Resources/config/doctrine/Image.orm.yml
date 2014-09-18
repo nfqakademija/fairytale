@@ -8,7 +8,10 @@ Nfq\Fairytale\CoreBundle\Entity\Image:
             generator:
                 strategy: AUTO
     fields:
-        name:
+        originalName:
+            type: string
+            length: 255
+        storedName:
             type: string
             length: 255
         createdAt:
