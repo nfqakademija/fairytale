@@ -78,6 +78,9 @@ nfq_fairytale_api:
         "Nfq\Fairytale\CoreBundle\Entity\User": id
 
 liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
     filter_sets:
         cache: ~
         book_big:
