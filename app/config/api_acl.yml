@@ -1,6 +1,6 @@
 Nfq\Fairytale\CoreBundle\Entity:
     User:
-        instance.read:
+        user.details:
             read:
                 id:         ROLE_USER
                 name:       ROLE_USER
@@ -114,11 +114,6 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_USER
                 title:      ROLE_USER
-        instance.read:
-            read:
-                id:         ROLE_USER
-                title:      ROLE_USER
-                image:      ROLE_USER
         category.books:
             read:
                 id:         ROLE_USER
