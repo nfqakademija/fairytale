@@ -7,4 +7,8 @@ partial:
     path:     /partial/{template}
     defaults: { _controller: NfqFairytaleFrontendBundle:Template:partial }
     requirements:
-        template: user|category
+        template: user|category|book
+
+temporary:
+    path:     /block/{template}
+    defaults: { _controller: NfqFairytaleFrontendBundle:Template:block }

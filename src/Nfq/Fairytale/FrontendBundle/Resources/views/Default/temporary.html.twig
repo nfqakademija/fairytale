@@ -1,0 +1,9 @@
+{% extends "NfqFairytaleFrontendBundle:Default:index.html.twig" %}
+
+{% block view %}
+    {% set template = "NfqFairytaleFrontendBundle:Template:" ~ template ~ ".html.twig" %}
+    {% include(template) %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

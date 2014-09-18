@@ -61,7 +61,7 @@
                     <input type="text" placeholder="Ieškoti knygos">
                 </div>
             </div>
-            <div ng-view></div>
+            <div ng-view>{% block view %}{% endblock %}</div>
         </div>
     </div>
 {% endblock %}
