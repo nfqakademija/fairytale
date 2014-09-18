@@ -1,3 +1,9 @@
+parameters:
+    nfq_fairytale.action.book.details.image_filters:
+        - book_big
+        - book_medium
+        - book_small
+        - book_tiny
 services:
     nfq_fairytale.action.user.reservation.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReservation
@@ -32,3 +38,6 @@ services:
         class: Nfq\Fairytale\CoreBundle\Actions\Book\GetDetails
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Book", method: GET }
+        calls:
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]

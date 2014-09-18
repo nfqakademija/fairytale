@@ -8,10 +8,14 @@ use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Nfq\Fairytale\CoreBundle\Entity\Author;
 use Nfq\Fairytale\CoreBundle\Entity\Book;
 use Nfq\Fairytale\CoreBundle\Entity\Category;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingInterface;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingTrait;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetDetails extends BaseInstanceAction
+class GetDetails extends BaseInstanceAction implements ImageResolvingInterface
 {
+    use ImageResolvingTrait;
+
     const NAME = 'book.details';
 
     /**
@@ -52,7 +56,7 @@ class GetDetails extends BaseInstanceAction
             ];
         })->toArray();
 
-        $raw['image'] = $book->getImage()->getFileName();
+        $raw['image'] = $this->resolveImages($book->getImage()->getFileName());
 
         $raw = array_replace($raw, [
             'status' => 'unknown', // 'available', 'reserved', 'taken',
