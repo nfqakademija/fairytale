@@ -3,6 +3,7 @@
 namespace Nfq\Fairytale\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
@@ -16,11 +17,19 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
-class LoadAllData implements FixtureInterface, ContainerAwareInterface
+class LoadAllData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     use ContainerAwareTrait;
 
-    protected function returnValue($value)
+    /**
+     * @inheritdoc
+     */
+    function getOrder()
+    {
+        return 20;
+    }
+
+    private function returnValue($value)
     {
         return function () use ($value) {
             return $value;
@@ -28,9 +37,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
     }
 
     /**
-     * Load data fixtures with the passed EntityManager
-     *
-     * @param ObjectManager $manager
+     * @inheritdoc
      */
     function load(ObjectManager $manager)
     {
@@ -157,7 +164,7 @@ class LoadAllData implements FixtureInterface, ContainerAwareInterface
                     return '/img/books/' . $generator->numberBetween(1, 9) . '.png';//$generator->image();
                 },
                 'isbn'        => function () use ($generator) {
-                    return $generator->ean13();
+                    return $generator->ean13;
                 },
                 'cover'       => function () use ($generator) {
                     return $generator->randomElement(['soft', 'hard']);
