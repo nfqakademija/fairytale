@@ -52,6 +52,8 @@ class GetDetails extends BaseInstanceAction
             ];
         })->toArray();
 
+        $raw['image'] = $book->getImage()->getFileName();
+
         $raw = array_replace($raw, [
             'status' => 'unknown', // 'available', 'reserved', 'taken',
         ]);
