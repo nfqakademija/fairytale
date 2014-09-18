@@ -8,10 +8,14 @@ use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
 use Nfq\Fairytale\CoreBundle\Entity\Author;
 use Nfq\Fairytale\CoreBundle\Entity\Book;
 use Nfq\Fairytale\CoreBundle\Entity\Category;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingInterface;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingTrait;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetDetails extends BaseInstanceAction
+class GetDetails extends BaseInstanceAction implements ImageResolvingInterface
 {
+    use ImageResolvingTrait;
+
     const NAME = 'book.details';
 
     /**
@@ -37,25 +41,22 @@ class GetDetails extends BaseInstanceAction
             $raw[$prop->getName()] = $prop->getValue($book);
         }
 
-        $raw['categories'] = array_map(
-            function (Category $category) {
+        $raw['categories'] =
+            $book->getCategories()->map(function (Category $category) {
                 return [
                     'id'    => $category->getId(),
                     'title' => $category->getTitle(),
                 ];
-            },
-            $raw['categories']->toArray()
-        );
+            })->toArray();
 
-        $raw['authors'] = array_map(
-            function (Author $author) {
-                return [
-                    'id'   => $author->getId(),
-                    'name' => $author->getName(),
-                ];
-            },
-            $raw['authors']->toArray()
-        );
+        $raw['authors'] = $book->getAuthors()->map(function (Author $author) {
+            return [
+                'id'   => $author->getId(),
+                'name' => $author->getName(),
+            ];
+        })->toArray();
+
+        $raw['image'] = $this->resolveImages($book->getImage()->getFileName());
 
         $raw = array_replace($raw, [
             'status' => 'unknown', // 'available', 'reserved', 'taken',

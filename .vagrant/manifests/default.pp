@@ -150,6 +150,7 @@ php::module {
     'php5-mcrypt',
     'php5-common',
     'php5-xdebug',
+    'php5-gd',
     'php5-mysql'
   ]:
     require => Class['php'],

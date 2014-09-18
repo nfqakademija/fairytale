@@ -25,10 +25,11 @@ class ActionManager
      */
     public function resolve($resource, $actionName, $httpMethod, $forInstance = false)
     {
-        $resource = array_key_exists($resource, $this->actions) ? $this->actions[$resource] : [];
-        $resource = array_merge($resource, $this->actions['*']);
+        if (isset($this->actions[$resource][$actionName][$httpMethod][$forInstance])) {
+            return $this->actions[$resource][$actionName][$httpMethod][$forInstance];
+        }
 
-        $action = @$resource[$actionName ?: ''][$httpMethod][$forInstance];
+        $action = @$this->actions['*'][$actionName][$httpMethod][$forInstance];
 
         if (null === $action) {
             throw new BadRequestHttpException();

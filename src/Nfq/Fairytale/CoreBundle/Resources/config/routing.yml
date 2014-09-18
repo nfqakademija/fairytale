@@ -1,0 +1,8 @@
+core_helper_upload:
+    path:     /upload
+    defaults: { _controller: NfqFairytaleCoreBundle:Helper:upload }
+
+core_helper_upload_success:
+    path:     /upload/success
+    defaults: { _controller: NfqFairytaleCoreBundle:Helper:uploadSuccess }
+

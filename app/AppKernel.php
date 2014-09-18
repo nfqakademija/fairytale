@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Nfq\Fairytale\CoreBundle\NfqFairytaleCoreBundle(),
             new Nfq\Fairytale\FrontendBundle\NfqFairytaleFrontendBundle(),
             new Nfq\Fairytale\ApiBundle\NfqFairytaleApiBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

@@ -1,0 +1,16 @@
+Nfq\Fairytale\CoreBundle\Entity\Image:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fileName:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+    lifecycleCallbacks: {  }

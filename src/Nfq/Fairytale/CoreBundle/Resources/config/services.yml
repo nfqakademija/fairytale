@@ -1,7 +1,9 @@
 parameters:
-#    fairytale_core.example.class: Fairytale\CoreBundle\Example
+    fairytale_core.upload.manager.upload_dir: uploads
 
 services:
-#    fairytale_core.example:
-#        class: %fairytale_core.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    fairytale_core.upload.manager:
+        class: Nfq\Fairytale\CoreBundle\Upload\UploadManager
+        calls:
+            - [setUploadDir, [%fairytale_core.upload.manager.upload_dir%]]
+            - [setRootDir, [%kernel.root_dir%]]

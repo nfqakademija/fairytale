@@ -38,3 +38,23 @@ $ bin/behat
 ```
 
 > HEADS UP: Behat tests are configured to reload fixtures, so running Behat wipes test database!
+
+Regenerating entity classes
+===========================
+
+After regenerating entity classes from mapping some changes have to be made manually:
+
+## 1. User
+
+https://github.com/FriendsOfSymfony/FOSUserBundle/blob/1.3.x/Resources/doc/index.md#step-3-create-your-user-class
+
+see *Doctrine ORM User class* section:
+
+1. Class must extend `FOS\UserBundle\Entity\User`
+2. `id` field must be `protected` (doctrine generates it as `private`)
+3. Constructor must call `parent::__construct();`
+
+## 2. Image
+
+1. Image class must implement `Nfq\Fairytale\CoreBundle\Upload\UploadInterface`
+2. Constructor must call `$this->createdAt = new \DateTime();`

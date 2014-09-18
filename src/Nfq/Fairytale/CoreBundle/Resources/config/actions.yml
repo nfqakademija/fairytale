@@ -1,4 +1,23 @@
+parameters:
+    nfq_fairytale.action.user.details.image_filters:
+        - user_medium
+        - user_small
+
+    nfq_fairytale.action.book.details.image_filters:
+        - book_big
+        - book_medium
+        - book_small
+        - book_tiny
+
 services:
+    nfq_fairytale.action.user.details:
+        class: Nfq\Fairytale\CoreBundle\Actions\User\GetDetails
+        tags:
+            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", method: GET }
+        calls:
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.user.details.image_filters%]]
+
     nfq_fairytale.action.user.reservation.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReservation
         tags:
@@ -31,4 +50,7 @@ services:
     nfq_fairytale.action.book.details:
         class: Nfq\Fairytale\CoreBundle\Actions\Book\GetDetails
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Book", action: details, method: GET }
+            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Book", method: GET }
+        calls:
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
