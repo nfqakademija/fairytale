@@ -6,15 +6,19 @@ use Im0rtality\ApiBundle\Actions\ActionResult;
 use Im0rtality\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Im0rtality\ApiBundle\DataSource\DataSourceInterface;
 use Im0rtality\ApiBundle\DataSource\Factory\DataSourceFactory;
+use Nfq\Fairytale\CoreBundle\Actions\Book\BookHelper;
 use Nfq\Fairytale\CoreBundle\Entity\Reservation;
+use Nfq\Fairytale\CoreBundle\Entity\User;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingInterface;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingTrait;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class GetNowReading extends BaseInstanceAction
+class GetNowReading extends BaseInstanceAction implements ImageResolvingInterface
 {
-    const NAME = 'user.now_reading';
+    use ImageResolvingTrait;
 
-    /** @var  DataSourceFactory */
-    protected $factory;
+    const NAME = 'user.now_reading';
 
     /**
      * Performs the action
@@ -26,19 +30,26 @@ class GetNowReading extends BaseInstanceAction
      */
     public function execute(Request $request, DataSourceInterface $resource, $identifier)
     {
-        $resource = $this->factory->create('Nfq\Fairytale\CoreBundle\Entity\Reservation');
+        /** @var User $user */
+        $user = $resource->read($identifier);
+        if (!$user) {
+            throw new NotFoundHttpException();
+        }
 
-        $reservations = $resource->query(['user' => $identifier, 'takenAt' => null, 'returnedAt' => null]);
-        return ActionResult::collection(200, array_map(function (Reservation $reservation) {
-            return $reservation->getBook();
-        }, $reservations));
-    }
-
-    /**
-     * @param DataSourceFactory $factory
-     */
-    public function setFactory(DataSourceFactory $factory)
-    {
-        $this->factory = $factory;
+        return ActionResult::collection(
+            200,
+            $user->getReservations()
+                ->filter(
+                    function (Reservation $reservation) {
+                        return $reservation->getReturnedAt() == null && $reservation->getTakenAt() !== null;
+                    }
+                )
+                ->map(
+                    function (Reservation $reservation) {
+                        return BookHelper::toRaw($reservation->getBook(), [$this, 'resolveImages']);
+                    }
+                )
+                ->toArray()
+        );
     }
 }

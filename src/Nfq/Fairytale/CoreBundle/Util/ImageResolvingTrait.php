@@ -27,7 +27,7 @@ trait ImageResolvingTrait
      * @param string $fileName
      * @return string[]
      */
-    private function resolveImages($fileName)
+    public function resolveImages($fileName)
     {
         $applyFilter = function ($filter) use ($fileName) {
             return $this->cacheManager->getBrowserPath($fileName, $filter);

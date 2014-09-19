@@ -124,6 +124,7 @@ class ApiContext implements SnippetAcceptingContext
     {
         $response = $this->client->getResponse();
         $collection = json_decode($response->getContent(), true);
+        Assertion::notEmpty($collection, 'Response collection should not be empty');
         foreach ($collection as $payload) {
             $this->checkPayload($table, $payload);
         }

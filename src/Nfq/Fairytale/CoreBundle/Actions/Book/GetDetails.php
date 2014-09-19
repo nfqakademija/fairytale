@@ -49,12 +49,6 @@ class GetDetails extends BaseInstanceAction implements ImageResolvingInterface
                 ];
             })->toArray();
 
-        $raw['authors'] = $book->getAuthors()->map(function (Author $author) {
-            return [
-                'id'   => $author->getId(),
-                'name' => $author->getName(),
-            ];
-        })->toArray();
 
         $raw['image'] = $this->resolveImages($book->getImage()->getFileName());
 

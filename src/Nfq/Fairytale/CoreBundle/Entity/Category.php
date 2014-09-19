@@ -36,7 +36,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -59,7 +59,7 @@ class Category
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {

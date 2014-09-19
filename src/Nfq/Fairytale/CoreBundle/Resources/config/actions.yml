@@ -22,11 +22,15 @@ services:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReservation
         tags:
             - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reservation, method: GET }
+        calls:
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
 
     nfq_fairytale.action.user.now_reading.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetNowReading
         calls:
-            - [setFactory, [@im0rtality_api.data_source.factory]]
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
         tags:
             - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reading, method: GET }
 

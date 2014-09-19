@@ -6,6 +6,7 @@ use Im0rtality\ApiBundle\Actions\ActionResult;
 use Im0rtality\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Im0rtality\ApiBundle\DataSource\DataSourceInterface;
 use Im0rtality\ApiBundle\DataSource\Factory\DataSourceFactory;
+use Nfq\Fairytale\CoreBundle\Actions\Book\BookHelper;
 use Nfq\Fairytale\CoreBundle\Entity\Book;
 use Nfq\Fairytale\CoreBundle\Entity\Category;
 use Nfq\Fairytale\CoreBundle\Entity\Reservation;
@@ -49,17 +50,7 @@ class GetReturnedBooks extends BaseInstanceAction implements ImageResolvingInter
             )
             ->map(
                 function (Reservation $reservation) {
-                    /** @var Book $book */
-                    $book = Doctrine::extractEntity($reservation->getBook());
-                    $raw = Doctrine::extractRaw($book);
-
-                    $raw['categories'] = $book->getCategories()->map(function (Category $category) {
-                        return ['id' => $category->getId(), 'title' => $category->getTitle()];
-                    });
-
-                    $raw['image'] = $this->resolveImages($book->getImage()->getFileName());
-
-                    return $raw;
+                    return BookHelper::toRaw($reservation->getBook(), [$this, 'resolveImages']);
                 }
             )
             ->toArray());
