@@ -71,6 +71,7 @@ Nfq\Fairytale\CoreBundle\Entity:
                 cover:      ROLE_USER
                 language:   ROLE_USER
                 image:      ROLE_USER
+                status:     ROLE_USER
         user.now_reading:
             read:
                 id:         ROLE_USER
@@ -84,6 +85,7 @@ Nfq\Fairytale\CoreBundle\Entity:
                 authors:    ROLE_USER
                 language:   ROLE_USER
                 image:      ROLE_USER
+                status:     ROLE_USER
             write: ROLE_USER
         user.returned:
             read:
@@ -98,6 +100,7 @@ Nfq\Fairytale\CoreBundle\Entity:
                 cover:      ROLE_USER
                 language:   ROLE_USER
                 image:      ROLE_USER
+                status:     ROLE_USER
         user.categories:
             read:
                 id:         ROLE_USER

@@ -13,6 +13,7 @@ class BookHelper
 
     public static function toRaw(Book $book, $imageResolver)
     {
+        /** @var Book $book */
         $book = Doctrine::extractEntity($book);
         $raw = Doctrine::extractRaw($book);
 
@@ -31,7 +32,13 @@ class BookHelper
             })->toArray();
 
         $raw['image'] = $imageResolver($book->getImage()->getFileName());
+        $raw['status'] = self::getBookStatus($book);
 
         return $raw;
+    }
+
+    private static function getBookStatus(Book $book)
+    {
+        return 'unknown';
     }
 } 

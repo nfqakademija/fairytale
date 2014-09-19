@@ -49,6 +49,7 @@ Feature: API - User
             | image.book_medium  | string  |
             | image.book_small   | string  |
             | image.book_tiny    | string  |
+            | status             | string  |
 
     Scenario: It should be possible to get all favorite categories
         Given I am authenticated as "user"
@@ -84,6 +85,7 @@ Feature: API - User
             | image.book_medium  | string  |
             | image.book_small   | string  |
             | image.book_tiny    | string  |
+            | status             | string  |
 
     Scenario: It should be possible to get all books user has currently reserved
         Given I am authenticated as "user"
@@ -110,3 +112,4 @@ Feature: API - User
             | image.book_medium  | string  |
             | image.book_small   | string  |
             | image.book_tiny    | string  |
+            | status             | string  |
