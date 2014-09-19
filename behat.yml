@@ -6,19 +6,11 @@ default:
                 debug: false
 
         Behat\MinkExtension:
-            base_url:   'http://fairytale.dev/'
             symfony2:   ~
 
         VIPSoft\DoctrineDataFixturesExtension\Extension:
             lifetime:    feature
-            autoload:    false
-            directories: ~
-            fixtures:
-                - Nfq\Fairytale\ApiBundle\DataFixtures\ORM\LoadUserData
-    suites:
-        NfqFairytaleApiBundle:
-            type: symfony_bundle
-            paths:
-                - %paths.base%/src/Nfq/Fairytale/ApiBundle/Features
-            contexts:
-                - Nfq\Fairytale\ApiBundle\Features\Context\FeatureContext
+            autoload:    true
+#    suites:
+#        NfqFairytaleCoreBundle:
+#            type: symfony_bundle

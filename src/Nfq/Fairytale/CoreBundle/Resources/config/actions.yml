@@ -26,7 +26,7 @@ services:
     nfq_fairytale.action.user.now_reading.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetNowReading
         calls:
-            - [setFactory, [@nfq_fairytale.data_source.factory]]
+            - [setFactory, [@im0rtality_api.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reading, method: GET }
 
@@ -43,7 +43,7 @@ services:
     nfq_fairytale.action.category.books.list:
         class: Nfq\Fairytale\CoreBundle\Actions\Category\GetBooks
         calls:
-            - [setFactory, [@nfq_fairytale.data_source.factory]]
+            - [setFactory, [@im0rtality_api.data_source.factory]]
         tags:
             - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", action: books, method: GET }
 
