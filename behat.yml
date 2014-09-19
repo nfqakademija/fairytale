@@ -5,12 +5,14 @@ default:
                 env: test
                 debug: false
 
-        Behat\MinkExtension:
-            symfony2:   ~
-
         VIPSoft\DoctrineDataFixturesExtension\Extension:
             lifetime:    feature
             autoload:    true
-#    suites:
-#        NfqFairytaleCoreBundle:
-#            type: symfony_bundle
+    suites:
+        NfqFairytaleCoreBundle:
+            type: symfony_bundle
+            use_backup: false
+            paths:
+                - %paths.base%/src/Nfq/Fairytale/CoreBundle/Features
+            contexts:
+                - Nfq\Fairytale\CoreBundle\Features\Context\ApiContext

@@ -34,6 +34,9 @@ services:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReturnedBooks
         tags:
             - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: returned, method: GET }
+        calls:
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
 
     nfq_fairytale.action.user.categories.list:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetCategories

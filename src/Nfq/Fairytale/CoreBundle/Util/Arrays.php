@@ -31,4 +31,19 @@ class Arrays
         }
         return $result;
     }
+
+    public static function get($root, $path)
+    {
+        $keys = explode('.', $path);
+        while (count($keys) > 1) {
+            $key = array_shift($keys);
+            if (!isset($root[$key])) {
+                $root[$key] = [];
+            }
+            $root = &$root[$key];
+        }
+
+        $key = reset($keys);
+        return $root[$key];
+    }
 } 
