@@ -152,3 +152,17 @@ Nfq\Fairytale\CoreBundle\Entity:
                 image:      ROLE_USER
                 status:     ROLE_USER
                 authors:    ROLE_USER
+        books.new:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+                categories: ROLE_USER
+                description: ROLE_USER
+                pages:      ROLE_USER
+                publisher:  ROLE_USER
+                isbn:       ROLE_USER
+                cover:      ROLE_USER
+                language:   ROLE_USER
+                image:      ROLE_USER
+                status:     ROLE_USER
+                authors:    ROLE_USER
