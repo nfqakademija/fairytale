@@ -2,9 +2,9 @@
 
 namespace Nfq\Fairytale\CoreBundle\Actions\User;
 
-use Nfq\Fairytale\ApiBundle\Actions\ActionResult;
-use Nfq\Fairytale\ApiBundle\Actions\Instance\BaseInstanceAction;
-use Nfq\Fairytale\ApiBundle\DataSource\DataSourceInterface;
+use Im0rtality\ApiBundle\Actions\ActionResult;
+use Im0rtality\ApiBundle\Actions\Instance\BaseInstanceAction;
+use Im0rtality\ApiBundle\DataSource\DataSourceInterface;
 use Nfq\Fairytale\CoreBundle\Entity\User;
 use Nfq\Fairytale\CoreBundle\Util\ImageResolvingInterface;
 use Nfq\Fairytale\CoreBundle\Util\ImageResolvingTrait;

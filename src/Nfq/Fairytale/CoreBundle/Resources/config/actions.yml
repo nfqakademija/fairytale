@@ -13,7 +13,7 @@ services:
     nfq_fairytale.action.user.details:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetDetails
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", method: GET }
         calls:
             - [setCacheManager, [@liip_imagine.cache.manager]]
             - [setFilters, [%nfq_fairytale.action.user.details.image_filters%]]
@@ -21,36 +21,36 @@ services:
     nfq_fairytale.action.user.reservation.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReservation
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reservation, method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reservation, method: GET }
 
     nfq_fairytale.action.user.now_reading.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetNowReading
         calls:
             - [setFactory, [@im0rtality_api.data_source.factory]]
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reading, method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: reading, method: GET }
 
     nfq_fairytale.action.user.returned.list:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReturnedBooks
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: returned, method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: returned, method: GET }
 
     nfq_fairytale.action.user.categories.list:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetCategories
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: categories, method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: categories, method: GET }
 
     nfq_fairytale.action.category.books.list:
         class: Nfq\Fairytale\CoreBundle\Actions\Category\GetBooks
         calls:
             - [setFactory, [@im0rtality_api.data_source.factory]]
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", action: books, method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", action: books, method: GET }
 
     nfq_fairytale.action.book.details:
         class: Nfq\Fairytale\CoreBundle\Actions\Book\GetDetails
         tags:
-            - { name: nfq_fairytale.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Book", method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Book", method: GET }
         calls:
             - [setCacheManager, [@liip_imagine.cache.manager]]
             - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
