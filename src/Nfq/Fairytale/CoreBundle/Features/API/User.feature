@@ -8,7 +8,7 @@ Feature: API - User
         Then the response code should be 403
 
     Scenario: It should be possible to get user details
-        Given I am authenticated as "admin"
+        Given I am authenticated as "user"
         When I send a GET request to "/api/user/1"
         Then the response code should be 200
         And I should get JSON response with following format:
