@@ -13,13 +13,6 @@ web_profiler:
 swiftmailer:
     disable_delivery: true
 
-nfq_fairytale_api:
-    acl: api_acl_test.yml
-    mapping:
-        user: Nfq\Fairytale\CoreBundle\Entity\User
-    ownership:
-        "Nfq\Fairytale\CoreBundle\Entity\User": id
-
 doctrine:
     dbal:
         dbname:   "%database_name%_test"

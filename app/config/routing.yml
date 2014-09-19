@@ -2,8 +2,8 @@ nfq_fairytale_frontend:
     resource: "@NfqFairytaleFrontendBundle/Resources/config/routing.yml"
     prefix:   /
 
-nfq_fairytale_api:
-    resource: "@NfqFairytaleApiBundle/Resources/config/routing.yml"
+im0rtality_api:
+    resource: "@Im0rtalityApiBundle/Resources/config/routing.yml"
     prefix:   /api
 
 fos_user_security:

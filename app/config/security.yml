@@ -3,7 +3,6 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        # ROLE_OWNER - used by API bundle internally, no users should have that role defined manually
         ROLE_OWNER:       ROLE_USER
         ROLE_ADMIN:       ROLE_OWNER
 

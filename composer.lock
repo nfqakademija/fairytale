@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5467402022caa23763ade4b17bee0c8f",
+    "hash": "7528a05c84b597e11860a4db7cc762c3",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -695,6 +695,46 @@
                 "User management"
             ],
             "time": "2014-09-04 12:28:43"
+        },
+        {
+            "name": "im0rtality/rest-api-bundle",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Im0rtality/rest-api-bundle.git",
+                "reference": "4cab1f70010005ba78251f296175a92223efb05a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Im0rtality/rest-api-bundle/zipball/4cab1f70010005ba78251f296175a92223efb05a",
+                "reference": "4cab1f70010005ba78251f296175a92223efb05a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "~1.2",
+                "doctrine/orm": "~2.2,>=2.2.3",
+                "friendsofsymfony/user-bundle": "~1.3.4",
+                "jms/serializer-bundle": "0.*",
+                "php": "~5.4",
+                "symfony/monolog-bundle": "~2.4",
+                "symfony/symfony": "2.5.*"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0",
+                "sensio/generator-bundle": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "REST API Bundle",
+            "time": "2014-09-19 07:56:20"
         },
         {
             "name": "imagine/imagine",
@@ -3447,6 +3487,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "im0rtality/rest-api-bundle": 20,
         "vipsoft/doctrine-data-fixtures-extension": 20,
         "behat/symfony2-extension": 20
     },
