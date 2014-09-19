@@ -16,7 +16,5 @@ before_script:
     - app/console doctrine:database:create -e test
 
 script:
-    - true
-# TODO: add tests for project itself
 #    - bin/phpspec run -v -fpretty
-#    - bin/behat -fpretty
+    - bin/behat -fpretty
