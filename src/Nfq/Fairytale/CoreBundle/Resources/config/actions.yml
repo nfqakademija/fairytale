@@ -61,3 +61,11 @@ services:
         calls:
             - [setCacheManager, [@liip_imagine.cache.manager]]
             - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
+
+    nfq_fairytale.action.book.popular:
+        class: Nfq\Fairytale\CoreBundle\Actions\Book\GetMostPopular
+        tags:
+            - { name: im0rtality_api.api.action.collection, resource: "Nfq\Fairytale\CoreBundle\Entity\Book", action: popular, method: GET }
+        calls:
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
