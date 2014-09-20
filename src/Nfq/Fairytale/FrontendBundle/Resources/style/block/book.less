@@ -32,14 +32,17 @@
                 display: inline-block;
                 margin-right: 10px;
             }
-            &.free .circle {
+            &.available .circle {
                 background: green;
             }
-            &.tacked .circle {
+            &.taken .circle {
                 background: red;
             }
             &.reserved .circle {
                 background: yellow;
+            }
+            &.unknown .circle {
+                background: gray;
             }
         }
         .book-rating {

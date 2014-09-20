@@ -6,6 +6,7 @@ angular
         'Fairytale.User.Controller',
         'Fairytale.Category.Controller',
         'Fairytale.Sidebar.Controller',
+        'Fairytale.Book.Controller',
         'restangular'
     ])
     .config(function ($routeProvider, RestangularProvider) {
@@ -22,6 +23,10 @@ angular
             .when('/category/:id', {
                 templateUrl: '/partial/category',
                 controller: 'CategoryController'
+            })
+            .when('/book/:id', {
+                templateUrl: '/partial/book',
+                controller: 'BookController'
             })
             .otherwise({
                 redirectTo: '/'
