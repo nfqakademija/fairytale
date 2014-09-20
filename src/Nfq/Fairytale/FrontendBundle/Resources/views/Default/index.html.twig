@@ -27,9 +27,15 @@
             <div class="sidebar-module">
                 <div class="sidebar-header">SRITYS</div>
                 <ol class="nav">
-                    <li>Populiariausios</li>
-                    <li>Naujos</li>
-                    <li><a href="#">Visos</a></li>
+                    <li>
+                        <a ng-href="#/category/popular" ng-class="{active: 'popular' == activeCategoryId}">Populiariausios</a>
+                    </li>
+                    <li>
+                        <a ng-href="#/category/new" ng-class="{active: 'new' == activeCategoryId}">Naujos</a>
+                    </li>
+                    <li>
+                        <a ng-href="#/category/all" ng-class="{active: 'all' == activeCategoryId}">Visos</a>
+                    </li>
                 </ol>
             </div>
             <hr>
