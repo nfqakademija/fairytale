@@ -139,7 +139,10 @@ class ApiContext implements SnippetAcceptingContext
         $checked = [];
         foreach ($table as $row) {
             $checked[] = $row['field'];
-            Assertion::same(gettype(Arrays::get($payload, $row['field'])), $row['type']);
+            $type = gettype(Arrays::get($payload, $row['field']));
+            Assertion::same($type, $row['type'],
+                sprintf('Field %s has wrong type (expected %s but got %s instead)', $row['field'], $type,
+                    $row['type']));
         }
         $extraFields = array_diff_key($payload, array_flip($checked));
         Assertion::eq($extraFields, [],

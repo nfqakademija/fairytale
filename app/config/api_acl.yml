@@ -116,6 +116,16 @@ Nfq\Fairytale\CoreBundle\Entity:
                 id:         ROLE_USER
                 title:      ROLE_USER
                 books:      ROLE_USER
+        category.new:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+                books:      ROLE_USER
+        category.popular:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+                books:      ROLE_USER
     Book:
         collection.index:
             read:
@@ -125,34 +135,6 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_USER
         book.details:
-            read:
-                id:         ROLE_USER
-                title:      ROLE_USER
-                categories: ROLE_USER
-                description: ROLE_USER
-                pages:      ROLE_USER
-                publisher:  ROLE_USER
-                isbn:       ROLE_USER
-                cover:      ROLE_USER
-                language:   ROLE_USER
-                image:      ROLE_USER
-                status:     ROLE_USER
-                authors:    ROLE_USER
-        books.popular:
-            read:
-                id:         ROLE_USER
-                title:      ROLE_USER
-                categories: ROLE_USER
-                description: ROLE_USER
-                pages:      ROLE_USER
-                publisher:  ROLE_USER
-                isbn:       ROLE_USER
-                cover:      ROLE_USER
-                language:   ROLE_USER
-                image:      ROLE_USER
-                status:     ROLE_USER
-                authors:    ROLE_USER
-        books.new:
             read:
                 id:         ROLE_USER
                 title:      ROLE_USER
