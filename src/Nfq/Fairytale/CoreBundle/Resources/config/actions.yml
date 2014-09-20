@@ -80,3 +80,12 @@ services:
             - [setFactory, [@im0rtality_api.data_source.factory]]
             - [setCacheManager, [@liip_imagine.cache.manager]]
             - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
+
+    nfq_fairytale.action.category.all:
+        class: Nfq\Fairytale\CoreBundle\Actions\Category\GetAll
+        tags:
+            - { name: im0rtality_api.api.action.collection, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", action: all, method: GET }
+        calls:
+            - [setFactory, [@im0rtality_api.data_source.factory]]
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
