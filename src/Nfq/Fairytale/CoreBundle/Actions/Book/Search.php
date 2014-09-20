@@ -31,6 +31,7 @@ class Search extends BaseCollectionAction implements ImageResolvingInterface
         $entityManager = $resource->getDriver();
         $books = $entityManager->getRepository($resource->getResource())->createQueryBuilder('b')
             ->where('b.title LIKE :query')
+            ->setMaxResults(5)
             ->setParameter('query', '%' . $request->query->get('q') . '%')
             ->getQuery()
             ->getResult();

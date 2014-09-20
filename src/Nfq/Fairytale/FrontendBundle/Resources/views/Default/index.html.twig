@@ -61,9 +61,26 @@
                         <p>teka</p></div>
                     <div class="clear"></div>
                 </div>
-                <div class="col-md-8 search">
+                <div class="col-md-8 search" ng-controller="SearchController">
                     <img src="{{ asset('bundles/nfqfairytalefrontend/ico-search.png') }}">
-                    <input type="text" placeholder="Ieškoti knygos">
+                    <input type="text" placeholder="">
+                    <input type="text" ng-model="query" ng-keyup="search()" ng-blur="query = null; results = null" placeholder="Ieškoti knygos">
+
+                    {% verbatim %}
+                    <div id="auto-complete">
+                        <div class="book-row" ng-repeat="book in results">
+                            <a href="#/book/{{ book.id }}">
+                                <div class="left book-image"><img ng-src="{{ book.image.book_tiny }}"></div>
+                                <div class="left book-info">
+                                    <div class="book-title">{{ book.title }}</div>
+                                    <div class="book-authors">
+                                        <span ng-repeat="author in book.authors">{{ author.name }}</span></div>
+                                </div>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    {% endverbatim %}
                 </div>
             </div>
             <div ng-view>{% block view %}{% endblock %}</div>
@@ -83,6 +100,7 @@
     </script>
     {% javascripts
     '@NfqFairytaleFrontendBundle/Resources/assets/scripts/Generic/*'
+    '@NfqFairytaleFrontendBundle/Resources/assets/scripts/Search/*'
     '@NfqFairytaleFrontendBundle/Resources/assets/scripts/Sidebar/*'
     '@NfqFairytaleFrontendBundle/Resources/assets/scripts/User/*'
     '@NfqFairytaleFrontendBundle/Resources/assets/scripts/Category/*'

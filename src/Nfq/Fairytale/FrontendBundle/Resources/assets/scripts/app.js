@@ -6,6 +6,7 @@ angular
         'Fairytale.User.Controller',
         'Fairytale.Category.Controller',
         'Fairytale.Sidebar.Controller',
+        'Fairytale.Search.Controller',
         'Fairytale.Book.Controller',
         'restangular'
     ])
