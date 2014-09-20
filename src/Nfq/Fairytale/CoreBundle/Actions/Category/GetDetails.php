@@ -6,16 +6,19 @@ use Im0rtality\ApiBundle\Actions\ActionResult;
 use Im0rtality\ApiBundle\Actions\Instance\BaseInstanceAction;
 use Im0rtality\ApiBundle\DataSource\DataSourceInterface;
 use Im0rtality\ApiBundle\DataSource\Factory\DataSourceFactory;
+use Nfq\Fairytale\CoreBundle\Actions\Book\BookHelper;
+use Nfq\Fairytale\CoreBundle\Entity\Book;
 use Nfq\Fairytale\CoreBundle\Entity\Category;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingInterface;
+use Nfq\Fairytale\CoreBundle\Util\ImageResolvingTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class GetBooks extends BaseInstanceAction
+class GetDetails extends BaseInstanceAction implements ImageResolvingInterface
 {
-    const NAME = 'category.books';
+    use ImageResolvingTrait;
 
-    /** @var  DataSourceFactory */
-    protected $factory;
+    const NAME = 'category.details';
 
     /**
      * Performs the action
@@ -33,14 +36,18 @@ class GetBooks extends BaseInstanceAction
             throw new NotFoundHttpException();
         }
 
-        return ActionResult::collection(200, $cat->getBooks()->toArray());
-    }
+        $raw = [
+            'id'    => $cat->getId(),
+            'title' => $cat->getTitle(),
+            'books' => $cat->getBooks()
+                ->map(
+                    function (Book $book) {
+                        return BookHelper::toRaw($book, [$this, 'resolveImages']);
+                    }
+                )
+                ->toArray()
+        ];
 
-    /**
-     * @param DataSourceFactory $factory
-     */
-    public function setFactory(DataSourceFactory $factory)
-    {
-        $this->factory = $factory;
+        return ActionResult::instance(200, $raw);
     }
 }

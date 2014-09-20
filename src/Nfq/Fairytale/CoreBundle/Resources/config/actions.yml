@@ -47,12 +47,13 @@ services:
         tags:
             - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\User", action: categories, method: GET }
 
-    nfq_fairytale.action.category.books.list:
-        class: Nfq\Fairytale\CoreBundle\Actions\Category\GetBooks
+    nfq_fairytale.action.category.details:
+        class: Nfq\Fairytale\CoreBundle\Actions\Category\GetDetails
         calls:
-            - [setFactory, [@im0rtality_api.data_source.factory]]
+            - [setCacheManager, [@liip_imagine.cache.manager]]
+            - [setFilters, [%nfq_fairytale.action.book.details.image_filters%]]
         tags:
-            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", action: books, method: GET }
+            - { name: im0rtality_api.api.action.instance, resource: "Nfq\Fairytale\CoreBundle\Entity\Category", method: GET }
 
     nfq_fairytale.action.book.details:
         class: Nfq\Fairytale\CoreBundle\Actions\Book\GetDetails

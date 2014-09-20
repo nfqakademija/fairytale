@@ -111,7 +111,7 @@ Nfq\Fairytale\CoreBundle\Entity:
             read:
                 id:         ROLE_USER
                 title:      ROLE_USER
-        instance.read:
+        category.details:
             read:
                 id:         ROLE_USER
                 title:      ROLE_USER

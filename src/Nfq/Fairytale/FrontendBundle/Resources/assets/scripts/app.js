@@ -1,6 +1,7 @@
 angular
     .module('fairytale', [
         'ngRoute',
+        'Fairytale.Generic.PaginationFilter',
         'Fairytale.User.ActiveUser',
         'Fairytale.User.Controller',
         'Fairytale.Category.Controller',
