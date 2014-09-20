@@ -693,16 +693,16 @@
         },
         {
             "name": "im0rtality/rest-api-bundle",
-            "version": "v0.1.2",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Im0rtality/rest-api-bundle.git",
-                "reference": "4cab1f70010005ba78251f296175a92223efb05a"
+                "reference": "3d566b96d9a41b96705bfac253fd0b533e505968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Im0rtality/rest-api-bundle/zipball/4cab1f70010005ba78251f296175a92223efb05a",
-                "reference": "4cab1f70010005ba78251f296175a92223efb05a",
+                "url": "https://api.github.com/repos/Im0rtality/rest-api-bundle/zipball/3d566b96d9a41b96705bfac253fd0b533e505968",
+                "reference": "3d566b96d9a41b96705bfac253fd0b533e505968",
                 "shasum": ""
             },
             "require": {
@@ -729,7 +729,7 @@
                 "MIT"
             ],
             "description": "REST API Bundle",
-            "time": "2014-09-19 07:56:20"
+            "time": "2014-09-20 06:49:24"
         },
         {
             "name": "imagine/imagine",

@@ -153,3 +153,9 @@ Nfq\Fairytale\CoreBundle\Entity:
                 image:      ROLE_USER
                 status:     ROLE_USER
                 authors:    ROLE_USER
+        book.search:
+            read:
+                id:         ROLE_USER
+                title:      ROLE_USER
+                image:      ROLE_USER
+                authors:    ROLE_USER
