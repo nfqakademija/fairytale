@@ -2,7 +2,7 @@
     <p class="block-title">Perskaitytos knygos</p>
     {% verbatim %}
     <div class="book" ng-repeat="book in user.read.books">
-        <div class="left image"><img src="/img/books/1.png" ng-src="book.image"></div>
+        <div class="left image"><img ng-src="book.image"></div>
         <div class="left info">
             <p class="title">{{ book.title }}</p>
             <p class="authors"><span ng-repeat="author in book.authors">{{ author.name }}</span></p>
