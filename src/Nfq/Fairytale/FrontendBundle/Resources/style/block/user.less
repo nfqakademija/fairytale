@@ -66,46 +66,141 @@
             }
         }
     }
-    .new-reader {
+    .reader {
         color: #333333;
-        padding: 115px 40px;
         background: #eeeeee;
         border-radius: 10px;
         text-align: center;
-        .info-title {
-            font-family: 'Exo 2 Bold', 'Exo 2';
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .info-image {
-            position: relative;
-            img {
-                opacity: 0.15;
-                height: 128px;
-                width: 128px;
+        height: 480px;
+        padding: 30px;
+        .empty {
+            padding: 85px 10px;
+            .info-title {
+                font-family: 'Exo 2 Bold', 'Exo 2';
+                font-size: 18px;
+                font-weight: bold;
             }
-            span {
-                color: #ffffff;
-                font-family: 'Exo 2 Extra Bold', 'Exo 2';
-                font-size: 36px;
-                font-weight: 800;
-                background: #cccccc;
-                width: 61px;
-                height: 61px;
-                display: inline-block;
-                border-radius: 30px;
-                position: absolute;
-                bottom: 5px;
-                right: 45px;
+            .info-image {
+                position: relative;
+                img {
+                    opacity: 0.15;
+                    height: 128px;
+                    width: 128px;
+                }
+                span {
+                    color: #ffffff;
+                    font-family: 'Exo 2 Extra Bold', 'Exo 2';
+                    font-size: 36px;
+                    font-weight: 800;
+                    background: #cccccc;
+                    width: 61px;
+                    height: 61px;
+                    display: inline-block;
+                    border-radius: 30px;
+                    position: absolute;
+                    bottom: 5px;
+                    right: 45px;
+                }
+            }
+            .info-detail {
+                font-family: 'Exo 2';
+                font-size: 14px;
+                line-height: 21px;
+                a {
+                    text-decoration: underline;
+                    color: #333333;
+                }
             }
         }
-        .info-detail {
-            font-family: 'Exo 2';
-            font-size: 14px;
-            line-height: 21px;
-            a {
-                text-decoration: underline;
+        .reading, .reserved {
+            text-align: left;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #999999;
+            .info-title {
                 color: #333333;
+                font-family: 'Exo 2 Bold', 'Exo 2';
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .book {
+                .image img{
+                    max-height: 130px;
+                    max-width: 85px;
+                }
+                .title {
+                    max-width: 170px;
+                    padding-top: 10px;
+                    padding-left: 20px;
+                    color: #339999;
+                    font-family: 'Exo 2 Bold', 'Exo 2';
+                    font-size: 14px;
+                    font-weight: bold;
+                    line-height: 16px;
+                }
+                .authors {
+                    max-width: 170px;
+                    padding-left: 20px;
+                    color: #999999;
+                    font-family: 'Exo 2 Extra Light Italic', 'Exo 2';
+                    font-size: 12px;
+                    font-style: italic;
+                    font-weight: 200;
+                }
+            }
+        }
+        .reserved {
+            padding-top: 20px;
+            border-bottom: 0px none;
+            .undo-reserve {
+                margin-top: 25px;
+                background: #000000;
+                text-align: center;
+                padding-top: 7px;
+                border-radius: 4px;
+                a {
+                    display: inline-block;
+                    width: 270px;
+                    height: 25px;
+                    color: #ffffff;
+                    font-family: 'Exo 2 Bold', 'Exo 2';
+                    font-size: 12px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .empty-book {
+            text-align: center;
+            padding-top: 30px;
+            .image {
+                position: relative;
+                img {
+                    opacity: 0.15;
+                    height: 94px;
+                    width: 94px;
+                }
+                span {
+                    color: #ffffff;
+                    font-family: 'Exo 2 Extra Bold', 'Exo 2';
+                    font-size: 28px;
+                    font-weight: 800;
+                    background: #cccccc;
+                    width: 45px;
+                    height: 45px;
+                    display: inline-block;
+                    border-radius: 30px;
+                    position: absolute;
+                    bottom: 5px;
+                    right: 65px;
+                }
+            }
+            .info {
+                color: rgb(153, 153, 153);
+                font-family: 'Exo 2';
+                font-size: 14px;
             }
         }
     }

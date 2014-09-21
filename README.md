@@ -16,6 +16,7 @@ Initial setup (dependencies and database structure)
 $ composer install
 $ app/console doctrine:database:create
 $ app/console assets:install
+$ app/console assetic:dump
 ```
 
 Load data fixtures
