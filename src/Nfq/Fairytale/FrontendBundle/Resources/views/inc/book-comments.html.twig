@@ -1,0 +1,25 @@
+<div class="col-md-12">
+    <div class="title">
+        <img src="/bundles/nfqfairytalefrontend/ico-comment.png">Komentarai
+    </div>
+    {% verbatim %}
+    <div class="block-comment" ng-repeat="comment in book.comments">
+        <div class="user left">
+            <div class="image left">
+                <img ng-if="comment.user.photo" ng-src="{{ comment.user.photo }}">
+                <img ng-if="!comment.user.photo" src="/bundles/nfqfairytalefrontend/alien.png">
+            </div>
+            <div class="name left">{{ comment.user.name }}<br>{{ comment.user.surname }}</div>
+            <div class="clear"></div>
+        </div>
+        <div class="comment left">
+            <p class="date">
+                <img src="/bundles/nfqfairytalefrontend/ico-calendar.png"><span>{{ comment.date }}</span>
+                <img src="/bundles/nfqfairytalefrontend/ico-clock-white.png"><span>{{ comment.time }}</span>
+            </p>
+            <p class="text">{{ comment.text }}</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    {% endverbatim %}
+</div>
