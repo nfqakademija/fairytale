@@ -1,8 +1,0 @@
-Nfq\Fairytale\CoreBundle\Entity\User:
-    properties:
-        comments:
-            max_depth: 2
-        ratings:
-            max_depth: 2
-        reservations:
-            max_depth: 2

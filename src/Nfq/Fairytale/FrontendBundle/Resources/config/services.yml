@@ -1,8 +1,0 @@
-parameters:
-    nfq_fairytale_frontend.iless_filter.class: Nfq\Fairytale\FrontendBundle\Service\ILessFilter
-
-services:
-    nfq_fairytale_frontend.iless_filter:
-        class: %nfq_fairytale_frontend.iless_filter.class%
-        tags:
-            - { name: assetic.filter, alias: iless }

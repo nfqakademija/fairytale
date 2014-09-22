@@ -1,4 +1,0 @@
-#extensions:
-#    - PhpSpec\Extension\CodeCoverageExtension # composer require --dev henrikbjorn/phpspec-code-coverage:~0.2
-#suites:
-#    CoreBundle       : { namespace: Nfq\Fairytale, spec_path: src/Nfq/Fairytale/CoreBundle }

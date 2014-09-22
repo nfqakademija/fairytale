@@ -1,9 +1,0 @@
-parameters:
-    fairytale_core.upload.manager.upload_dir: uploads
-
-services:
-    fairytale_core.upload.manager:
-        class: Nfq\Fairytale\CoreBundle\Upload\UploadManager
-        calls:
-            - [setUploadDir, [%fairytale_core.upload.manager.upload_dir%]]
-            - [setRootDir, [%kernel.root_dir%]]
