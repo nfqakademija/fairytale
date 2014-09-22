@@ -63,11 +63,10 @@
                 </div>
                 <div class="col-md-8 search" ng-controller="SearchController">
                     <img src="{{ asset('bundles/nfqfairytalefrontend/ico-search.png') }}">
-                    <input type="text" placeholder="">
-                    <input type="text" ng-model="query" ng-keyup="search()" ng-blur="query = null; results = null" placeholder="Ieškoti knygos">
+                    <input type="text" ng-model="query" ng-keyup="search()"  placeholder="Ieškoti knygos">
 
                     {% verbatim %}
-                    <div id="auto-complete">
+                    <div id="auto-complete" ng-if="results.length" ng-click="onResultClick()">
                         <div class="book-row" ng-repeat="book in results">
                             <a href="#/book/{{ book.id }}">
                                 <div class="left book-image"><img ng-src="{{ book.image.book_tiny }}"></div>
@@ -77,6 +76,7 @@
                                         <span ng-repeat="author in book.authors">{{ author.name }}</span></div>
                                 </div>
                             </a>
+
                             <div class="clear"></div>
                         </div>
                     </div>
