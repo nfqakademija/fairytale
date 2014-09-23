@@ -10,7 +10,8 @@ angular
         'Fairytale.Book.Controller',
         'restangular'
     ])
-    .config(function ($routeProvider, RestangularProvider) {
+    .config(['$routeProvider', 'RestangularProvider',
+        function ($routeProvider, RestangularProvider) {
         RestangularProvider.setBaseUrl('/api');
 
         $routeProvider
@@ -20,6 +21,9 @@ angular
             .when('/user/:id', {
                 templateUrl: '/partial/user',
                 controller: 'UserController'
+            })
+            .when('/me', {
+                redirectTo: '/user/' + activeUser.id
             })
             .when('/category/:id', {
                 templateUrl: '/partial/category',
@@ -32,5 +36,5 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
-    });
+    }]);
 

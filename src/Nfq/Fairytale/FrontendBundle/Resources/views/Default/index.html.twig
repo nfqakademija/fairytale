@@ -6,19 +6,22 @@
             <div class="sidebar-module">
                 <div class="sidebar-user">
                     {% verbatim %}
-                    <div class="user-photo left">
-                        <img ng-src="{{ me.image.user_small }}">
-                    </div>
-                    <div class="user-name left">{{ me.name }}<br/>{{ me.lastname }}</div>
-                    <div class="clear"></div>
+                    <a ng-href="#/user/{{ me.id }}">
+                        <div class="user-photo left">
+                            <img ng-src="{{ me.image.user_small }}">
+                        </div>
+                        <div class="user-name left">{{ me.name }}<br/>{{ me.lastname }}</div>
+                        <div class="clear"></div>
+                    </a>
                     {% endverbatim %}
                 </div>
             </div>
             <div class="sidebar-module">
                 <ol class="nav user">
-                    <li><a href="#/me"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar
+                    <li>
+                        <a href="#/me"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-check.png') }}">Dabar
                             skaitau</a></li>
-                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos
+                    <li><a href="#/me"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos
                             knygos</a></li>
                     <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti
                             knygą</a></li>
