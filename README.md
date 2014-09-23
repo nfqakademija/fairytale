@@ -21,7 +21,9 @@ $ app/console assetic:dump
 
 Load data fixtures
 ```
-$ app/console doctrine:schema:drop --force; app/console doctrine:schema:create && app/console doctrine:fixtures:load -n --fixtures src/Nfq/Fairytale/CoreBundle/DataFixtures/ORM/
+$ app/console doctrine:schema:drop --force
+$ app/console doctrine:schema:create 
+$ app/console doctrine:fixtures:load -n --fixtures src/Nfq/Fairytale/CoreBundle/DataFixtures/ORM/
 ```
 
 Running tests
