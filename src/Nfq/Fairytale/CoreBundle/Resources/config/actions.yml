@@ -17,6 +17,7 @@ services:
         calls:
             - [setCacheManager, [@liip_imagine.cache.manager]]
             - [setFilters, [%nfq_fairytale.action.user.details.image_filters%]]
+            - [setBookFilters, [%nfq_fairytale.action.book.details.image_filters%]]
 
     nfq_fairytale.action.user.reservation.get:
         class: Nfq\Fairytale\CoreBundle\Actions\User\GetReservation

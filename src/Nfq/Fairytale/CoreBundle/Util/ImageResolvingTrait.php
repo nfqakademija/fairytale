@@ -9,7 +9,7 @@ trait ImageResolvingTrait
     use CacheManagerAwareTrait;
 
     /** @var  string[] */
-    private $filters = [];
+    protected $filters = [];
 
     /**
      * Which Imagine filters to apply on image
