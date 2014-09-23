@@ -19,13 +19,14 @@
         </div>
         <div class="clear"></div>
         <div class="user-read-statistic">
-            <p><span>Viso perskaitė:</span>0</p>
+            <p><span>Viso perskaitė:</span>{{ (user.reservations | filter:status:"returned").length }}</p>
 
-            <p><span>Vidutiniškai skaito knygą:</span>0</p>
+            <p><span>Vidutiniškai skaito knygą:</span></p>
 
-            <p><span>Paliko atsiliepimų:</span>0</p>
+            <p><span>Paliko atsiliepimų:</span>{{ user.comments.length }}</p>
 
-            <p><span>Dažniausiai skaito:</span>-</p>
+            <p><span>Dažniausiai skaito:</span>
+                <a href="#/category/{{ (categories | first).id }}">{{ (categories | first).title }}</a></p>
         </div>
     </div>
     {% endverbatim %}
