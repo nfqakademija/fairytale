@@ -17,6 +17,7 @@ class BookHelper
         $book = Doctrine::extractEntity($book);
         $raw = Doctrine::extractRaw($book);
 
+        $raw['status'] = self::getBookStatus($book);
         $raw['categories'] = $book->getCategories()->map(
             function (Category $category) {
                 return ['id' => $category->getId(), 'title' => $category->getTitle()];
@@ -32,7 +33,6 @@ class BookHelper
             })->toArray();
 
         $raw['image'] = $imageResolver($book->getImage()->getFileName());
-        $raw['status'] = self::getBookStatus($book);
 
         return $raw;
     }
