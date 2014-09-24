@@ -1,20 +1,20 @@
 <div class="col-md-12">
     <p class="block-title">Perskaitytos knygos</p>
     {% verbatim %}
-    <div class="book" ng-repeat="book in user.read.books">
-        <div class="left image"><img ng-src="book.image"></div>
+    <div class="book" ng-repeat="reservation in returned = (user.reservations | filter:{returnedAt: '!!'})" ng-if="returned.length">
+        <div class="left image"><img ng-src="reservation.book.image.book_small"></div>
         <div class="left info">
-            <p class="title">{{ book.title }}</p>
-            <p class="authors"><span ng-repeat="author in book.authors">{{ author.name }}</span></p>
+            <p class="title">{{ reservation.book.title }}</p>
+            <p class="authors"><span ng-repeat="author in reservation.book.authors">{{ author.name }}</span></p>
         </div>
         <div class="right button">
-            <a href="#/book/{{ book.id }}">
+            <a href="#/book/{{ reservation.book.id }}">
                 <img src="/bundles/nfqfairytalefrontend/ico-gt-round.png">
             </a>
         </div>
         <div class="right detail">
-            <p class="rating">Įvertinimas: {{ book.rating }} / 5</p>
-            <p class="comments">Komentarai: ({{ book.coments.count }})</p>
+            <p class="rating">Įvertinimas: {{ reservation.book | rating:1 }} / 5</p>
+            <p class="comments">Komentarai: ({{ reservation.book.comments.length }})</p>
         </div>
         <div class="clear"></div>
     </div>

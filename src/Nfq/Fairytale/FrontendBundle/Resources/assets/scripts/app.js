@@ -2,6 +2,7 @@ angular
     .module('fairytale', [
         'ngRoute',
         'Fairytale.Generic.PaginationFilter',
+        'Fairytale.Book.RatingFilter',
         'Fairytale.User.ActiveUser',
         'Fairytale.User.Controller',
         'Fairytale.Category.Controller',
