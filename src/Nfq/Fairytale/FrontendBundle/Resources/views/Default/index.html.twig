@@ -6,13 +6,11 @@
             <div class="sidebar-module">
                 <div class="sidebar-user">
                     {% verbatim %}
-                    <a ng-href="#/user/{{ me.id }}">
-                        <div class="user-photo left">
-                            <img ng-src="{{ me.image.user_small }}">
-                        </div>
-                        <div class="user-name left">{{ me.name }}<br/>{{ me.lastname }}</div>
-                        <div class="clear"></div>
-                    </a>
+                    <div class="user-photo left">
+                        <img ng-src="{{ me.image.user_small }}">
+                    </div>
+                    <div class="user-name left">{{ me.name }}<br/>{{ me.lastname }}</div>
+                    <div class="clear"></div>
                     {% endverbatim %}
                 </div>
             </div>
