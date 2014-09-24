@@ -44,6 +44,6 @@ class Arrays
         }
 
         $key = reset($keys);
-        return $root[$key];
+        return @$root[$key]; // hush hush
     }
 } 
