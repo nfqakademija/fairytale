@@ -17,11 +17,15 @@ angular
             };
 
             $scope.onNextClick = function () {
-                $scope.curPage++;
+                if ($scope.curPage < $scope.numberOfPages() - 1) {
+                    $scope.curPage++;
+                }
             };
 
             $scope.onPrevClick = function () {
-                $scope.curPage--;
+                if (0 < $scope.curPage) {
+                    $scope.curPage--;
+                }
             };
         }
     ]);

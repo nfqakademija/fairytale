@@ -15,14 +15,14 @@
     </div>
     <div class="col-md-12">
         <ul class="pager" ng-if="category.books.length">
-            <li class="previous">
-                <a ng-disabled="curPage <= 0" ng-click="onPrevClick()" disabled>&laquo; Atgal</a>
+            <li class="previous" ng-class="{disabled: curPage <= 0}">
+                <a ng-click="onPrevClick()">&laquo; Atgal</a>
             </li>
             <li>
                 <span>{{ curPage + 1 }} / {{ numberOfPages() }}</span>
             </li>
-            <li class="next">
-                <a ng-disabled="curPage >= (category.books.length/pageSize) - 1" ng-click="onNextClick()">Kitas &raquo;</a>
+            <li class="next" ng-class="{disabled: numberOfPages() <= curPage + 1}">
+                <a ng-click="onNextClick()">Kitas &raquo;</a>
             </li>
         </ul>
     </div>
