@@ -33,3 +33,6 @@ Feature: API - Book
             | image.book_small   | string  |
             | image.book_tiny    | string  |
             | status             | string  |
+            | ratings            | array   |
+            | ratings.0.id       | integer |
+            | ratings.0.value    | integer |
