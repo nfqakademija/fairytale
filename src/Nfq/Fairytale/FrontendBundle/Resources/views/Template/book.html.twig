@@ -18,7 +18,7 @@
             <div ng-switch-when="reserved" class="book-status reserved"><div class="circle"></div>Rezervuota kolegos</div>
             <div ng-switch-when="available" class="book-status available"><div class="circle"></div>Guli lentynoje</div>
             <div ng-switch-default class="book-status unknown"><div class="circle"></div>Kas per statusas "{{ book.status }}" ???</div>
-            <div class="book-rating left">Įvertinimas: {{ book.rating }} / 5</div>
+            <div class="book-rating left">Įvertinimas: {{ book | rating:1 }} / 5</div>
             <div ng-if="book.status == 'available'" class="book-reserve right"><a href="#/book/{{ book.id }}/reserve">Rezervuoti</a></div>
             <div class="clear"></div>
         </div>
