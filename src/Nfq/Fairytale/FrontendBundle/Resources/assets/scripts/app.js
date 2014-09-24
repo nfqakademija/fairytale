@@ -16,9 +16,6 @@ angular
         RestangularProvider.setBaseUrl('/api');
 
         $routeProvider
-            .when('/', {
-                controller: 'MainController'
-            })
             .when('/user/:id', {
                 templateUrl: '/partial/user',
                 controller: 'UserController'
@@ -35,7 +32,7 @@ angular
                 controller: 'BookController'
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/category/popular'
             });
     }]);
 
