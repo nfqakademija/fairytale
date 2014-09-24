@@ -154,6 +154,7 @@ Nfq\Fairytale\CoreBundle\Entity:
                 status:     ROLE_USER
                 authors:    ROLE_USER
                 ratings:    ROLE_USER
+                comments:   ROLE_USER
         book.search:
             read:
                 id:         ROLE_USER

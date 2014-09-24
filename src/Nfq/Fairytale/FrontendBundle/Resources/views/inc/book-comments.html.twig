@@ -5,19 +5,23 @@
     {% verbatim %}
     <div class="block-comment" ng-repeat="comment in book.comments">
         <div class="user left">
-            <div class="image left">
-                <img ng-if="comment.user.photo" ng-src="{{ comment.user.photo }}">
-                <img ng-if="!comment.user.photo" src="/bundles/nfqfairytalefrontend/alien.png">
-            </div>
-            <div class="name left">{{ comment.user.name }}<br>{{ comment.user.surname }}</div>
+            <a ng-href="#/user/{{ comment.user.id }}">
+                <div class="image left">
+                    <img ng-if="comment.user.photo" ng-src="{{ comment.user.image.user_small }}">
+                    <img ng-if="!comment.user.photo" src="/bundles/nfqfairytalefrontend/alien.png">
+                </div>
+                <div class="name left">{{ comment.user.name }}<br>{{ comment.user.lastname }}</div>
+            </a>
+
             <div class="clear"></div>
         </div>
         <div class="comment left">
             <p class="date">
-                <img src="/bundles/nfqfairytalefrontend/ico-calendar.png"><span>{{ comment.date }}</span>
-                <img src="/bundles/nfqfairytalefrontend/ico-clock-white.png"><span>{{ comment.time }}</span>
+                <img src="/bundles/nfqfairytalefrontend/ico-calendar.png"><span>{{ comment.created_at | date:"yyyy-MM-dd" }}</span>
+                <img src="/bundles/nfqfairytalefrontend/ico-clock-white.png"><span>{{ comment.created_at | date:"HH:mm:ss" }}</span>
             </p>
-            <p class="text">{{ comment.text }}</p>
+
+            <p class="text">{{ comment.content }}</p>
         </div>
         <div class="clear"></div>
     </div>
