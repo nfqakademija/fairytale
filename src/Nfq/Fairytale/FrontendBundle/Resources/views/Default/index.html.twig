@@ -63,12 +63,12 @@
                     <div class="clear"></div>
                 </div>
                 <div class="col-md-8 search" ng-controller="SearchController">
-                    <img src="{{ asset('bundles/nfqfairytalefrontend/ico-search.png') }}">
+                    <img class="glass" src="{{ asset('bundles/nfqfairytalefrontend/ico-search.png') }}">
                     <input type="text" placeholder="Ieškoti knygos"
-                           ng-model="query" ng-keyup="search()" ng-focus="focused = true" ng-blur="focused = false">
+                           ng-model="query" ng-keyup="search()" ng-focus="focused = true">
 
                     {% verbatim %}
-                    <div id="auto-complete" ng-if="results.length && focused" ng-click="onResultClick()">
+                    <div id="auto-complete" ng-if="results.length" ng-click="onResultClick()">
                         <div class="book-row" ng-repeat="book in results">
                             <a href="#/book/{{ book.id }}">
                                 <div class="left book-image"><img ng-src="{{ book.image.book_tiny }}"></div>
