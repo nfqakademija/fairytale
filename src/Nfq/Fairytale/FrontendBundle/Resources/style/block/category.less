@@ -39,4 +39,40 @@
             }
         }
     }
+    .content-pager {
+        padding: 0;
+        color: rgb(51, 51, 51);
+        font-family: 'Exo 2';
+        font-size: 16px;
+        list-style: none outside none;
+        text-align: center;
+        li {
+            display: inline-block;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            a {
+                cursor: pointer;
+                color: rgb(51, 51, 51);
+                border-bottom: 1px solid rgb(51, 51, 51);
+                text-decoration: none;
+                padding-bottom: 2px;
+            }
+            &.previous {
+                float: left;
+            }
+            &.next {
+                float: right;
+            }
+            &.disabled {
+                a {
+                    color: rgb(119, 119, 119);
+                    cursor: not-allowed;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
 }
