@@ -1,40 +1,29 @@
-<div class="row">
-    <div class="col-md-12 content-title">Profilis</div>
-</div>
-<div class="row" id="content-user">
-    <div class="col-md-7">
-        {% verbatim %}
-        <div class="user-name">{{ user.name }} {{ user.lastname }}</div>
-        <div class="user-photo left">
-            <img ng-if="user.photo" ng-src="{{ user.photo }}">
-            <img ng-if="!user.photo" src="/bundles/nfqfairytalefrontend/alien.png">
-        </div>
-        <div class="user-detail left">
-            <p class="email-title">El. paštas:</p>
+{% extends "NfqFairytaleFrontendBundle:Default:user-content.html.twig" %}
 
-            <p class="email">{{ user.email }}</p>
+{% block user_content %}
+    {% verbatim %}
+    <div class="user-photo left">
+        <img ng-if="user.photo" ng-src="{{ user.photo }}">
+        <img ng-if="!user.photo" src="/bundles/nfqfairytalefrontend/alien.png">
+    </div>
+    <div class="user-detail left">
+        <p class="email-title">El. paštas:</p>
 
-            <p class="edit"><img src="bundles/nfqfairytalefrontend/ico-edit.png"> <a href="#user-edit">Keisti
-                    informaciją</a></p>
-        </div>
-        <div class="clear"></div>
-        <div class="user-read-statistic">
-            <p><span>Viso perskaitė:</span>{{ (user.reservations | filter:status:"returned").length }}</p>
+        <p class="email">{{ user.email }}</p>
 
-            <p><span>Vidutiniškai skaito knygą:</span></p>
+        <p class="edit"><img src="bundles/nfqfairytalefrontend/ico-edit.png"> <a href="#user-edit">Keisti
+                informaciją</a></p>
+    </div>
+    <div class="clear"></div>
+    <div class="user-read-statistic">
+        <p><span>Viso perskaitė:</span>{{ (user.reservations | filter:status:"returned").length }}</p>
 
-            <p><span>Paliko atsiliepimų:</span>{{ user.comments.length }}</p>
+        <p><span>Vidutiniškai skaito knygą:</span></p>
 
-            <p><span>Dažniausiai skaito:</span>
-                <a href="#/category/{{ (categories | first).id }}">{{ (categories | first).title }}</a></p>
-        </div>
+        <p><span>Paliko atsiliepimų:</span>{{ user.comments.length }}</p>
+
+        <p><span>Dažniausiai skaito:</span>
+            <a href="#/category/{{ (categories | first).id }}">{{ (categories | first).title }}</a></p>
     </div>
     {% endverbatim %}
-    <div class="col-md-5">
-        {% include("NfqFairytaleFrontendBundle:inc:user-books.html.twig") %}
-    </div>
-</div>
-<div class="row" id="read-books">
-    {% include("NfqFairytaleFrontendBundle:inc:read-books.html.twig") %}
-</div>
-
+{% endblock %}

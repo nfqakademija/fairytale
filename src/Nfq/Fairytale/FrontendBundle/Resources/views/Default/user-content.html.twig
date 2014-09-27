@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-12 content-title">Profilis</div>
+</div>
+<div class="row" id="content-user">
+    <div class="col-md-7">
+        {% verbatim %}
+        <div class="user-name">{{ user.name }} {{ user.lastname }}</div>
+        {% endverbatim %}
+        {% block user_content %}{% endblock %}
+    </div>
+    <div class="col-md-5">
+        {% include("NfqFairytaleFrontendBundle:inc:user-books.html.twig") %}
+    </div>
+</div>
+<div class="row" id="user-read-books">
+    {% include("NfqFairytaleFrontendBundle:inc:user-read-books.html.twig") %}
+</div>
