@@ -2,8 +2,15 @@
 
 {% block user_content %}
     {% verbatim %}
-    <div class="user-profile">
-
+    <div id="user-profile">
+        <form method="post" action="#">
+            <label for="user-email">El. paštas:</label>
+            <input id="user-email" type="text" name="user[email]">
+            <label for="user-password">Slaptažodis:</label>
+            <input id="user-password" type="text" name="user[password]"><br>
+            <input type="submit" value="Keisti">
+            <a class="cancel" href="#/user/{{ user.id }}">Atšaukti</a>
+        </form>
     </div>
     {% endverbatim %}
 {% endblock %}
