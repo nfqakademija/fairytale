@@ -72,6 +72,6 @@ class AddComment extends BaseInstanceAction
             'user'    => ['id' => $comment->getUser()->getId()],
             'book'    => ['id' => $comment->getBook()->getId()],
         ];
-        return ActionResult::instance(200, $raw);
+        return ActionResult::instance(201, $raw);
     }
 }

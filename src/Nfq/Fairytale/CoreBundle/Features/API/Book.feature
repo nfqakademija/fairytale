@@ -44,3 +44,19 @@ Feature: API - Book
             | comments.0.user.id       | integer |
             | comments.0.user.name     | string  |
             | comments.0.user.lastname | string  |
+
+    Scenario: It should be possible to comment on book
+        Given I am authenticated as "user"
+        When I send a POST request to "/api/book/1/comment" with body:
+        """
+    {"content":"foo"}
+        """
+        Then the response code should be 201
+        And I should get JSON response with following format:
+            | field   | type    |
+            | id      | integer |
+            | content | string  |
+            | user    | array   |
+            | user.id | integer |
+            | book    | array   |
+            | book.id | integer |
