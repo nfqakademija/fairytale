@@ -14,7 +14,7 @@
         </a>
     </div>
     <div class="col-md-12">
-        <ul class="content-pager" ng-if="category.books.length">
+        <ul class="content-pager" ng-if="category.books.length && numberOfPages() > 1">
             <li class="previous" ng-class="{disabled: curPage <= 0}">
                 <a ng-click="onPrevClick()">&laquo; Atgal</a>
             </li>
