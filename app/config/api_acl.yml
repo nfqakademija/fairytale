@@ -139,6 +139,14 @@ Nfq\Fairytale\CoreBundle\Entity:
         category.books:
             read:
                 id:         ROLE_USER
+        book.comment:
+            read:
+                id:           ROLE_USER
+                content:      ROLE_USER
+                user:         ROLE_USER
+                book:         ROLE_USER
+            write:
+                content:      ROLE_USER
         book.details:
             read:
                 id:         ROLE_USER

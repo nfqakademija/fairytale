@@ -177,7 +177,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -274,7 +274,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -475,9 +475,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -531,7 +531,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -685,16 +685,16 @@
         },
         {
             "name": "im0rtality/rest-api-bundle",
-            "version": "v0.1.4",
+            "version": "v0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Im0rtality/rest-api-bundle.git",
-                "reference": "3d566b96d9a41b96705bfac253fd0b533e505968"
+                "reference": "3d8b6f50aef568390408930f13c6b7098b065e87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Im0rtality/rest-api-bundle/zipball/3d566b96d9a41b96705bfac253fd0b533e505968",
-                "reference": "3d566b96d9a41b96705bfac253fd0b533e505968",
+                "url": "https://api.github.com/repos/Im0rtality/rest-api-bundle/zipball/3d8b6f50aef568390408930f13c6b7098b065e87",
+                "reference": "3d8b6f50aef568390408930f13c6b7098b065e87",
                 "shasum": ""
             },
             "require": {
@@ -721,7 +721,7 @@
                 "MIT"
             ],
             "description": "REST API Bundle",
-            "time": "2014-09-20 06:49:24"
+            "time": "2014-09-27 17:32:51"
         },
         {
             "name": "imagine/imagine",
@@ -2145,7 +2145,7 @@
                     "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher",
+                    "name": "Armin Ronacher2",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
                 },
