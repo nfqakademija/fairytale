@@ -1,6 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block container %}
+    <div class="container-color">
     <div class="row">
         <div class="col-md-3 sidebar" ng-controller="SidebarController">
             <div class="sidebar-module">
@@ -21,8 +22,8 @@
                             skaitau</a></li>
                     <li><a href="#/me"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-clock.png') }}">Rezervuotos
                             knygos</a></li>
-                    <li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti
-                            knygą</a></li>
+                    {#<li><a href="#"><img src="{{ asset('bundles/nfqfairytalefrontend/ico-pencil.png') }}">Pasiųlyti#}
+                            {#knygą</a></li>#}
                 </ol>
             </div>
             <div class="sidebar-module">
@@ -87,6 +88,7 @@
             </div>
             <div ng-view>{% block view %}{% endblock %}</div>
         </div>
+    </div>
     </div>
 {% endblock %}
 
