@@ -36,13 +36,12 @@ $ app/console doctrine:database:create -e test
 Run tests.
 
 ```
-$ bin/phpspec run
 $ bin/behat
 ```
 
 > HEADS UP: Behat tests are configured to reload fixtures, so running Behat wipes test database!
 
-Regenerating entity classes
+Regenerating entity classes (99/100 you don't need this)
 ===========================
 
 After regenerating entity classes from mapping some changes have to be made manually:
