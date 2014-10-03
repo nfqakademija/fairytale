@@ -1,0 +1,78 @@
+#book-write-comments {
+    .button {
+        text-align: center;
+        a {
+            padding-top: 9px;
+            background: #000000;
+            border-radius: 4px;
+            color: #ffffff;
+            cursor: pointer;
+            font-family: 'Exo 2 Bold', 'Exo 2';
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 170px;
+            height: 35px;
+            display: inline-block;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    .comment {
+        padding: 30px 20px;
+        background: #eeeeee;
+        border-radius: 5px;
+        .rating {
+            padding: 0;
+            .rating-title {
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+                border-bottom: 1px solid #cccccc;
+                color: rgb(51, 51, 51);
+                font-family: 'Exo 2 Medium Italic', 'Exo 2';
+                font-size: 13px;
+                font-style: italic;
+                font-weight: 600;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+                letter-spacing: normal;
+                input {
+                    margin: 0;
+                    vertical-align: top;
+                    margin-right: 15px;
+                }
+                label {
+                    margin: 0;
+                    display: inline-flex;
+                    span {
+                        display: inline-block;
+                        width: 16px;
+                        height: 16px;
+                        &.full {
+                            background-image: url('/bundles/nfqfairytalefrontend/star-full.png');
+                        }
+                        &.empty {
+                            background-image: url('/bundles/nfqfairytalefrontend/star-empty.png');
+                        }
+                    }
+                }
+            }
+        }
+        .button {
+            margin-top: 30px;
+            display: inline-block;
+        }
+        .cancel {
+            color: #333333;
+            cursor: pointer;
+            font-family: 'Exo 2 Italic', 'Exo 2';
+            font-size: 14px;
+            font-style: italic;
+            margin-left: 30px;
+            text-decoration: underline;
+        }
+    }
+}

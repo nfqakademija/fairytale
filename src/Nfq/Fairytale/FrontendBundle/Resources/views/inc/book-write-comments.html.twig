@@ -1,0 +1,74 @@
+<div class="col-md-12">
+    <div class="button">
+        <a href="#show-form">Rašyti komentarą</a>
+    </div>
+    {% verbatim %}
+    <div class="row comment">
+        <form action="#" method="post">
+        <div class="col-md-2 rating">
+            <div class="rating-title">Tavo vertinimas:</div>
+            <ul>
+                <li>
+                    <input type="radio" name="rating" value="5" id="rating-5">
+                    <label for="rating-5">
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="full"></span>
+                    </label>
+                </li>
+                <li>
+                    <input type="radio" name="rating" value="4" id="rating-4">
+                    <label for="rating-4">
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="empty"></span>
+                    </label>
+                </li>
+                <li>
+                    <input type="radio" name="rating" value="3" id="rating-3">
+                    <label for="rating-3">
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="empty"></span>
+                        <span class="empty"></span>
+                    </label>
+                </li>
+                <li>
+                    <input type="radio" name="rating" value="2" id="rating-2">
+                    <label for="rating-2">
+                        <span class="full"></span>
+                        <span class="full"></span>
+                        <span class="empty"></span>
+                        <span class="empty"></span>
+                        <span class="empty"></span>
+                    </label>
+                </li>
+                <li>
+                    <input type="radio" name="rating" value="1" id="rating-1">
+                    <label for="rating-1">
+                        <span class="full"></span>
+                        <span class="empty"></span>
+                        <span class="empty"></span>
+                        <span class="empty"></span>
+                        <span class="empty"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <textarea class="form-control" rows="10"></textarea>
+            <div class="button">
+                <a href="#show-form">Rašyti komentarą</a>
+            </div>
+            <a class="cancel" href="#close">Atšaukti</a>
+        </div>
+        </form>
+        <div class="clear"></div>
+    </div>
+    {% endverbatim %}
+</div>
